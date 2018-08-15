@@ -100,7 +100,7 @@ void xor_operation(struct user_args args)
   fprintf(stdout, "  Save to file: %s ( %s )\n", BOOL_STR(args.save_result), args.save_filename);
   fprintf(stdout, " Learning rate: %lf\n", args.learning_rate);
   fprintf(stdout, "     Verbosity: %d\n", args.verbose);
-  fprintf(stdout, "    Iterations: %ld\n", args.iterations);
+  fprintf(stdout, "    Iterations: %ld\n\n", args.iterations);
 
   n3_args.read_file = args.read_result;
   n3_args.in_filename = args.read_filename;
