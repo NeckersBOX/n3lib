@@ -87,9 +87,13 @@ void *n3l_execute_backward_propagation(void *arg)
       pthread_join(thread, NULL);
     }
 
-    N3L_LMEDIUM(p_l, "Weight (%ld,%ld) - Old: %lf", tdata->l_idx, n_idx, p_n->weights[tdata->o_idx]);
+    N3L_LMEDIUM(p_l, "Weight (%ld,%ld) --> (%ld,%ld) - Old: %lf",
+      tdata->l_idx, n_idx, tdata->l_idx + 1, tdata->o_idx, p_n->weights[tdata->o_idx]);
+
     p_n->weights[tdata->o_idx] += tdata->state->args->learning_rate * tdata->delta_w * p_n->input;
-    N3L_LMEDIUM(p_l, "Weight (%ld,%ld) - New: %lf", tdata->l_idx, n_idx, p_n->weights[tdata->o_idx]);
+
+    N3L_LMEDIUM(p_l, "Weight (%ld,%ld) --> (%ld,%ld) - New: %lf",
+      tdata->l_idx, n_idx, tdata->l_idx + 1, tdata->o_idx, p_n->weights[tdata->o_idx]);
   }
 
   N3L_LMEDIUM_END(p_l);

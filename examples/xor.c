@@ -138,7 +138,7 @@ double *get_inputs_batch_mode(void)
   static uint8_t step = 0;
 
   inputs = (double *) malloc(2 * sizeof(double));
-  step = 2;
+
   switch(step) {
     case 0:
       inputs[0] = 0; inputs[1] = 0;
