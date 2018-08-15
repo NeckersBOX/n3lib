@@ -20,6 +20,7 @@ Next you need to include the library header. If your file is `N3Lib/examples/xor
 
 Finally, to compile your project:
 ```
+export LD_LIBRARY_PATH=/home/myuser/N3Lib:$LD_LIBRARY_PATH
 gcc examples/xor.c -o xor -L/home/myuser/N3Lib -ln3l -lm -lpthread
 ```
 
