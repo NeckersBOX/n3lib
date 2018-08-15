@@ -3,7 +3,7 @@
 #include <string.h>
 #include <math.h>
 #include <time.h>
-#include <getopt.h>
+#include <unistd.h>
 #include "../n3lib.h"
 
 #define BOOL_STR(b) ((b) ? "True" : "False")
@@ -26,26 +26,14 @@ void xor_operation(struct user_args);
 int main(int argc, char *argv[])
 {
   struct user_args arg = { false, false, false, "xor.n3l", "xor.n3l", 1.f, 1, N3LLogNone };
-  int c, v, option_index = 0;
-  struct option long_options[] = {
-    { "iteration", required_argument, 0, 'i' },
-    { "learning",  optional_argument, 0, 'l' },
-    { "read",      optional_argument, 0, 'r' },
-    { "save",      optional_argument, 0, 's' },
-    { "verbose",   required_argument, 0, 'v' }
-  };
+  int opt, v;
 
   srand(time(NULL));
   fprintf(stdout, "XOR Example - N3L v. %s\n", N3L_VERSION);
   fprintf(stdout, "(c) 2018 - Davide Francesco Merico <hds619 [at] gmail [dot] com>\n\n");
 
-  while(1) {
-    c = getopt_long(argc, argv, "i:lrsv:", long_options, &option_index);
-    if ( c == -1 ) {
-      break;
-    }
-
-    switch(c) {
+  while ((opt = getopt(argc, argv, "hi:lo:r:sv:")) != -1) {
+    switch(opt) {
       case 'l':
         arg.learning = true;
         if ( optarg ) {
@@ -59,21 +47,37 @@ int main(int argc, char *argv[])
           arg.iterations = 1;
         }
         break;
+     case 'o':
+        arg.save_filename = strdup(optarg);
+        break;
      case 's':
         arg.save_result = true;
-        if ( optarg ) {
-          arg.save_filename = strdup(optarg);
-        }
         break;
      case 'r':
         arg.read_result = true;
-        if ( optarg ) {
-          arg.read_filename = strdup(optarg);
-        }
+        arg.read_filename = strdup(optarg);
         break;
      case 'v':
         v = atoi(optarg);
         arg.verbose = v < 0 ? -1 : (v > N3LLogPedantic) ? N3LLogPedantic : v;
+        break;
+     case 'h':
+        fprintf(stdout, "Usage: %s [options]\n\n", *argv);
+        fprintf(stdout, "Options:\n");
+        fprintf(stdout, "\t-h             Show this help with the options list.\n");
+        fprintf(stdout, "\t-i [n]         Number of iterations. Default: 1\n");
+        fprintf(stdout, "\t-l             Enable learning with backpropagation.\n");
+        fprintf(stdout, "\t-o [filename]  After the number of iterations provided, save the\n");
+        fprintf(stdout, "\t               neural network state. Note: It works only if used\n");
+        fprintf(stdout, "\t               with option -s.\n");
+        fprintf(stdout, "\t-r [filename]  Initialize the neural network reading the number of\n");
+        fprintf(stdout, "\t               neurons, layers and weights from a previous state saved.\n");
+        fprintf(stdout, "\t-s             After the number of iterations provided, save the\n");
+        fprintf(stdout, "\t               neural network state. Default filename: xor.n3l\n");
+        fprintf(stdout, "\t-v [n]         Enable N3 Library to log with specified verbosity.\n");
+        fprintf(stdout, "\t               Value: 0 - Critical, 1 - High, 2 - Medium, 3 - Low,\n");
+        fprintf(stdout, "\t                      4 - Pedantic.\n\n");
+        exit(0);
         break;
     }
   }
