@@ -89,6 +89,7 @@ void xor_operation(struct user_args args)
   N3LData *n3_net;
   N3LLogger n3_logger = { stdout, args.verbose };
   uint64_t stats[2] = { 0, 0 };
+  FILE *of;
 
   fprintf(stdout, "Simulation property:\n");
   fprintf(stdout, "Read from file: %s ( %s )\n", BOOL_STR(args.read_result), args.read_filename);
@@ -120,7 +121,9 @@ void xor_operation(struct user_args args)
     ++stats[round(n3_net->outputs[0]) == n3_net->targets[0] ? 0 : 1];
     fprintf(stdout, "[XOR] Overall success: %.3lf%%\n", (stats[0] * 100.f) / (double) (stats[0] + stats[1]));
 
-    n3l_backward_propagation(n3_net);
+    if ( args.learning ) {
+      n3l_backward_propagation(n3_net);
+    }
 
     free(n3_net->inputs);
     free(n3_net->outputs);
@@ -128,7 +131,13 @@ void xor_operation(struct user_args args)
   } while (--args.iterations);
 
   if ( args.save_result ) {
-    fprintf(stderr, "TODO.. Such as free");
+    if ( !(of = fopen(args.save_filename, "w")) ) {
+      fprintf(stderr, "Cannot save results. Open failed ( %s )", args.save_filename);
+    }
+    else {
+      n3l_save(n3_net, of);
+      fclose(of);
+    }
   }
 }
 

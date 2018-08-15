@@ -13,21 +13,23 @@ struct _n3l_out_to_in {
 
 void *n3l_execute_backward_propagation(void *arg);
 
-double n3l_evaluate_out_error(N3LData *state, uint64_t out_idx)
+double n3l_evaluate_out_error(N3LData *state, uint64_t o_idx)
 {
-  double d;
+  double delta_E;
+  double diff;
+  N3LNeuron *p_n;
+
   N3L_LLOW_START(state->args->logger);
+  p_n = &(state->net[state->args->h_layers + 1].neurons[o_idx]);
 
-  d = (state->targets[out_idx] - state->outputs[out_idx]);
-  N3L_LLOW(state->args->logger, "Output %ld diff: %lf", out_idx, d);
+  diff = (state->targets[o_idx] - state->outputs[o_idx]);
+  N3L_LLOW(state->args->logger, "Output %ld diff: %lf", o_idx, diff);
 
-  d *= state->net[state->args->h_layers + 1].neurons[out_idx].act_prime(
-    state->net[state->args->h_layers + 1].neurons[out_idx].result
-  );
-  N3L_LLOW(state->args->logger, "Output %ld delta: %lf", out_idx, d);
+  delta_E = diff * p_n->act_prime(p_n->result);
+  N3L_LLOW(state->args->logger, "Output %ld delta: %lf", o_idx, delta_E);
 
   N3L_LLOW_END(state->args->logger);
-  return d;
+  return delta_E;
 }
 
 void n3l_backward_propagation(N3LData *state)
@@ -90,7 +92,7 @@ void *n3l_execute_backward_propagation(void *arg)
     N3L_LMEDIUM(p_l, "Weight (%ld,%ld) --> (%ld,%ld) - Old: %lf",
       tdata->l_idx, n_idx, tdata->l_idx + 1, tdata->o_idx, p_n->weights[tdata->o_idx]);
 
-    p_n->weights[tdata->o_idx] += tdata->state->args->learning_rate * tdata->delta_w * p_n->input;
+    p_n->weights[tdata->o_idx] += tdata->state->args->learning_rate * tdata->delta_w * p_n->result;
 
     N3L_LMEDIUM(p_l, "Weight (%ld,%ld) --> (%ld,%ld) - New: %lf",
       tdata->l_idx, n_idx, tdata->l_idx + 1, tdata->o_idx, p_n->weights[tdata->o_idx]);
