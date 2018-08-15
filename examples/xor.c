@@ -104,8 +104,8 @@ void xor_operation(struct user_args args)
   n3_args.learning_rate = args.learning_rate;
   n3_args.in_size = 2;
   n3_args.out_size = 1;
-  n3_args.h_size = 3;
-  n3_args.h_layers = 1;
+  n3_args.h_size = 5;
+  n3_args.h_layers = 2;
 
   n3_args.logger = &n3_logger;
   n3_net = n3l_build(n3_args, &n3l_rnd_weight, N3LTanh, N3LTanh);
