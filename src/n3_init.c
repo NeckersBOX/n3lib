@@ -13,6 +13,28 @@ double n3l_rnd_weight(N3LLayer l_ref)
   return ((double) rand()) / (RAND_MAX + 1.f);
 }
 
+void n3l_free(N3LData *state)
+{
+  N3LLogger *p_l = state->args->logger;
+  uint64_t l_idx, n_idx, layers = state->args->h_layers + 2;
+
+  N3L_LLOW_START(p_l);
+
+  free(state->args);
+  for( l_idx = 0; l_idx < layers; ++l_idx ) {
+    if ( state->net[l_idx].ltype != N3LOutputLayer ) {
+      for ( n_idx = 0; n_idx < state->net[l_idx].size; ++n_idx ) {
+        free(state->net[l_idx].neurons[n_idx].weights);
+      }
+    }
+    free(state->net[l_idx].neurons);
+  }
+  free(state->net);
+  free(state);
+
+  N3L_LLOW_END(p_l);
+}
+
 N3LData *n3l_build(N3LArgs args, N3L_RND_WEIGHT(rnd_w), N3LActType act_h, N3LActType act_o)
 {
   FILE *of = NULL;
@@ -21,6 +43,7 @@ N3LData *n3l_build(N3LArgs args, N3L_RND_WEIGHT(rnd_w), N3LActType act_h, N3LAct
 
   n3_state = (N3LData *) malloc(sizeof(N3LData));
   n3_state->inputs = NULL;
+  n3_state->outputs = NULL;
   n3_state->targets = NULL;
   n3_state->get_rnd_weight = rnd_w;
 
