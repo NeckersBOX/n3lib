@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#define N3L_VERSION "1.2.7"
+#define N3L_VERSION "1.2.8"
 
 #define N3L_ACT(fun)          double (*fun)(double)
 #define N3L_RND_WEIGHT(rnd_w) double (*rnd_w)(N3LLayer)
@@ -26,6 +26,7 @@ typedef enum {
 } N3LLogType;
 
 typedef enum {
+  N3LCustom = -1,
   N3LNone = 0,
   N3LSigmoid,
   N3LTanh,
@@ -63,8 +64,9 @@ typedef struct {
   uint64_t h_layers;
   uint64_t out_size;
   N3LLogger *logger;
+  N3LActType act_in;
   N3LActType act_h;
-  N3LActType act_o;
+  N3LActType act_out;
 } N3LArgs;
 
 typedef struct {

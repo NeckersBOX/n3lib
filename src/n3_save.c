@@ -14,8 +14,9 @@ void n3l_save(N3LData *state, FILE *of)
   fwrite(&(state->args->out_size), sizeof(uint64_t), 1, of);
   fwrite(&(state->args->h_layers), sizeof(uint64_t), 1, of);
   fwrite(&(state->args->bias), sizeof(double), 1, of);
+  fwrite(&(state->args->act_in), sizeof(N3LActType), 1, of);
   fwrite(&(state->args->act_h), sizeof(N3LActType), 1, of);
-  fwrite(&(state->args->act_o), sizeof(N3LActType), 1, of);
+  fwrite(&(state->args->act_out), sizeof(N3LActType), 1, of);
 
   for ( l_idx = 0; l_idx < layers; ++l_idx ) {
     N3L_LHIGH(state->args->logger, "Writing layer %ld weights.", l_idx);

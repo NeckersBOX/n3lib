@@ -56,6 +56,10 @@ N3LData *n3l_build(N3LArgs args, N3L_RND_WEIGHT(rnd_w))
   ++n3_state->args->in_size;
   ++n3_state->args->h_size;
 
+  n3_state->args->act_in = N3LNone;
+  n3_state->args->act_h = N3LSigmoid;
+  n3_state->args->act_out = N3LSigmoid;
+
   if ( n3_state->args->read_file ) {
     if ( n3_state->args->in_filename ) {
       if ( (of = fopen(n3_state->args->in_filename, "r")) ) {
@@ -66,8 +70,9 @@ N3LData *n3l_build(N3LArgs args, N3L_RND_WEIGHT(rnd_w))
         fread(&(n3_state->args->out_size), sizeof(uint64_t), 1, of);
         fread(&(n3_state->args->h_layers), sizeof(uint64_t), 1, of);
         fread(&(n3_state->args->bias), sizeof(double), 1, of);
+        fread(&(n3_state->args->act_in), sizeof(N3LActType), 1, of);
         fread(&(n3_state->args->act_h), sizeof(N3LActType), 1, of);
-        fread(&(n3_state->args->act_o), sizeof(N3LActType), 1, of);
+        fread(&(n3_state->args->act_out), sizeof(N3LActType), 1, of);
       }
       else {
         N3L_LCRITICAL(args.logger, "File opening failed. Initializing network with args provided.");
@@ -101,13 +106,13 @@ void n3l_build_network(N3LData *state, FILE *of)
       N3L_LMEDIUM(state->args->logger, "Type: Input Layer - Size: %d", state->args->in_size);
       state->net[l_idx].size = state->args->in_size;
       state->net[l_idx].ltype = N3LInputLayer;
-      n3l_build_layer(state, of, l_idx, N3LNone);
+      n3l_build_layer(state, of, l_idx, state->args->act_in);
     }
     else if ( l_idx == (layers - 1) ) {
       N3L_LMEDIUM(state->args->logger, "Type: Output Layer - Size: %d", state->args->out_size);
       state->net[l_idx].size = state->args->out_size;
       state->net[l_idx].ltype = N3LOutputLayer;
-      n3l_build_layer(state, of, l_idx, state->args->act_o);
+      n3l_build_layer(state, of, l_idx, state->args->act_out);
     }
     else {
       N3L_LMEDIUM(state->args->logger, "Type: Hidden Layer - Size: %d", state->args->h_size);
@@ -133,6 +138,9 @@ void n3l_build_layer(N3LData *s, FILE *of, uint64_t l_idx, N3LActType act)
   for ( n_idx = 0; n_idx < s->net[l_idx].size; ++n_idx ) {
     N3L_LMEDIUM(s->args->logger, "Building neuron %d", n_idx);
     switch(act) {
+      case N3LCustom:
+        N3L_LLOW(s->args->logger, "Activation: Custom");
+        N3L_LPEDANTIC(s->args->logger, "Note: At this point the activation function will be None.");
       case N3LNone:
         N3L_LLOW(s->args->logger, "Activation: None");
         s->net[l_idx].neurons[n_idx].act = &n3l_act_none;
@@ -206,4 +214,35 @@ void n3l_build_bias(N3LData *s, uint64_t l_idx, uint64_t n_idx)
   s->net[l_idx].neurons[n_idx].input = s->args->bias;
 
   N3L_LMEDIUM_END(s->args->logger);
+}
+
+void n3l_set_custom_act(N3LData *state, uint64_t l_idx, N3L_ACT(act), N3L_ACT(act_prime))
+{
+  uint64_t n_idx;
+
+  N3L_LHIGH_START(state->args->logger);
+
+  N3L_LHIGH(state->args->logger, "Setting custom activation functions at layer %ld.", l_idx);
+
+  for ( n_idx = 0; n_idx < state->net[l_idx].size; ++n_idx ) {
+    state->net[l_idx].neurons[n_idx].act = act;
+    state->net[l_idx].neurons[n_idx].act_prime = act_prime;
+  }
+
+  switch(state->net[l_idx].ltype) {
+    case N3LInputLayer:
+      N3L_LLOW(state->args->logger, "Changing Input layer activation reference.");
+      state->args->act_in = N3LCustom;
+      break;
+    case N3LHiddenLayer:
+      N3L_LLOW(state->args->logger, "Changing Hidden layer activation reference.");
+      state->args->act_h = N3LCustom;
+      break;
+    case N3LOutputLayer:
+      N3L_LLOW(state->args->logger, "Changing Output layer activation reference.");
+      state->args->act_out = N3LCustom;
+      break;
+  }
+
+  N3L_LHIGH_END(state->args->logger);
 }
