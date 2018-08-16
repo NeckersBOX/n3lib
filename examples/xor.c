@@ -13,6 +13,7 @@ struct user_args {
   bool read_result;
   bool save_result;
   bool mute;
+  bool progress;
   char *save_filename;
   char *read_filename;
   double learning_rate;
@@ -27,7 +28,7 @@ void xor_operation(struct user_args);
 
 int main(int argc, char *argv[])
 {
-  struct user_args arg = { false, false, false, false, "xor.n3l", "xor.n3l", 1.f, 0, 1, N3LLogNone };
+  struct user_args arg = { false, false, false, false, false, "xor.n3l", "xor.n3l", 1.f, 0, 1, N3LLogNone };
   int opt, v;
   bool free_save_filename = false;
 
@@ -35,7 +36,7 @@ int main(int argc, char *argv[])
   fprintf(stdout, "XOR Example - N3L v. %s\n", N3L_VERSION);
   fprintf(stdout, "(c) 2018 - Davide Francesco Merico <hds619 [at] gmail [dot] com>\n\n");
 
-  while ((opt = getopt(argc, argv, "b:hi:lmo:r:sv:")) != -1) {
+  while ((opt = getopt(argc, argv, "b:hi:lmo:pr:sv:")) != -1) {
     switch(opt) {
       case 'b':
         sscanf(optarg, "%lf", &(arg.bias));
@@ -48,6 +49,9 @@ int main(int argc, char *argv[])
         break;
       case 'm':
         arg.mute = true;
+        break;
+      case 'p':
+        arg.progress = true;
         break;
       case 'i':
         arg.iterations = atoi(optarg);
@@ -78,10 +82,11 @@ int main(int argc, char *argv[])
         fprintf(stdout, "\t-h             Show this help with the options list.\n");
         fprintf(stdout, "\t-i [n]         Number of iterations. Default: 1\n");
         fprintf(stdout, "\t-l             Enable learning with backpropagation.\n");
-        fprintf(stdout, "\t-m             No log at all. Note: No option -v should be provided.");
+        fprintf(stdout, "\t-m             No log at all. Note: Disable -v option.\n");
         fprintf(stdout, "\t-o [filename]  After the number of iterations provided, save the\n");
         fprintf(stdout, "\t               neural network state. Note: It works only if used\n");
         fprintf(stdout, "\t               with option -s.\n");
+        fprintf(stdout, "\t-p             Enable the progress viewer. Active -m, Disable -v.\n");
         fprintf(stdout, "\t-r [filename]  Initialize the neural network reading the number of\n");
         fprintf(stdout, "\t               neurons, layers and weights from a previous state saved.\n");
         fprintf(stdout, "\t-s             After the number of iterations provided, save the\n");
@@ -92,6 +97,15 @@ int main(int argc, char *argv[])
         exit(0);
         break;
     }
+  }
+
+  if ( arg.mute ) {
+    arg.verbose = -1;
+  }
+
+  if ( arg.progress ) {
+    arg.mute = true;
+    arg.verbose = -1;
   }
 
   xor_operation(arg);
@@ -134,12 +148,18 @@ void xor_operation(struct user_args args)
   n3_args.h_layers = 1;
 
   n3_args.logger = &n3_logger;
-  n3_net = n3l_build(n3_args, &n3l_rnd_weight, N3LTanh, N3LTanh);
+  n3_net = n3l_build(n3_args, &n3l_rnd_weight, N3LSigmoid, N3LSigmoid);
 
   do {
     if ( !args.mute ) {
       fprintf(stdout, "[XOR] -- Iteration %ld on %ld --\n",
         stats[0] + stats[1] + 1, args.iterations + stats[0] + stats[1]);
+    }
+
+    if ( args.progress ) {
+      fprintf(stdout, "\r[XOR] Iteration %ld on %ld - Overall: %.3lf%%",
+        stats[0] + stats[1] + 1, args.iterations + stats[0] + stats[1],
+        (stats[0] * 100.f) / (double) (stats[0] + stats[1]));
     }
 
     n3_net->inputs = get_inputs_batch_mode();
@@ -154,10 +174,10 @@ void xor_operation(struct user_args args)
     }
 
     n3_net->targets = get_targets(n3_net->inputs);
+    ++stats[round(n3_net->outputs[0]) == n3_net->targets[0] ? 0 : 1];
 
     if ( !args.mute ) {
       fprintf(stdout, "[XOR]          Target: %.0lf\n", n3_net->targets[0]);
-      ++stats[round(n3_net->outputs[0]) == n3_net->targets[0] ? 0 : 1];
       fprintf(stdout, "[XOR] Overall success: %.3lf%%\n", (stats[0] * 100.f) / (double) (stats[0] + stats[1]));
     }
 
@@ -169,6 +189,10 @@ void xor_operation(struct user_args args)
     free(n3_net->outputs);
     free(n3_net->targets);
   } while (--args.iterations);
+
+  if ( args.progress ) {
+    fprintf(stdout, "\n");
+  }
 
   if ( args.save_result ) {
     if ( !(of = fopen(args.save_filename, "w")) ) {
