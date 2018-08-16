@@ -7,6 +7,7 @@
 
 void n3l_build_network(N3LData *state, FILE *of, N3LActType act_h, N3LActType act_o);
 void n3l_build_layer(N3LData *s, FILE *of, uint64_t l_idx, N3LActType act);
+void n3l_build_bias(N3LData *s, uint64_t l_idx, uint64_t n_idx);
 
 double n3l_rnd_weight(N3LLayer l_ref)
 {
@@ -50,6 +51,9 @@ N3LData *n3l_build(N3LArgs args, N3L_RND_WEIGHT(rnd_w), N3LActType act_h, N3LAct
   N3L_LMEDIUM(args.logger, "Initializing arguments");
   n3_state->args = (N3LArgs *) malloc(sizeof(N3LArgs));
   memcpy(n3_state->args, &args, sizeof(N3LArgs));
+
+  ++n3_state->args->in_size;
+  ++n3_state->args->h_size;
 
   if ( n3_state->args->read_file ) {
     if ( n3_state->args->in_filename ) {
@@ -106,6 +110,10 @@ void n3l_build_network(N3LData *state, FILE *of, N3LActType act_h, N3LActType ac
       state->net[l_idx].size = state->args->h_size;
       state->net[l_idx].ltype = N3LHiddenLayer;
       n3l_build_layer(state, of, l_idx, act_h);
+    }
+
+    if ( l_idx != (layers - 1) ) {
+      n3l_build_bias(state, l_idx, state->net[l_idx].size - 1);
     }
   }
 
@@ -173,6 +181,18 @@ void n3l_build_layer(N3LData *s, FILE *of, uint64_t l_idx, N3LActType act)
       }
     }
   }
+
+  N3L_LMEDIUM_END(s->args->logger);
+}
+
+void n3l_build_bias(N3LData *s, uint64_t l_idx, uint64_t n_idx)
+{
+  N3L_LMEDIUM_START(s->args->logger);
+
+  N3L_LMEDIUM(s->args->logger, "Building bias neuron (%ld,%ld)", l_idx, n_idx);
+  s->net[l_idx].neurons[n_idx].act = &n3l_act_none;
+  s->net[l_idx].neurons[n_idx].act_prime = &n3l_act_none;
+  s->net[l_idx].neurons[n_idx].input = s->args->bias;
 
   N3L_LMEDIUM_END(s->args->logger);
 }

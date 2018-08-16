@@ -16,6 +16,7 @@ struct user_args {
   char *save_filename;
   char *read_filename;
   double learning_rate;
+  double bias;
   uint64_t iterations;
   N3LLogType verbose;
 };
@@ -26,7 +27,7 @@ void xor_operation(struct user_args);
 
 int main(int argc, char *argv[])
 {
-  struct user_args arg = { false, false, false, false, "xor.n3l", "xor.n3l", 1.f, 1, N3LLogNone };
+  struct user_args arg = { false, false, false, false, "xor.n3l", "xor.n3l", 1.f, 0, 1, N3LLogNone };
   int opt, v;
   bool free_save_filename = false;
 
@@ -34,8 +35,11 @@ int main(int argc, char *argv[])
   fprintf(stdout, "XOR Example - N3L v. %s\n", N3L_VERSION);
   fprintf(stdout, "(c) 2018 - Davide Francesco Merico <hds619 [at] gmail [dot] com>\n\n");
 
-  while ((opt = getopt(argc, argv, "hi:lmo:r:sv:")) != -1) {
+  while ((opt = getopt(argc, argv, "b:hi:lmo:r:sv:")) != -1) {
     switch(opt) {
+      case 'b':
+        sscanf(optarg, "%lf", &(arg.bias));
+        break;
       case 'l':
         arg.learning = true;
         if ( optarg ) {
@@ -70,6 +74,7 @@ int main(int argc, char *argv[])
      case 'h':
         fprintf(stdout, "Usage: %s [options]\n\n", *argv);
         fprintf(stdout, "Options:\n");
+        fprintf(stdout, "\t-b [n]         Set the bias term in the network. Default: 0\n");
         fprintf(stdout, "\t-h             Show this help with the options list.\n");
         fprintf(stdout, "\t-i [n]         Number of iterations. Default: 1\n");
         fprintf(stdout, "\t-l             Enable learning with backpropagation.\n");
@@ -122,10 +127,11 @@ void xor_operation(struct user_args args)
   n3_args.in_filename = args.read_filename;
   n3_args.out_filename = args.save_filename;
   n3_args.learning_rate = args.learning_rate;
+  n3_args.bias = args.bias;
   n3_args.in_size = 2;
   n3_args.out_size = 1;
-  n3_args.h_size = 5;
-  n3_args.h_layers = 2;
+  n3_args.h_size = 3;
+  n3_args.h_layers = 1;
 
   n3_args.logger = &n3_logger;
   n3_net = n3l_build(n3_args, &n3l_rnd_weight, N3LTanh, N3LTanh);

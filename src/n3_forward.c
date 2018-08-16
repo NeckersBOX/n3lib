@@ -50,11 +50,16 @@ double *n3l_forward_layer(N3LData *state, uint64_t l_idx, double *in_data)
 
   threads = (pthread_t *) malloc(state->net[l_idx].size * sizeof(pthread_t));
   for ( n_idx = 0; n_idx < state->net[l_idx].size; ++n_idx ) {
-    if ( state->net[l_idx].ltype == N3LInputLayer ) {
-      state->net[l_idx].neurons[n_idx].input = state->inputs[n_idx];
+    if ( state->net[l_idx].ltype == N3LOutputLayer || n_idx != (state->net[l_idx].size - 1) ) {
+      if ( state->net[l_idx].ltype == N3LInputLayer ) {
+        state->net[l_idx].neurons[n_idx].input = state->inputs[n_idx];
+      }
+      else {
+        state->net[l_idx].neurons[n_idx].input = in_data[n_idx];
+      }
     }
     else {
-      state->net[l_idx].neurons[n_idx].input = in_data[n_idx];
+      N3L_LMEDIUM(state->args->logger, "Current neuron type: Bias");
     }
 
     N3L_LHIGH(state->args->logger, "Starting thread to execute neuron %ld from layer %ld.", n_idx, l_idx);
