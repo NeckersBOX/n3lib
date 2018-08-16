@@ -5,7 +5,7 @@
 #include "n3_logger.h"
 #include "n3_act.h"
 
-void n3l_build_network(N3LData *state, FILE *of, N3LActType act_h, N3LActType act_o);
+void n3l_build_network(N3LData *state, FILE *of);
 void n3l_build_layer(N3LData *s, FILE *of, uint64_t l_idx, N3LActType act);
 void n3l_build_bias(N3LData *s, uint64_t l_idx, uint64_t n_idx);
 
@@ -36,10 +36,11 @@ void n3l_free(N3LData *state)
   N3L_LLOW_END(p_l);
 }
 
-N3LData *n3l_build(N3LArgs args, N3L_RND_WEIGHT(rnd_w), N3LActType act_h, N3LActType act_o)
+N3LData *n3l_build(N3LArgs args, N3L_RND_WEIGHT(rnd_w))
 {
   FILE *of = NULL;
   N3LData *n3_state = NULL;
+
   N3L_LCRITICAL_START(args.logger);
 
   n3_state = (N3LData *) malloc(sizeof(N3LData));
@@ -64,6 +65,9 @@ N3LData *n3l_build(N3LArgs args, N3L_RND_WEIGHT(rnd_w), N3LActType act_h, N3LAct
         fread(&(n3_state->args->h_size), sizeof(uint64_t), 1, of);
         fread(&(n3_state->args->out_size), sizeof(uint64_t), 1, of);
         fread(&(n3_state->args->h_layers), sizeof(uint64_t), 1, of);
+        fread(&(n3_state->args->bias), sizeof(double), 1, of);
+        fread(&(n3_state->args->act_h), sizeof(N3LActType), 1, of);
+        fread(&(n3_state->args->act_o), sizeof(N3LActType), 1, of);
       }
       else {
         N3L_LCRITICAL(args.logger, "File opening failed. Initializing network with args provided.");
@@ -74,7 +78,7 @@ N3LData *n3l_build(N3LArgs args, N3L_RND_WEIGHT(rnd_w), N3LActType act_h, N3LAct
     }
   }
 
-  n3l_build_network(n3_state, of, act_h, act_o);
+  n3l_build_network(n3_state, of);
   if ( of ) {
     fclose(of);
   }
@@ -83,7 +87,7 @@ N3LData *n3l_build(N3LArgs args, N3L_RND_WEIGHT(rnd_w), N3LActType act_h, N3LAct
   return n3_state;
 }
 
-void n3l_build_network(N3LData *state, FILE *of, N3LActType act_h, N3LActType act_o)
+void n3l_build_network(N3LData *state, FILE *of)
 {
   uint64_t layers = 2 + state->args->h_layers;
   uint64_t l_idx;
@@ -103,13 +107,13 @@ void n3l_build_network(N3LData *state, FILE *of, N3LActType act_h, N3LActType ac
       N3L_LMEDIUM(state->args->logger, "Type: Output Layer - Size: %d", state->args->out_size);
       state->net[l_idx].size = state->args->out_size;
       state->net[l_idx].ltype = N3LOutputLayer;
-      n3l_build_layer(state, of, l_idx, act_o);
+      n3l_build_layer(state, of, l_idx, state->args->act_o);
     }
     else {
       N3L_LMEDIUM(state->args->logger, "Type: Hidden Layer - Size: %d", state->args->h_size);
       state->net[l_idx].size = state->args->h_size;
       state->net[l_idx].ltype = N3LHiddenLayer;
-      n3l_build_layer(state, of, l_idx, act_h);
+      n3l_build_layer(state, of, l_idx, state->args->act_h);
     }
 
     if ( l_idx != (layers - 1) ) {
@@ -130,17 +134,21 @@ void n3l_build_layer(N3LData *s, FILE *of, uint64_t l_idx, N3LActType act)
     N3L_LMEDIUM(s->args->logger, "Building neuron %d", n_idx);
     switch(act) {
       case N3LNone:
+        N3L_LLOW(s->args->logger, "Activation: None");
         s->net[l_idx].neurons[n_idx].act = &n3l_act_none;
         s->net[l_idx].neurons[n_idx].act_prime = &n3l_act_none;
         break;
       case N3LSigmoid:
+        N3L_LLOW(s->args->logger, "Activation: Sigmoid");
         s->net[l_idx].neurons[n_idx].act = &n3l_act_sigmoid;
         s->net[l_idx].neurons[n_idx].act_prime = &n3l_act_sigmoid_prime;
         break;
       case N3LRelu:
+        N3L_LLOW(s->args->logger, "Activation: ReLu");
         s->net[l_idx].neurons[n_idx].act = &n3l_act_relu;
         s->net[l_idx].neurons[n_idx].act_prime = &n3l_act_relu_prime;
       case N3LTanh:
+        N3L_LLOW(s->args->logger, "Activation: Tanh");
         s->net[l_idx].neurons[n_idx].act = &n3l_act_tanh;
         s->net[l_idx].neurons[n_idx].act_prime = &n3l_act_tanh_prime;
         break;
