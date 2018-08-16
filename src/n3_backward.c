@@ -99,4 +99,5 @@ void *n3l_execute_backward_propagation(void *arg)
   }
 
   N3L_LMEDIUM_END(p_l);
+  return NULL;
 }

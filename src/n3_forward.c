@@ -109,6 +109,7 @@ void *n3l_execute_neuron(void *arg)
   N3LNeuron *ref = (N3LNeuron *) arg;
 
   ref->result = ref->act(ref->input);
+  return NULL;
 }
 
 void *n3l_collect_outputs(void *arg)
@@ -123,4 +124,5 @@ void *n3l_collect_outputs(void *arg)
   }
 
   N3L_LLOW(ref->logger, "[Thread] Input to neuron %ld: %lf", ref->dst_idx, *(ref->result));
+  return NULL;
 }
