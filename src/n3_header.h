@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#define N3L_VERSION "1.2.4"
+#define N3L_VERSION "1.2.5"
 
 #define N3L_ACT(fun)          double (*fun)(double)
 #define N3L_RND_WEIGHT(rnd_w) double (*rnd_w)(N3LLayer)
@@ -55,7 +55,7 @@ typedef struct {
   bool read_file;
   char *in_filename;
   char *out_filename;
-  double bias; // TODO
+  double bias; /* TODO */
   double learning_rate;
   uint64_t in_size;
   uint64_t h_size;
