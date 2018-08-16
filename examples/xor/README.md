@@ -68,3 +68,150 @@ With defaults settings at around 5k iterations ( with bias set to 0.5 ) it start
 [XOR]          Output: 0.930496
 [XOR]          Target: 1
 ```
+### Memory usage
+#### Forward mode
+XOR example use 300 byte per iteration, plus a base of 2,840 bytes to initialize the network.
+```
+valgrind --leak-check=full ./xor -i 1 -m
+==30621== Memcheck, a memory error detector
+==30621== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==30621== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==30621== Command: ./xor -i 1 -m
+==30621==
+XOR Example - N3L v. 1.2.8
+(c) 2018 - Davide Francesco Merico <hds619 [at] gmail [dot] com>
+
+==30621==
+==30621== HEAP SUMMARY:
+==30621==     in use at exit: 0 bytes in 0 blocks
+==30621==   total heap usage: 30 allocs, 30 frees, 3,176 bytes allocated
+==30621==
+==30621== All heap blocks were freed -- no leaks are possible
+==30621==
+==30621== For counts of detected and suppressed errors, rerun with: -v
+==30621== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+```
+
+In a test with 100k iterations the memory stucks at 96KB.
+In the whole process the allocated memory is ~34MB.
+
+```
+valgrind --leak-check=full ./xor -i 100000 -m
+==30651== Memcheck, a memory error detector
+==30651== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==30651== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==30651== Command: ./xor -i 100000 -m
+==30651==
+XOR Example - N3L v. 1.2.8
+(c) 2018 - Davide Francesco Merico <hds619 [at] gmail [dot] com>
+
+==30651==
+==30651== HEAP SUMMARY:
+==30651==     in use at exit: 0 bytes in 0 blocks
+==30651==   total heap usage: 1,200,018 allocs, 1,200,018 frees, 33,602,840 bytes allocated
+==30651==
+==30651== All heap blocks were freed -- no leaks are possible
+==30651==
+==30651== For counts of detected and suppressed errors, rerun with: -v
+==30651== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+```
+
+#### Backward mode
+The results per iteration in learning mode are similar to the forward mode.
+
+```
+valgrind --leak-check=full ./xor -i 1 -l
+==25573== Memcheck, a memory error detector
+==25573== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==25573== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==25573== Command: ./xor -i 1 -l
+==25573==
+XOR Example - N3L v. 1.2.8
+(c) 2018 - Davide Francesco Merico <hds619 [at] gmail [dot] com>
+
+Simulation property:
+Read from file: False ( xor.n3l )
+  Save to file: False ( xor.n3l )
+ Learning rate: 1.000000
+     Verbosity: -1
+    Iterations: 1
+
+[XOR] -- Iteration 1 on 1 --
+[XOR]         Input 0: 0
+[XOR]         Input 1: 0
+[XOR]          Output: 0.754758
+[XOR]          Target: 0
+[XOR] Overall success: 0.000%
+==25573==
+==25573== HEAP SUMMARY:
+==25573==     in use at exit: 0 bytes in 0 blocks
+==25573==   total heap usage: 32 allocs, 32 frees, 3,216 bytes allocated
+==25573==
+==25573== All heap blocks were freed -- no leaks are possible
+==25573==
+==25573== For counts of detected and suppressed errors, rerun with: -v
+==25573== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+```
+
+In a test with 100k iterations the memory stucks at 96KB.
+In the whole process the allocated memory is ~37MB.
+
+```
+valgrind --leak-check=full ./xor -i 100000 -l -m
+==25749== Memcheck, a memory error detector
+==25749== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==25749== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==25749== Command: ./xor -i 100000 -l -m
+==25749==
+XOR Example - N3L v. 1.2.8
+(c) 2018 - Davide Francesco Merico <hds619 [at] gmail [dot] com>
+
+==25749==
+==25749== HEAP SUMMARY:
+==25749==     in use at exit: 0 bytes in 0 blocks
+==25749==   total heap usage: 1,400,018 allocs, 1,400,018 frees, 37,602,840 bytes allocated
+==25749==
+==25749== All heap blocks were freed -- no leaks are possible
+==25749==
+==25749== For counts of detected and suppressed errors, rerun with: -v
+==25749== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+```
+
+### Processing time
+Processing time is evaluated on the following processor:
+
+```
+vendor_id	: GenuineIntel
+model name	: Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz
+cache size	: 3072 KB
+siblings	: 4
+cpu cores	: 2
+```
+
+#### Forward mode
+Using _sys_ time as reference, the result is around **4210 iterations/second**.
+
+```
+time ./xor -i 100000 -m
+XOR Example - N3L v. 1.2.8
+(c) 2018 - Davide Francesco Merico <hds619 [at] gmail [dot] com>
+
+
+real	0m18,414s
+user	0m3,888s
+sys	0m23,749s
+```
+
+#### Backward mode
+Using _sys_ time as reference, the result is around **2680 iterations/second**.
+
+```
+time ./xor -i 100000 -m -l
+XOR Example - N3L v. 1.2.8
+(c) 2018 - Davide Francesco Merico <hds619 [at] gmail [dot] com>
+
+
+real	0m31,290s
+user	0m5,927s
+sys	0m37,287s
+```
