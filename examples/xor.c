@@ -148,7 +148,7 @@ void xor_operation(struct user_args args)
   n3_args.h_layers = 1;
 
   n3_args.logger = &n3_logger;
-  n3_net = n3l_build(n3_args, &n3l_rnd_weight, N3LSigmoid, N3LSigmoid);
+  n3_net = n3l_build(n3_args, &n3l_rnd_weight, N3LSigmoid, N3LRelu);
 
   do {
     if ( !args.mute ) {

@@ -2,6 +2,8 @@
 #define _N3L_ACT_
 
 extern double n3l_act_none(double);
+extern double n3l_act_relu(double);
+extern double n3l_act_relu_prime(double);
 extern double n3l_act_sigmoid(double);
 extern double n3l_act_sigmoid_prime(double);
 extern double n3l_act_tanh(double);

@@ -28,7 +28,8 @@ typedef enum {
 typedef enum {
   N3LNone = 0,
   N3LSigmoid,
-  N3LTanh
+  N3LTanh,
+  N3LRelu,
 } N3LActType;
 
 typedef struct {

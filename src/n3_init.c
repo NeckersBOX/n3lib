@@ -137,6 +137,9 @@ void n3l_build_layer(N3LData *s, FILE *of, uint64_t l_idx, N3LActType act)
         s->net[l_idx].neurons[n_idx].act = &n3l_act_sigmoid;
         s->net[l_idx].neurons[n_idx].act_prime = &n3l_act_sigmoid_prime;
         break;
+      case N3LRelu:
+        s->net[l_idx].neurons[n_idx].act = &n3l_act_relu;
+        s->net[l_idx].neurons[n_idx].act_prime = &n3l_act_relu_prime;
       case N3LTanh:
         s->net[l_idx].neurons[n_idx].act = &n3l_act_tanh;
         s->net[l_idx].neurons[n_idx].act_prime = &n3l_act_tanh_prime;

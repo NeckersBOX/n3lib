@@ -24,3 +24,13 @@ double n3l_act_tanh_prime(double val)
 {
   return 1 - (val * val);
 }
+
+double n3l_act_relu(double val)
+{
+  return ( val < 0 ) ? 0 : val;
+}
+
+double n3l_act_relu_prime(double val)
+{
+  return ( val < 0 ) ? 0 : 1; 
+}
