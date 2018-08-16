@@ -12,6 +12,7 @@ struct user_args {
   bool learning;
   bool read_result;
   bool save_result;
+  bool mute;
   char *save_filename;
   char *read_filename;
   double learning_rate;
@@ -25,20 +26,24 @@ void xor_operation(struct user_args);
 
 int main(int argc, char *argv[])
 {
-  struct user_args arg = { false, false, false, "xor.n3l", "xor.n3l", 1.f, 1, N3LLogNone };
+  struct user_args arg = { false, false, false, false, "xor.n3l", "xor.n3l", 1.f, 1, N3LLogNone };
   int opt, v;
+  bool free_save_filename = false;
 
   srand(time(NULL));
   fprintf(stdout, "XOR Example - N3L v. %s\n", N3L_VERSION);
   fprintf(stdout, "(c) 2018 - Davide Francesco Merico <hds619 [at] gmail [dot] com>\n\n");
 
-  while ((opt = getopt(argc, argv, "hi:lo:r:sv:")) != -1) {
+  while ((opt = getopt(argc, argv, "hi:lmo:r:sv:")) != -1) {
     switch(opt) {
       case 'l':
         arg.learning = true;
         if ( optarg ) {
           sscanf(optarg, "%lf", &(arg.learning_rate));
         }
+        break;
+      case 'm':
+        arg.mute = true;
         break;
       case 'i':
         arg.iterations = atoi(optarg);
@@ -48,6 +53,7 @@ int main(int argc, char *argv[])
         }
         break;
      case 'o':
+        free_save_filename = true;
         arg.save_filename = strdup(optarg);
         break;
      case 's':
@@ -67,6 +73,7 @@ int main(int argc, char *argv[])
         fprintf(stdout, "\t-h             Show this help with the options list.\n");
         fprintf(stdout, "\t-i [n]         Number of iterations. Default: 1\n");
         fprintf(stdout, "\t-l             Enable learning with backpropagation.\n");
+        fprintf(stdout, "\t-m             No log at all. Note: No option -v should be provided.");
         fprintf(stdout, "\t-o [filename]  After the number of iterations provided, save the\n");
         fprintf(stdout, "\t               neural network state. Note: It works only if used\n");
         fprintf(stdout, "\t               with option -s.\n");
@@ -83,6 +90,13 @@ int main(int argc, char *argv[])
   }
 
   xor_operation(arg);
+  if ( free_save_filename ) {
+    free(arg.save_filename);
+  }
+
+  if ( arg.read_result ) {
+    free(arg.read_filename);
+  }
 
   return 0;
 }
@@ -95,12 +109,14 @@ void xor_operation(struct user_args args)
   uint64_t stats[2] = { 0, 0 };
   FILE *of;
 
-  fprintf(stdout, "Simulation property:\n");
-  fprintf(stdout, "Read from file: %s ( %s )\n", BOOL_STR(args.read_result), args.read_filename);
-  fprintf(stdout, "  Save to file: %s ( %s )\n", BOOL_STR(args.save_result), args.save_filename);
-  fprintf(stdout, " Learning rate: %lf\n", args.learning_rate);
-  fprintf(stdout, "     Verbosity: %d\n", args.verbose);
-  fprintf(stdout, "    Iterations: %ld\n\n", args.iterations);
+  if ( !args.mute ) {
+    fprintf(stdout, "Simulation property:\n");
+    fprintf(stdout, "Read from file: %s ( %s )\n", BOOL_STR(args.read_result), args.read_filename);
+    fprintf(stdout, "  Save to file: %s ( %s )\n", BOOL_STR(args.save_result), args.save_filename);
+    fprintf(stdout, " Learning rate: %lf\n", args.learning_rate);
+    fprintf(stdout, "     Verbosity: %d\n", args.verbose);
+    fprintf(stdout, "    Iterations: %ld\n\n", args.iterations);
+  }
 
   n3_args.read_file = args.read_result;
   n3_args.in_filename = args.read_filename;
@@ -115,15 +131,29 @@ void xor_operation(struct user_args args)
   n3_net = n3l_build(n3_args, &n3l_rnd_weight, N3LTanh, N3LTanh);
 
   do {
+    if ( !args.mute ) {
+      fprintf(stdout, "[XOR] -- Iteration %ld on %ld --\n",
+        stats[0] + stats[1] + 1, args.iterations + stats[0] + stats[1]);
+    }
+
     n3_net->inputs = get_inputs_batch_mode();
-    fprintf(stdout, "[XOR]         Input 0: %.0lf\n", n3_net->inputs[0]);
-    fprintf(stdout, "[XOR]         Input 1: %.0lf\n", n3_net->inputs[1]);
+    if ( !args.mute ) {
+      fprintf(stdout, "[XOR]         Input 0: %.0lf\n", n3_net->inputs[0]);
+      fprintf(stdout, "[XOR]         Input 1: %.0lf\n", n3_net->inputs[1]);
+    }
     n3_net->outputs = n3l_forward_propagation(n3_net);
-    fprintf(stdout, "[XOR]          Output: %lf\n", n3_net->outputs[0]);
+
+    if ( !args.mute ) {
+      fprintf(stdout, "[XOR]          Output: %lf\n", n3_net->outputs[0]);
+    }
+
     n3_net->targets = get_targets(n3_net->inputs);
-    fprintf(stdout, "[XOR]          Target: %.0lf\n", n3_net->targets[0]);
-    ++stats[round(n3_net->outputs[0]) == n3_net->targets[0] ? 0 : 1];
-    fprintf(stdout, "[XOR] Overall success: %.3lf%%\n", (stats[0] * 100.f) / (double) (stats[0] + stats[1]));
+
+    if ( !args.mute ) {
+      fprintf(stdout, "[XOR]          Target: %.0lf\n", n3_net->targets[0]);
+      ++stats[round(n3_net->outputs[0]) == n3_net->targets[0] ? 0 : 1];
+      fprintf(stdout, "[XOR] Overall success: %.3lf%%\n", (stats[0] * 100.f) / (double) (stats[0] + stats[1]));
+    }
 
     if ( args.learning ) {
       n3l_backward_propagation(n3_net);
@@ -143,6 +173,8 @@ void xor_operation(struct user_args args)
       fclose(of);
     }
   }
+
+  n3l_free(n3_net);
 }
 
 double *get_inputs_batch_mode(void)
