@@ -50,7 +50,7 @@ At this point you only have to provide inputs to the `n3l_forward_propagation()`
 
 To start the learning process, in other terms _backpropagate the outputs_, you have to provide the targets of your inputs and set the network outputs parameters with the results returned from the `n3l_forward_propagation` function. The new state will be passed as argument of `n3l_backward_propagation()`.
 
-This last two points ( forward and backpropagation ) can be repeated many times, the important note here is to `free()` the network output each time to not spend too much memory.
+These last two points ( forward and backpropagation ) can be repeated many times, the important note here is to `free()` the network output each time to not spend too much memory.
 
 When all the work is finish, you can free the neural network with `n3l_free()`.
 
