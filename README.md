@@ -159,10 +159,10 @@ Defines the activation function. Values:
 | Name         | Description                                         |
 |--------------|-----------------------------------------------------|
 | `N3LCustom`  | _Not an internal N3L function, you shouldn't use it directly. ( value -1 )_ |
-| `N3LNone`    | ![eq](https://latex.codecogs.com/gif.download?f%28x%29%3D%20x) _( value 0)_ |
-| `N3LSigmoid` | ![eq](https://latex.codecogs.com/gif.download?f%28x%29%3D%201/%281%20+%20e%5E%7B-x%7D%20%29) |
-| `N3LTanh`    | ![eq](https://latex.codecogs.com/gif.download?f%28x%29%3D%20tanh%28x%29) |
-| `N3LRelu`    | ![eq](https://latex.codecogs.com/gif.download?f%28x%29%3D%20%5Cbegin%7Bmatrix%7D%20%5C%5C%20%26%20%5Cbegin%7Bcases%7D%200%20%26%20%5Ctext%7B%20if%20%7D%20x%20%3C%200%20%5C%5C%20x%26%20%5Ctext%7B%20if%20%7D%20x%20%5Cgeq%200%20%5Cend%7Bcases%7D%20%5Cend%7Bmatrix%7D) |
+| `N3LNone`    | ![eq](https://latex.codecogs.com/gif.latex?f%28x%29%3D%20x) _( value 0)_ |
+| `N3LSigmoid` | ![eq](https://latex.codecogs.com/gif.latex?f%28x%29%3D%201/%281%20+%20e%5E%7B-x%7D%20%29) |
+| `N3LTanh`    | ![eq](https://latex.codecogs.com/gif.latex?f%28x%29%3D%20tanh%28x%29) |
+| `N3LRelu`    | ![eq](https://latex.codecogs.com/gif.latex?f%28x%29%3D%20%5Cbegin%7Bmatrix%7D%20%5C%5C%20%26%20%5Cbegin%7Bcases%7D%200%20%26%20%5Ctext%7B%20if%20%7D%20x%20%3C%200%20%5C%5C%20x%26%20%5Ctext%7B%20if%20%7D%20x%20%5Cgeq%200%20%5Cend%7Bcases%7D%20%5Cend%7Bmatrix%7D) |
 
 The use of `N3LCustom` is internal of N3 Library.
 
