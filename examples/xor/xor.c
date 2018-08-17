@@ -4,7 +4,7 @@
 #include <math.h>
 #include <time.h>
 #include <unistd.h>
-#include "../../n3lib.h"
+#include <n3l/n3lib.h>
 
 #define BOOL_STR(b) ((b) ? "True" : "False")
 
