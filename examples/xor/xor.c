@@ -137,9 +137,9 @@ void xor_operation(struct user_args args)
     fprintf(stdout, "    Iterations: %ld\n\n", args.iterations);
   }
 
+  n3_args = n3l_get_default_args();
   n3_args.read_file = args.read_result;
   n3_args.in_filename = args.read_filename;
-  n3_args.out_filename = args.save_filename;
   n3_args.learning_rate = args.learning_rate;
   n3_args.bias = args.bias;
   n3_args.in_size = 2;

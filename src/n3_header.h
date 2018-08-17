@@ -56,7 +56,6 @@ typedef struct {
 typedef struct {
   bool read_file;
   char *in_filename;
-  char *out_filename;
   double bias;
   double learning_rate;
   uint64_t in_size;

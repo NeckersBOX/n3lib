@@ -36,6 +36,26 @@ void n3l_free(N3LData *state)
   N3L_LLOW_END(p_l);
 }
 
+N3LArgs n3l_get_default_args(void)
+{
+  N3LArgs args;
+
+  args.read_file = false;
+  args.in_filename = NULL;
+  args.bias = 0.f;
+  args.learning_rate = 1.f;
+  args.in_size = 0;
+  args.h_size = 0;
+  args.h_layers = 0;
+  args.out_size = 0;
+  args.logger = NULL;
+  args.act_in = N3LNone;
+  args.act_h = N3LSigmoid;
+  args.act_out = N3LSigmoid;
+
+  return args;
+}
+
 N3LData *n3l_build(N3LArgs args, N3L_RND_WEIGHT(rnd_w))
 {
   FILE *of = NULL;
@@ -55,10 +75,6 @@ N3LData *n3l_build(N3LArgs args, N3L_RND_WEIGHT(rnd_w))
 
   ++n3_state->args->in_size;
   ++n3_state->args->h_size;
-
-  n3_state->args->act_in = N3LNone;
-  n3_state->args->act_h = N3LSigmoid;
-  n3_state->args->act_out = N3LSigmoid;
 
   if ( n3_state->args->read_file ) {
     if ( n3_state->args->in_filename ) {
