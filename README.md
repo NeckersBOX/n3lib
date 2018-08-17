@@ -115,4 +115,62 @@ XOR - Case [ 1, 0 ] - Result: 0.968785
 If you want to know more about the parameters or for others functions like settings custom activation function, save the results, or load a previous one, see the documentation section.
 
 ## Documentation
-Yeah, it's a good question.. Coming soon
+
+### 1. Enumerators
+
+#### 1.1 `bool`
+Defines boolean values.
+
+| Name      | Description |
+|-----------|-------------|
+| `false`   | Value 0     |
+| `true`    | Value 1     |
+
+#### 1.2 `N3LLayerType`
+Defines the layer type. Values:
+
+| Name             | Description               |
+|------------------|---------------------------|
+| `N3LInputLayer`  | _Input Layer ( value 0 )_ |
+| `N3LHiddenLayer` | _Hidden Layer_            |
+| `N3LOutputLayer` | _Output Layer_            |
+
+#### 1.3 `N3LLogType`
+Defines the log verbosity. Values:
+
+| Name             | Description                                         |
+|------------------|-----------------------------------------------------|
+| `N3LLogNone`     | _No log at all ( value -1 )_                        |
+| `N3LLogCritical` | _Log only the most important functions ( value 0 )_ |
+| `N3LLogHigh`     | _Log the most important operations_                 |
+| `N3LLogMedium`   | _Log important evaluation during the processes_     |
+| `N3LLogLow`      | _Log weights initializations and delta results_     |
+| `N3LLogPedantic` | _Log everything_                                    |
+
+Each level include the log of the previous layers.
+
+These values are used to log inside the library, if you set N3LLogNone, and this parameter is fixed by code, the same results can be obtained setting `NULL` the whole parameter `logger`.
+
+See `N3LArgs` for more details.
+
+#### 1.4 N3LActType
+Defines the activation function. Values:
+
+| Name         | Description                                         |
+|--------------|-----------------------------------------------------|
+| `N3LCustom`  | _Not an internal N3L function, you shouldn't use it directly. ( value -1 )_ |
+| `N3LNone`    | ![eq](https://latex.codecogs.com/gif.download?f%28x%29%3D%20x) _( value 0)_ |
+| `N3LSigmoid` | ![eq](https://latex.codecogs.com/gif.download?f%28x%29%3D%201/%281%20+%20e%5E%7B-x%7D%20%29) |
+| `N3LTanh`    | ![eq](https://latex.codecogs.com/gif.download?f%28x%29%3D%20tanh%28x%29) |
+| `N3LRelu`    | ![eq](https://latex.codecogs.com/gif.download?f%28x%29%3D%20%5Cbegin%7Bmatrix%7D%20%5C%5C%20%26%20%5Cbegin%7Bcases%7D%200%20%26%20%5Ctext%7B%20if%20%7D%20x%20%3C%200%20%5C%5C%20x%26%20%5Ctext%7B%20if%20%7D%20x%20%5Cgeq%200%20%5Cend%7Bcases%7D%20%5Cend%7Bmatrix%7D) |
+
+The use of `N3LCustom` is internal of N3 Library.
+
+See `n3l_set_custom_act()` for more details.
+
+
+### 2 Structures
+**TODO**
+
+### 3 Functions
+**TODO**
