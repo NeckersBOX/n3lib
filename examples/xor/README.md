@@ -1,7 +1,16 @@
 # N3L Example - XOR
 
+## Description
 This is the most common example provided by various resources online when they explain how a neural network works.
 
+## Build
+Execute the command below in this folder to compile the xor example:
+
+```
+gcc xor.c -o xor -ln3l -lm -lpthread
+```
+
+## Usage
 The number of neurons and layers is fixed by code, anyway there are others parameters that you can edit at run time. For example the number of iterations, the learning rate or the bias terms.
 Too see the complete list you have to run the following command:
 ```
@@ -28,6 +37,26 @@ Options:
 	-s             After the number of iterations provided, save the neural network state. Default filename: xor.n3l
 	-v [n]         Enable N3 Library to log with specified verbosity.
 	               Value: 0 - Critical, 1 - High, 2 - Medium, 3 - Low, 4 - Pedantic.
+```
+
+### Examples
+
+Run 10k iterations in learning mode with 0.5 bias and save results in `xor.n3l`
+
+```
+./xor -l -i 10000 -s
+```
+
+Run 4 iterations in forward mode reading network from `xor.5k.default.n3l`
+
+```
+./xor -i 4 -r xor.5k.default.n3l
+```
+
+The previous state can be improved with more iterations using `-s` and `-r` options together:
+
+```
+./xor -l -i 10000 -r xor.5k.default.n3l -s -o xor.15k.default.n3l
 ```
 
 ## Network description
