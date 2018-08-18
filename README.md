@@ -116,9 +116,36 @@ If you want to know more about the parameters or for others functions like setti
 
 ## Documentation
 
-### 1. Enumerators
+### 1. Macro and Define
 
-#### 1.1 `bool`
+#### 1.1 N3L_VERSION
+Current N3 Library version as string, i.e. "1.2.9"
+
+#### 1.2 N3L_ACT(fun)
+
+Pointer to functions of type:
+```c
+double fun(double value)
+```
+
+Used in neurons as activation function. Argument `value` is the neuron's input.
+
+See also `N3LNeuron`, `N3LActType` or activation functions such as `n3l_sigmoid()`, `n3l_sigmoid_prime`, ...
+
+#### 1.3 N3L_RND_WEIGHT(rnd_w)
+
+Pointer to functions of type:
+```c
+double (*rnd_w)(N3LLayer layer)
+```
+
+Used during weights initialization to get random values. Argument `layer` is the current layer to initialize.
+
+See also `N3LData`, `N3LLayer`, `n3l_rnd_weight()`.
+
+### 2. Enumerators
+
+#### 2.1 `bool`
 Defines boolean values.
 
 | Name      | Description |
@@ -126,7 +153,7 @@ Defines boolean values.
 | `false`   | Value 0     |
 | `true`    | Value 1     |
 
-#### 1.2 `N3LLayerType`
+#### 2.2 `N3LLayerType`
 Defines the layer type. Values:
 
 | Name             | Description               |
@@ -135,7 +162,7 @@ Defines the layer type. Values:
 | `N3LHiddenLayer` | _Hidden Layer_            |
 | `N3LOutputLayer` | _Output Layer_            |
 
-#### 1.3 `N3LLogType`
+#### 2.3 `N3LLogType`
 Defines the log verbosity. Values:
 
 | Name             | Description                                         |
@@ -153,7 +180,7 @@ These values are used to log inside the library, if you set N3LLogNone, and this
 
 See `N3LArgs` for more details.
 
-#### 1.4 N3LActType
+#### 2.4 N3LActType
 Defines the activation function. Values:
 
 | Name         | Description                                         |
@@ -169,8 +196,61 @@ The use of `N3LCustom` is internal of N3 Library.
 See `n3l_set_custom_act()` for more details.
 
 
-### 2 Structures
-**TODO**
+### 3 Structures
 
-### 3 Functions
+#### 3.1 N3LLogger
+
+| Type | Name | Description |
+|------|------|-------------|
+|`FILE *` | `log_file` | Pointer to an already opened file in _read_ mode. |
+|`N3LLogType` | `verbosity` | Threshold level to write the log |
+
+#### 3.2 N3LNeuron
+
+| Type | Name | Description |
+|------|------|-------------|
+| `double` | `input` | Neuron input
+| `double *` | `weights` | Weights array with length equal to the `outputs` term. |
+| `uint64_t` | `outputs` | Number of outputs linked to this neuron |
+| `double` | `result` | Value returned from the activation function |
+| `N3L_ACT`| `act` | Activation function |
+| `N3L_ACT`| `act_prime` | Derivate of the activation function |
+
+#### 3.3 N3LLayer
+
+| Type | Name | Description |
+|------|------|-------------|
+| `N3LLayerType` | `ltype` | Type of this layer |
+| `uint64_t` | `size` | Number of neurons in this layer |
+| `N3LNeuron *` | `neurons` | Neurons array with length equal of `size` term. |
+
+#### 3.4 N3LArgs
+
+| Type | Name | Description |
+|------|------|-------------|
+| `bool` | `read_file` | Set `true` if during initialization the values will be read from the file `in_filename`. |
+| `char *` | `in_filename` | Dependent from `read_file`. Path and filename which contains the values to initialize the network. |
+| `double` | `bias` | Bias term value. If you don't want any bias term set this value to zero. High values could saturate the network. |
+| `double` | `learning_rate` | Learning rate value. Higher value could lead to instability during backpropagation process. |
+| `uint64_t` | `in_size` | Number of input neurons. |
+| `uint64_t` | `h_size` | Number of hidden neurons for each hidden layer. |
+| `uint64_t` | `out_size` | Number of output neurons. |
+| `uint64_t` | `h_layers` | Number of hidden layers. |
+| `N3LLogger *` | `logger` | Pointer to a logger used from the library's function. If you don't want any log, it can be set to `NULL` |
+| `N3LActType` | `act_in` | Type of activation function used by neurons in the input layer. |
+| `N3LActType` | `act_h` | Type of activation function used by neurons in the hidden layer. |
+| `N3LActType` | `act_out` | Type of activation function used by neurons in the output layer. |
+
+#### 3.5 N3LData
+
+| Type | Name | Description |
+|------|------|-------------|
+|`double *`|`inputs`| Array of inputs values used in both backward and forward propagation. |
+|`double *`|`targets`| Array of target values used in backpropagation. These are the _ideal_ output value to reach for the inputs values provided. |
+|`double *`|`outputs`| Array of outputs values used in backpropagation. Usually this should be set with the return value of `n3l_forward_propagation()` and manually free. |
+| `N3L_RND_WEIGHT` | `get_rnd_weight` | Function to call when weights are initialized randomly. |
+| `N3LArgs *` | `args` | Network parameters. |
+| `N3LLayer *` | `net` | Network layers array |
+
+### 4 Functions
 **TODO**
