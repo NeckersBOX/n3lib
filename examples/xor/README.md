@@ -1,3 +1,4 @@
+![Success](https://img.shields.io/badge/Success%20rate-100%25-orange.svg)
 # N3L Example - XOR
 
 ## Description

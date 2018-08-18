@@ -1,3 +1,4 @@
+![Success](https://img.shields.io/badge/Success%20rate-%3E96%25-orange.svg)
 # N3L Example - IRIS
 
 ## Description
@@ -50,7 +51,7 @@ Options:
 
 ### Examples
 
-Run 10k iterations in learning mode with 0.5 bias and save results in `iris.n3l`
+Run 10k iterations in learning mode and save results in `iris.n3l`
 
 ```
 ./iris -l -i 10000 -s
