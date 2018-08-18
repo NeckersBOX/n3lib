@@ -6,6 +6,12 @@ Data set and description reference: https://archive.ics.uci.edu/ml/datasets/Iris
 
 It's designed with the idea that each output neuron give the probabily about each of the three possibily classification.
 
+| Name | Case ID |
+|------|---------|
+| Iris-virginica | 0 |
+| Iris-setosa | 1 |
+| Iris-versicolor | 2 |
+
 ## Build
 Execute the command below in this folder to compile the example:
 
