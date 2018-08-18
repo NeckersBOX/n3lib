@@ -37,7 +37,7 @@ While compiling your projects you should include the `n3lib.h` header and compil
 
 ## Quick Start
 
-Build a network with N3 Library without many options it's fast, first you need to initialize the parameters and for this case there is the `N3LArgs` structure.
+Build a network with N3 Library without many options is fast. First you need to initialize the parameters through a `N3LArgs` structure.
 If you don't want to spend much time thinking at every parameter there is the function `n3l_get_default_args()` which set generically each one. After that you have only to specify the structure of the neural network with this parameters:
 * `in_size`: number of neurons in the input layer
 * `h_size`: number of neurons in the hidden layer
