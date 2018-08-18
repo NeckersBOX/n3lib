@@ -6,7 +6,7 @@ Both forward and backpropagation are built to parallelize through threads the op
 
 In forward propagation each layer execute the _activation functions_ in concurrent threads, when one layer end its own job, the results to the each next layer's neuron are collected with others concurrent threads. The whole process is executed from each layer from the input one to the output one.
 
-In backward propagation first there is the delta evaluation from the output layer to the input layer, after the weight updating process from the input to the output. Each return to the previous layer and delta evaluation on neurons in the same layer, is built, even in this case, with concurrent threads.
+In backward propagation first there is the delta evaluation from the output layer to the input layer, after that there is the weight updating process from the input to the output. Each return to the previous layer and delta evaluation on neurons in the same layer, is built, even in this case, with concurrent threads.
 
 ## Build
 The library is designed to run under GNU\Linux operating systems.
@@ -253,4 +253,238 @@ See `n3l_set_custom_act()` for more details.
 | `N3LLayer *` | `net` | Network layers array |
 
 ### 4 Functions
-**TODO**
+
+#### 4.1 Activation
+This functions are used internally through the `N3LActType` which information is saved along with the others network data. If you use them manually the information could not be stored in the file ( the value will be `N3LCustom` ) and you have to set again after the initialization process with `n3l_set_custom_act()`.
+
+##### 4.1.1 `n3l_act_none()`
+
+```c
+double n3l_act_none(double value)
+```
+
+| Formula |
+|---------|
+| ![eq](https://latex.codecogs.com/gif.latex?f%28value%29%3D%20value) |
+
+##### 4.1.2 `n3l_act_relu()`
+
+```c
+double n3l_act_relu(double value)
+```
+
+| Formula |
+|---------|
+| ![eq](https://latex.codecogs.com/gif.latex?f%28value%29%3D%20%5Cbegin%7Bmatrix%7D%20%5C%5C%20%26%20%5Cbegin%7Bcases%7D%200%20%26%20%5Ctext%7B%20if%20%7D%20value%20%3C%200%20%5C%5C%20value%26%20%5Ctext%7B%20if%20%7D%20value%20%5Cgeq%200%20%5Cend%7Bcases%7D%20%5Cend%7Bmatrix%7D) |
+
+##### 4.1.3 `n3l_act_relu_prime()`
+
+```c
+double n3l_act_relu_prime(double value)
+```
+
+| Formula |
+|---------|
+| ![eq](https://latex.codecogs.com/gif.latex?f%28value%29%3D%20%5Cbegin%7Bmatrix%7D%20%5C%5C%20%26%20%5Cbegin%7Bcases%7D%200%20%26%20%5Ctext%7B%20if%20%7D%20value%20%5Cleq%200%20%5C%5C%201%26%20%5Ctext%7B%20if%20%7D%20value%20%3E%200%20%5Cend%7Bcases%7D%20%5Cend%7Bmatrix%7D) |
+
+##### 4.1.4 `n3l_act_sigmoid()`
+
+```c
+double n3l_act_sigmoid(double value)
+```
+
+| Formula |
+|---------|
+| ![eq](https://latex.codecogs.com/gif.latex?f%28value%29%3D%201/%281%20+%20e%5E%7B-value%7D%20%29) |
+
+##### 4.1.5 `n3l_act_sigmoid_prime()`
+
+```c
+double n3l_act_sigmoid_prime(double value)
+```
+
+| Formula |
+|---------|
+| ![eq](https://latex.codecogs.com/gif.latex?f%28value%29%3D%20value%20*%20%281%20-%20value%29) |
+
+##### 4.1.6 `n3l_act_tanh()`
+
+```c
+double n3l_act_tanh(double value)
+```
+
+| Formula |
+|---------|
+| ![eq](https://latex.codecogs.com/gif.latex?f%28value%29%3D%20tanh%28value%29) |
+
+##### 4.1.7 `n3l_act_tanh_prime()`
+
+```c
+double n3l_act_tanh_prime(double value)
+```
+
+| Formula |
+|---------|
+| ![eq](https://latex.codecogs.com/gif.latex?f%28value%29%20%3D%201%20-%20value%5E%7B2%7D) |
+
+#### 4.2 Backward Propagation
+
+##### 4.2.1 `n3l_backward_propagation()`
+
+```c
+void n3l_backward_propagation(N3LData *net)
+```
+
+Argument `net` is the current initialized network. This function adjusts the weights according to the errors results from the difference between `net->targets` and `net->outputs`.
+
+#### 4.3 Forward Propagation
+
+##### 4.3.1 `n3l_forward_propagation()`
+
+```c
+double *n3l_forward_propagation(N3LData *net)
+```
+
+Argument `net` is the current initialized network. This function get the outputs from the `net->inputs` provided.
+
+Return an array with length `net->args->out_size` with the results obtained. This results should be set to `net->outputs` if you are in learning mode and must be free manually.
+
+#### 4.4 Initialization
+
+##### 4.4.1 `n3l_build()`
+
+```c
+N3LData *n3l_build (N3LArgs args, N3L_RND_WEIGHT(rnd_w))
+```
+
+Initialize the values of the whole network and return the network built.
+
+If you don't want to set all the `args`, you can call `n3l_get_default_args()` and set only the arguments needed from your project.
+
+As argument `rnd_w`, if you don't bother about weights random initialization or you have set a file to read during initialization, can be set to `&n3l_rnd_weight`.
+
+**Note:** Before call this function, to initialize the seed for `rand()`, you have to call `srand()` manually.
+
+##### 4.4.2 `n3l_free()`
+
+```c
+void n3l_free (N3LData *net)
+```
+
+Free all the the memory allocate from `net`.
+
+##### 4.4.3 `n3l_get_defaults_args()`
+
+```c
+N3LArgs n3l_get_default_args(void)
+```
+
+Set defaults values for the neural network.
+
+| Variable        | Default Value |
+|-----------------|---------------|
+| `read_file`     | `false`       |
+| `in_filename`   | `NULL`        |
+| `bias`          | `0`           |
+| `learning_rate` | `1`           |
+| `in_size`       | `0`           |
+| `h_size`        | `0`           |
+| `h_layers`      | `0`           |
+| `out_size`      | `0`           |
+| `logger`        | `NULL`        |
+| `act_in`        | `N3LNone`     |
+| `act_h`         | `N3LSigmoid`  |
+| `act_out`       | `N3LSigmoid`  |
+
+
+##### 4.4.4 `n3l_rnd_weight()`
+
+```c
+double n3l_rnd_weight (N3LLayer layer)
+```
+
+Generate a random value to use in weights initialization.
+
+Return a value in range `[0, 1]` using `rand()` function.
+
+##### 4.4.5 `n3l_set_custom_act()`
+
+```c
+void n3l_set_custom_act (N3LData *net, uint64_t layer_index, N3L_ACT(act), N3L_ACT(act_prime))
+```
+
+Set a custom activation function, and its derivate, to neurons of layer `layer_index`.
+
+When applied the information in `act_in`, `act_h` or `act_out` ( depends by layer type at index provided ) is set to `N3LCustom`.
+
+#### 4.5 Logger
+The log is write only if the parameter `logger` is initialized and its `type` argument is not equal to `N3LLogNone` and less or equal of `verbosity`.
+
+A log example:
+```
+[N3Lib] [2] [n3l_build_bias] -->>
+[N3Lib] [2] [n3l_build_bias] Building bias neuron (0,2)
+[N3Lib] [2] [n3l_build_bias] <<--
+```
+
+The format is the following:
+
+[`Module`] [`type`] [`fun_name`] [`message`]
+
+##### 4.5.1 `n3l_log_start()`
+
+```c
+void n3l_log_start(N3LLogger *logger, const char *fun_name, N3LLogType type)
+```
+
+Print the log with message like `-->>`.
+
+##### 4.5.2 `n3l_log()`
+
+```c
+void n3l_log (N3LLogger *logger, const char *fun_name, N3LLogType type, const char *message, ...)
+```
+
+Print the log with message `message` resolving its arguments ( in _printf_ mode ) with the optional next parameters.
+
+**NOTE:** The print is in sync mode due to threads use. Before to print the text resolve the entire message in a single string with max length of 8192 characters. To finalize the print there is an explicit call to the `fflush()` function.
+
+#### 4.5.3 `n3l_log_end()`
+
+```c
+void n3l_log_end (N3LLogger *logger, const char *fun_name, N3LLogType type)
+```
+
+Print the log with message like `<<--`.
+
+#### 4.6 Saving
+
+```c
+void n3l_save (N3LData *net, FILE *of)
+```
+
+Save the whole network to the, already opened in write mode, file `of`.
+
+See also `N3 Library File Format`.
+
+
+##  N3 Library File Format
+
+The structure of the file saved or read is the following:
+
+| Type | Description |
+|------|-------------|
+| `uint64_t`   | Input neurons number  |
+| `uint64_t`   | Hidden neurons number |
+| `uint64_t`   | Output neurons number |
+| `uint64_t`   | Hidden layers number  |
+| `double`     | Bias value            |
+| `N3LActType` | Input layer activation type  |
+| `N3LActType` | Hidden layer activation type |
+| `N3LActType` | Output layer activation type |
+
+Next for each layer in the network ( from 0 ) write in order for each neurons ( from 0 )
+
+| Type | Description |
+|------|-------------|
+| `double [size equal to current neuron outputs]` | Weight values for the current neuron  |
