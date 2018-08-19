@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#define N3L_VERSION "1.2.9"
+#define N3L_VERSION "1.2.10"
 
 #define N3L_ACT(fun)          double (*fun)(double)
 #define N3L_RND_WEIGHT(rnd_w) double (*rnd_w)(N3LLayer)

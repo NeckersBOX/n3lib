@@ -1,4 +1,4 @@
-![Build](https://img.shields.io/badge/build-passing-green.svg) ![Status](https://img.shields.io/badge/status-alpha-yellow.svg) ![Version](https://img.shields.io/badge/version-1.2.9-lightgray.svg)
+![Build](https://img.shields.io/badge/build-passing-green.svg) ![Status](https://img.shields.io/badge/status-alpha-yellow.svg) ![Version](https://img.shields.io/badge/version-1.2.10-lightgray.svg)
 # N3 Library
 A tiny C library for building neural network with the capability to define custom activation functions, learning rate, bias and others parameters.
 
@@ -365,7 +365,7 @@ As argument `rnd_w`, if you don't bother about weights random initialization or 
 
 **Note:** Before call this function, to initialize the seed for `rand()`, you have to call `srand()` manually.
 
-##### 4.4.2 `n3l_get_defaults_args()`
+##### 4.4.2 `n3l_get_default_args()`
 
 ```c
 N3LArgs n3l_get_default_args(void)
@@ -458,6 +458,14 @@ void n3l_free (N3LData *net)
 ```
 
 Free all the the memory allocate from `net`.
+
+##### 4.6.2 `n3l_clone()`
+
+```c
+N3LData *n3l_clone (N3LData *net)
+```
+
+Clone the whole network `net` in a new one.
 
 #### 4.7 Saving
 
