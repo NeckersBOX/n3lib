@@ -5,6 +5,10 @@
 #include "n3_logger.h"
 #include "n3_act.h"
 
+#define N3L_SET_NEURON_ACTS(n,_act,_act_prime) \
+  (n).act = &(_act); \
+  (n).act_prime = &(_act_prime)
+
 void n3l_build_network(N3LData *state, FILE *of);
 void n3l_build_layer(N3LData *s, FILE *of, uint64_t l_idx, N3LActType act);
 void n3l_build_bias(N3LData *s, uint64_t l_idx, uint64_t n_idx);
@@ -137,22 +141,39 @@ void n3l_build_layer(N3LData *s, FILE *of, uint64_t l_idx, N3LActType act)
         N3L_LPEDANTIC(s->args->logger, "Note: At this point the activation function will be None.");
       case N3LNone:
         N3L_LLOW(s->args->logger, "Activation: None");
-        s->net[l_idx].neurons[n_idx].act = &n3l_act_none;
-        s->net[l_idx].neurons[n_idx].act_prime = &n3l_act_none;
+        N3L_SET_NEURON_ACTS(s->net[l_idx].neurons[n_idx], n3l_act_none, n3l_act_none);
         break;
       case N3LSigmoid:
         N3L_LLOW(s->args->logger, "Activation: Sigmoid");
-        s->net[l_idx].neurons[n_idx].act = &n3l_act_sigmoid;
-        s->net[l_idx].neurons[n_idx].act_prime = &n3l_act_sigmoid_prime;
+        N3L_SET_NEURON_ACTS(s->net[l_idx].neurons[n_idx], n3l_act_sigmoid, n3l_act_sigmoid_prime);
         break;
       case N3LRelu:
-        N3L_LLOW(s->args->logger, "Activation: ReLu");
-        s->net[l_idx].neurons[n_idx].act = &n3l_act_relu;
-        s->net[l_idx].neurons[n_idx].act_prime = &n3l_act_relu_prime;
+        N3L_LLOW(s->args->logger, "Activation: ReLU");
+        N3L_SET_NEURON_ACTS(s->net[l_idx].neurons[n_idx], n3l_act_relu, n3l_act_relu_prime);
+        break;
       case N3LTanh:
         N3L_LLOW(s->args->logger, "Activation: Tanh");
-        s->net[l_idx].neurons[n_idx].act = &n3l_act_tanh;
-        s->net[l_idx].neurons[n_idx].act_prime = &n3l_act_tanh_prime;
+        N3L_SET_NEURON_ACTS(s->net[l_idx].neurons[n_idx], n3l_act_tanh, n3l_act_tanh_prime);
+        break;
+      case N3LIdentity:
+        N3L_LLOW(s->args->logger, "Activation: Identity");
+        N3L_SET_NEURON_ACTS(s->net[l_idx].neurons[n_idx], n3l_act_identity, n3l_act_identity_prime);
+        break;
+      case N3LLeakyRelu:
+        N3L_LLOW(s->args->logger, "Activation: Leaky ReLU");
+        N3L_SET_NEURON_ACTS(s->net[l_idx].neurons[n_idx], n3l_act_leaky_relu, n3l_act_leaky_relu_prime);
+        break;
+      case N3LSoftPlus:
+        N3L_LLOW(s->args->logger, "Activation: SoftPlus");
+        N3L_SET_NEURON_ACTS(s->net[l_idx].neurons[n_idx], n3l_act_softplus, n3l_act_softplus_prime);
+        break;
+      case N3LSoftSign:
+        N3L_LLOW(s->args->logger, "Activation: SoftSign");
+        N3L_SET_NEURON_ACTS(s->net[l_idx].neurons[n_idx], n3l_act_softsign, n3l_act_softsign_prime);
+        break;
+      case N3LSwish:
+        N3L_LLOW(s->args->logger, "Activation: Swish");
+        N3L_SET_NEURON_ACTS(s->net[l_idx].neurons[n_idx], n3l_act_swish, n3l_act_swish_prime);
         break;
     }
 
@@ -203,8 +224,7 @@ void n3l_build_bias(N3LData *s, uint64_t l_idx, uint64_t n_idx)
   N3L_LMEDIUM_START(s->args->logger);
 
   N3L_LMEDIUM(s->args->logger, "Building bias neuron (%ld,%ld)", l_idx, n_idx);
-  s->net[l_idx].neurons[n_idx].act = &n3l_act_none;
-  s->net[l_idx].neurons[n_idx].act_prime = &n3l_act_none;
+  N3L_SET_NEURON_ACTS(s->net[l_idx].neurons[n_idx], n3l_act_none, n3l_act_none);
   s->net[l_idx].neurons[n_idx].input = s->args->bias;
 
   N3L_LMEDIUM_END(s->args->logger);

@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#define N3L_VERSION "1.2.10"
+#define N3L_VERSION "1.3.0"
 
 #define N3L_ACT(fun)          double (*fun)(double)
 #define N3L_RND_WEIGHT(rnd_w) double (*rnd_w)(N3LLayer)
@@ -31,6 +31,11 @@ typedef enum {
   N3LSigmoid,
   N3LTanh,
   N3LRelu,
+  N3LIdentity,
+  N3LLeakyRelu,
+  N3LSoftPlus,
+  N3LSoftSign,
+  N3LSwish
 } N3LActType;
 
 typedef struct {

@@ -1,4 +1,4 @@
-![Build](https://img.shields.io/badge/build-passing-green.svg) ![Status](https://img.shields.io/badge/status-alpha-yellow.svg) ![Version](https://img.shields.io/badge/version-1.2.10-lightgray.svg)
+![Build](https://img.shields.io/badge/build-passing-green.svg) ![Status](https://img.shields.io/badge/status-alpha-yellow.svg) ![Version](https://img.shields.io/badge/version-1.3.0-lightgray.svg)
 # N3 Library
 A tiny C library for building neural network with the capability to define custom activation functions, learning rate, bias and others parameters.
 
@@ -60,18 +60,18 @@ Below a small example of XOR problem with N3 Library:
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-/* Include the header of n3 library */
+// Include the header of n3 library
 #include <n3l/n3lib.h>
 
 int main(int argc, char *argv[])
 {
-  N3LData *network;
+  N3LData * network;
   N3LArgs params;
   double inputs[4][2] = { { 0, 0}, { 0, 1 }, { 1, 1 }, {1, 0} };
   double targets[4][1] = { { 0 }, { 1 }, { 0 }, { 1 } };
   int iterations;
 
-  /* Initializing parameters */
+  // Initializing parameters
   params = n3l_get_default_args();
   params.bias = 0.5f;
   params.in_size = 2;
@@ -79,11 +79,11 @@ int main(int argc, char *argv[])
   params.h_size = 3;
   params.h_layers = 1;
 
-  /* Building network */
+  // Building network
   srand(time(NULL));
   network = n3l_build(params, &n3l_rnd_weight);
 
-  /* Learning mode */
+  // Learning mode
   for ( iterations = 0; iterations < 10000; ++iterations ) {
     network->inputs = inputs[iterations % 4];
     network->outputs = n3l_forward_propagation(network);
@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
     n3l_backward_propagation(network);
   }
 
-  /* Show results */
+  // Show results
   for ( iterations = 0; iterations < 4; ++iterations ) {
     network->inputs = inputs[iterations],
     network->outputs = n3l_forward_propagation(network);
@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
       network->inputs[0], network->inputs[1], network->outputs[0]);
   }
 
-  /* Free the network */
+  // Free the network
   n3l_free(network);
 }
 ```
@@ -136,7 +136,7 @@ See also `N3LNeuron`, `N3LActType` or activation functions such as `n3l_sigmoid(
 
 Pointer to functions of type:
 ```c
-double (*rnd_w)(N3LLayer layer)
+double rnd_w(N3LLayer layer)
 ```
 
 Used during weights initialization to get random values. Argument `layer` is the current layer to initialize.
@@ -187,14 +187,20 @@ Defines the activation function. Values:
 |--------------|-----------------------------------------------------|
 | `N3LCustom`  | _Not an internal N3L function, you shouldn't use it directly. ( value -1 )_ |
 | `N3LNone`    | ![eq](https://latex.codecogs.com/gif.latex?f%28x%29%3D%20x) _( value 0)_ |
-| `N3LSigmoid` | ![eq](https://latex.codecogs.com/gif.latex?f%28x%29%3D%201/%281%20+%20e%5E%7B-x%7D%20%29) |
+| `N3LSigmoid` | ![eq](https://latex.codecogs.com/gif.latex?f%28x%29%20%3D%20%5Cfrac%7B1%7D%7B1&plus;%20e%5E%7B-x%7D%7D) |
 | `N3LTanh`    | ![eq](https://latex.codecogs.com/gif.latex?f%28x%29%3D%20tanh%28x%29) |
-| `N3LRelu`    | ![eq](https://latex.codecogs.com/gif.latex?f%28x%29%3D%20%5Cbegin%7Bmatrix%7D%20%5C%5C%20%26%20%5Cbegin%7Bcases%7D%200%20%26%20%5Ctext%7B%20if%20%7D%20x%20%3C%200%20%5C%5C%20x%26%20%5Ctext%7B%20if%20%7D%20x%20%5Cgeq%200%20%5Cend%7Bcases%7D%20%5Cend%7Bmatrix%7D) |
+| `N3LRelu`    | ![eq](https://latex.codecogs.com/gif.latex?f%28x%29%20%3D%20%5Cbegin%7Bcases%7D%200%20%26%20%5Ctext%7B%20if%20%7D%20x%20%3C%200%20%5C%5C%20x%26%20%5Ctext%7B%20if%20%7D%20x%20%5Cgeq%200%20%5Cend%7Bcases%7D) |
+| `N3LIdentity` | ![eq](https://latex.codecogs.com/gif.latex?f%28x%29%3D%20x) |
+| `N3LLeakyRelu` | ![eq](https://latex.codecogs.com/gif.latex?f%28x%29%20%3D%20%5Cbegin%7Bcases%7D%200.01x%20%26%20%5Ctext%7Bfor%20%7D%20x%20%3C%200%5C%5C%20x%20%26%20%5Ctext%7Bfor%20%7D%20x%20%5Cge%200%5Cend%7Bcases%7D) |
+| `N3LSoftPlus` | ![eq](https://latex.codecogs.com/gif.latex?f%28x%29%20%3D%20%5Cln%281&plus;e%5E%7Bx%7D%29) |
+| `N3LSoftSign` | ![eq](https://latex.codecogs.com/gif.latex?f%28x%29%20%3D%20%5Cfrac%7Bx%7D%7B1%20&plus;%20%7Cx%7C%7D) |
+| `N3LSwish` | ![eq](https://latex.codecogs.com/gif.latex?f%28x%29%20%3D%20x%20*%20%5Csigma%28x%29) |
 
 The use of `N3LCustom` is internal of N3 Library.
 
 See `n3l_set_custom_act()` for more details.
 
+Reference: [Wikipedia - Activation Function](https://en.wikipedia.org/wiki/Activation_function)
 
 ### 3 Structures
 
@@ -275,7 +281,7 @@ double n3l_act_relu(double value)
 
 | Formula |
 |---------|
-| ![eq](https://latex.codecogs.com/gif.latex?relu%28value%29%3D%20%5Cbegin%7Bmatrix%7D%20%5C%5C%20%26%20%5Cbegin%7Bcases%7D%200%20%26%20%5Ctext%7B%20if%20%7D%20value%20%3C%200%20%5C%5C%20value%26%20%5Ctext%7B%20if%20%7D%20value%20%5Cgeq%200%20%5Cend%7Bcases%7D%20%5Cend%7Bmatrix%7D) |
+| ![eq](https://latex.codecogs.com/gif.latex?relu%28value%29%20%3D%20%5Cbegin%7Bcases%7D%200%20%26%20%5Ctext%7B%20if%20%7D%20value%20%3C%200%20%5C%5C%20value%26%20%5Ctext%7B%20if%20%7D%20value%20%5Cgeq%200%20%5Cend%7Bcases%7D) |
 
 ##### 4.1.3 `n3l_act_relu_prime()`
 
@@ -285,7 +291,7 @@ double n3l_act_relu_prime(double value)
 
 | Formula |
 |---------|
-| ![eq](https://latex.codecogs.com/gif.latex?f'%28value%29%3D%20%5Cbegin%7Bmatrix%7D%20%5C%5C%20%26%20%5Cbegin%7Bcases%7D%200%20%26%20%5Ctext%7B%20if%20%7D%20value%20%5Cleq%200%20%5C%5C%201%26%20%5Ctext%7B%20if%20%7D%20value%20%3E%200%20%5Cend%7Bcases%7D%20%5Cend%7Bmatrix%7D) |
+| ![eq](https://latex.codecogs.com/gif.latex?f'%28value%29%3D%20%5Cbegin%7Bcases%7D%200%20%26%20%5Ctext%7B%20if%20%7D%20value%20%5Cleq%200%20%5C%5C%201%26%20%5Ctext%7B%20if%20%7D%20value%20%3E%200%20%5Cend%7Bcases%7D) |
 
 ##### 4.1.4 `n3l_act_sigmoid()`
 
@@ -295,7 +301,7 @@ double n3l_act_sigmoid(double value)
 
 | Formula |
 |---------|
-| ![eq](https://latex.codecogs.com/gif.latex?sigmoid%28value%29%3D%201/%281%20+%20e%5E%7B-value%7D%20%29) |
+| ![eq](https://latex.codecogs.com/gif.latex?sigmoid%28value%29%20%3D%20%5Cfrac%7B1%7D%7B1&plus;%20e%5E%7B-value%7D%7D) |
 
 ##### 4.1.5 `n3l_act_sigmoid_prime()`
 
@@ -315,7 +321,7 @@ double n3l_act_tanh(double value)
 
 | Formula |
 |---------|
-| ![eq](https://latex.codecogs.com/gif.latex?tanh%28value%29%3D%20%28e%5E%7Bvalue%7D-e%5E%7B-value%7D%29/%28e%5E%7Bvalue%7D+e%5E%7B-value%7D%29) |
+| ![eq](https://latex.codecogs.com/gif.latex?tanh%28value%29%3D%20%5Cfrac%7Be%5E%7Bvalue%7D-e%5E%7B-value%7D%7D%7Be%5E%7Bvalue%7D+e%5E%7B-value%7D%7D) |
 
 ##### 4.1.7 `n3l_act_tanh_prime()`
 
@@ -326,6 +332,106 @@ double n3l_act_tanh_prime(double value)
 | Formula |
 |---------|
 | ![eq](https://latex.codecogs.com/gif.latex?f'%28value%29%20%3D%201%20-%20tanh%28value%29%5E%7B2%7D) |
+
+##### 4.1.8 `n3l_act_identity()`
+
+```c
+double n3l_act_identity(double value)
+```
+
+| Formula |
+|---------|
+| ![eq](https://latex.codecogs.com/gif.latex?identity%28value%29%20%3D%20value) |
+
+##### 4.1.9 `n3l_act_identity_prime()`
+
+```c
+double n3l_act_identity_prime(double value)
+```
+
+| Formula |
+|---------|
+| ![eq](https://latex.codecogs.com/gif.latex?f%27%28value%29%3D1) |
+
+##### 4.1.10 `n3l_act_leaky_relu()`
+
+```c
+double n3l_act_leaky_relu(double value)
+```
+
+| Formula |
+|---------|
+| ![eq](https://latex.codecogs.com/gif.latex?leaky\_relu%28value%29%20%3D%20%5Cbegin%7Bcases%7D%200.01value%20%26%20%5Ctext%7Bfor%20%7D%20value%20%3C%200%5C%5C%20value%20%26%20%5Ctext%7Bfor%20%7D%20value%20%5Cge%200%5Cend%7Bcases%7D) |
+
+##### 4.1.11 `n3l_act_leaky_relu_prime()`
+
+```c
+double n3l_act_leaky_relu_prime(double value)
+```
+
+| Formula |
+|---------|
+| ![eq](https://latex.codecogs.com/gif.latex?f%27%28value%29%20%3D%20%5Cbegin%7Bcases%7D%200.01%20%26%20%5Ctext%7Bfor%20%7D%20value%20%3C%200%5C%5C%201%20%26%20%5Ctext%7Bfor%20%7D%20value%20%5Cge%200%5Cend%7Bcases%7D) |
+
+##### 4.1.12 `n3l_act_softplus()`
+
+```c
+double n3l_act_softplus(double value)
+```
+
+| Formula |
+|---------|
+| ![eq](https://latex.codecogs.com/gif.latex?softplus%28value%29%20%3D%20%5Cln%281%20&plus;%20e%5E%7Bvalue%7D%29) |
+
+##### 4.1.13 `n3l_act_softplus_prime()`
+
+```c
+double n3l_act_softplus_prime(double value)
+```
+
+| Formula |
+|---------|
+| ![eq](https://latex.codecogs.com/gif.latex?f%27%28value%29%20%3D%20%5Cfrac%7B1%7D%7B1&plus;%20e%5E%7B-value%7D%7D) |
+
+##### 4.1.14 `n3l_act_softsign()`
+
+```c
+double n3l_act_softsign(double value)
+```
+
+| Formula |
+|---------|
+| ![eq](https://latex.codecogs.com/gif.latex?softsign%28value%29%3D%5Cfrac%7Bvalue%7D%7B1&plus;%7Cvalue%7C%7D) |
+
+##### 4.1.15 `n3l_act_softsign_prime()`
+
+```c
+double n3l_act_softsign_prime(double value)
+```
+
+| Formula |
+|---------|
+| ![eq](https://latex.codecogs.com/gif.latex?f%27%28value%29%3D%5Cfrac%7B1%7D%7B%281&plus;%7Cvalue%7C%29%5E2%7D) |
+
+##### 4.1.16 `n3l_act_swish()`
+
+```c
+double n3l_act_swish(double value)
+```
+
+| Formula |
+|---------|
+| ![eq](https://latex.codecogs.com/gif.latex?swish%28value%29%3Dvalue%20*%20sigmoid%28value%29) |
+
+##### 4.1.17 `n3l_act_swish_prime()`
+
+```c
+double n3l_act_swish_prime(double value)
+```
+
+| Formula |
+|---------|
+| ![eq](https://latex.codecogs.com/gif.latex?f%27%28value%29%3Dswish%28value%29%20&plus;%20sigmoid%28value%29%20*%20%281%20-%20swish%28value%29%29) |
 
 #### 4.2 Backward Propagation
 
