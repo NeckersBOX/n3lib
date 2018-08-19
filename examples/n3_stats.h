@@ -97,19 +97,19 @@ bool n3_stats_to_csv(struct _stats *stat, char *filename)
 
   fprintf(of,
     "ITERATION,"
-    "TNE %% ( Total Network Error ),"
-    "TNS %% ( Total Network Success ),"
-    "MNE %% ( Mobile Network Error ),"
-    "MNS %% ( Mobile Network Success ),"
+    "TNE ( Total Network Error ),"
+    "TNS ( Total Network Success ),"
+    "MNE ( Mobile Network Error ),"
+    "MNS ( Mobile Network Success ),"
     "Time Elapsed (s)\n");
 
   for ( row = 0; row < stat->iterations; ++row ) {
     fprintf(of, "%ld,%lf,%lf,%lf,%lf,%lf\n",
       row + 1,
-      stat->data[row].tne * 100.f,
-      stat->data[row].tns * 100.f,
-      stat->data[row].mne * 100.f,
-      stat->data[row].mns * 100.f,
+      stat->data[row].tne,
+      stat->data[row].tns,
+      stat->data[row].mne,
+      stat->data[row].mns,
       stat->data[row].tm_elapsed);
   }
   fclose(of);

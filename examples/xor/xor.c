@@ -109,9 +109,9 @@ void xor_operation(struct user_args args)
     n3_stats_cycle(&xor_stat, stats[0] + stats[1] - 1, round(n3_net->outputs[0]) == n3_net->targets[0]);
 
     if ( args.progress ) {
-      fprintf(stdout, "\r[XOR] Iteration %ld on %ld - MNE: %.3lf%% - MNS: %.3lf%%",
+      fprintf(stdout, "\r[XOR] Iteration %ld on %ld - MNE: %lf - MNS: %.3lf%%",
         stats[0] + stats[1], args.iterations + stats[0] + stats[1] - 1,
-        xor_stat.data[stats[0] + stats[1] - 1].mne * 100.f,
+        xor_stat.data[stats[0] + stats[1] - 1].mne,
         xor_stat.data[stats[0] + stats[1] - 1].mns * 100.f);
     }
 #else

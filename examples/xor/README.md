@@ -4,7 +4,8 @@
 This is the most common example provided by various resources online when they explain how a neural network works.
 
 ##### Results Graph
-![Results](http://i65.tinypic.com/29ff3td.jpg)
+![Results](http://i65.tinypic.com/fkqzih.png)
+**MNS** Higher is better, **MNE** Lower is better
 
 ## Build
 Execute the command below in this folder to compile the xor example:
