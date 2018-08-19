@@ -265,7 +265,7 @@ double n3l_act_none(double value)
 
 | Formula |
 |---------|
-| ![eq](https://latex.codecogs.com/gif.latex?f%28value%29%3D%20value) |
+| ![eq](https://latex.codecogs.com/gif.latex?none%28value%29%3D%20value) |
 
 ##### 4.1.2 `n3l_act_relu()`
 
@@ -275,7 +275,7 @@ double n3l_act_relu(double value)
 
 | Formula |
 |---------|
-| ![eq](https://latex.codecogs.com/gif.latex?f%28value%29%3D%20%5Cbegin%7Bmatrix%7D%20%5C%5C%20%26%20%5Cbegin%7Bcases%7D%200%20%26%20%5Ctext%7B%20if%20%7D%20value%20%3C%200%20%5C%5C%20value%26%20%5Ctext%7B%20if%20%7D%20value%20%5Cgeq%200%20%5Cend%7Bcases%7D%20%5Cend%7Bmatrix%7D) |
+| ![eq](https://latex.codecogs.com/gif.latex?relu%28value%29%3D%20%5Cbegin%7Bmatrix%7D%20%5C%5C%20%26%20%5Cbegin%7Bcases%7D%200%20%26%20%5Ctext%7B%20if%20%7D%20value%20%3C%200%20%5C%5C%20value%26%20%5Ctext%7B%20if%20%7D%20value%20%5Cgeq%200%20%5Cend%7Bcases%7D%20%5Cend%7Bmatrix%7D) |
 
 ##### 4.1.3 `n3l_act_relu_prime()`
 
@@ -285,7 +285,7 @@ double n3l_act_relu_prime(double value)
 
 | Formula |
 |---------|
-| ![eq](https://latex.codecogs.com/gif.latex?f%28value%29%3D%20%5Cbegin%7Bmatrix%7D%20%5C%5C%20%26%20%5Cbegin%7Bcases%7D%200%20%26%20%5Ctext%7B%20if%20%7D%20value%20%5Cleq%200%20%5C%5C%201%26%20%5Ctext%7B%20if%20%7D%20value%20%3E%200%20%5Cend%7Bcases%7D%20%5Cend%7Bmatrix%7D) |
+| ![eq](https://latex.codecogs.com/gif.latex?f'%28value%29%3D%20%5Cbegin%7Bmatrix%7D%20%5C%5C%20%26%20%5Cbegin%7Bcases%7D%200%20%26%20%5Ctext%7B%20if%20%7D%20value%20%5Cleq%200%20%5C%5C%201%26%20%5Ctext%7B%20if%20%7D%20value%20%3E%200%20%5Cend%7Bcases%7D%20%5Cend%7Bmatrix%7D) |
 
 ##### 4.1.4 `n3l_act_sigmoid()`
 
@@ -295,7 +295,7 @@ double n3l_act_sigmoid(double value)
 
 | Formula |
 |---------|
-| ![eq](https://latex.codecogs.com/gif.latex?f%28value%29%3D%201/%281%20+%20e%5E%7B-value%7D%20%29) |
+| ![eq](https://latex.codecogs.com/gif.latex?sigmoid%28value%29%3D%201/%281%20+%20e%5E%7B-value%7D%20%29) |
 
 ##### 4.1.5 `n3l_act_sigmoid_prime()`
 
@@ -305,7 +305,7 @@ double n3l_act_sigmoid_prime(double value)
 
 | Formula |
 |---------|
-| ![eq](https://latex.codecogs.com/gif.latex?f%28value%29%3D%20value%20*%20%281%20-%20value%29) |
+| ![eq](https://latex.codecogs.com/gif.latex?f'%28value%29%3D%20sigmoid%28value%29%20*%20%281%20-%20sigmoid%28value%29%29) |
 
 ##### 4.1.6 `n3l_act_tanh()`
 
@@ -315,7 +315,7 @@ double n3l_act_tanh(double value)
 
 | Formula |
 |---------|
-| ![eq](https://latex.codecogs.com/gif.latex?f%28value%29%3D%20tanh%28value%29) |
+| ![eq](https://latex.codecogs.com/gif.latex?tanh%28value%29%3D%20%28e%5E%7Bvalue%7D-e%5E%7B-value%7D%29/%28e%5E%7Bvalue%7D+e%5E%7B-value%7D%29) |
 
 ##### 4.1.7 `n3l_act_tanh_prime()`
 
@@ -325,7 +325,7 @@ double n3l_act_tanh_prime(double value)
 
 | Formula |
 |---------|
-| ![eq](https://latex.codecogs.com/gif.latex?f%28value%29%20%3D%201%20-%20value%5E%7B2%7D) |
+| ![eq](https://latex.codecogs.com/gif.latex?f'%28value%29%20%3D%201%20-%20tanh%28value%29%5E%7B2%7D) |
 
 #### 4.2 Backward Propagation
 
