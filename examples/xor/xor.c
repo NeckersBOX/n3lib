@@ -6,6 +6,9 @@
 #include <unistd.h>
 #include <n3l/n3lib.h>
 #include "../n3_example.h"
+#ifdef N3L_ENABLE_STATS
+#include "../n3_stats.h"
+#endif
 
 double *get_inputs_batch_mode(void);
 double *get_targets(double *inputs);
@@ -41,6 +44,9 @@ void xor_operation(struct user_args args)
   N3LLogger n3_logger = { stdout, args.verbose };
   uint64_t stats[2] = { 0, 0 };
   FILE *of;
+#ifdef N3L_ENABLE_STATS
+  struct _stats xor_stat;
+#endif
 
   if ( !args.mute ) {
     fprintf(stdout, "Simulation property:\n");
@@ -61,21 +67,19 @@ void xor_operation(struct user_args args)
   n3_args.h_size = 3;
   n3_args.h_layers = 1;
   n3_args.act_h = N3LSigmoid;
-  n3_args.act_out = N3LRelu;
+  n3_args.act_out = N3LSigmoid;
 
   n3_args.logger = &n3_logger;
   n3_net = n3l_build(n3_args, &n3l_rnd_weight);
+
+#ifdef N3L_ENABLE_STATS
+  xor_stat = n3_stats_start(n3_net, 4, args.iterations);
+#endif
 
   do {
     if ( !args.mute ) {
       fprintf(stdout, "[XOR] -- Iteration %ld on %ld --\n",
         stats[0] + stats[1] + 1, args.iterations + stats[0] + stats[1]);
-    }
-
-    if ( args.progress ) {
-      fprintf(stdout, "\r[XOR] Iteration %ld on %ld - Overall: %.3lf%%",
-        stats[0] + stats[1] + 1, args.iterations + stats[0] + stats[1],
-        (stats[0] * 100.f) / (double) (stats[0] + stats[1]));
     }
 
     n3_net->inputs = get_inputs_batch_mode();
@@ -101,6 +105,23 @@ void xor_operation(struct user_args args)
       n3l_backward_propagation(n3_net);
     }
 
+#ifdef N3L_ENABLE_STATS
+    n3_stats_cycle(&xor_stat, stats[0] + stats[1] - 1, round(n3_net->outputs[0]) == n3_net->targets[0]);
+
+    if ( args.progress ) {
+      fprintf(stdout, "\r[XOR] Iteration %ld on %ld - MNE: %.3lf%% - MNS: %.3lf%%",
+        stats[0] + stats[1], args.iterations + stats[0] + stats[1] - 1,
+        xor_stat.data[stats[0] + stats[1] - 1].mne * 100.f,
+        xor_stat.data[stats[0] + stats[1] - 1].mns * 100.f);
+    }
+#else
+    if ( args.progress ) {
+      fprintf(stdout, "\r[XOR] Iteration %ld on %ld - Overall: %.3lf%%",
+        stats[0] + stats[1], args.iterations + stats[0] + stats[1] - 1,
+        (stats[0] * 100.f) / (double) (stats[0] + stats[1]));
+    }
+#endif
+
     free(n3_net->inputs);
     free(n3_net->outputs);
     free(n3_net->targets);
@@ -119,6 +140,12 @@ void xor_operation(struct user_args args)
       fclose(of);
     }
   }
+
+#ifdef N3L_ENABLE_STATS
+  n3_stats_end(&xor_stat);
+  n3_stats_to_csv(&xor_stat, "xor_stats.csv");
+  n3_stats_free(&xor_stat);
+#endif
 
   n3l_free(n3_net);
 }

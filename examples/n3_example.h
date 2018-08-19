@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #define BOOL_STR(b) ((b) ? "True" : "False")
 
 struct user_args {
@@ -26,9 +28,6 @@ bool n3_example_arguments_parser(int argc, char *argv[], struct user_args *args)
         break;
       case 'l':
         args->learning = true;
-        if ( optarg ) {
-          sscanf(optarg, "%lf", &(args->learning_rate));
-        }
         break;
       case 'm':
         args->mute = true;
@@ -66,17 +65,17 @@ bool n3_example_arguments_parser(int argc, char *argv[], struct user_args *args)
         fprintf(stdout, "\t-i [n]         Number of iterations. Default: 1\n");
         fprintf(stdout, "\t-l             Enable learning with backpropagation.\n");
         fprintf(stdout, "\t-m             No log at all. Note: Disable -v option.\n");
-        fprintf(stdout, "\t-o [filename]  After the number of iterations provided, save the\n");
-        fprintf(stdout, "\t               neural network state. Note: It works only if used\n");
-        fprintf(stdout, "\t               with option -s.\n");
+        fprintf(stdout, "\t-o [filename]  After the number of iterations provided, save the");
+        fprintf(stdout, " neural network state. Note: It works only if used with option -s.\n");
         fprintf(stdout, "\t-p             Enable the progress viewer. Active -m, Disable -v.\n");
-        fprintf(stdout, "\t-r [filename]  Initialize the neural network reading the number of\n");
-        fprintf(stdout, "\t               neurons, layers and weights from a previous state saved.\n");
-        fprintf(stdout, "\t-s             After the number of iterations provided, save the\n");
-        fprintf(stdout, "\t               neural network state. Default filename: xor.n3l\n");
+        fprintf(stdout, "\t-r [filename]  Initialize the neural network reading the number of");
+        fprintf(stdout, " neurons, layers and weights from a previous state saved.\n");
+        fprintf(stdout, "\t-s             After the number of iterations provided, save the");
+        fprintf(stdout, " neural network state. Default filename: %s\n", args->save_filename);
+        fprintf(stdout, "\t-t             Enable test mode collecting more data and saving");
+        fprintf(stdout, " them in separate file.\n");
         fprintf(stdout, "\t-v [n]         Enable N3 Library to log with specified verbosity.\n");
-        fprintf(stdout, "\t               Value: 0 - Critical, 1 - High, 2 - Medium, 3 - Low,\n");
-        fprintf(stdout, "\t                      4 - Pedantic.\n\n");
+        fprintf(stdout, "\t               Value: 0 - Critical, 1 - High, 2 - Medium, 3 - Low, 4 - Pedantic.\n\n");
         exit(0);
         break;
     }

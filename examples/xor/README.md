@@ -1,8 +1,10 @@
-![Success](https://img.shields.io/badge/Success%20rate-100%25-orange.svg)
 # N3L Example - XOR
 
 ## Description
 This is the most common example provided by various resources online when they explain how a neural network works.
+
+##### Results Graph
+![Results](http://i65.tinypic.com/29ff3td.jpg)
 
 ## Build
 Execute the command below in this folder to compile the xor example:
