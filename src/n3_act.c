@@ -34,7 +34,7 @@ double n3l_act_relu(double val)
 
 double n3l_act_relu_prime(double val)
 {
-  return ( val <= 0 ) ? 0 : 1;
+  return ( val < 0 ) ? 0 : 1;
 }
 
 double n3l_act_identity(double val)

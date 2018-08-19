@@ -296,7 +296,7 @@ double n3l_act_relu_prime(double value)
 
 | Formula |
 |---------|
-| ![eq](https://latex.codecogs.com/gif.latex?f'%28value%29%3D%20%5Cbegin%7Bcases%7D%200%20%26%20%5Ctext%7B%20if%20%7D%20value%20%5Cleq%200%20%5C%5C%201%26%20%5Ctext%7B%20if%20%7D%20value%20%3E%200%20%5Cend%7Bcases%7D) |
+| ![eq](https://latex.codecogs.com/gif.latex?%28value%29%3D%20%5Cbegin%7Bcases%7D%200%20%26%20%5Ctext%7B%20if%20%7D%20value%20%3C%200%20%5C%5C%201%26%20%5Ctext%7B%20if%20%7D%20value%20%5Cgeq%200%20%5Cend%7Bcases%7D) |
 
 ##### 4.1.4 `n3l_act_sigmoid()`
 
