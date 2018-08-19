@@ -365,15 +365,7 @@ As argument `rnd_w`, if you don't bother about weights random initialization or 
 
 **Note:** Before call this function, to initialize the seed for `rand()`, you have to call `srand()` manually.
 
-##### 4.4.2 `n3l_free()`
-
-```c
-void n3l_free (N3LData *net)
-```
-
-Free all the the memory allocate from `net`.
-
-##### 4.4.3 `n3l_get_defaults_args()`
+##### 4.4.2 `n3l_get_defaults_args()`
 
 ```c
 N3LArgs n3l_get_default_args(void)
@@ -397,7 +389,7 @@ Set defaults values for the neural network.
 | `act_out`       | `N3LSigmoid`  |
 
 
-##### 4.4.4 `n3l_rnd_weight()`
+##### 4.4.3 `n3l_rnd_weight()`
 
 ```c
 double n3l_rnd_weight (N3LLayer layer)
@@ -457,7 +449,17 @@ void n3l_log_end (N3LLogger *logger, const char *fun_name, N3LLogType type)
 
 Print the log with message like `<<--`.
 
-#### 4.6 Saving
+#### 4.6 Neural Network Utilities
+
+##### 4.6.1 `n3l_free()`
+
+```c
+void n3l_free (N3LData *net)
+```
+
+Free all the the memory allocate from `net`.
+
+#### 4.7 Saving
 
 ```c
 void n3l_save (N3LData *net, FILE *of)

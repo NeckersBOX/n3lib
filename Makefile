@@ -1,4 +1,5 @@
-objects = n3_act.o n3_forward.o n3_init.o n3_logger.o n3_backward.o n3_save.o
+objects = n3_act.o n3_forward.o n3_init.o n3_logger.o n3_backward.o \
+					n3_save.o n3_network.o
 
 version = 1.2.9
 all_flags = $(flags) -fPIC
