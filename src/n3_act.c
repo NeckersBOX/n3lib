@@ -12,7 +12,7 @@ double n3l_act_sigmoid(double val)
 
 double n3l_act_sigmoid_prime(double val)
 {
-  return val * (1 - val);
+  return n3l_act_sigmoid(val) * (1 - n3l_act_sigmoid(val));
 }
 
 double n3l_act_tanh(double val)
@@ -22,7 +22,7 @@ double n3l_act_tanh(double val)
 
 double n3l_act_tanh_prime(double val)
 {
-  return 1 - (val * val);
+  return 1 - pow(tanh(val), 2);
 }
 
 double n3l_act_relu(double val)

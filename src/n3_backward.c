@@ -25,7 +25,7 @@ double n3l_evaluate_out_error(N3LData *state, uint64_t o_idx)
   diff = (state->targets[o_idx] - state->outputs[o_idx]);
   N3L_LLOW(state->args->logger, "Output %ld diff: %lf", o_idx, diff);
 
-  delta_E = diff * p_n->act_prime(p_n->result);
+  delta_E = diff * p_n->act_prime(p_n->input);
   N3L_LLOW(state->args->logger, "Output %ld delta: %lf", o_idx, delta_E);
 
   N3L_LLOW_END(state->args->logger);
@@ -82,7 +82,7 @@ void *n3l_execute_backward_propagation(void *arg)
       next_tdata.state = tdata->state;
       next_tdata.l_idx = tdata->l_idx - 1;
       next_tdata.o_idx = n_idx;
-      next_tdata.delta_w = tdata->delta_w * p_n->weights[tdata->o_idx] * p_n->act_prime(p_n->result);
+      next_tdata.delta_w = tdata->delta_w * p_n->weights[tdata->o_idx] * p_n->act_prime(p_n->input);
 
       N3L_LLOW(p_l, "Neuron(%ld,%ld) - Propagate new delta to previous layer.", tdata->l_idx, n_idx);
       pthread_create(&thread, NULL, n3l_execute_backward_propagation, (void *) &(next_tdata));
