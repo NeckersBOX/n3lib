@@ -441,7 +441,7 @@ Print the log with message `message` resolving its arguments ( in _printf_ mode 
 
 **NOTE:** The print is in sync mode due to threads use. Before to print the text resolve the entire message in a single string with max length of 8192 characters. To finalize the print there is an explicit call to the `fflush()` function.
 
-#### 4.5.3 `n3l_log_end()`
+##### 4.5.3 `n3l_log_end()`
 
 ```c
 void n3l_log_end (N3LLogger *logger, const char *fun_name, N3LLogType type)
@@ -468,6 +468,9 @@ N3LData *n3l_clone (N3LData *net)
 Clone the whole network `net` in a new one.
 
 #### 4.7 Saving
+
+
+##### 4.7.1 `n3l_save()`
 
 ```c
 void n3l_save (N3LData *net, FILE *of)
