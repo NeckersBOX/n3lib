@@ -1,4 +1,4 @@
-![Build](https://img.shields.io/badge/build-passing-green.svg) ![Status](https://img.shields.io/badge/status-alpha-yellow.svg) ![Version](https://img.shields.io/badge/version-1.3.0-lightgray.svg)
+![Build](https://img.shields.io/badge/build-passing-green.svg) ![Status](https://img.shields.io/badge/status-alpha-yellow.svg) ![Version](https://img.shields.io/badge/version-1.3.1-lightgray.svg)
 # N3 Library
 A tiny C library for building neural network with the capability to define custom activation functions, learning rate, bias and others parameters.
 
@@ -25,6 +25,11 @@ To uninstall `make uninstall` as root user.
 * _extra=true_ add the arguments `-Wall -Wextra -ansi -pedantic`
 * _flags=arguments_ add the arguments specified
 * _destdir=mydir_ install the library in the specified path `mydir`
+
+You can disable the internal N3 Library log with the flag `-DN3L_DISABLE_LOG`. Example:
+```
+make flags="-DN3L_DISABLE_LOG"
+```
 
 ### Use it in projects
 While compiling your projects you should include the `n3lib.h` header and compile with the option `-ln3l`. Example:
@@ -528,6 +533,8 @@ A log example:
 The format is the following:
 
 [`Module`] [`type`] [`fun_name`] [`message`]
+
+**NOTE:** If the library was compiled with `-DN3L_DISABLE_LOG` the internal log won't write any information even if a logger was provided.
 
 ##### 4.5.1 `n3l_log_start()`
 

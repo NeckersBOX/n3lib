@@ -1,6 +1,8 @@
 #ifndef _N3L_LOGGER_
 #define _N3L_LOGGER_
 
+#ifndef N3L_DISABLE_LOG
+
 #define N3L_LCRITICAL(state,...)        n3l_log(state, __FUNCTION__, N3LLogCritical, __VA_ARGS__)
 #define N3L_LHIGH(state,...)            n3l_log(state, __FUNCTION__, N3LLogHigh,     __VA_ARGS__)
 #define N3L_LMEDIUM(state,...)          n3l_log(state, __FUNCTION__, N3LLogMedium,   __VA_ARGS__)
@@ -18,6 +20,28 @@
 #define N3L_LMEDIUM_END(state)          n3l_log_end(state, __FUNCTION__, N3LLogMedium)
 #define N3L_LLOW_END(state)             n3l_log_end(state, __FUNCTION__, N3LLogLow)
 #define N3L_LPEDANTIC_END(state)        n3l_log_end(state, __FUNCTION__, N3LLogPedantic)
+
+#else
+
+#define N3L_LCRITICAL(state,...)
+#define N3L_LHIGH(state,...)
+#define N3L_LMEDIUM(state,...)
+#define N3L_LLOW(state,...)
+#define N3L_LPEDANTIC(state,...)
+
+#define N3L_LCRITICAL_START(state)
+#define N3L_LHIGH_START(state)
+#define N3L_LMEDIUM_START(state)
+#define N3L_LLOW_START(state)
+#define N3L_LPEDANTIC_START(state)
+
+#define N3L_LCRITICAL_END(state)
+#define N3L_LHIGH_END(state)
+#define N3L_LMEDIUM_END(state)
+#define N3L_LLOW_END(state)
+#define N3L_LPEDANTIC_END(state)
+
+#endif
 
 extern void n3l_log(N3LLogger *, const char *, N3LLogType, const char *, ...);
 extern void n3l_log_end(N3LLogger *, const char *, N3LLogType);
