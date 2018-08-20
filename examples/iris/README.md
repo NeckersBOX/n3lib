@@ -13,7 +13,14 @@ It's designed with the idea that each output neuron give the probabily about eac
 | Iris-versicolor | 2 |
 
 ##### Results Graph
+_MNS Range [0, 1]_
+
+###### Activation Sigmoid - 1 Hidden Layer - 3 Hidden neurons per Layer - Learning Rate 0.05
 ![Results](http://i64.tinypic.com/m93mkx.png)
+**MNS** Higher is better, **MNE** Lower is better
+
+###### Activation Swish - 2 Hidden Layer - 3 Hidden neurons per Layer - Learning Rate 0.01
+![Results](http://i65.tinypic.com/14xdm2o.png)
 **MNS** Higher is better, **MNE** Lower is better
 
 ## Build
