@@ -1,4 +1,3 @@
-![Success](https://img.shields.io/badge/Success%20rate-%3E96%25-orange.svg)
 # N3L Example - IRIS
 
 ## Description
@@ -12,6 +11,10 @@ It's designed with the idea that each output neuron give the probabily about eac
 | Iris-virginica | 0 |
 | Iris-setosa | 1 |
 | Iris-versicolor | 2 |
+
+##### Results Graph
+![Results](http://i64.tinypic.com/m93mkx.png)
+**MNS** Higher is better, **MNE** Lower is better
 
 ## Build
 Execute the command below in this folder to compile the example:

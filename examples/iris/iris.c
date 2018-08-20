@@ -5,6 +5,7 @@
 #include <string.h>
 #include <n3l/n3lib.h>
 #include "../n3_example.h"
+#include "../n3_stats.h"
 
 struct _iris_data {
   double *inputs;
@@ -53,6 +54,9 @@ void iris_classification(struct user_args args)
   uint8_t result_code;
   struct _iris_data data;
   FILE *of;
+#ifdef N3L_ENABLE_STATS
+  struct _stats iris_stat;
+#endif
 
   if ( !args.mute ) {
     fprintf(stdout, "Simulation property:\n");
@@ -78,6 +82,10 @@ void iris_classification(struct user_args args)
   n3_args.logger = &n3_logger;
   n3_net = n3l_build(n3_args, &n3l_rnd_weight);
 
+  #ifdef N3L_ENABLE_STATS
+    iris_stat = n3_stats_start(n3_net, 150, args.iterations);
+  #endif
+
   if ( !(of = fopen("iris.data", "r")) ) {
     fprintf(stderr, "[IRIS] Cannot found the data file. Exit.");
     exit(1);
@@ -87,12 +95,6 @@ void iris_classification(struct user_args args)
     if ( !args.mute ) {
       fprintf(stdout, "[IRIS] -- Iteration %ld on %ld --\n",
         stats[0] + stats[1] + 1, args.iterations + stats[0] + stats[1]);
-    }
-
-    if ( args.progress ) {
-      fprintf(stdout, "\r[IRIS] Iteration %ld on %ld - Overall: %.3lf%%",
-        stats[0] + stats[1] + 1, args.iterations + stats[0] + stats[1],
-        (stats[0] * 100.f) / (double) (stats[0] + stats[1]));
     }
 
     data = get_data(of);
@@ -144,6 +146,23 @@ void iris_classification(struct user_args args)
       n3l_backward_propagation(n3_net);
     }
 
+    #ifdef N3L_ENABLE_STATS
+        n3_stats_cycle(&iris_stat, stats[0] + stats[1] - 1, result_code == data.result_code);
+
+        if ( args.progress ) {
+          fprintf(stdout, "\r[XOR] Iteration %ld on %ld - MNE: %lf - MNS: %.3lf%%",
+            stats[0] + stats[1], args.iterations + stats[0] + stats[1] - 1,
+            iris_stat.data[stats[0] + stats[1] - 1].mne,
+            iris_stat.data[stats[0] + stats[1] - 1].mns * 100.f);
+        }
+    #else
+        if ( args.progress ) {
+          fprintf(stdout, "\r[XOR] Iteration %ld on %ld - Overall: %.3lf%%",
+            stats[0] + stats[1], args.iterations + stats[0] + stats[1] - 1,
+            (stats[0] * 100.f) / (double) (stats[0] + stats[1]));
+        }
+    #endif
+
     free(n3_net->inputs);
     free(n3_net->outputs);
     free(n3_net->targets);
@@ -163,6 +182,12 @@ void iris_classification(struct user_args args)
       fclose(of);
     }
   }
+
+  #ifdef N3L_ENABLE_STATS
+    n3_stats_end(&iris_stat);
+    n3_stats_to_csv(&iris_stat, "iris_stats.csv");
+    n3_stats_free(&iris_stat);
+  #endif
 
   n3l_free(n3_net);
 }
