@@ -12,131 +12,79 @@ It's designed with the idea that each output neuron give the probabily about eac
 | Iris-setosa | 1 |
 | Iris-versicolor | 2 |
 
-##### Results Graph
-_MNS Range [0, 1]_
+# Reports
 
-###### Activation Sigmoid - 1 Hidden Layer - 3 Hidden neurons per Layer - Learning Rate 0.05
-![Results](http://i64.tinypic.com/m93mkx.png)
-**MNS** Higher is better, **MNE** Lower is better
+## IRIS - Report
+### Report ID: 59d477f2-bbe7-4b52-b5e0-d04844d82073
 
-###### Activation Swish - 2 Hidden Layer - 3 Hidden neurons per Layer - Learning Rate 0.01
-![Results](http://i65.tinypic.com/14xdm2o.png)
-**MNS** Higher is better, **MNE** Lower is better
+### Configuration
 
-## Build
-Execute the command below in this folder to compile the example:
+| Conf              | Value          |
+|-------------------|----------------|
+| Iterations        | `50000`     |
+| Learning Rate     | `0.01`      |
+| Input Neurons     | `4`          |
+| Hidden Neurons    | `3`          |
+| Hidden Layers     | `2`          |
+| Output Neurons    | `3`          |
+| Input Act         | `None`       |
+| Hidden Act        | `Swish`    |
+| Output Act        | `Swish`    |
+| **Extra Args**    | `` |
 
-```
-gcc iris.c -o iris -ln3l
-```
+### Learning Graph
+- **MNS:** It's the Mobile Network Success rate. Range from 0 to 1. Higher is better.
+- **MNE:** It's the Mobile Network Error rate. Lower is better.
 
-## Usage
-The number of neurons and layers is fixed by code, anyway there are others parameters that you can edit at run time. For example the number of iterations, the learning rate or the bias terms.
-Too see the complete list you have to run the following command:
-```
-./iris -h
-```
+![MNE Plot](iris.report.59d477f2-bbe7-4b52-b5e0-d04844d82073.plot-mne.png)
 
-Output:
-```
-IRIS Example - N3L v. 1.2.9
-(c) 2018 - Davide Francesco Merico <hds619 [at] gmail [dot] com>
+![MNS Plot](iris.report.59d477f2-bbe7-4b52-b5e0-d04844d82073.plot-mns.png)
 
-Usage: ./iris [options]
+### Memory Usage Graph
+Memory usage was evaluated by _massif_ tool.
 
-Options:
-	-b [n]         Set the bias term in the network. Default: 0
-	-h             Show this help with the options list.
-	-i [n]         Number of iterations. Default: 1
-	-l             Enable learning with backpropagation.
-	-m             No log at all. Note: Disable -v option.
-	-o [filename]  After the number of iterations provided, save the neural network state.
-                 Note: It works only if used with option -s.
-	-p             Enable the progress viewer. Active -m, Disable -v.
-	-r [filename]  Initialize the neural network reading the number of neurons, layers and weights from a previous state saved.
-	-s             After the number of iterations provided, save the neural network state. Default filename: iris.n3l
-	-v [n]         Enable N3 Library to log with specified verbosity.
-	               Value: 0 - Critical, 1 - High, 2 - Medium, 3 - Low, 4 - Pedantic.
-```
+![Massif](iris.report.59d477f2-bbe7-4b52-b5e0-d04844d82073.memory.png)
 
-### Examples
+### Execution Time
 
-Run 10k iterations in learning mode and save results in `iris.n3l`
+| Mode                 | Time ( seconds )   |
+|----------------------|--------------------|
+| Forward Propagation  | `27.208896672`  |
+| Backward Propagation | `87.079262506` |
+## IRIS - Report
+### Report ID: aae271a9-2bbb-4b9f-931c-decdc4c576c5
 
-```
-./iris -l -i 10000 -s
-```
+### Configuration
 
-Run 4 iterations in forward mode reading network from `iris.100k.n3l`
+| Conf              | Value          |
+|-------------------|----------------|
+| Iterations        | `50000`     |
+| Learning Rate     | `0.05`          |
+| Input Neurons     | `4`          |
+| Hidden Neurons    | `3`          |
+| Hidden Layers     | `1`          |
+| Output Neurons    | `3`          |
+| Input Act         | `None`       |
+| Hidden Act        | `Sigmoid`    |
+| Output Act        | `Sigmoid`    |
+| **Extra Args**    | `` |
 
-```
-./iris -i 4 -r iris.100k.n3l
-```
+### Learning Graph
+- **MNS:** It's the Mobile Network Success rate. Range from 0 to 1. Higher is better.
+- **MNE:** It's the Mobile Network Error rate. Lower is better.
 
-The previous state can be improved with more iterations using `-s` and `-r` options together:
+![MNE Plot](iris.report.aae271a9-2bbb-4b9f-931c-decdc4c576c5.plot-mne.png)
 
-```
-./iris -l -i 10000 -r iris.100k.n3l -s -o iris.110k.n3l
-```
+![MNS Plot](iris.report.aae271a9-2bbb-4b9f-931c-decdc4c576c5.plot-mns.png)
 
-## Network description
-The network is built with the following parameters:
-- 4 Input neuron + 0 bias
-- 2 Hidden neuron + 0 bias
-- 3 Output neuron
-- Hidden neurons with Sigmoid as activation function
-- Output neuron with Sigmoid as activation function
-- Learning rate set to 0.05
+### Memory Usage Graph
+Memory usage was evaluated by _massif_ tool.
 
-## Results
-With defaults settings at around 100k iterations it provide good results >96%.
+![Massif](iris.report.aae271a9-2bbb-4b9f-931c-decdc4c576c5.memory.png)
 
-```
-./iris -i 100000 -l
-```
+### Execution Time
 
-### Memory usage
-#### Forward mode
-In a test with 100k iterations the memory stucks at 156KB.
-
-#### Backward mode
-In a test with 100k iterations the memory oscillates from 172KB to 188K.
-
-### Processing time
-Processing time is evaluated on the following processor:
-
-```
-vendor_id	: GenuineIntel
-model name	: Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz
-cache size	: 3072 KB
-siblings	: 4
-cpu cores	: 2
-```
-
-#### Forward mode
-Using _sys_ time as reference, the result is around **3627 iterations/second**.
-
-```
-time ./iris -i 100000 -m
-IRIS Example - N3L v. 1.2.9
-(c) 2018 - Davide Francesco Merico <hds619 [at] gmail [dot] com>
-
-
-real	0m34,246s
-user	0m5,813s
-sys	0m36,275s
-```
-
-#### Backward mode
-Using _sys_ time as reference, the result is around **714 iterations/second**.
-
-```
-time ./iris -i 100000 -m -l
-IRIS Example - N3L v. 1.2.9
-(c) 2018 - Davide Francesco Merico <hds619 [at] gmail [dot] com>
-
-
-real	0m53,292s
-user	0m12,149s
-sys	1m11,442s
-```
+| Mode                 | Time ( seconds )   |
+|----------------------|--------------------|
+| Forward Propagation  | `15.152438212`  |
+| Backward Propagation | `31.286549418` |

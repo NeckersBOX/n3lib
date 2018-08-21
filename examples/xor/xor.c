@@ -16,7 +16,7 @@ void xor_operation(struct user_args);
 
 int main(int argc, char *argv[])
 {
-  struct user_args args = { false, false, false, false, false, "xor.n3l", "xor.n3l", 1.f, 0, 1, N3LLogNone };
+  struct user_args args = { false, false, false, false, false, "xor.n3l", "xor.n3l", 1.f, 0, 1, "xor.csv", N3LLogNone };
   bool free_save_filename = false;
 
   srand(time(NULL));
@@ -143,7 +143,7 @@ void xor_operation(struct user_args args)
 
 #ifdef N3L_ENABLE_STATS
   n3_stats_end(&xor_stat);
-  n3_stats_to_csv(&xor_stat, "xor_stats.csv");
+  n3_stats_to_csv(&xor_stat, args.csv_filename);
   n3_stats_free(&xor_stat);
 #endif
 

@@ -21,7 +21,8 @@ int main(int argc, char *argv[])
   struct user_args args = {
     false, false, false, false, false,
     "iris.n3l", "iris.n3l",
-    0.01f, 0, 1,
+    0.05f, 0, 1,
+    "iris.csv",
     N3LLogNone
   };
 
@@ -74,10 +75,10 @@ void iris_classification(struct user_args args)
   n3_args.bias = args.bias;
   n3_args.in_size = 4;
   n3_args.h_size = 3;
-  n3_args.h_layers = 2;
+  n3_args.h_layers = 1;
   n3_args.out_size = 3;
-  n3_args.act_h = N3LSwish;
-  n3_args.act_out = N3LSwish;
+  n3_args.act_h = N3LSigmoid;
+  n3_args.act_out = N3LSigmoid;
 
   n3_args.logger = &n3_logger;
   n3_net = n3l_build(n3_args, &n3l_rnd_weight);
@@ -185,7 +186,7 @@ void iris_classification(struct user_args args)
 
   #ifdef N3L_ENABLE_STATS
     n3_stats_end(&iris_stat);
-    n3_stats_to_csv(&iris_stat, "iris_stats.csv");
+    n3_stats_to_csv(&iris_stat, args.csv_filename);
     n3_stats_free(&iris_stat);
   #endif
 

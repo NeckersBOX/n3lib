@@ -13,6 +13,7 @@ struct user_args {
   double learning_rate;
   double bias;
   uint64_t iterations;
+  char *csv_filename;
   N3LLogType verbose;
 };
 
@@ -21,7 +22,7 @@ bool n3_example_arguments_parser(int argc, char *argv[], struct user_args *args)
   int opt, v;
   bool free_save_filename = false;
 
-  while ((opt = getopt(argc, argv, "b:hi:lmo:pr:sv:")) != -1) {
+  while ((opt = getopt(argc, argv, "b:hi:lmo:pr:st:v:")) != -1) {
     switch(opt) {
       case 'b':
         sscanf(optarg, "%lf", &(args->bias));
@@ -49,6 +50,9 @@ bool n3_example_arguments_parser(int argc, char *argv[], struct user_args *args)
      case 's':
         args->save_result = true;
         break;
+     case 't':
+        args->csv_filename = strdup(optarg);
+        break;
      case 'r':
         args->read_result = true;
         args->read_filename = strdup(optarg);
@@ -72,8 +76,7 @@ bool n3_example_arguments_parser(int argc, char *argv[], struct user_args *args)
         fprintf(stdout, " neurons, layers and weights from a previous state saved.\n");
         fprintf(stdout, "\t-s             After the number of iterations provided, save the");
         fprintf(stdout, " neural network state. Default filename: %s\n", args->save_filename);
-        fprintf(stdout, "\t-t             Enable test mode collecting more data and saving");
-        fprintf(stdout, " them in separate file.\n");
+        fprintf(stdout, "\t-t [filename]  Specified the CSV filename where the data are saved.\n");
         fprintf(stdout, "\t-v [n]         Enable N3 Library to log with specified verbosity.\n");
         fprintf(stdout, "\t               Value: 0 - Critical, 1 - High, 2 - Medium, 3 - Low, 4 - Pedantic.\n\n");
         exit(0);
