@@ -104,7 +104,7 @@ N3LAct n3l_act(N3LActType type)
     case N3LSwish:      return &n3l_act_swish;
   }
 
-  assert(0);
+  assert("Unmanaged N3LActType" && 0);
 }
 
 N3LAct n3l_act_prime(N3LActType type)
@@ -122,5 +122,5 @@ N3LAct n3l_act_prime(N3LActType type)
     case N3LSwish:      return &n3l_act_swish_prime;
   }
 
-  assert(0);
+  assert("Unmanaged N3LActType" && 0);
 }
