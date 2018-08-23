@@ -19,6 +19,8 @@ N3LArgs n3l_misc_init_arg(void)
   defaults.act_out = N3LSigmoid;
   defaults.rand_arg = NULL;
   defaults.rand_weight = &n3l_misc_rnd_wp1;
+
+  return defaults;
 }
 
 double n3l_misc_rnd_wp1(void *data)
