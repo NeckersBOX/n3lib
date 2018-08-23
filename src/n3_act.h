@@ -1,6 +1,9 @@
 #ifndef _N3L_ACT_
 #define _N3L_ACT_
 
+extern N3LAct n3l_act(N3LActType);
+extern N3LAct n3l_act_prime(N3LActType);
+
 extern double n3l_act_identity(double);
 extern double n3l_act_identity_prime(double);
 extern double n3l_act_leaky_relu(double);

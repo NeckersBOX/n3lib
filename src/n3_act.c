@@ -1,4 +1,6 @@
+#include <assert.h>
 #include <math.h>
+#include "n3_header.h"
 
 #define N3L_ABS(x) (((x) < 0) ? -(x) : (x))
 
@@ -85,4 +87,40 @@ double n3l_act_swish(double val)
 double n3l_act_swish_prime(double val)
 {
   return n3l_act_swish(val) + n3l_act_sigmoid(val) * (1 - n3l_act_swish(val));
+}
+
+N3LAct n3l_act(N3LActType type)
+{
+  switch(type) {
+    case N3LCustom:     return &n3l_act_none;
+    case N3LNone:       return &n3l_act_none;
+    case N3LSigmoid:    return &n3l_act_sigmoid;
+    case N3LRelu:       return &n3l_act_relu;
+    case N3LTanh:       return &n3l_act_tanh;
+    case N3LIdentity:   return &n3l_act_identity;
+    case N3LLeakyRelu:  return &n3l_act_leaky_relu;
+    case N3LSoftPlus:   return &n3l_act_softplus;
+    case N3LSoftSign:   return &n3l_act_softsign;
+    case N3LSwish:      return &n3l_act_swish;
+  }
+
+  assert(0);
+}
+
+N3LAct n3l_act_prime(N3LActType type)
+{
+  switch(type) {
+    case N3LCustom:     return &n3l_act_none;
+    case N3LNone:       return &n3l_act_none;
+    case N3LSigmoid:    return &n3l_act_sigmoid_prime;
+    case N3LRelu:       return &n3l_act_relu_prime;
+    case N3LTanh:       return &n3l_act_tanh_prime;
+    case N3LIdentity:   return &n3l_act_identity_prime;
+    case N3LLeakyRelu:  return &n3l_act_leaky_relu_prime;
+    case N3LSoftPlus:   return &n3l_act_softplus_prime;
+    case N3LSoftSign:   return &n3l_act_softsign_prime;
+    case N3LSwish:      return &n3l_act_swish_prime;
+  }
+
+  assert(0);
 }

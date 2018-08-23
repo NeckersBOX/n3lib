@@ -1,12 +1,13 @@
 #ifndef _N3L_HEADER_
 #define _N3L_HEADER_
 
+#include <stdio.h>
 #include <stdint.h>
 
-#define N3L_VERSION "1.3.1"
+#define N3L_VERSION "2.0.0"
 
-#define N3L_ACT(fun)          double (*fun)(double)
-#define N3L_RND_WEIGHT(rnd_w) double (*rnd_w)(N3LLayer)
+typedef double (*N3LAct)(double);
+typedef double (*N3LWeightGenerator)(void *);
 
 typedef enum { false = 0, true } bool;
 
@@ -15,15 +16,6 @@ typedef enum {
   N3LHiddenLayer,
   N3LOutputLayer
 } N3LLayerType;
-
-typedef enum {
-  N3LLogNone = -1,
-  N3LLogCritical = 0,
-  N3LLogHigh,
-  N3LLogMedium,
-  N3LLogLow,
-  N3LLogPedantic
-} N3LLogType;
 
 typedef enum {
   N3LCustom = -1,
@@ -38,48 +30,51 @@ typedef enum {
   N3LSwish
 } N3LActType;
 
-typedef struct {
-  FILE *log_file;
-  N3LLogType verbosity;
-} N3LLogger;
+typedef struct _n3l_weight {
+  double value;
+  uint64_t target_ref;
+  struct _n3l_weight *next;
+} N3LWeight;
 
-typedef struct {
+typedef struct _n3l_neuron {
+  bool bias;
+  uint64_t ref;
   double input;
-  double *weights;
-  uint64_t outputs;
+  N3LWeight *whead;
   double result;
-  N3L_ACT(act);
-  N3L_ACT(act_prime);
+  N3LAct act;
+  N3LAct act_prime;
+  struct _n3l_neuron *next;
+  struct _n3l_neuron *prev;
 } N3LNeuron;
 
-typedef struct {
-  N3LLayerType ltype;
-  uint64_t size;
-  N3LNeuron *neurons;
+typedef struct _n3l_layer {
+  N3LLayerType type;
+  N3LNeuron *nhead;
+  N3LNeuron *ntail;
+  struct _n3l_layer *next;
+  struct _n3l_layer *prev;
 } N3LLayer;
 
 typedef struct {
-  bool read_file;
-  char *in_filename;
   double bias;
-  double learning_rate;
   uint64_t in_size;
-  uint64_t h_size;
   uint64_t h_layers;
+  uint64_t *h_size;
   uint64_t out_size;
-  N3LLogger *logger;
   N3LActType act_in;
-  N3LActType act_h;
+  N3LActType *act_h;
   N3LActType act_out;
+  void *rand_arg;
+  N3LWeightGenerator rand_weight;
 } N3LArgs;
 
 typedef struct {
   double *inputs;
   double *targets;
-  double *outputs;
-  N3L_RND_WEIGHT(get_rnd_weight);
-  N3LArgs *args;
-  N3LLayer *net;
-} N3LData;
+  double learning_rate;
+  N3LLayer *lhead;
+  N3LLayer *ltail;
+} N3LNetwork;
 
 #endif

@@ -2,75 +2,167 @@
 #include <stdlib.h>
 #include <string.h>
 #include "n3_header.h"
-#include "n3_logger.h"
+#include "n3_layer.h"
+#include "n3_neuron.h"
 
-void n3l_free(N3LData *state)
+N3LArgs __n3l_network_get_args_from_file(FILE *, double *);
+double __n3l_get_weight_from_file(void *);
+
+N3LNetwork *n3l_network_build(N3LArgs args, double learn_rate)
 {
-  N3LLogger *p_l = state->args->logger;
-  uint64_t l_idx, n_idx, layers = state->args->h_layers + 2;
+  N3LNetwork *net;
+  N3LLayer *layer;
+  N3LNeuron *neuron = NULL, *bias;
+  uint64_t h_idx;
 
-  N3L_LLOW_START(p_l);
+  if ( !args.in_size || !args.out_size ) {
+    return NULL;
+  }
 
-  free(state->args);
-  for( l_idx = 0; l_idx < layers; ++l_idx ) {
-    if ( state->net[l_idx].ltype != N3LOutputLayer ) {
-      for ( n_idx = 0; n_idx < state->net[l_idx].size; ++n_idx ) {
-        free(state->net[l_idx].neurons[n_idx].weights);
+  net = (N3LNetwork *) malloc(sizeof(N3LNetwork));
+  net->inputs = NULL;
+  net->targets = NULL;
+  net->learning_rate = learn_rate;
+
+  layer = n3l_layer_build(N3LInputLayer);
+  net->lhead = layer;
+  while ( args.in_size-- ) {
+    neuron = n3l_neuron_build_after(neuron, args.act_in);
+    layer->nhead = layer->nhead ? : neuron;
+    layer->ntail = neuron;
+  }
+
+  for ( h_idx = 0; h_idx < args.h_layers; ++h_idx ) {
+    layer = n3l_layer_build_after(layer, N3LHiddenLayer);
+    neuron = NULL;
+
+    while ( args.h_size[h_idx]-- ) {
+      neuron = n3l_neuron_build_after(neuron, args.act_h[h_idx]);
+      layer->nhead = layer->nhead ? : neuron;
+      layer->ntail = neuron;
+    }
+  }
+
+  layer = n3l_layer_build_after(layer, N3LOutputLayer);
+  net->ltail = layer;
+  neuron = NULL;
+  while ( args.out_size-- ) {
+    neuron = n3l_neuron_build_after(neuron, args.act_out);
+    layer->nhead = layer->nhead ? : neuron;
+    layer->ntail = neuron;
+  }
+
+  for ( layer = net->lhead; layer; layer = layer->next ) {
+    if ( layer->next ) {
+      if ( args.bias != 0.0f ) {
+        bias = n3l_neuron_build_after(layer->ntail, N3LNone);
+        bias->bias = true;
+        bias->input = args.bias;
+        layer->ntail = bias;
+      }
+
+      for ( neuron = layer->nhead; neuron; neuron = neuron->next ) {
+        n3l_neuron_build_weights(neuron, layer->next->nhead, args.rand_weight, args.rand_arg);
       }
     }
-    free(state->net[l_idx].neurons);
   }
-  free(state->net);
-  free(state);
 
-  N3L_LLOW_END(p_l);
+  return net;
 }
 
-N3LData *n3l_clone(N3LData *net)
+double __n3l_get_weight_from_file(void *data)
 {
-  N3LData *clone;
-  uint64_t layers = 2 + net->args->h_layers;
-  uint64_t l_idx, n_idx, w_idx;
+  double weight;
+  FILE *n3_file = (FILE *) data;
 
-  N3L_LHIGH_START(net->args->logger);
+  fread(&weight, sizeof(double), 1, n3_file);
 
-  N3L_LMEDIUM(net->args->logger, "Cloning attributes");
-  clone = (N3LData *) malloc(sizeof(N3LData));
-  clone->inputs = net->inputs;
-  clone->outputs = net->outputs;
-  clone->targets = net->targets;
-  clone->get_rnd_weight = net->get_rnd_weight;
+  return weight;
+}
 
-  N3L_LMEDIUM(net->args->logger, "Cloning arguments");
-  clone->args = (N3LArgs *) malloc(sizeof(N3LArgs));
-  memcpy(clone->args, net->args, sizeof(N3LArgs));
+N3LArgs __n3l_network_get_args_from_file(FILE *n3_file, double *learning_rate)
+{
+  N3LArgs args;
 
-  clone->net = (N3LLayer *) malloc(layers * sizeof(N3LLayer));
-  for ( l_idx = 0; l_idx < layers; ++l_idx ) {
-    N3L_LMEDIUM(net->args->logger, "Cloning layer %ld", l_idx);
-    clone->net[l_idx].size = net->net[l_idx].size;
-    clone->net[l_idx].ltype = net->net[l_idx].ltype;
+  fread(learning_rate, sizeof(double), 1, n3_file);
+  fread(&(args.bias), sizeof(double), 1, n3_file);
+  fread(&(args.in_size), sizeof(uint64_t), 1, n3_file);
+  fread(&(args.h_layers), sizeof(uint64_t), 1, n3_file);
+  args.h_size = (uint64_t *) malloc(args.h_layers * sizeof(uint64_t));
+  fread(args.h_size, sizeof(uint64_t), args.h_layers, n3_file);
+  fread(&(args.out_size), sizeof(uint64_t), 1, n3_file);
+  fread(&(args.act_in), sizeof(N3LActType), 1, n3_file);
+  args.act_h = (N3LActType *) malloc(args.h_layers * sizeof(N3LActType));
+  fread(args.act_h, sizeof(N3LActType), args.h_layers, n3_file);
+  fread(&(args.act_out), sizeof(N3LActType), 1, n3_file);
+  args.rand_arg = (void *) n3_file;
+  args.rand_weight = &__n3l_get_weight_from_file;
 
-    clone->net[l_idx].neurons = (N3LNeuron *) malloc(net->net[l_idx].size * sizeof(N3LNeuron));
-    for ( n_idx = 0; n_idx < net->net[l_idx].size; ++n_idx ) {
-      N3L_LMEDIUM(net->args->logger, "Cloning neuron %ld", n_idx);
-      clone->net[l_idx].neurons[n_idx].input = net->net[l_idx].neurons[n_idx].input;
-      clone->net[l_idx].neurons[n_idx].outputs = net->net[l_idx].neurons[n_idx].outputs;
-      clone->net[l_idx].neurons[n_idx].result = net->net[l_idx].neurons[n_idx].result;
-      clone->net[l_idx].neurons[n_idx].act = net->net[l_idx].neurons[n_idx].act;
-      clone->net[l_idx].neurons[n_idx].act_prime = net->net[l_idx].neurons[n_idx].act_prime;
-      if ( net->net[l_idx].neurons[n_idx].weights != NULL ) {
-        clone->net[l_idx].neurons[n_idx].weights = (double *) malloc(
-          net->net[l_idx].neurons[n_idx].outputs * sizeof(double));
-        memcpy(clone->net[l_idx].neurons[n_idx].weights, net->net[l_idx].neurons[n_idx].weights,
-          net->net[l_idx].neurons[n_idx].outputs * sizeof(double));
-      }
-      else {
-        clone->net[l_idx].neurons[n_idx].weights = NULL;
+  return args;
+}
+
+N3LNetwork *n3l_network_build_from_file(char *filename)
+{
+  N3LNetwork *net;
+  FILE *n3_file;
+  N3LArgs args;
+  double learning_rate;
+
+  if ( !(n3_file = fopen(filename, "r")) ) {
+    return NULL;
+  }
+
+  args = __n3l_network_get_args_from_file(n3_file, &learning_rate);
+  net = n3l_network_build(args, learning_rate);
+  free(args.h_size);
+  free(args.act_h);
+  fclose(n3_file);
+
+  return net;
+}
+
+void n3l_network_free(N3LNetwork *net)
+{
+  N3LLayer *p;
+
+  if ( net ) {
+    while ( net->lhead ) {
+      p = net->lhead->next;
+      n3l_layer_free(net->lhead);
+      net->lhead = p;
+    }
+    free(net);
+  }
+}
+
+bool n3l_network_save(N3LNetwork *net, N3LArgs args, char *filename)
+{
+  FILE *n3_file;
+  N3LLayer *layer;
+  N3LNeuron *neuron;
+  N3LWeight *weight;
+
+  if ( !(n3_file = fopen(filename, "w")) ) {
+    return false;
+  }
+
+  fwrite(&(net->learning_rate), sizeof(double), 1, n3_file);
+  fwrite(&(args.bias), sizeof(double), 1, n3_file);
+  fwrite(&(args.in_size), sizeof(uint64_t), 1, n3_file);
+  fwrite(&(args.h_layers), sizeof(uint64_t), 1, n3_file);
+  fwrite(args.h_size, sizeof(uint64_t), args.h_layers, n3_file);
+  fwrite(&(args.out_size), sizeof(uint64_t), 1, n3_file);
+  fwrite(&(args.act_in), sizeof(N3LActType), 1, n3_file);
+  fwrite(args.act_h, sizeof(N3LActType), args.h_layers, n3_file);
+  fwrite(&(args.act_out), sizeof(N3LActType), 1, n3_file);
+
+  for ( layer = net->lhead; layer; layer = layer->next ) {
+    for ( neuron = layer->nhead; neuron; neuron = neuron->next ) {
+      for ( weight = neuron->whead; weight; weight = weight->next ) {
+        fwrite(&(weight->value), sizeof(double), 1, n3_file);
       }
     }
   }
 
-  N3L_LHIGH_END(net->args->logger);
-  return clone;
+  return true;
 }

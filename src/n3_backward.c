@@ -2,102 +2,112 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include "n3_header.h"
-#include "n3_logger.h"
+#include "n3_neuron.h"
 
-struct _n3l_out_to_in {
-  N3LData *state;
-  uint64_t l_idx;
-  uint64_t o_idx;
-  double delta_w;
+struct __n3l_backward_data {
+  uint64_t ref;
+  N3LLayer *layer;
+  double delta;
+  double learning_rate;
 };
 
-void *n3l_execute_backward_propagation(void *arg);
+void *__n3l_backward_execute(void *arg);
 
-double n3l_evaluate_out_error(N3LData *state, uint64_t o_idx)
-{
-  double delta_E;
-  double diff;
-  N3LNeuron *p_n;
-
-  N3L_LLOW_START(state->args->logger);
-  p_n = &(state->net[state->args->h_layers + 1].neurons[o_idx]);
-
-  diff = (state->targets[o_idx] - state->outputs[o_idx]);
-  N3L_LLOW(state->args->logger, "Output %ld diff: %lf", o_idx, diff);
-
-  delta_E = diff * p_n->act_prime(p_n->input);
-  N3L_LLOW(state->args->logger, "Output %ld delta: %lf", o_idx, delta_E);
-
-  N3L_LLOW_END(state->args->logger);
-  return delta_E;
-}
-
-void n3l_backward_propagation(N3LData *state)
+bool n3l_backward_propagation(N3LNetwork *net)
 {
   pthread_t *threads;
-  struct _n3l_out_to_in *tdata = NULL;
-  uint64_t layers = 2 + state->args->h_layers;
-  uint64_t o_idx;
-  N3L_LCRITICAL_START(state->args->logger);
+  uint64_t nsize, j;
+  N3LNeuron *out;
+  struct __n3l_backward_data *tdata;
 
-  threads = (pthread_t *) malloc(state->args->out_size * sizeof(pthread_t));
-  tdata = (struct _n3l_out_to_in *) malloc(state->args->out_size * sizeof(struct _n3l_out_to_in));
-  for ( o_idx = 0; o_idx < state->args->out_size; ++o_idx ) {
-    tdata[o_idx].state = state;
-    tdata[o_idx].l_idx = state->args->h_layers;
-    tdata[o_idx].o_idx = o_idx;
-    tdata[o_idx].delta_w = n3l_evaluate_out_error(state, o_idx);
-
-    N3L_LHIGH(state->args->logger, "Starting thread to execute backward propagation "
-      "from neuron (%ld,%ld) to layer %ld.", layers - 1, o_idx, state->args->h_layers);
-    pthread_create(&threads[o_idx], NULL, n3l_execute_backward_propagation, (void *) &(tdata[o_idx]));
+  if ( !net ) {
+    return false;
   }
 
-  for ( o_idx = 0; o_idx < state->args->out_size; ++o_idx ) {
-    pthread_join(threads[o_idx], NULL);
+  if ( !(net->targets && net->ltail) ) {
+    return false;
+  }
+
+  if ( !net->ltail->type != N3LOutputLayer ) {
+    return false;
+  }
+
+  nsize = n3l_neuron_count(net->ltail->nhead);
+  threads = (pthread_t *) malloc(nsize * sizeof(pthread_t));
+  tdata = (struct __n3l_backward_data *) malloc(nsize * sizeof(struct __n3l_backward_data));
+  for ( out = net->ltail->nhead, j = 0; out; out = out->next, ++j ) {
+    tdata[j].ref = out->ref;
+    tdata[j].layer = net->ltail->prev;
+    tdata[j].delta = (net->targets[j] - out->result) * out->act_prime(out->input);
+    tdata[j].learning_rate = net->learning_rate;
+
+    pthread_create(&threads[j], NULL, __n3l_backward_execute, (void *) &(tdata[j]));
+  }
+
+  for ( j = 0; j < nsize; ++j ) {
+    pthread_join(threads[j], NULL);
   }
 
   free(threads);
   free(tdata);
 
-  N3L_LCRITICAL_END(state->args->logger);
+  return true;
 }
 
-void *n3l_execute_backward_propagation(void *arg)
+
+void *__n3l_backward_execute(void *arg)
 {
-  pthread_t thread;
-  struct _n3l_out_to_in *tdata = (struct _n3l_out_to_in *) arg;
-  struct _n3l_out_to_in next_tdata;
-  N3LNeuron *p_n;
-  N3LLogger *p_l = tdata->state->args->logger;
-  uint64_t n_idx;
-  N3L_LMEDIUM_START(p_l);
+  pthread_t *threads;
+  uint64_t nsize, j;
+  struct __n3l_backward_data *tdata = (struct __n3l_backward_data *) arg;
+  struct __n3l_backward_data *next_tdata;
+  N3LNeuron *neuron;
+  N3LWeight *weight;
 
-  N3L_LLOW(p_l, "Current layer index: %ld", tdata->l_idx);
-  N3L_LMEDIUM(p_l, "Executing backward propagation with delta: %lf", tdata->delta_w);
+  if ( !tdata->layer ) {
+    for ( neuron = tdata->layer->nhead; neuron; neuron = neuron->next ) {
+      for ( weight = neuron->whead; weight; weight = weight->next ) {
+        if ( weight->target_ref == tdata->ref ) {
+          break;
+        }
+      }
 
-  for ( n_idx = 0; n_idx < tdata->state->net[tdata->l_idx].size; ++n_idx ) {
-    p_n = &tdata->state->net[tdata->l_idx].neurons[n_idx];
-    if ( tdata->state->net[tdata->l_idx].ltype != N3LInputLayer ) {
-      next_tdata.state = tdata->state;
-      next_tdata.l_idx = tdata->l_idx - 1;
-      next_tdata.o_idx = n_idx;
-      next_tdata.delta_w = tdata->delta_w * p_n->weights[tdata->o_idx] * p_n->act_prime(p_n->input);
+      if ( weight == NULL ) {
+        continue;
+      }
 
-      N3L_LLOW(p_l, "Neuron(%ld,%ld) - Propagate new delta to previous layer.", tdata->l_idx, n_idx);
-      pthread_create(&thread, NULL, n3l_execute_backward_propagation, (void *) &(next_tdata));
-      pthread_join(thread, NULL);
+      weight->value += tdata->learning_rate * tdata->delta * neuron->result;
+    }
+  }
+  else {
+    nsize = n3l_neuron_count(tdata->layer->nhead);
+    threads = (pthread_t *) malloc(nsize * sizeof(pthread_t));
+    next_tdata = (struct __n3l_backward_data *) malloc(nsize * sizeof(struct __n3l_backward_data));
+
+    for ( neuron = tdata->layer->nhead, j = 0; neuron; neuron = neuron->next, ++j ) {
+      for ( weight = neuron->whead; weight; weight = weight->next ) {
+        if ( weight->target_ref == tdata->ref ) {
+          break;
+        }
+      }
+
+      if ( weight == NULL ) {
+        continue;
+      }
+
+      next_tdata[j].ref = neuron->ref;
+      next_tdata[j].layer = tdata->layer->prev;
+      next_tdata[j].learning_rate = tdata->learning_rate;
+      next_tdata[j].delta = tdata->delta * weight->value * neuron->act_prime(neuron->input);
+
+      pthread_create(&threads[j], NULL, __n3l_backward_execute, (void *) &(next_tdata[j]));
     }
 
-    N3L_LMEDIUM(p_l, "Weight (%ld,%ld) --> (%ld,%ld) - Old: %lf",
-      tdata->l_idx, n_idx, tdata->l_idx + 1, tdata->o_idx, p_n->weights[tdata->o_idx]);
+    for ( j = 0; j < nsize; ++j ) {
+      pthread_join(threads[j], NULL);
+    }
 
-    p_n->weights[tdata->o_idx] += tdata->state->args->learning_rate * tdata->delta_w * p_n->result;
-
-    N3L_LMEDIUM(p_l, "Weight (%ld,%ld) --> (%ld,%ld) - New: %lf",
-      tdata->l_idx, n_idx, tdata->l_idx + 1, tdata->o_idx, p_n->weights[tdata->o_idx]);
+    free(threads);
+    free(next_tdata);
   }
-
-  N3L_LMEDIUM_END(p_l);
-  return NULL;
 }

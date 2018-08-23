@@ -222,18 +222,22 @@ Reference: [Wikipedia - Activation Function](https://en.wikipedia.org/wiki/Activ
 |------|------|-------------|
 | `double` | `input` | Neuron input
 | `double *` | `weights` | Weights array with length equal to the `outputs` term. |
-| `uint64_t` | `outputs` | Number of outputs linked to this neuron |
+| `uint64_t *` | `outputs` | Number of outputs ( pointer to the next layer size ) linked to this neuron |
 | `double` | `result` | Value returned from the activation function |
 | `N3L_ACT`| `act` | Activation function |
 | `N3L_ACT`| `act_prime` | Derivate of the activation function |
+| `N3LNeuron *` | `next` | Pointer to the next neuron or NULL if it's the last one. |
+| `N3LNeuron *` | `prev` | Pointer to the next neuron or NULL if it's the first one. |
 
 #### 3.3 N3LLayer
 
 | Type | Name | Description |
 |------|------|-------------|
 | `N3LLayerType` | `ltype` | Type of this layer |
-| `uint64_t` | `size` | Number of neurons in this layer |
-| `N3LNeuron *` | `neurons` | Neurons array with length equal of `size` term. |
+| `N3LNeuron *` | `neurons` | Neurons list head with length equal of `size` term. NULL-terminated |
+| `N3LLayer *` | `next` | Pointer to the next layer or NULL if it's the last one. |
+| `N3LLayer *` | `prev` | Pointer to the previous layer or NULL if it's the first one. |
+
 
 #### 3.4 N3LArgs
 
@@ -261,7 +265,7 @@ Reference: [Wikipedia - Activation Function](https://en.wikipedia.org/wiki/Activ
 |`double *`|`outputs`| Array of outputs values used in backpropagation. Usually this should be set with the return value of `n3l_forward_propagation()` and manually free. |
 | `N3L_RND_WEIGHT` | `get_rnd_weight` | Function to call when weights are initialized randomly. |
 | `N3LArgs *` | `args` | Network parameters. |
-| `N3LLayer *` | `net` | Network layers array |
+| `N3LLayer *` | `net` | Layers list head NULL-terminated |
 
 ### 4 Functions
 
@@ -513,10 +517,10 @@ Return a value in range `[0, 1]` using `rand()` function.
 ##### 4.4.5 `n3l_set_custom_act()`
 
 ```c
-void n3l_set_custom_act (N3LData *net, uint64_t layer_index, N3L_ACT(act), N3L_ACT(act_prime))
+bool n3l_set_custom_act_by_index(N3LData *net, uint64_t layer_idx, N3L_ACT(act), N3L_ACT(act_prime))
 ```
 
-Set a custom activation function, and its derivate, to neurons of layer `layer_index`.
+Set a custom activation function, and its derivate, to neurons of layer at `layer_index`.
 
 When applied the information in `act_in`, `act_h` or `act_out` ( depends by layer type at index provided ) is set to `N3LCustom`.
 
