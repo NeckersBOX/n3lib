@@ -10,7 +10,7 @@ N3LNeuron *n3l_neuron_build(N3LActType act_type)
   static uint64_t ref = 0;
   N3LNeuron *neuron;
 
-  neuron = (N3LNeuron *) malloc(sizeof(N3LNeuron *));
+  neuron = (N3LNeuron *) malloc(sizeof(N3LNeuron));
   neuron->bias = false;
   neuron->ref = ++ref;
   neuron->act = n3l_act(act_type);
