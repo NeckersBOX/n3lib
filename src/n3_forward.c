@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <pthread.h>
+#include <assert.h>
 #include "n3_header.h"
 #include "n3_neuron.h"
 
@@ -15,13 +16,13 @@ void *    __n3l_forward_activate    (void *arg);
 void *    __n3l_forward_get_outputs (void *arg);
 double *  __n3l_forward_layer       (N3LLayer *layer, double *inputs);
 
-double *n3l_forward_propagation(N3LNetwork *net, double *inputs)
+double *n3l_forward_propagation(N3LNetwork *net)
 {
   N3LLayer *layer;
   double *layer_in_data = NULL, *layer_out_data = NULL;
 
   for ( layer = net->lhead; layer; layer = layer->next ) {
-    layer_out_data = __n3l_forward_layer(layer, layer_in_data ? : inputs);
+    layer_out_data = __n3l_forward_layer(layer, layer_in_data ? : net->inputs);
 
     if ( layer_in_data ) {
       free(layer_in_data);
@@ -41,6 +42,8 @@ double *__n3l_forward_layer(N3LLayer *layer, double *inputs)
   N3LNeuron *neuron;
   double *outputs;
 
+  assert(inputs != NULL);
+  
   threads = (pthread_t *) malloc(nsize * sizeof(pthread_t));
   for ( neuron = layer->nhead, j = 0; neuron; neuron = neuron->next, ++j ) {
     if ( !neuron->bias ) {
