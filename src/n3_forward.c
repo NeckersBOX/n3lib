@@ -109,13 +109,7 @@ void *__n3l_forward_get_outputs(void *arg)
 
   *(tdata->result) = 0.0f;
   for ( neuron = tdata->layer->nhead; neuron; neuron = neuron->next ) {
-    for ( weight = neuron->whead; weight; weight = weight->next ) {
-      if ( weight->target_ref == tdata->ref ) {
-        break;
-      }
-    }
-
-    if ( !weight ) {
+    if ( !(weight = n3l_neuron_get_weight(neuron->whead, tdata->ref)) ) {
       continue;
     }
 
