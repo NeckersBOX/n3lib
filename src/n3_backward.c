@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <assert.h>
 #include "n3_header.h"
 #include "n3_neuron.h"
 
@@ -24,11 +25,8 @@ bool n3l_backward_propagation(N3LNetwork *net)
     return false;
   }
 
-  if ( !(net->targets && net->ltail) ) {
-    return false;
-  }
-
-  if ( !net->ltail->type != N3LOutputLayer ) {
+  assert(net->ltail != NULL);
+  if ( !net->targets || net->ltail->type != N3LOutputLayer ) {
     return false;
   }
 
@@ -64,34 +62,13 @@ void *__n3l_backward_execute(void *arg)
   N3LNeuron *neuron;
   N3LWeight *weight;
 
-  if ( !tdata->layer ) {
-    for ( neuron = tdata->layer->nhead; neuron; neuron = neuron->next ) {
-      for ( weight = neuron->whead; weight; weight = weight->next ) {
-        if ( weight->target_ref == tdata->ref ) {
-          break;
-        }
-      }
-
-      if ( weight == NULL ) {
-        continue;
-      }
-
-      weight->value += tdata->learning_rate * tdata->delta * neuron->result;
-    }
-  }
-  else {
+  if ( tdata->layer ) {
     nsize = n3l_neuron_count(tdata->layer->nhead);
     threads = (pthread_t *) malloc(nsize * sizeof(pthread_t));
     next_tdata = (struct __n3l_backward_data *) malloc(nsize * sizeof(struct __n3l_backward_data));
 
     for ( neuron = tdata->layer->nhead, j = 0; neuron; neuron = neuron->next, ++j ) {
-      for ( weight = neuron->whead; weight; weight = weight->next ) {
-        if ( weight->target_ref == tdata->ref ) {
-          break;
-        }
-      }
-
-      if ( weight == NULL ) {
+      if ( !(weight = n3l_neuron_get_weight(neuron->whead, tdata->ref)) ) {
         continue;
       }
 
@@ -105,6 +82,14 @@ void *__n3l_backward_execute(void *arg)
 
     for ( j = 0; j < nsize; ++j ) {
       pthread_join(threads[j], NULL);
+    }
+
+    for ( neuron = tdata->layer->nhead; neuron; neuron = neuron->next ) {
+      if ( !(weight = n3l_neuron_get_weight(neuron->whead, tdata->ref)) ) {
+        continue;
+      }
+
+      weight->value += tdata->learning_rate * tdata->delta * neuron->result;
     }
 
     free(threads);
