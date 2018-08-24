@@ -92,6 +92,10 @@ bool n3_stats_to_csv(struct _stats *stat, char *filename)
   FILE *of;
   uint64_t row;
 
+  if ( !filename ) {
+    return false;
+    
+  }
   if ( !(of = fopen(filename, "w")) ) {
     return false;
   }
