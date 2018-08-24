@@ -102,6 +102,20 @@ void n3l_neuron_free(N3LNeuron *neuron)
   }
 }
 
+
+extern N3LWeight *n3l_neuron_get_weight(N3LWeight *whead, uint64_t t_ref)
+{
+  N3LWeight *weight;
+
+  for ( weight = whead; weight; weight = weight->next ) {
+    if ( weight->target_ref == t_ref ) {
+      break;
+    }
+  }
+
+  return weight;
+}
+
 void n3l_neuron_set_custom_act(N3LNeuron *neuron, N3LAct act, N3LAct prime)
 {
   neuron->act = act;

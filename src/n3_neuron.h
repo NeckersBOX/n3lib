@@ -7,6 +7,7 @@ extern N3LNeuron *  n3l_neuron_build_before   (N3LNeuron *, N3LActType type);
 extern void         n3l_neuron_build_weights  (N3LNeuron *, N3LNeuron *, N3LWeightGenerator, void *);
 extern uint64_t     n3l_neuron_count          (N3LNeuron *);
 extern void         n3l_neuron_free           (N3LNeuron *);
+extern N3LWeight *  n3l_neuron_get_weight     (N3LWeight *, uint64_t);
 extern void         n3l_neuron_set_custom_act (N3LNeuron *, N3LAct, N3LAct);
 
 #endif
