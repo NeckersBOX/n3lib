@@ -12,68 +12,70 @@
 
 double *get_inputs_batch_mode(void);
 double *get_targets(double *inputs);
-void xor_operation(struct user_args);
+void xor_operation(struct n3_example_args);
 
 int main(int argc, char *argv[])
 {
-  struct user_args args = { false, false, false, false, false, "xor.n3l", "xor.n3l", 1.f, 0, 1, "xor.csv", N3LLogNone };
-  bool free_save_filename = false;
+  struct n3_example_args args = {
+    false, false, false, 1.0, 0.0, 1, NULL, NULL, NULL
+  };
 
   srand(time(NULL));
-  fprintf(stdout, "XOR Example - N3L v. %s\n", N3L_VERSION);
-  fprintf(stdout, "(c) 2018 - Davide Francesco Merico <hds619 [at] gmail [dot] com>\n\n");
 
-  free_save_filename = n3_example_arguments_parser(argc, argv, &args);
+  n3_example_arguments_parser(argc, argv, &args);
+
+  if ( !args.mute ) {
+    fprintf(stdout, "XOR Example - N3L v. %s\n", N3L_VERSION);
+    fprintf(stdout, "(C) 2018 - Davide Francesco Merico <hds619 [at] gmail [dot] com>\n\n");
+  }
 
   xor_operation(args);
-  if ( free_save_filename ) {
+
+  if ( args.save_filename ) {
     free(args.save_filename);
   }
 
-  if ( args.read_result ) {
+  if ( args.read_filename ) {
     free(args.read_filename);
   }
 
   return 0;
 }
 
-void xor_operation(struct user_args args)
+void xor_operation(struct n3_example_args args)
 {
   N3LArgs n3_args;
-  N3LData *n3_net;
-  N3LLogger n3_logger = { stdout, args.verbose };
+  N3LNetwork *net;
   uint64_t stats[2] = { 0, 0 };
-  FILE *of;
+  uint64_t hsize[1] = { 3 };
+  N3LActType act_h[1] = { N3LSigmoid };
+  double *outs;
+
 #ifdef N3L_ENABLE_STATS
   struct _stats xor_stat;
 #endif
 
   if ( !args.mute ) {
     fprintf(stdout, "Simulation property:\n");
-    fprintf(stdout, "Read from file: %s ( %s )\n", BOOL_STR(args.read_result), args.read_filename);
-    fprintf(stdout, "  Save to file: %s ( %s )\n", BOOL_STR(args.save_result), args.save_filename);
+    fprintf(stdout, "Read from file: %s\n", args.read_filename ? : "NULL");
+    fprintf(stdout, "  Save to file: %s\n", args.save_filename ? : "NULL");
     fprintf(stdout, " Learning rate: %lf\n", args.learning_rate);
-    fprintf(stdout, "     Verbosity: %d\n", args.verbose);
     fprintf(stdout, "    Iterations: %ld\n\n", args.iterations);
   }
 
-  n3_args = n3l_get_default_args();
-  n3_args.read_file = args.read_result;
-  n3_args.in_filename = args.read_filename;
-  n3_args.learning_rate = args.learning_rate;
+  n3_args = n3l_misc_init_arg();
   n3_args.bias = args.bias;
   n3_args.in_size = 2;
-  n3_args.out_size = 1;
-  n3_args.h_size = 3;
+  n3_args.h_size = hsize;
   n3_args.h_layers = 1;
-  n3_args.act_h = N3LSigmoid;
+  n3_args.out_size = 1;
+  n3_args.act_h = act_h;
   n3_args.act_out = N3LSigmoid;
 
-  n3_args.logger = &n3_logger;
-  n3_net = n3l_build(n3_args, &n3l_rnd_weight);
+  net = n3l_network_build(n3_args, args.learning_rate);
 
 #ifdef N3L_ENABLE_STATS
-  xor_stat = n3_stats_start(n3_net, 4, args.iterations);
+  xor_stat = n3_stats_start(net, 4, args.iterations);
 #endif
 
   do {
@@ -82,31 +84,31 @@ void xor_operation(struct user_args args)
         stats[0] + stats[1] + 1, args.iterations + stats[0] + stats[1]);
     }
 
-    n3_net->inputs = get_inputs_batch_mode();
+    net->inputs = get_inputs_batch_mode();
     if ( !args.mute ) {
-      fprintf(stdout, "[XOR]         Input 0: %.0lf\n", n3_net->inputs[0]);
-      fprintf(stdout, "[XOR]         Input 1: %.0lf\n", n3_net->inputs[1]);
+      fprintf(stdout, "[XOR]         Input 0: %.0lf\n", net->inputs[0]);
+      fprintf(stdout, "[XOR]         Input 1: %.0lf\n", net->inputs[1]);
     }
-    n3_net->outputs = n3l_forward_propagation(n3_net);
+    outs = n3l_forward_propagation(net);
 
     if ( !args.mute ) {
-      fprintf(stdout, "[XOR]          Output: %lf\n", n3_net->outputs[0]);
+      fprintf(stdout, "[XOR]          Output: %lf\n", outs[0]);
     }
 
-    n3_net->targets = get_targets(n3_net->inputs);
-    ++stats[round(n3_net->outputs[0]) == n3_net->targets[0] ? 0 : 1];
+    net->targets = get_targets(net->inputs);
+    ++stats[round(outs[0]) == net->targets[0] ? 0 : 1];
 
     if ( !args.mute ) {
-      fprintf(stdout, "[XOR]          Target: %.0lf\n", n3_net->targets[0]);
+      fprintf(stdout, "[XOR]          Target: %.0lf\n", net->targets[0]);
       fprintf(stdout, "[XOR] Overall success: %.3lf%%\n", (stats[0] * 100.f) / (double) (stats[0] + stats[1]));
     }
 
     if ( args.learning ) {
-      n3l_backward_propagation(n3_net);
+      n3l_backward_propagation(net);
     }
 
 #ifdef N3L_ENABLE_STATS
-    n3_stats_cycle(&xor_stat, stats[0] + stats[1] - 1, round(n3_net->outputs[0]) == n3_net->targets[0]);
+    n3_stats_cycle(&xor_stat, net->targets, outs, stats[0] + stats[1] - 1, round(outs[0]) == net->targets[0]);
 
     if ( args.progress ) {
       fprintf(stdout, "\r[XOR] Iteration %ld on %ld - MNE: %lf - MNS: %.3lf%%",
@@ -122,23 +124,17 @@ void xor_operation(struct user_args args)
     }
 #endif
 
-    free(n3_net->inputs);
-    free(n3_net->outputs);
-    free(n3_net->targets);
+    free(net->inputs);
+    free(outs);
+    free(net->targets);
   } while (--args.iterations);
 
   if ( args.progress ) {
     fprintf(stdout, "\n");
   }
 
-  if ( args.save_result ) {
-    if ( !(of = fopen(args.save_filename, "w")) ) {
-      fprintf(stderr, "Cannot save results. Open failed ( %s )", args.save_filename);
-    }
-    else {
-      n3l_save(n3_net, of);
-      fclose(of);
-    }
+  if ( args.save_filename ) {
+    n3l_network_save(net, n3_args, args.save_filename);
   }
 
 #ifdef N3L_ENABLE_STATS
@@ -147,7 +143,7 @@ void xor_operation(struct user_args args)
   n3_stats_free(&xor_stat);
 #endif
 
-  n3l_free(n3_net);
+  n3l_network_free(net);
 }
 
 double *get_inputs_batch_mode(void)
