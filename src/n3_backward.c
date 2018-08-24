@@ -31,6 +31,7 @@ bool n3l_backward_propagation(N3LNetwork *net)
   }
 
   nsize = n3l_neuron_count(net->ltail->nhead);
+  assert(nsize > 0);
   threads = (pthread_t *) malloc(nsize * sizeof(pthread_t));
   tdata = (struct __n3l_backward_data *) malloc(nsize * sizeof(struct __n3l_backward_data));
   for ( out = net->ltail->nhead, j = 0; out; out = out->next, ++j ) {
@@ -55,33 +56,27 @@ bool n3l_backward_propagation(N3LNetwork *net)
 
 void *__n3l_backward_execute(void *arg)
 {
-  pthread_t *threads;
-  uint64_t nsize, j;
   struct __n3l_backward_data *tdata = (struct __n3l_backward_data *) arg;
-  struct __n3l_backward_data *next_tdata;
+  struct __n3l_backward_data next_tdata;
   N3LNeuron *neuron;
   N3LWeight *weight;
 
   if ( tdata->layer ) {
-    nsize = n3l_neuron_count(tdata->layer->nhead);
-    threads = (pthread_t *) malloc(nsize * sizeof(pthread_t));
-    next_tdata = (struct __n3l_backward_data *) malloc(nsize * sizeof(struct __n3l_backward_data));
+    for ( neuron = tdata->layer->nhead; neuron; neuron = neuron->next ) {
+      if ( neuron->bias ) {
+        continue;
+      }
 
-    for ( neuron = tdata->layer->nhead, j = 0; neuron; neuron = neuron->next, ++j ) {
       if ( !(weight = n3l_neuron_get_weight(neuron->whead, tdata->ref)) ) {
         continue;
       }
 
-      next_tdata[j].ref = neuron->ref;
-      next_tdata[j].layer = tdata->layer->prev;
-      next_tdata[j].learning_rate = tdata->learning_rate;
-      next_tdata[j].delta = tdata->delta * weight->value * neuron->act_prime(neuron->input);
+      next_tdata.ref = neuron->ref;
+      next_tdata.layer = tdata->layer->prev;
+      next_tdata.learning_rate = tdata->learning_rate;
+      next_tdata.delta = tdata->delta * weight->value * neuron->act_prime(neuron->input);
 
-      pthread_create(&threads[j], NULL, __n3l_backward_execute, (void *) &(next_tdata[j]));
-    }
-
-    for ( j = 0; j < nsize; ++j ) {
-      pthread_join(threads[j], NULL);
+      __n3l_backward_execute((void *) &next_tdata);
     }
 
     for ( neuron = tdata->layer->nhead; neuron; neuron = neuron->next ) {
@@ -91,8 +86,5 @@ void *__n3l_backward_execute(void *arg)
 
       weight->value += tdata->learning_rate * tdata->delta * neuron->result;
     }
-
-    free(threads);
-    free(next_tdata);
   }
 }
