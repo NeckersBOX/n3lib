@@ -5,6 +5,7 @@
 
 #include "src/n3_act.h"
 #include "src/n3_backward.h"
+#include "src/n3_file.h"
 #include "src/n3_forward.h"
 #include "src/n3_layer.h"
 #include "src/n3_misc.h"

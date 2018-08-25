@@ -1,6 +1,7 @@
 objects = \
 	n3_act.o \
 	n3_backward.o \
+	n3_file.o \
 	n3_forward.o \
 	n3_layer.o \
 	n3_misc.o \

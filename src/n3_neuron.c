@@ -13,6 +13,7 @@ N3LNeuron *n3l_neuron_build(N3LActType act_type)
   neuron = (N3LNeuron *) malloc(sizeof(N3LNeuron));
   neuron->bias = false;
   neuron->ref = ++ref;
+  neuron->act_type = act_type;
   neuron->act = n3l_act(act_type);
   neuron->act_prime = n3l_act_prime(act_type);
   neuron->next = NULL;
@@ -88,6 +89,15 @@ uint64_t n3l_neuron_count(N3LNeuron *head)
   return cnt;
 }
 
+uint64_t n3l_neuron_count_weights(N3LWeight *head)
+{
+  uint64_t cnt = 0;
+  N3LWeight *p;
+
+  for ( p = head; p; p = p->next, ++cnt );
+  return cnt;
+}
+
 void n3l_neuron_free(N3LNeuron *neuron)
 {
   N3LWeight *p;
@@ -118,6 +128,7 @@ extern N3LWeight *n3l_neuron_get_weight(N3LWeight *whead, uint64_t t_ref)
 
 void n3l_neuron_set_custom_act(N3LNeuron *neuron, N3LAct act, N3LAct prime)
 {
+  neuron->act_type = N3LCustom;
   neuron->act = act;
   neuron->act_prime = prime;
 }

@@ -42,6 +42,7 @@ typedef struct _n3l_neuron {
   double input;
   N3LWeight *whead;
   double result;
+  N3LActType act_type;
   N3LAct act;
   N3LAct act_prime;
   struct _n3l_neuron *next;

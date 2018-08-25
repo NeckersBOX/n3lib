@@ -5,9 +5,6 @@
 #include "n3_layer.h"
 #include "n3_neuron.h"
 
-N3LArgs __n3l_network_get_args_from_file(FILE *, double *);
-double __n3l_get_weight_from_file(void *);
-
 N3LNetwork *n3l_network_build(N3LArgs args, double learn_rate)
 {
   N3LNetwork *net;
@@ -70,57 +67,6 @@ N3LNetwork *n3l_network_build(N3LArgs args, double learn_rate)
   return net;
 }
 
-double __n3l_get_weight_from_file(void *data)
-{
-  double weight;
-  FILE *n3_file = (FILE *) data;
-
-  fread(&weight, sizeof(double), 1, n3_file);
-
-  return weight;
-}
-
-N3LArgs __n3l_network_get_args_from_file(FILE *n3_file, double *learning_rate)
-{
-  N3LArgs args;
-
-  fread(learning_rate, sizeof(double), 1, n3_file);
-  fread(&(args.bias), sizeof(double), 1, n3_file);
-  fread(&(args.in_size), sizeof(uint64_t), 1, n3_file);
-  fread(&(args.h_layers), sizeof(uint64_t), 1, n3_file);
-  args.h_size = (uint64_t *) malloc(args.h_layers * sizeof(uint64_t));
-  fread(args.h_size, sizeof(uint64_t), args.h_layers, n3_file);
-  fread(&(args.out_size), sizeof(uint64_t), 1, n3_file);
-  fread(&(args.act_in), sizeof(N3LActType), 1, n3_file);
-  args.act_h = (N3LActType *) malloc(args.h_layers * sizeof(N3LActType));
-  fread(args.act_h, sizeof(N3LActType), args.h_layers, n3_file);
-  fread(&(args.act_out), sizeof(N3LActType), 1, n3_file);
-  args.rand_arg = (void *) n3_file;
-  args.rand_weight = &__n3l_get_weight_from_file;
-
-  return args;
-}
-
-N3LNetwork *n3l_network_build_from_file(char *filename)
-{
-  N3LNetwork *net;
-  FILE *n3_file;
-  N3LArgs args;
-  double learning_rate;
-
-  if ( !(n3_file = fopen(filename, "r")) ) {
-    return NULL;
-  }
-
-  args = __n3l_network_get_args_from_file(n3_file, &learning_rate);
-  net = n3l_network_build(args, learning_rate);
-  free(args.h_size);
-  free(args.act_h);
-  fclose(n3_file);
-
-  return net;
-}
-
 void n3l_network_free(N3LNetwork *net)
 {
   N3LLayer *p;
@@ -133,36 +79,4 @@ void n3l_network_free(N3LNetwork *net)
     }
     free(net);
   }
-}
-
-bool n3l_network_save(N3LNetwork *net, N3LArgs args, char *filename)
-{
-  FILE *n3_file;
-  N3LLayer *layer;
-  N3LNeuron *neuron;
-  N3LWeight *weight;
-
-  if ( !(n3_file = fopen(filename, "w")) ) {
-    return false;
-  }
-
-  fwrite(&(net->learning_rate), sizeof(double), 1, n3_file);
-  fwrite(&(args.bias), sizeof(double), 1, n3_file);
-  fwrite(&(args.in_size), sizeof(uint64_t), 1, n3_file);
-  fwrite(&(args.h_layers), sizeof(uint64_t), 1, n3_file);
-  fwrite(args.h_size, sizeof(uint64_t), args.h_layers, n3_file);
-  fwrite(&(args.out_size), sizeof(uint64_t), 1, n3_file);
-  fwrite(&(args.act_in), sizeof(N3LActType), 1, n3_file);
-  fwrite(args.act_h, sizeof(N3LActType), args.h_layers, n3_file);
-  fwrite(&(args.act_out), sizeof(N3LActType), 1, n3_file);
-
-  for ( layer = net->lhead; layer; layer = layer->next ) {
-    for ( neuron = layer->nhead; neuron; neuron = neuron->next ) {
-      for ( weight = neuron->whead; weight; weight = weight->next ) {
-        fwrite(&(weight->value), sizeof(double), 1, n3_file);
-      }
-    }
-  }
-
-  return true;
 }
