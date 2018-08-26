@@ -93,8 +93,8 @@ cat <<-_EOF_ >> $EX_NAME/README.md
 | Iterations        | \`$ITERS\`     |
 | Learning Rate     | \`0\`          |
 | Input Neurons     | \`0\`          |
-| Hidden Neurons    | \`0\`          |
 | Hidden Layers     | \`0\`          |
+| Hidden Neurons    | \`0\`          |
 | Output Neurons    | \`0\`          |
 | Input Act         | \`None\`       |
 | Hidden Act        | \`Sigmoid\`    |
