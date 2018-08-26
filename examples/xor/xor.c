@@ -44,63 +44,63 @@ int main(int argc, char *argv[])
 
 void xor_operation(struct n3_example_args args)
 {
-  N3LArgs n3_args;
+  N3LArgs params;
   N3LNetwork *net;
-  uint64_t stats[2] = { 0, 0 };
-  uint64_t hsize[1] = { 3 };
-  N3LActType act_h[1] = { N3LSigmoid };
+  uint64_t success = 0, fail = 0, iter;
+
+  uint64_t   hidden_size[1] = { 3 };
+  N3LActType hidden_act[1]  = { N3LSigmoid };
   double *outs;
 
 #ifdef N3L_ENABLE_STATS
   struct _stats xor_stat;
 #endif
 
-  if ( !args.mute ) {
-    fprintf(stdout, "Simulation property:\n");
-    fprintf(stdout, "Read from file: %s\n", args.read_filename ? : "NULL");
-    fprintf(stdout, "  Save to file: %s\n", args.save_filename ? : "NULL");
-    fprintf(stdout, " Learning rate: %lf\n", args.learning_rate);
-    fprintf(stdout, "    Iterations: %ld\n\n", args.iterations);
+  if ( !args.read_filename ) {
+    params = n3l_misc_init_arg();
+    params.bias = args.bias;
+    params.in_size = 2;
+    params.h_layers = 1;
+    params.h_size = hidden_size;
+    params.act_h = hidden_act;
+    params.out_size = 1;
+    params.act_out = N3LSigmoid;
+
+    net = n3l_network_build(params, args.learning_rate);
   }
-
-  n3_args = n3l_misc_init_arg();
-  n3_args.bias = args.bias;
-  n3_args.in_size = 2;
-  n3_args.h_size = hsize;
-  n3_args.h_layers = 1;
-  n3_args.out_size = 1;
-  n3_args.act_h = act_h;
-  n3_args.act_out = N3LSigmoid;
-
-  net = n3l_network_build(n3_args, args.learning_rate);
+  else {
+    net = n3l_file_import_network(args.read_filename);
+    if ( !net ) {
+      fprintf(stderr, "Error while opening file: %s\n", args.read_filename);
+      exit(1);
+    }
+  }
 
 #ifdef N3L_ENABLE_STATS
   xor_stat = n3_stats_start(net, 4, args.iterations);
 #endif
 
-  do {
-    if ( !args.mute ) {
-      fprintf(stdout, "[XOR] -- Iteration %ld on %ld --\n",
-        stats[0] + stats[1] + 1, args.iterations + stats[0] + stats[1]);
-    }
-
+  for ( iter = 0; iter < args.iterations; ++iter ) {
     net->inputs = get_inputs_batch_mode();
     if ( !args.mute ) {
-      fprintf(stdout, "[XOR]         Input 0: %.0lf\n", net->inputs[0]);
-      fprintf(stdout, "[XOR]         Input 1: %.0lf\n", net->inputs[1]);
+      fprintf(stdout, "[XOR] Iter %ld on %ld\n", iter + 1, args.iterations);
+      fprintf(stdout, "[XOR]    Input 0: %.0lf\n", net->inputs[0]);
+      fprintf(stdout, "[XOR]    Input 1: %.0lf\n", net->inputs[1]);
     }
+
     outs = n3l_forward_propagation(net);
-
-    if ( !args.mute ) {
-      fprintf(stdout, "[XOR]          Output: %lf\n", outs[0]);
+    net->targets = get_targets(net->inputs);
+    if ( round(outs[0]) == net->targets[0] ) {
+      ++success;
+    }
+    else {
+      ++fail;
     }
 
-    net->targets = get_targets(net->inputs);
-    ++stats[round(outs[0]) == net->targets[0] ? 0 : 1];
-
     if ( !args.mute ) {
-      fprintf(stdout, "[XOR]          Target: %.0lf\n", net->targets[0]);
-      fprintf(stdout, "[XOR] Overall success: %.3lf%%\n", (stats[0] * 100.f) / (double) (stats[0] + stats[1]));
+      fprintf(stdout, "[XOR]     Output: %lf\n", outs[0]);
+      fprintf(stdout, "[XOR]     Target: %.0lf\n", net->targets[0]);
+      fprintf(stdout, "[XOR]        TNS: %.3lf%%\n", (success * 100.f) / (double) iter);
     }
 
     if ( args.learning ) {
@@ -108,33 +108,30 @@ void xor_operation(struct n3_example_args args)
     }
 
 #ifdef N3L_ENABLE_STATS
-    n3_stats_cycle(&xor_stat, net->targets, outs, stats[0] + stats[1] - 1, round(outs[0]) == net->targets[0]);
+    n3_stats_cycle(&xor_stat, net->targets, outs, iter, round(outs[0]) == net->targets[0]);
 
     if ( args.progress ) {
       fprintf(stdout, "\r[XOR] Iteration %ld on %ld - MNE: %lf - MNS: %.3lf%%",
-        stats[0] + stats[1], args.iterations + stats[0] + stats[1] - 1,
-        xor_stat.data[stats[0] + stats[1] - 1].mne,
-        xor_stat.data[stats[0] + stats[1] - 1].mns * 100.f);
+        iter + 1, args.iterations, xor_stat.data[iter].mne, xor_stat.data[iter].mns * 100.f);
     }
 #else
     if ( args.progress ) {
-      fprintf(stdout, "\r[XOR] Iteration %ld on %ld - Overall: %.3lf%%",
-        stats[0] + stats[1], args.iterations + stats[0] + stats[1] - 1,
-        (stats[0] * 100.f) / (double) (stats[0] + stats[1]));
+      fprintf(stdout, "\r[XOR] Iteration %ld on %ld - TNE: %.3lf - TNS: %.3lf%%",
+        iter + 1, args.iterations, net->targets[0] - outs[0], (success * 100.f) / (double) iter);
     }
 #endif
 
     free(net->inputs);
     free(outs);
     free(net->targets);
-  } while (--args.iterations);
+  }
 
   if ( args.progress ) {
     fprintf(stdout, "\n");
   }
 
   if ( args.save_filename ) {
-    n3l_network_save(net, n3_args, args.save_filename);
+    n3l_file_export_network(net, args.save_filename);
   }
 
 #ifdef N3L_ENABLE_STATS
@@ -153,23 +150,9 @@ double *get_inputs_batch_mode(void)
 
   inputs = (double *) malloc(2 * sizeof(double));
 
-  switch(step) {
-    case 0:
-      inputs[0] = 0; inputs[1] = 0;
-      break;
-    case 1:
-      inputs[0] = 1; inputs[1] = 0;
-      break;
-    case 2:
-      inputs[0] = 1; inputs[1] = 1;
-      break;
-    case 3:
-      inputs[0] = 0; inputs[1] = 1;
-      step = -1;
-      break;
-  }
-
-  ++step;
+  inputs[0] = (double) (step & 1);
+  inputs[1] = (double) (step & 2);
+  step = (step == 3) ? 0 : (step + 1);
 
   return inputs;
 }
