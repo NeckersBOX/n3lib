@@ -38,7 +38,7 @@ done
 
 echo "First run to build CSV.."
 gcc $EX_NAME/$EX_NAME.c -o $EX_NAME/gen_report -ln3l -lm -DN3L_ENABLE_STATS $FLAGS
-./$EX_NAME/gen_report -i $ITERS -l -p -s -t $EX_NAME/$EX_NAME.report.$REPORT_ID.csv -o $EX_NAME/$EX_NAME.report.$REPORT_ID.n3l $RUN_EXTRA
+./$EX_NAME/gen_report -i $ITERS -l -p -t $EX_NAME/$EX_NAME.report.$REPORT_ID.csv -o $EX_NAME/$EX_NAME.report.$REPORT_ID.n3l $RUN_EXTRA
 
 echo "Second run to build massif heap stats"
 gcc $EX_NAME/$EX_NAME.c -o $EX_NAME/gen_report -ln3l -lm $FLAGS
