@@ -100,7 +100,7 @@ void xor_operation(struct n3_example_args args)
     if ( !args.mute ) {
       fprintf(stdout, "[XOR]     Output: %lf\n", outs[0]);
       fprintf(stdout, "[XOR]     Target: %.0lf\n", net->targets[0]);
-      fprintf(stdout, "[XOR]        TNS: %.3lf%%\n", (success * 100.f) / (double) iter);
+      fprintf(stdout, "[XOR]        TNS: %.3lf%%\n", (success * 100.f) / (double) (iter + 1));
     }
 
     if ( args.learning ) {
