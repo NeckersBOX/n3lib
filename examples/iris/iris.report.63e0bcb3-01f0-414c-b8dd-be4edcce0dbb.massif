@@ -1,0 +1,787 @@
+desc: --massif-out-file=iris/iris.report.63e0bcb3-01f0-414c-b8dd-be4edcce0dbb.massif
+cmd: ./iris/gen_report -i 50000 -p -l
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=442025
+mem_heap_B=8896
+mem_heap_extra_B=800
+mem_stacks_B=0
+heap_tree=peak
+n8: 8896 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5120 0x545518A: _IO_file_doallocate (filedoalloc.c:101)
+  n2: 5120 0x5465377: _IO_doallocbuf (genops.c:365)
+   n1: 4096 0x5464252: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:495)
+    n1: 4096 0x54653F0: _IO_default_uflow (genops.c:380)
+     n1: 4096 0x5442BE8: _IO_vfscanf (vfscanf.c:630)
+      n1: 4096 0x54532E4: __isoc99_fscanf (isoc99_fscanf.c:34)
+       n1: 4096 0x10AAC7: get_data (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+        n1: 4096 0x10A37C: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+         n0: 4096 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 1024 0x5464496: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+    n1: 1024 0x54629EB: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1266)
+     n1: 1024 0x5432532: vfprintf (vfprintf.c:1328)
+      n1: 1024 0x543BE52: fprintf (fprintf.c:32)
+       n1: 1024 0x10A968: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+        n0: 1024 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 1088 0x40134A5: _dl_allocate_tls (dl-tls.c:286)
+  n1: 1088 0x57D0226: pthread_create@@GLIBC_2.2.5 (allocatestack.c:627)
+   n1: 1088 0x4E35A99: __n3l_forward_layer (n3_forward.c:53)
+    n1: 1088 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 1088 0x10A4D1: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+      n0: 1088 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 1040 0x4E36523: n3l_neuron_build (n3_neuron.c:13)
+  n3: 1040 0x4E365CF: n3l_neuron_build_after (n3_neuron.c:30)
+   n1: 480 0x4E362FF: n3l_network_build (n3_network.c:37)
+    n1: 480 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 480 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 320 0x4E3627A: n3l_network_build (n3_network.c:27)
+    n1: 320 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 320 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 240 0x4E36395: n3l_network_build (n3_network.c:47)
+    n1: 240 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 240 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 552 0x5455E48: fopen@@GLIBC_2.2.5 (iofopen.c:65)
+  n1: 552 0x10A318: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n0: 552 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 480 0x4E366F6: n3l_neuron_build_weights (n3_neuron.c:69)
+  n1: 480 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 480 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+    n0: 480 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 240 0x4E36719: n3l_neuron_build_weights (n3_neuron.c:73)
+  n1: 240 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 240 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+    n0: 240 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n0: 216 in 10 places, all below massif's threshold (1.00%)
+ n2: 160 0x4E35E81: n3l_layer_build (n3_layer.c:10)
+  n1: 120 0x4E35EE3: n3l_layer_build_after (n3_layer.c:24)
+   n0: 120 in 2 places, all below massif's threshold (1.00%)
+  n0: 40 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=2
+#-----------
+time=103763183
+mem_heap_B=8776
+mem_heap_extra_B=752
+mem_stacks_B=0
+heap_tree=detailed
+n8: 8776 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5120 0x545518A: _IO_file_doallocate (filedoalloc.c:101)
+  n2: 5120 0x5465377: _IO_doallocbuf (genops.c:365)
+   n1: 4096 0x5464252: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:495)
+    n1: 4096 0x54653F0: _IO_default_uflow (genops.c:380)
+     n1: 4096 0x5442BE8: _IO_vfscanf (vfscanf.c:630)
+      n1: 4096 0x54532E4: __isoc99_fscanf (isoc99_fscanf.c:34)
+       n1: 4096 0x10AAC7: get_data (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+        n1: 4096 0x10A37C: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+         n0: 4096 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 1024 0x5464496: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+    n1: 1024 0x54629EB: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1266)
+     n1: 1024 0x5432532: vfprintf (vfprintf.c:1328)
+      n1: 1024 0x543BE52: fprintf (fprintf.c:32)
+       n1: 1024 0x10A968: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+        n0: 1024 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 1088 0x40134A5: _dl_allocate_tls (dl-tls.c:286)
+  n1: 1088 0x57D0226: pthread_create@@GLIBC_2.2.5 (allocatestack.c:627)
+   n1: 1088 0x4E35A99: __n3l_forward_layer (n3_forward.c:53)
+    n1: 1088 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 1088 0x10A4D1: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+      n0: 1088 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 1040 0x4E36523: n3l_neuron_build (n3_neuron.c:13)
+  n3: 1040 0x4E365CF: n3l_neuron_build_after (n3_neuron.c:30)
+   n1: 480 0x4E362FF: n3l_network_build (n3_network.c:37)
+    n1: 480 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 480 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 320 0x4E3627A: n3l_network_build (n3_network.c:27)
+    n1: 320 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 320 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 240 0x4E36395: n3l_network_build (n3_network.c:47)
+    n1: 240 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 240 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 552 0x5455E48: fopen@@GLIBC_2.2.5 (iofopen.c:65)
+  n1: 552 0x10A318: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n0: 552 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 480 0x4E366F6: n3l_neuron_build_weights (n3_neuron.c:69)
+  n1: 480 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 480 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+    n0: 480 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 240 0x4E36719: n3l_neuron_build_weights (n3_neuron.c:73)
+  n1: 240 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 240 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+    n0: 240 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n2: 160 0x4E35E81: n3l_layer_build (n3_layer.c:10)
+  n1: 120 0x4E35EE3: n3l_layer_build_after (n3_layer.c:24)
+   n0: 120 in 2 places, all below massif's threshold (1.00%)
+  n0: 40 in 1 place, below massif's threshold (1.00%)
+ n0: 96 in 10 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=3
+#-----------
+time=254569346
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=381475541
+mem_heap_B=8896
+mem_heap_extra_B=800
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=455548398
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=detailed
+n9: 8896 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5120 0x545518A: _IO_file_doallocate (filedoalloc.c:101)
+  n2: 5120 0x5465377: _IO_doallocbuf (genops.c:365)
+   n1: 4096 0x5464252: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:495)
+    n1: 4096 0x54653F0: _IO_default_uflow (genops.c:380)
+     n1: 4096 0x5442BE8: _IO_vfscanf (vfscanf.c:630)
+      n1: 4096 0x54532E4: __isoc99_fscanf (isoc99_fscanf.c:34)
+       n1: 4096 0x10AAC7: get_data (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+        n1: 4096 0x10A37C: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+         n0: 4096 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 1024 0x5464496: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+    n1: 1024 0x54629EB: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1266)
+     n1: 1024 0x5432532: vfprintf (vfprintf.c:1328)
+      n1: 1024 0x543BE52: fprintf (fprintf.c:32)
+       n1: 1024 0x10A968: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+        n0: 1024 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 1088 0x40134A5: _dl_allocate_tls (dl-tls.c:286)
+  n1: 1088 0x57D0226: pthread_create@@GLIBC_2.2.5 (allocatestack.c:627)
+   n1: 1088 0x4E35A99: __n3l_forward_layer (n3_forward.c:53)
+    n1: 1088 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 1088 0x10A4D1: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+      n0: 1088 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 1040 0x4E36523: n3l_neuron_build (n3_neuron.c:13)
+  n3: 1040 0x4E365CF: n3l_neuron_build_after (n3_neuron.c:30)
+   n1: 480 0x4E362FF: n3l_network_build (n3_network.c:37)
+    n1: 480 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 480 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 320 0x4E3627A: n3l_network_build (n3_network.c:27)
+    n1: 320 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 320 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 240 0x4E36395: n3l_network_build (n3_network.c:47)
+    n1: 240 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 240 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 552 0x5455E48: fopen@@GLIBC_2.2.5 (iofopen.c:65)
+  n1: 552 0x10A318: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n0: 552 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 480 0x4E366F6: n3l_neuron_build_weights (n3_neuron.c:69)
+  n1: 480 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 480 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+    n0: 480 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 240 0x4E36719: n3l_neuron_build_weights (n3_neuron.c:73)
+  n1: 240 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 240 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+    n0: 240 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n2: 160 0x4E35E81: n3l_layer_build (n3_layer.c:10)
+  n1: 120 0x4E35EE3: n3l_layer_build_after (n3_layer.c:24)
+   n0: 120 in 2 places, all below massif's threshold (1.00%)
+  n0: 40 in 1 place, below massif's threshold (1.00%)
+ n0: 120 in 9 places, all below massif's threshold (1.00%)
+ n1: 96 0x4E34FA0: n3l_backward_propagation (n3_backward.c:36)
+  n1: 96 0x10A83B: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n0: 96 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+#-----------
+snapshot=6
+#-----------
+time=552549001
+mem_heap_B=8872
+mem_heap_extra_B=784
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=665747872
+mem_heap_B=8896
+mem_heap_extra_B=800
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=776292443
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=878430601
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=1006102507
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=1091229040
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=1221154287
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=1334829046
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=1464763924
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=1610993371
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=1708475814
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=1805954828
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=1928973122
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=detailed
+n9: 8896 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5120 0x545518A: _IO_file_doallocate (filedoalloc.c:101)
+  n2: 5120 0x5465377: _IO_doallocbuf (genops.c:365)
+   n1: 4096 0x5464252: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:495)
+    n1: 4096 0x54653F0: _IO_default_uflow (genops.c:380)
+     n1: 4096 0x5442BE8: _IO_vfscanf (vfscanf.c:630)
+      n1: 4096 0x54532E4: __isoc99_fscanf (isoc99_fscanf.c:34)
+       n1: 4096 0x10AAC7: get_data (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+        n1: 4096 0x10A37C: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+         n0: 4096 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 1024 0x5464496: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+    n1: 1024 0x54629EB: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1266)
+     n1: 1024 0x5432532: vfprintf (vfprintf.c:1328)
+      n1: 1024 0x543BE52: fprintf (fprintf.c:32)
+       n1: 1024 0x10A968: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+        n0: 1024 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 1088 0x40134A5: _dl_allocate_tls (dl-tls.c:286)
+  n1: 1088 0x57D0226: pthread_create@@GLIBC_2.2.5 (allocatestack.c:627)
+   n1: 1088 0x4E35A99: __n3l_forward_layer (n3_forward.c:53)
+    n1: 1088 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 1088 0x10A4D1: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+      n0: 1088 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 1040 0x4E36523: n3l_neuron_build (n3_neuron.c:13)
+  n3: 1040 0x4E365CF: n3l_neuron_build_after (n3_neuron.c:30)
+   n1: 480 0x4E362FF: n3l_network_build (n3_network.c:37)
+    n1: 480 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 480 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 320 0x4E3627A: n3l_network_build (n3_network.c:27)
+    n1: 320 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 320 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 240 0x4E36395: n3l_network_build (n3_network.c:47)
+    n1: 240 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 240 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 552 0x5455E48: fopen@@GLIBC_2.2.5 (iofopen.c:65)
+  n1: 552 0x10A318: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n0: 552 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 480 0x4E366F6: n3l_neuron_build_weights (n3_neuron.c:69)
+  n1: 480 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 480 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+    n0: 480 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 240 0x4E36719: n3l_neuron_build_weights (n3_neuron.c:73)
+  n1: 240 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 240 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+    n0: 240 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n2: 160 0x4E35E81: n3l_layer_build (n3_layer.c:10)
+  n1: 120 0x4E35EE3: n3l_layer_build_after (n3_layer.c:24)
+   n0: 120 in 2 places, all below massif's threshold (1.00%)
+  n0: 40 in 1 place, below massif's threshold (1.00%)
+ n0: 120 in 9 places, all below massif's threshold (1.00%)
+ n1: 96 0x4E34FA0: n3l_backward_propagation (n3_backward.c:36)
+  n1: 96 0x10A83B: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n0: 96 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+#-----------
+snapshot=19
+#-----------
+time=2031157514
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=2184438530
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=detailed
+n9: 8896 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5120 0x545518A: _IO_file_doallocate (filedoalloc.c:101)
+  n2: 5120 0x5465377: _IO_doallocbuf (genops.c:365)
+   n1: 4096 0x5464252: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:495)
+    n1: 4096 0x54653F0: _IO_default_uflow (genops.c:380)
+     n1: 4096 0x5442BE8: _IO_vfscanf (vfscanf.c:630)
+      n1: 4096 0x54532E4: __isoc99_fscanf (isoc99_fscanf.c:34)
+       n1: 4096 0x10AAC7: get_data (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+        n1: 4096 0x10A37C: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+         n0: 4096 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 1024 0x5464496: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+    n1: 1024 0x54629EB: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1266)
+     n1: 1024 0x5432532: vfprintf (vfprintf.c:1328)
+      n1: 1024 0x543BE52: fprintf (fprintf.c:32)
+       n1: 1024 0x10A968: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+        n0: 1024 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 1088 0x40134A5: _dl_allocate_tls (dl-tls.c:286)
+  n1: 1088 0x57D0226: pthread_create@@GLIBC_2.2.5 (allocatestack.c:627)
+   n1: 1088 0x4E35A99: __n3l_forward_layer (n3_forward.c:53)
+    n1: 1088 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 1088 0x10A4D1: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+      n0: 1088 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 1040 0x4E36523: n3l_neuron_build (n3_neuron.c:13)
+  n3: 1040 0x4E365CF: n3l_neuron_build_after (n3_neuron.c:30)
+   n1: 480 0x4E362FF: n3l_network_build (n3_network.c:37)
+    n1: 480 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 480 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 320 0x4E3627A: n3l_network_build (n3_network.c:27)
+    n1: 320 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 320 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 240 0x4E36395: n3l_network_build (n3_network.c:47)
+    n1: 240 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 240 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 552 0x5455E48: fopen@@GLIBC_2.2.5 (iofopen.c:65)
+  n1: 552 0x10A318: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n0: 552 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 480 0x4E366F6: n3l_neuron_build_weights (n3_neuron.c:69)
+  n1: 480 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 480 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+    n0: 480 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 240 0x4E36719: n3l_neuron_build_weights (n3_neuron.c:73)
+  n1: 240 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 240 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+    n0: 240 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n2: 160 0x4E35E81: n3l_layer_build (n3_layer.c:10)
+  n1: 120 0x4E35EE3: n3l_layer_build_after (n3_layer.c:24)
+   n0: 120 in 2 places, all below massif's threshold (1.00%)
+  n0: 40 in 1 place, below massif's threshold (1.00%)
+ n0: 120 in 9 places, all below massif's threshold (1.00%)
+ n1: 96 0x4E34FA0: n3l_backward_propagation (n3_backward.c:36)
+  n1: 96 0x10A83B: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n0: 96 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+#-----------
+snapshot=21
+#-----------
+time=2286620346
+mem_heap_B=8896
+mem_heap_extra_B=800
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=2414338304
+mem_heap_B=8776
+mem_heap_extra_B=752
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=2516512553
+mem_heap_B=8768
+mem_heap_extra_B=760
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=2644235693
+mem_heap_B=8768
+mem_heap_extra_B=760
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=2797531618
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=2925266731
+mem_heap_B=8768
+mem_heap_extra_B=760
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=3027442401
+mem_heap_B=8768
+mem_heap_extra_B=760
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=3180709783
+mem_heap_B=8776
+mem_heap_extra_B=752
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=3265660169
+mem_heap_B=8800
+mem_heap_extra_B=768
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=3350665255
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=3478096931
+mem_heap_B=8896
+mem_heap_extra_B=800
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=3563109373
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=3733011216
+mem_heap_B=8896
+mem_heap_extra_B=800
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=3818023841
+mem_heap_B=8776
+mem_heap_extra_B=752
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=3902974925
+mem_heap_B=8896
+mem_heap_extra_B=800
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=3987981335
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=4115413443
+mem_heap_B=8800
+mem_heap_extra_B=768
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=4200364911
+mem_heap_B=8800
+mem_heap_extra_B=768
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=4285368766
+mem_heap_B=8776
+mem_heap_extra_B=752
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=4370321979
+mem_heap_B=8896
+mem_heap_extra_B=800
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=4497750798
+mem_heap_B=8776
+mem_heap_extra_B=752
+mem_stacks_B=0
+heap_tree=detailed
+n8: 8776 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5120 0x545518A: _IO_file_doallocate (filedoalloc.c:101)
+  n2: 5120 0x5465377: _IO_doallocbuf (genops.c:365)
+   n1: 4096 0x5464252: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:495)
+    n1: 4096 0x54653F0: _IO_default_uflow (genops.c:380)
+     n1: 4096 0x5442BE8: _IO_vfscanf (vfscanf.c:630)
+      n1: 4096 0x54532E4: __isoc99_fscanf (isoc99_fscanf.c:34)
+       n1: 4096 0x10AAC7: get_data (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+        n1: 4096 0x10A37C: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+         n0: 4096 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 1024 0x5464496: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+    n1: 1024 0x54629EB: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1266)
+     n1: 1024 0x5432532: vfprintf (vfprintf.c:1328)
+      n1: 1024 0x543BE52: fprintf (fprintf.c:32)
+       n1: 1024 0x10A968: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+        n0: 1024 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 1088 0x40134A5: _dl_allocate_tls (dl-tls.c:286)
+  n1: 1088 0x57D0226: pthread_create@@GLIBC_2.2.5 (allocatestack.c:627)
+   n1: 1088 0x4E35A99: __n3l_forward_layer (n3_forward.c:53)
+    n1: 1088 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 1088 0x10A4D1: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+      n0: 1088 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 1040 0x4E36523: n3l_neuron_build (n3_neuron.c:13)
+  n3: 1040 0x4E365CF: n3l_neuron_build_after (n3_neuron.c:30)
+   n1: 480 0x4E362FF: n3l_network_build (n3_network.c:37)
+    n1: 480 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 480 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 320 0x4E3627A: n3l_network_build (n3_network.c:27)
+    n1: 320 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 320 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 240 0x4E36395: n3l_network_build (n3_network.c:47)
+    n1: 240 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 240 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 552 0x5455E48: fopen@@GLIBC_2.2.5 (iofopen.c:65)
+  n1: 552 0x10A318: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n0: 552 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 480 0x4E366F6: n3l_neuron_build_weights (n3_neuron.c:69)
+  n1: 480 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 480 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+    n0: 480 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 240 0x4E36719: n3l_neuron_build_weights (n3_neuron.c:73)
+  n1: 240 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 240 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+    n0: 240 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n2: 160 0x4E35E81: n3l_layer_build (n3_layer.c:10)
+  n1: 120 0x4E35EE3: n3l_layer_build_after (n3_layer.c:24)
+   n0: 120 in 2 places, all below massif's threshold (1.00%)
+  n0: 40 in 1 place, below massif's threshold (1.00%)
+ n0: 96 in 10 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=42
+#-----------
+time=4582703524
+mem_heap_B=8800
+mem_heap_extra_B=768
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=4710189960
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=4795157440
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=4880123083
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=5007572522
+mem_heap_B=8896
+mem_heap_extra_B=776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=5135006753
+mem_heap_B=8776
+mem_heap_extra_B=752
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=5219960850
+mem_heap_B=8776
+mem_heap_extra_B=752
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=5304914801
+mem_heap_B=8776
+mem_heap_extra_B=752
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=5378990910
+mem_heap_B=8768
+mem_heap_extra_B=760
+mem_stacks_B=0
+heap_tree=detailed
+n8: 8768 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5120 0x545518A: _IO_file_doallocate (filedoalloc.c:101)
+  n2: 5120 0x5465377: _IO_doallocbuf (genops.c:365)
+   n1: 4096 0x5464252: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:495)
+    n1: 4096 0x54653F0: _IO_default_uflow (genops.c:380)
+     n1: 4096 0x5442BE8: _IO_vfscanf (vfscanf.c:630)
+      n1: 4096 0x54532E4: __isoc99_fscanf (isoc99_fscanf.c:34)
+       n1: 4096 0x10AAC7: get_data (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+        n1: 4096 0x10A37C: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+         n0: 4096 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 1024 0x5464496: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+    n1: 1024 0x54629EB: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1266)
+     n1: 1024 0x5432532: vfprintf (vfprintf.c:1328)
+      n1: 1024 0x543BE52: fprintf (fprintf.c:32)
+       n1: 1024 0x10A968: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+        n0: 1024 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 1088 0x40134A5: _dl_allocate_tls (dl-tls.c:286)
+  n1: 1088 0x57D0226: pthread_create@@GLIBC_2.2.5 (allocatestack.c:627)
+   n1: 1088 0x4E35A99: __n3l_forward_layer (n3_forward.c:53)
+    n1: 1088 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 1088 0x10A4D1: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+      n0: 1088 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 1040 0x4E36523: n3l_neuron_build (n3_neuron.c:13)
+  n3: 1040 0x4E365CF: n3l_neuron_build_after (n3_neuron.c:30)
+   n1: 480 0x4E362FF: n3l_network_build (n3_network.c:37)
+    n1: 480 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 480 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 320 0x4E3627A: n3l_network_build (n3_network.c:27)
+    n1: 320 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 320 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n1: 240 0x4E36395: n3l_network_build (n3_network.c:47)
+    n1: 240 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+     n0: 240 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 552 0x5455E48: fopen@@GLIBC_2.2.5 (iofopen.c:65)
+  n1: 552 0x10A318: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+   n0: 552 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 480 0x4E366F6: n3l_neuron_build_weights (n3_neuron.c:69)
+  n1: 480 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 480 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+    n0: 480 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n1: 240 0x4E36719: n3l_neuron_build_weights (n3_neuron.c:73)
+  n1: 240 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 240 0x10A2B2: iris_classification (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+    n0: 240 0x10A193: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/iris/gen_report)
+ n2: 160 0x4E35E81: n3l_layer_build (n3_layer.c:10)
+  n1: 120 0x4E35EE3: n3l_layer_build_after (n3_layer.c:24)
+   n0: 120 in 2 places, all below massif's threshold (1.00%)
+  n0: 40 in 1 place, below massif's threshold (1.00%)
+ n0: 88 in 10 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=51
+#-----------
+time=5453065084
+mem_heap_B=8768
+mem_heap_extra_B=760
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=5527139287
+mem_heap_B=8768
+mem_heap_extra_B=760
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=5601212373
+mem_heap_B=8768
+mem_heap_extra_B=760
+mem_stacks_B=0
+heap_tree=empty

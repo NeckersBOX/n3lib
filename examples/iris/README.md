@@ -13,46 +13,8 @@ It's designed with the idea that each output neuron give the probabily about eac
 | Iris-versicolor | 2 |
 
 # Reports
-
 ## IRIS - Report
-### Report ID: 59d477f2-bbe7-4b52-b5e0-d04844d82073
-
-### Configuration
-
-| Conf              | Value          |
-|-------------------|----------------|
-| Iterations        | `50000`     |
-| Learning Rate     | `0.01`      |
-| Input Neurons     | `4`          |
-| Hidden Neurons    | `3`          |
-| Hidden Layers     | `2`          |
-| Output Neurons    | `3`          |
-| Input Act         | `None`       |
-| Hidden Act        | `Swish`    |
-| Output Act        | `Swish`    |
-| **Extra Args**    | `` |
-
-### Learning Graph
-- **MNS:** It's the Mobile Network Success rate. Range from 0 to 1. Higher is better.
-- **MNE:** It's the Mobile Network Error rate. Lower is better.
-
-![MNE Plot](iris.report.59d477f2-bbe7-4b52-b5e0-d04844d82073.plot-mne.png)
-
-![MNS Plot](iris.report.59d477f2-bbe7-4b52-b5e0-d04844d82073.plot-mns.png)
-
-### Memory Usage Graph
-Memory usage was evaluated by _massif_ tool.
-
-![Massif](iris.report.59d477f2-bbe7-4b52-b5e0-d04844d82073.memory.png)
-
-### Execution Time
-
-| Mode                 | Time ( seconds )   |
-|----------------------|--------------------|
-| Forward Propagation  | `27.208896672`  |
-| Backward Propagation | `87.079262506` |
-## IRIS - Report
-### Report ID: aae271a9-2bbb-4b9f-931c-decdc4c576c5
+### Report ID: 858fb2a4-e989-4856-b007-1bb708144349
 
 ### Configuration
 
@@ -61,11 +23,11 @@ Memory usage was evaluated by _massif_ tool.
 | Iterations        | `50000`     |
 | Learning Rate     | `0.05`          |
 | Input Neurons     | `4`          |
-| Hidden Neurons    | `3`          |
 | Hidden Layers     | `1`          |
+| Hidden 0 - Neurons    | `3`          |
 | Output Neurons    | `3`          |
 | Input Act         | `None`       |
-| Hidden Act        | `Sigmoid`    |
+| Hidden 0 - Act        | `Sigmoid`    |
 | Output Act        | `Sigmoid`    |
 | **Extra Args**    | `` |
 
@@ -73,18 +35,57 @@ Memory usage was evaluated by _massif_ tool.
 - **MNS:** It's the Mobile Network Success rate. Range from 0 to 1. Higher is better.
 - **MNE:** It's the Mobile Network Error rate. Lower is better.
 
-![MNE Plot](iris.report.aae271a9-2bbb-4b9f-931c-decdc4c576c5.plot-mne.png)
+![MNE Plot](iris.report.858fb2a4-e989-4856-b007-1bb708144349.plot-mne.png)
 
-![MNS Plot](iris.report.aae271a9-2bbb-4b9f-931c-decdc4c576c5.plot-mns.png)
+![MNS Plot](iris.report.858fb2a4-e989-4856-b007-1bb708144349.plot-mns.png)
 
 ### Memory Usage Graph
 Memory usage was evaluated by _massif_ tool.
 
-![Massif](iris.report.aae271a9-2bbb-4b9f-931c-decdc4c576c5.memory.png)
+![Massif](iris.report.858fb2a4-e989-4856-b007-1bb708144349.memory.png)
 
 ### Execution Time
 
 | Mode                 | Time ( seconds )   |
 |----------------------|--------------------|
-| Forward Propagation  | `15.152438212`  |
-| Backward Propagation | `31.286549418` |
+| Forward Propagation  | `11.176395536`  |
+| Backward Propagation | `13.169245450` |
+## IRIS - Report
+### Report ID: 63e0bcb3-01f0-414c-b8dd-be4edcce0dbb
+
+### Configuration
+
+| Conf              | Value          |
+|-------------------|----------------|
+| Iterations        | `50000`     |
+| Learning Rate     | `0.01`          |
+| Input Neurons     | `4`          |
+| Hidden Layers     | `2`          |
+| Hidden 0 - Neurons    | `3`          |
+| Hidden 1 - Neurons    | `3`          |
+| Output Neurons    | `3`          |
+| Input Act         | `None`       |
+| Hidden 0 - Act        | `Swish`    |
+| Hidden 1 - Act        | `Swish`    |
+| Output Act        | `Swish`    |
+| **Extra Args**    | `` |
+
+### Learning Graph
+- **MNS:** It's the Mobile Network Success rate. Range from 0 to 1. Higher is better.
+- **MNE:** It's the Mobile Network Error rate. Lower is better.
+
+![MNE Plot](iris.report.63e0bcb3-01f0-414c-b8dd-be4edcce0dbb.plot-mne.png)
+
+![MNS Plot](iris.report.63e0bcb3-01f0-414c-b8dd-be4edcce0dbb.plot-mns.png)
+
+### Memory Usage Graph
+Memory usage was evaluated by _massif_ tool.
+
+![Massif](iris.report.63e0bcb3-01f0-414c-b8dd-be4edcce0dbb.memory.png)
+
+### Execution Time
+
+| Mode                 | Time ( seconds )   |
+|----------------------|--------------------|
+| Forward Propagation  | `15.086868480`  |
+| Backward Propagation | `18.545450527` |
