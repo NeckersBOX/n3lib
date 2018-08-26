@@ -117,7 +117,7 @@ void xor_operation(struct n3_example_args args)
 #else
     if ( args.progress ) {
       fprintf(stdout, "\r[XOR] Iteration %ld on %ld - TNE: %.3lf - TNS: %.3lf%%",
-        iter + 1, args.iterations, net->targets[0] - outs[0], (success * 100.f) / (double) iter);
+        iter + 1, args.iterations, net->targets[0] - outs[0], (success * 100.f) / (double) (iter + 1));
     }
 #endif
 
@@ -151,7 +151,7 @@ double *get_inputs_batch_mode(void)
   inputs = (double *) malloc(2 * sizeof(double));
 
   inputs[0] = (double) (step & 1);
-  inputs[1] = (double) (step & 2);
+  inputs[1] = (double) ((step & 2) >> 1);
   step = (step == 3) ? 0 : (step + 1);
 
   return inputs;
