@@ -3,13 +3,12 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 #define N3L_VERSION "2.0.0"
 
 typedef double (*N3LAct)(double);
 typedef double (*N3LWeightGenerator)(void *);
-
-typedef enum { false = 0, true } bool;
 
 typedef enum {
   N3LInputLayer = 0,
