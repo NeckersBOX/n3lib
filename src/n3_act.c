@@ -1,9 +1,30 @@
+/**
+ * @file n3_act.c
+ * @author Davide Francesco Merico
+ * @brief This file contains activation functions and their primitive.
+ */
 #include <assert.h>
 #include <math.h>
 #include "n3_header.h"
 
+/**
+ * @brief Get the absolute value of the argument passed.
+ *
+ * @param x value
+ * @return x if x is positive, otherwise -x.
+ */
 #define N3L_ABS(x) (((x) < 0) ? -(x) : (x))
 
+/**
+ * @brief Doesn't change the value passed as argument.
+ *
+ * Used when no activation function is needed, by default is used for input layer's neurons.
+ *
+ * @param val input value
+ * @return the same value passed as argument.
+ *
+ * @see n3l_act_identity, n3l_act
+ */
 double n3l_act_none(double val)
 {
   return val;

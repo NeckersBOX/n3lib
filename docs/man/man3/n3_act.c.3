@@ -1,0 +1,142 @@
+.TH "src/n3_act.c" 3 "Tue Aug 28 2018" "N3 Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/n3_act.c \- This file contains activation functions and their primitive\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <assert\&.h>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include 'n3_header\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBN3L_ABS\fP(x)   (((x) < 0) ? \-(x) : (x))"
+.br
+.RI "Get the absolute value of the argument passed\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "double \fBn3l_act_none\fP (double val)"
+.br
+.RI "Doesn't change the value passed as argument\&. "
+.ti -1c
+.RI "double \fBn3l_act_sigmoid\fP (double val)"
+.br
+.ti -1c
+.RI "double \fBn3l_act_sigmoid_prime\fP (double val)"
+.br
+.ti -1c
+.RI "double \fBn3l_act_tanh\fP (double val)"
+.br
+.ti -1c
+.RI "double \fBn3l_act_tanh_prime\fP (double val)"
+.br
+.ti -1c
+.RI "double \fBn3l_act_relu\fP (double val)"
+.br
+.ti -1c
+.RI "double \fBn3l_act_relu_prime\fP (double val)"
+.br
+.ti -1c
+.RI "double \fBn3l_act_identity\fP (double val)"
+.br
+.ti -1c
+.RI "double \fBn3l_act_identity_prime\fP (double val)"
+.br
+.ti -1c
+.RI "double \fBn3l_act_softsign\fP (double val)"
+.br
+.ti -1c
+.RI "double \fBn3l_act_softsign_prime\fP (double val)"
+.br
+.ti -1c
+.RI "double \fBn3l_act_leaky_relu\fP (double val)"
+.br
+.ti -1c
+.RI "double \fBn3l_act_leaky_relu_prime\fP (double val)"
+.br
+.ti -1c
+.RI "double \fBn3l_act_softplus\fP (double val)"
+.br
+.ti -1c
+.RI "double \fBn3l_act_softplus_prime\fP (double val)"
+.br
+.ti -1c
+.RI "double \fBn3l_act_swish\fP (double val)"
+.br
+.ti -1c
+.RI "double \fBn3l_act_swish_prime\fP (double val)"
+.br
+.ti -1c
+.RI "N3LAct \fBn3l_act\fP (N3LActType type)"
+.br
+.ti -1c
+.RI "N3LAct \fBn3l_act_prime\fP (N3LActType type)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This file contains activation functions and their primitive\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Davide Francesco Merico 
+.RE
+.PP
+
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define N3L_ABS(x)   (((x) < 0) ? \-(x) : (x))"
+
+.PP
+Get the absolute value of the argument passed\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP value 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+x if x is positive, otherwise -x\&. 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "double n3l_act_none (double val)"
+
+.PP
+Doesn't change the value passed as argument\&. Used when no activation function is needed, by default is used for input layer's neurons\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIval\fP input value 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the same value passed as argument\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+n3l_act_identity, n3l_act 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for N3 Library from the source code\&.

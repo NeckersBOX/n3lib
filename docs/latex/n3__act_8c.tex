@@ -1,0 +1,136 @@
+\hypertarget{n3__act_8c}{}\section{src/n3\+\_\+act.c File Reference}
+\label{n3__act_8c}\index{src/n3\+\_\+act.\+c@{src/n3\+\_\+act.\+c}}
+
+
+This file contains activation functions and their primitive.  
+
+
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}n3\+\_\+header.\+h\char`\"{}}\newline
+Include dependency graph for n3\+\_\+act.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{n3__act_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{n3__act_8c_a5347f97ed167ced1e9ffb374f218d479}{N3\+L\+\_\+\+A\+BS}(x)~(((x) $<$ 0) ? -\/(x) \+: (x))
+\begin{DoxyCompactList}\small\item\em Get the absolute value of the argument passed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{n3__act_8c_a8dc073371b15e2574897762b54f9326c}{n3l\+\_\+act\+\_\+none} (double val)
+\begin{DoxyCompactList}\small\item\em Doesn\textquotesingle{}t change the value passed as argument. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{n3__act_8c_ad01dde283500e1fbac8d916967bfd883}\label{n3__act_8c_ad01dde283500e1fbac8d916967bfd883}} 
+double {\bfseries n3l\+\_\+act\+\_\+sigmoid} (double val)
+\item 
+\mbox{\Hypertarget{n3__act_8c_a4c1864b101c16c51e69a34b130fc30b6}\label{n3__act_8c_a4c1864b101c16c51e69a34b130fc30b6}} 
+double {\bfseries n3l\+\_\+act\+\_\+sigmoid\+\_\+prime} (double val)
+\item 
+\mbox{\Hypertarget{n3__act_8c_aa05576ce02d1c18c0af9f042d1068c7a}\label{n3__act_8c_aa05576ce02d1c18c0af9f042d1068c7a}} 
+double {\bfseries n3l\+\_\+act\+\_\+tanh} (double val)
+\item 
+\mbox{\Hypertarget{n3__act_8c_a24f63de53f6417037d5bebec78e08870}\label{n3__act_8c_a24f63de53f6417037d5bebec78e08870}} 
+double {\bfseries n3l\+\_\+act\+\_\+tanh\+\_\+prime} (double val)
+\item 
+\mbox{\Hypertarget{n3__act_8c_a07a8cded25f1d3b726053b50cba78eb0}\label{n3__act_8c_a07a8cded25f1d3b726053b50cba78eb0}} 
+double {\bfseries n3l\+\_\+act\+\_\+relu} (double val)
+\item 
+\mbox{\Hypertarget{n3__act_8c_ae94558725d2c300ef0879b83ee5e733a}\label{n3__act_8c_ae94558725d2c300ef0879b83ee5e733a}} 
+double {\bfseries n3l\+\_\+act\+\_\+relu\+\_\+prime} (double val)
+\item 
+\mbox{\Hypertarget{n3__act_8c_a066f6fed961da89043b1b496aa5ac6d0}\label{n3__act_8c_a066f6fed961da89043b1b496aa5ac6d0}} 
+double {\bfseries n3l\+\_\+act\+\_\+identity} (double val)
+\item 
+\mbox{\Hypertarget{n3__act_8c_a7706b52da3c207ee1ded39ced860a138}\label{n3__act_8c_a7706b52da3c207ee1ded39ced860a138}} 
+double {\bfseries n3l\+\_\+act\+\_\+identity\+\_\+prime} (double val)
+\item 
+\mbox{\Hypertarget{n3__act_8c_a9e9cd6045617a4063602ccd9e94281bf}\label{n3__act_8c_a9e9cd6045617a4063602ccd9e94281bf}} 
+double {\bfseries n3l\+\_\+act\+\_\+softsign} (double val)
+\item 
+\mbox{\Hypertarget{n3__act_8c_aeb7c71c9bb444a3a875b7838064c8bb4}\label{n3__act_8c_aeb7c71c9bb444a3a875b7838064c8bb4}} 
+double {\bfseries n3l\+\_\+act\+\_\+softsign\+\_\+prime} (double val)
+\item 
+\mbox{\Hypertarget{n3__act_8c_a2091491a8d0155701b6170c324b52eef}\label{n3__act_8c_a2091491a8d0155701b6170c324b52eef}} 
+double {\bfseries n3l\+\_\+act\+\_\+leaky\+\_\+relu} (double val)
+\item 
+\mbox{\Hypertarget{n3__act_8c_a326894c0edd659426f5deaec6abe5182}\label{n3__act_8c_a326894c0edd659426f5deaec6abe5182}} 
+double {\bfseries n3l\+\_\+act\+\_\+leaky\+\_\+relu\+\_\+prime} (double val)
+\item 
+\mbox{\Hypertarget{n3__act_8c_ab678727eab04c73e227d0511f10da9ab}\label{n3__act_8c_ab678727eab04c73e227d0511f10da9ab}} 
+double {\bfseries n3l\+\_\+act\+\_\+softplus} (double val)
+\item 
+\mbox{\Hypertarget{n3__act_8c_a405fc712bf5abf365c90a343c664c273}\label{n3__act_8c_a405fc712bf5abf365c90a343c664c273}} 
+double {\bfseries n3l\+\_\+act\+\_\+softplus\+\_\+prime} (double val)
+\item 
+\mbox{\Hypertarget{n3__act_8c_a64fdb17c0915027691ad0b1340bdb1af}\label{n3__act_8c_a64fdb17c0915027691ad0b1340bdb1af}} 
+double {\bfseries n3l\+\_\+act\+\_\+swish} (double val)
+\item 
+\mbox{\Hypertarget{n3__act_8c_ac0171e96a4e3c4220a4a0353e77f042b}\label{n3__act_8c_ac0171e96a4e3c4220a4a0353e77f042b}} 
+double {\bfseries n3l\+\_\+act\+\_\+swish\+\_\+prime} (double val)
+\item 
+\mbox{\Hypertarget{n3__act_8c_af9034678bae2b94ebcf0d9b2ac5cfcb7}\label{n3__act_8c_af9034678bae2b94ebcf0d9b2ac5cfcb7}} 
+N3\+L\+Act {\bfseries n3l\+\_\+act} (N3\+L\+Act\+Type type)
+\item 
+\mbox{\Hypertarget{n3__act_8c_a9253520cb5a58edf61f04997c3161f21}\label{n3__act_8c_a9253520cb5a58edf61f04997c3161f21}} 
+N3\+L\+Act {\bfseries n3l\+\_\+act\+\_\+prime} (N3\+L\+Act\+Type type)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains activation functions and their primitive. 
+
+\begin{DoxyAuthor}{Author}
+Davide Francesco Merico 
+\end{DoxyAuthor}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{n3__act_8c_a5347f97ed167ced1e9ffb374f218d479}\label{n3__act_8c_a5347f97ed167ced1e9ffb374f218d479}} 
+\index{n3\+\_\+act.\+c@{n3\+\_\+act.\+c}!N3\+L\+\_\+\+A\+BS@{N3\+L\+\_\+\+A\+BS}}
+\index{N3\+L\+\_\+\+A\+BS@{N3\+L\+\_\+\+A\+BS}!n3\+\_\+act.\+c@{n3\+\_\+act.\+c}}
+\subsubsection{\texorpdfstring{N3\+L\+\_\+\+A\+BS}{N3L\_ABS}}
+{\footnotesize\ttfamily \#define N3\+L\+\_\+\+A\+BS(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(((x) $<$ 0) ? -\/(x) \+: (x))}
+
+
+
+Get the absolute value of the argument passed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+x if x is positive, otherwise -\/x. 
+\end{DoxyReturn}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{n3__act_8c_a8dc073371b15e2574897762b54f9326c}\label{n3__act_8c_a8dc073371b15e2574897762b54f9326c}} 
+\index{n3\+\_\+act.\+c@{n3\+\_\+act.\+c}!n3l\+\_\+act\+\_\+none@{n3l\+\_\+act\+\_\+none}}
+\index{n3l\+\_\+act\+\_\+none@{n3l\+\_\+act\+\_\+none}!n3\+\_\+act.\+c@{n3\+\_\+act.\+c}}
+\subsubsection{\texorpdfstring{n3l\+\_\+act\+\_\+none()}{n3l\_act\_none()}}
+{\footnotesize\ttfamily double n3l\+\_\+act\+\_\+none (\begin{DoxyParamCaption}\item[{double}]{val }\end{DoxyParamCaption})}
+
+
+
+Doesn\textquotesingle{}t change the value passed as argument. 
+
+Used when no activation function is needed, by default is used for input layer\textquotesingle{}s neurons.
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & input value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the same value passed as argument.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+n3l\+\_\+act\+\_\+identity, n3l\+\_\+act 
+\end{DoxySeeAlso}
