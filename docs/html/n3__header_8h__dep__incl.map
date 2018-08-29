@@ -4,4 +4,5 @@
 <area shape="rect" id="node4" href="$n3__backward_8c.html" title="This file contains functions to backpropagate the error and adjusts the weights. " alt="" coords="208,80,340,107"/>
 <area shape="rect" id="node5" href="$n3__file_8c.html" title="This file contains functions to import and save a network state. " alt="" coords="365,80,458,107"/>
 <area shape="rect" id="node6" href="$n3__forward_8c.html" title="This file contains functions to forward the inputs provided to the outputs. " alt="" coords="483,80,601,107"/>
+<area shape="rect" id="node7" href="$n3__layer_8c.html" title="This file contains functions to work with N3Layers. " alt="" coords="626,80,730,107"/>
 </map>

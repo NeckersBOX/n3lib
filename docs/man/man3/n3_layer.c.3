@@ -1,0 +1,227 @@
+.TH "src/n3_layer.c" 3 "Wed Aug 29 2018" "N3 Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/n3_layer.c \- This file contains functions to work with N3Layers\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include 'n3_header\&.h'\fP
+.br
+\fC#include 'n3_neuron\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBN3LLayer\fP * \fBn3l_layer_build\fP (\fBN3LLayerType\fP ltype)"
+.br
+.RI "Build a layer\&. "
+.ti -1c
+.RI "\fBN3LLayer\fP * \fBn3l_layer_build_after\fP (\fBN3LLayer\fP *prev, \fBN3LLayerType\fP ltype)"
+.br
+.RI "Build a layer linked to a previous one\&. "
+.ti -1c
+.RI "\fBN3LLayer\fP * \fBn3l_layer_build_before\fP (\fBN3LLayer\fP *next, \fBN3LLayerType\fP ltype)"
+.br
+.RI "Build a layer linked to a next one\&. "
+.ti -1c
+.RI "uint64_t \fBn3l_layer_count\fP (\fBN3LLayer\fP *head)"
+.br
+.RI "Count the layers from the layer passed as argument\&. "
+.ti -1c
+.RI "void \fBn3l_layer_free\fP (\fBN3LLayer\fP *layer)"
+.br
+.RI "Free the layer's allocated memory\&. "
+.ti -1c
+.RI "void \fBn3l_layer_set_custom_act\fP (\fBN3LLayer\fP *layer, \fBN3LAct\fP act, \fBN3LAct\fP prime, bool ignore_bias)"
+.br
+.RI "Set custom activation functions to the layer's neurons\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+This file contains functions to work with N3Layers\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Davide Francesco Merico 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+You may not use these functions directly but use functions like n3l_network_build(), n3l_network_free(), \fBn3l_file_import_network()\fP, etc\&.\&. 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBN3LLayer\fP* n3l_layer_build (\fBN3LLayerType\fP ltype)"
+
+.PP
+Build a layer\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIltype\fP Layer type\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The new built layer of type \fCltype\fP\&.
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+References to neurons or others layers are set to NULL\&. 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_layer_build_after\fP, \fBn3l_layer_build_before\fP, \fBn3l_layer_free\fP 
+.RE
+.PP
+
+.SS "\fBN3LLayer\fP* n3l_layer_build_after (\fBN3LLayer\fP * prev, \fBN3LLayerType\fP ltype)"
+
+.PP
+Build a layer linked to a previous one\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIprev\fP Previous layer to link the current one\&. 
+.br
+\fIltype\fP Layer type\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The new built layer of type \fCltype\fP\&.
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+References to neurons or next layers are set to NULL\&. 
+.PP
+Reference to previous layer is set to \fCprev\fP 
+.PP
+\fCprev\fP reference to the next layer is set to the current one\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_layer_build\fP, \fBn3l_layer_build_before\fP, \fBn3l_layer_free\fP 
+.RE
+.PP
+
+.SS "\fBN3LLayer\fP* n3l_layer_build_before (\fBN3LLayer\fP * next, \fBN3LLayerType\fP ltype)"
+
+.PP
+Build a layer linked to a next one\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInext\fP Next layer to link the current one\&. 
+.br
+\fIltype\fP Layer type\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The new built layer of type \fCltype\fP\&.
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+References to neurons are set to NULL\&. 
+.PP
+Reference to previous layer is set to \fCnext->prev\fP 
+.PP
+\fCnext\fP reference to the previous layer is set to the current one\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_layer_build\fP, \fBn3l_layer_build_after\fP, \fBn3l_layer_free\fP 
+.RE
+.PP
+
+.SS "uint64_t n3l_layer_count (\fBN3LLayer\fP * head)"
+
+.PP
+Count the layers from the layer passed as argument\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhead\fP Layer from which to start counting the next layers\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Number of layers from \fChead\fP ( it included )\&. 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+If \fChead\fP is NULL, the return value is 0\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_layer_build\fP, \fBn3l_layer_build_after\fP, \fBn3l_layer_build_before\fP 
+.RE
+.PP
+
+.SS "void n3l_layer_free (\fBN3LLayer\fP * layer)"
+
+.PP
+Free the layer's allocated memory\&. 
+.PP
+\fBWarning:\fP
+.RS 4
+It also free the memory allocated from neurons into it\&. 
+.PP
+References to linked layers are not changed\&.
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlayer\fP Layer to free\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_layer_build\fP, \fBn3l_layer_build_after\fP, \fBn3l_layer_build_before\fP, n3l_neuron_free 
+.RE
+.PP
+
+.SS "void n3l_layer_set_custom_act (\fBN3LLayer\fP * layer, \fBN3LAct\fP act, \fBN3LAct\fP prime, bool ignore_bias)"
+
+.PP
+Set custom activation functions to the layer's neurons\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlayer\fP Layer to apply the customs activation functions\&. 
+.br
+\fIact\fP Custom activation function\&. 
+.br
+\fIprime\fP Custom activativation function primitive\&. 
+.br
+\fIignore_bias\fP If TRUE the change is not applied to bias neurons\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBN3LAct\fP, n3l_neuron_set_custom_act, \fBn3l_act\fP, \fBn3l_act_prime\fP 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for N3 Library from the source code\&.

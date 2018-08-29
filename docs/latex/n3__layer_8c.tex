@@ -1,0 +1,201 @@
+\hypertarget{n3__layer_8c}{}\section{src/n3\+\_\+layer.c File Reference}
+\label{n3__layer_8c}\index{src/n3\+\_\+layer.\+c@{src/n3\+\_\+layer.\+c}}
+
+
+This file contains functions to work with N3\+Layers.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}n3\+\_\+header.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}n3\+\_\+neuron.\+h\char`\"{}}\newline
+Include dependency graph for n3\+\_\+layer.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{n3__layer_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer} $\ast$ \hyperlink{n3__layer_8c_a135215adb7cf8420293fd4ebd7049655}{n3l\+\_\+layer\+\_\+build} (\hyperlink{n3__header_8h_a1040baea07fec4d26d25641f75e892c5}{N3\+L\+Layer\+Type} ltype)
+\begin{DoxyCompactList}\small\item\em Build a layer. \end{DoxyCompactList}\item 
+\hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer} $\ast$ \hyperlink{n3__layer_8c_ae58fb96c07e37c8645e8fd9f2a76c725}{n3l\+\_\+layer\+\_\+build\+\_\+after} (\hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer} $\ast$prev, \hyperlink{n3__header_8h_a1040baea07fec4d26d25641f75e892c5}{N3\+L\+Layer\+Type} ltype)
+\begin{DoxyCompactList}\small\item\em Build a layer linked to a previous one. \end{DoxyCompactList}\item 
+\hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer} $\ast$ \hyperlink{n3__layer_8c_a34b79476ceb642057989ab8691b2ce1d}{n3l\+\_\+layer\+\_\+build\+\_\+before} (\hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer} $\ast$next, \hyperlink{n3__header_8h_a1040baea07fec4d26d25641f75e892c5}{N3\+L\+Layer\+Type} ltype)
+\begin{DoxyCompactList}\small\item\em Build a layer linked to a next one. \end{DoxyCompactList}\item 
+uint64\+\_\+t \hyperlink{n3__layer_8c_ab06afb58d55be21a00bde5ee840f6425}{n3l\+\_\+layer\+\_\+count} (\hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer} $\ast$head)
+\begin{DoxyCompactList}\small\item\em Count the layers from the layer passed as argument. \end{DoxyCompactList}\item 
+void \hyperlink{n3__layer_8c_ad58e1630c1b7fc5da03d54cf63c394d9}{n3l\+\_\+layer\+\_\+free} (\hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer} $\ast$layer)
+\begin{DoxyCompactList}\small\item\em Free the layer\textquotesingle{}s allocated memory. \end{DoxyCompactList}\item 
+void \hyperlink{n3__layer_8c_a097eadb210e490788ebf2a7c1c614c6f}{n3l\+\_\+layer\+\_\+set\+\_\+custom\+\_\+act} (\hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer} $\ast$layer, \hyperlink{n3__header_8h_afb10e6f7012513b51225a4d3add36cae}{N3\+L\+Act} act, \hyperlink{n3__header_8h_afb10e6f7012513b51225a4d3add36cae}{N3\+L\+Act} prime, bool ignore\+\_\+bias)
+\begin{DoxyCompactList}\small\item\em Set custom activation functions to the layer\textquotesingle{}s neurons. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains functions to work with N3\+Layers. 
+
+\begin{DoxyAuthor}{Author}
+Davide Francesco Merico 
+\end{DoxyAuthor}
+\begin{DoxyNote}{Note}
+You may not use these functions directly but use functions like n3l\+\_\+network\+\_\+build(), n3l\+\_\+network\+\_\+free(), \hyperlink{n3__file_8c_a4fef76548ed87845dceafaa9527a83d0}{n3l\+\_\+file\+\_\+import\+\_\+network()}, etc.. 
+\end{DoxyNote}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{n3__layer_8c_a135215adb7cf8420293fd4ebd7049655}\label{n3__layer_8c_a135215adb7cf8420293fd4ebd7049655}} 
+\index{n3\+\_\+layer.\+c@{n3\+\_\+layer.\+c}!n3l\+\_\+layer\+\_\+build@{n3l\+\_\+layer\+\_\+build}}
+\index{n3l\+\_\+layer\+\_\+build@{n3l\+\_\+layer\+\_\+build}!n3\+\_\+layer.\+c@{n3\+\_\+layer.\+c}}
+\subsubsection{\texorpdfstring{n3l\+\_\+layer\+\_\+build()}{n3l\_layer\_build()}}
+{\footnotesize\ttfamily \hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer}$\ast$ n3l\+\_\+layer\+\_\+build (\begin{DoxyParamCaption}\item[{\hyperlink{n3__header_8h_a1040baea07fec4d26d25641f75e892c5}{N3\+L\+Layer\+Type}}]{ltype }\end{DoxyParamCaption})}
+
+
+
+Build a layer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ltype} & Layer type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new built layer of type {\ttfamily ltype}.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+References to neurons or others layers are set to N\+U\+LL. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{n3__layer_8c_ae58fb96c07e37c8645e8fd9f2a76c725}{n3l\+\_\+layer\+\_\+build\+\_\+after}, \hyperlink{n3__layer_8c_a34b79476ceb642057989ab8691b2ce1d}{n3l\+\_\+layer\+\_\+build\+\_\+before}, \hyperlink{n3__layer_8c_ad58e1630c1b7fc5da03d54cf63c394d9}{n3l\+\_\+layer\+\_\+free} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{n3__layer_8c_ae58fb96c07e37c8645e8fd9f2a76c725}\label{n3__layer_8c_ae58fb96c07e37c8645e8fd9f2a76c725}} 
+\index{n3\+\_\+layer.\+c@{n3\+\_\+layer.\+c}!n3l\+\_\+layer\+\_\+build\+\_\+after@{n3l\+\_\+layer\+\_\+build\+\_\+after}}
+\index{n3l\+\_\+layer\+\_\+build\+\_\+after@{n3l\+\_\+layer\+\_\+build\+\_\+after}!n3\+\_\+layer.\+c@{n3\+\_\+layer.\+c}}
+\subsubsection{\texorpdfstring{n3l\+\_\+layer\+\_\+build\+\_\+after()}{n3l\_layer\_build\_after()}}
+{\footnotesize\ttfamily \hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer}$\ast$ n3l\+\_\+layer\+\_\+build\+\_\+after (\begin{DoxyParamCaption}\item[{\hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer} $\ast$}]{prev,  }\item[{\hyperlink{n3__header_8h_a1040baea07fec4d26d25641f75e892c5}{N3\+L\+Layer\+Type}}]{ltype }\end{DoxyParamCaption})}
+
+
+
+Build a layer linked to a previous one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prev} & Previous layer to link the current one. \\
+\hline
+{\em ltype} & Layer type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new built layer of type {\ttfamily ltype}.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+References to neurons or next layers are set to N\+U\+LL. 
+
+Reference to previous layer is set to {\ttfamily prev} 
+
+{\ttfamily prev} reference to the next layer is set to the current one.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{n3__layer_8c_a135215adb7cf8420293fd4ebd7049655}{n3l\+\_\+layer\+\_\+build}, \hyperlink{n3__layer_8c_a34b79476ceb642057989ab8691b2ce1d}{n3l\+\_\+layer\+\_\+build\+\_\+before}, \hyperlink{n3__layer_8c_ad58e1630c1b7fc5da03d54cf63c394d9}{n3l\+\_\+layer\+\_\+free} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{n3__layer_8c_a34b79476ceb642057989ab8691b2ce1d}\label{n3__layer_8c_a34b79476ceb642057989ab8691b2ce1d}} 
+\index{n3\+\_\+layer.\+c@{n3\+\_\+layer.\+c}!n3l\+\_\+layer\+\_\+build\+\_\+before@{n3l\+\_\+layer\+\_\+build\+\_\+before}}
+\index{n3l\+\_\+layer\+\_\+build\+\_\+before@{n3l\+\_\+layer\+\_\+build\+\_\+before}!n3\+\_\+layer.\+c@{n3\+\_\+layer.\+c}}
+\subsubsection{\texorpdfstring{n3l\+\_\+layer\+\_\+build\+\_\+before()}{n3l\_layer\_build\_before()}}
+{\footnotesize\ttfamily \hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer}$\ast$ n3l\+\_\+layer\+\_\+build\+\_\+before (\begin{DoxyParamCaption}\item[{\hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer} $\ast$}]{next,  }\item[{\hyperlink{n3__header_8h_a1040baea07fec4d26d25641f75e892c5}{N3\+L\+Layer\+Type}}]{ltype }\end{DoxyParamCaption})}
+
+
+
+Build a layer linked to a next one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em next} & Next layer to link the current one. \\
+\hline
+{\em ltype} & Layer type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new built layer of type {\ttfamily ltype}.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+References to neurons are set to N\+U\+LL. 
+
+Reference to previous layer is set to {\ttfamily next-\/$>$prev} 
+
+{\ttfamily next} reference to the previous layer is set to the current one.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{n3__layer_8c_a135215adb7cf8420293fd4ebd7049655}{n3l\+\_\+layer\+\_\+build}, \hyperlink{n3__layer_8c_ae58fb96c07e37c8645e8fd9f2a76c725}{n3l\+\_\+layer\+\_\+build\+\_\+after}, \hyperlink{n3__layer_8c_ad58e1630c1b7fc5da03d54cf63c394d9}{n3l\+\_\+layer\+\_\+free} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{n3__layer_8c_ab06afb58d55be21a00bde5ee840f6425}\label{n3__layer_8c_ab06afb58d55be21a00bde5ee840f6425}} 
+\index{n3\+\_\+layer.\+c@{n3\+\_\+layer.\+c}!n3l\+\_\+layer\+\_\+count@{n3l\+\_\+layer\+\_\+count}}
+\index{n3l\+\_\+layer\+\_\+count@{n3l\+\_\+layer\+\_\+count}!n3\+\_\+layer.\+c@{n3\+\_\+layer.\+c}}
+\subsubsection{\texorpdfstring{n3l\+\_\+layer\+\_\+count()}{n3l\_layer\_count()}}
+{\footnotesize\ttfamily uint64\+\_\+t n3l\+\_\+layer\+\_\+count (\begin{DoxyParamCaption}\item[{\hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Count the layers from the layer passed as argument. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & Layer from which to start counting the next layers. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of layers from {\ttfamily head} ( it included ). 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+If {\ttfamily head} is N\+U\+LL, the return value is 0.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{n3__layer_8c_a135215adb7cf8420293fd4ebd7049655}{n3l\+\_\+layer\+\_\+build}, \hyperlink{n3__layer_8c_ae58fb96c07e37c8645e8fd9f2a76c725}{n3l\+\_\+layer\+\_\+build\+\_\+after}, \hyperlink{n3__layer_8c_a34b79476ceb642057989ab8691b2ce1d}{n3l\+\_\+layer\+\_\+build\+\_\+before} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{n3__layer_8c_ad58e1630c1b7fc5da03d54cf63c394d9}\label{n3__layer_8c_ad58e1630c1b7fc5da03d54cf63c394d9}} 
+\index{n3\+\_\+layer.\+c@{n3\+\_\+layer.\+c}!n3l\+\_\+layer\+\_\+free@{n3l\+\_\+layer\+\_\+free}}
+\index{n3l\+\_\+layer\+\_\+free@{n3l\+\_\+layer\+\_\+free}!n3\+\_\+layer.\+c@{n3\+\_\+layer.\+c}}
+\subsubsection{\texorpdfstring{n3l\+\_\+layer\+\_\+free()}{n3l\_layer\_free()}}
+{\footnotesize\ttfamily void n3l\+\_\+layer\+\_\+free (\begin{DoxyParamCaption}\item[{\hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer} $\ast$}]{layer }\end{DoxyParamCaption})}
+
+
+
+Free the layer\textquotesingle{}s allocated memory. 
+
+\begin{DoxyWarning}{Warning}
+It also free the memory allocated from neurons into it. 
+
+References to linked layers are not changed.
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em layer} & Layer to free.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{n3__layer_8c_a135215adb7cf8420293fd4ebd7049655}{n3l\+\_\+layer\+\_\+build}, \hyperlink{n3__layer_8c_ae58fb96c07e37c8645e8fd9f2a76c725}{n3l\+\_\+layer\+\_\+build\+\_\+after}, \hyperlink{n3__layer_8c_a34b79476ceb642057989ab8691b2ce1d}{n3l\+\_\+layer\+\_\+build\+\_\+before}, n3l\+\_\+neuron\+\_\+free 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{n3__layer_8c_a097eadb210e490788ebf2a7c1c614c6f}\label{n3__layer_8c_a097eadb210e490788ebf2a7c1c614c6f}} 
+\index{n3\+\_\+layer.\+c@{n3\+\_\+layer.\+c}!n3l\+\_\+layer\+\_\+set\+\_\+custom\+\_\+act@{n3l\+\_\+layer\+\_\+set\+\_\+custom\+\_\+act}}
+\index{n3l\+\_\+layer\+\_\+set\+\_\+custom\+\_\+act@{n3l\+\_\+layer\+\_\+set\+\_\+custom\+\_\+act}!n3\+\_\+layer.\+c@{n3\+\_\+layer.\+c}}
+\subsubsection{\texorpdfstring{n3l\+\_\+layer\+\_\+set\+\_\+custom\+\_\+act()}{n3l\_layer\_set\_custom\_act()}}
+{\footnotesize\ttfamily void n3l\+\_\+layer\+\_\+set\+\_\+custom\+\_\+act (\begin{DoxyParamCaption}\item[{\hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer} $\ast$}]{layer,  }\item[{\hyperlink{n3__header_8h_afb10e6f7012513b51225a4d3add36cae}{N3\+L\+Act}}]{act,  }\item[{\hyperlink{n3__header_8h_afb10e6f7012513b51225a4d3add36cae}{N3\+L\+Act}}]{prime,  }\item[{bool}]{ignore\+\_\+bias }\end{DoxyParamCaption})}
+
+
+
+Set custom activation functions to the layer\textquotesingle{}s neurons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em layer} & Layer to apply the customs activation functions. \\
+\hline
+{\em act} & Custom activation function. \\
+\hline
+{\em prime} & Custom activativation function primitive. \\
+\hline
+{\em ignore\+\_\+bias} & If T\+R\+UE the change is not applied to bias neurons.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{n3__header_8h_afb10e6f7012513b51225a4d3add36cae}{N3\+L\+Act}, n3l\+\_\+neuron\+\_\+set\+\_\+custom\+\_\+act, \hyperlink{n3__act_8c_af9034678bae2b94ebcf0d9b2ac5cfcb7}{n3l\+\_\+act}, \hyperlink{n3__act_8c_a9253520cb5a58edf61f04997c3161f21}{n3l\+\_\+act\+\_\+prime} 
+\end{DoxySeeAlso}
