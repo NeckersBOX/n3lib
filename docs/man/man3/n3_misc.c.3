@@ -1,0 +1,151 @@
+.TH "src/n3_misc.c" 3 "Wed Aug 29 2018" "N3 Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/n3_misc.c \- This file contains functions to simplify working with the library\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include 'n3_header\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "double \fBn3l_misc_rnd_wp1\fP (void *data)"
+.br
+.RI "Get random values between 0 and 1\&. "
+.ti -1c
+.RI "double \fBn3l_misc_rnd_wn1\fP (void *data)"
+.br
+.RI "Get random values between -1 and 0\&. "
+.ti -1c
+.RI "double \fBn3l_misc_rnd_wpn1\fP (void *data)"
+.br
+.RI "Get random values between -1 and 1\&. "
+.ti -1c
+.RI "\fBN3LArgs\fP \fBn3l_misc_init_arg\fP (void)"
+.br
+.RI "Get the defaults arguments to build the network\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+This file contains functions to simplify working with the library\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Davide Francesco Merico 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBN3LArgs\fP n3l_misc_init_arg (void)"
+
+.PP
+Get the defaults arguments to build the network\&. Defaults values:
+.IP "\(bu" 2
+bias: \fC0\&.0\fP 
+.IP "\(bu" 2
+in_size: \fC1\fP 
+.IP "\(bu" 2
+h_size: \fCNULL\fP 
+.IP "\(bu" 2
+h_layers: \fC0\fP 
+.IP "\(bu" 2
+out_size: \fC1\fP 
+.IP "\(bu" 2
+act_in: \fCN3LNone\fP 
+.IP "\(bu" 2
+act_h: \fCNULL\fP 
+.IP "\(bu" 2
+act_out: \fCN3LSigmoid\fP 
+.IP "\(bu" 2
+rand_arg: \fCNULL\fP 
+.IP "\(bu" 2
+rand_weight: \fC&n3l_misc_rnd_wp1\fP 
+.PP
+.PP
+\fBReturns:\fP
+.RS 4
+The defaults arguments listed above\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBN3LArgs\fP, n3l_network_build, \fBn3l_misc_rnd_wp1\fP 
+.RE
+.PP
+
+.SS "double n3l_misc_rnd_wn1 (void * data)"
+
+.PP
+Get random values between -1 and 0\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdata\fP Not used\&. Required by N3LWeightGenerator\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A random value between -1 and 0\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+n3l_neuron_build_weights, \fBN3LArgs\fP 
+.RE
+.PP
+
+.SS "double n3l_misc_rnd_wp1 (void * data)"
+
+.PP
+Get random values between 0 and 1\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdata\fP Not used\&. Required by N3LWeightGenerator\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A random value between 0 and 1\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+n3l_neuron_build_weights, \fBN3LArgs\fP 
+.RE
+.PP
+
+.SS "double n3l_misc_rnd_wpn1 (void * data)"
+
+.PP
+Get random values between -1 and 1\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdata\fP Not used\&. Required by N3LWeightGenerator\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A random value between -1 and 1\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+n3l_neuron_build_weights, \fBN3LArgs\fP 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for N3 Library from the source code\&.
