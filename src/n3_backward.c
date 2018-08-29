@@ -34,7 +34,7 @@ void *__n3l_backward_execute(void *arg);
  * @param net Initialized network
  * @return TRUE if was correctely executed, otherwise FALSE. 
  *
- * @see n3l_forward_execute, N3LNetwork, __n3l_backward_execute
+ * @see n3l_forward_execute, _n3l_network, __n3l_backward_execute
  */
 bool n3l_backward_propagation(N3LNetwork *net)
 {

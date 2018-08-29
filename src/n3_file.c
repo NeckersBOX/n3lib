@@ -33,7 +33,7 @@ double __n3l_get_weight_from_file(void *data)
  * @param filename Previously saved file name with n3l_file_export_network().
  * @return The N3LNetwork saved if successfully read, otherwise NULL.
  *
- * @see n3l_file_export_network, N3LNetwork, n3l_network_build
+ * @see n3l_file_export_network, _n3l_network, n3l_network_build
  */
 N3LNetwork *n3l_file_import_network(char *filename)
 {
@@ -101,7 +101,7 @@ N3LNetwork *n3l_file_import_network(char *filename)
  * @param filename File name into write the current network state.
  * @return TRUE if correctly executed, otherwise FALSE.
  *
- * @see n3l_file_import_network, N3LNetwork, n3l_network_free
+ * @see n3l_file_import_network, _n3l_network, n3l_network_free
  */
 bool n3l_file_export_network(N3LNetwork *net, char *filename)
 {

@@ -66,7 +66,7 @@ double *n3l_forward_propagation(N3LNetwork *net)
  * @param inputs Current layer inputs.
  * @return Current layer outputs.
  *
- * @see n3l_forward_propagation, __n3l_forward_activate, __n3l_forward_get_outputs, N3LLayer
+ * @see n3l_forward_propagation, __n3l_forward_activate, __n3l_forward_get_outputs, _n3l_layer
  */
 double *__n3l_forward_layer(N3LLayer *layer, double *inputs)
 {
@@ -132,7 +132,7 @@ double *__n3l_forward_layer(N3LLayer *layer, double *inputs)
  * @param arg Current neuron to execute.
  * @return NULL.
  *
- * @see __n3l_forward_layer, __n3l_forward_get_outputs, N3LNeuron
+ * @see __n3l_forward_layer, __n3l_forward_get_outputs, _n3l_neuron
  */
 void *__n3l_forward_activate(void *arg)
 {
@@ -147,10 +147,10 @@ void *__n3l_forward_activate(void *arg)
 /**
  * @brief Internal function to get outputs for the next layer's neurons.
  *
- * @param arg thread data of type #_n3l_forward_data.
+ * @param arg thread data of type #__n3l_forward_data.
  * @return NULL.
  *
- * @see __n3l_forward_layer, __n3l_forward_activate, _n3l_forward_data
+ * @see __n3l_forward_layer, __n3l_forward_activate, __n3l_forward_data
  */
 void *__n3l_forward_get_outputs(void *arg)
 {
