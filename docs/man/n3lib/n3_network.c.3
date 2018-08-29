@@ -1,0 +1,95 @@
+.TH "src/n3_network.c" 3 "Thu Aug 30 2018" "N3 Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/n3_network.c \- This file contains functions to work with \fBN3LNetwork\fP type\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include 'n3_header\&.h'\fP
+.br
+\fC#include 'n3_layer\&.h'\fP
+.br
+\fC#include 'n3_neuron\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBN3LNetwork\fP * \fBn3l_network_build\fP (\fBN3LArgs\fP args, double learn_rate)"
+.br
+.RI "Build a new network\&. "
+.ti -1c
+.RI "void \fBn3l_network_free\fP (\fBN3LNetwork\fP *net)"
+.br
+.RI "Free the network's allocated memory\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+This file contains functions to work with \fBN3LNetwork\fP type\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Davide Francesco Merico 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBN3LNetwork\fP* n3l_network_build (\fBN3LArgs\fP args, double learn_rate)"
+
+.PP
+Build a new network\&. 
+.PP
+\fBNote:\fP
+.RS 4
+Layers are built in order: Input, Hidden, Output\&. 
+.PP
+Bias neurons, if specified, are added as last neuron in neurons list\&.
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIargs\fP Parameters to initialize the network\&. 
+.br
+\fIlearn_rate\fP Initial learning rate when used backpropagation\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The new network if built successfully, otherwise NULL\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBN3LArgs\fP, \fBn3l_misc_init_arg\fP, \fBN3LNetwork\fP, \fBn3l_network_free\fP, \fBn3l_file_import_network\fP 
+.RE
+.PP
+
+.SS "void n3l_network_free (\fBN3LNetwork\fP * net)"
+
+.PP
+Free the network's allocated memory\&. 
+.PP
+\fBNote:\fP
+.RS 4
+It also free all network's layers and neurons\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_layer_free\fP, \fBn3l_neuron_free\fP, \fBn3l_network_build\fP 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for N3 Library from the source code\&.

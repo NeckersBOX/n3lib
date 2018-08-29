@@ -1,0 +1,44 @@
+.TH "__n3l_backward_data" 3 "Thu Aug 30 2018" "N3 Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+__n3l_backward_data \- Internal struct to share data between threads\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "uint64_t \fBref\fP"
+.br
+.ti -1c
+.RI "\fBN3LLayer\fP * \fBlayer\fP"
+.br
+.ti -1c
+.RI "double \fBdelta\fP"
+.br
+.ti -1c
+.RI "double \fBlearning_rate\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Internal struct to share data between threads\&. 
+
+Initialized from the current layer to the previous one\&. 
+.SH "Field Documentation"
+.PP 
+.SS "double __n3l_backward_data::delta"
+Delta evaluated 
+.SS "\fBN3LLayer\fP* __n3l_backward_data::layer"
+Previous layer 
+.SS "double __n3l_backward_data::learning_rate"
+Learning rate set to the net 
+.SS "uint64_t __n3l_backward_data::ref"
+Out neuron reference id 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for N3 Library from the source code\&.

@@ -1,0 +1,313 @@
+.TH "src/n3_neuron.c" 3 "Thu Aug 30 2018" "N3 Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/n3_neuron.c \- This file contains functions to work with N3LNeuron type\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include 'n3_header\&.h'\fP
+.br
+\fC#include 'n3_act\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "uint64_t \fBn3l_neuron_count\fP (\fBN3LNeuron\fP *head)"
+.br
+.RI "Count the neurons from the neuron passed as argument\&. "
+.ti -1c
+.RI "\fBN3LNeuron\fP * \fBn3l_neuron_build\fP (\fBN3LActType\fP act_type)"
+.br
+.RI "Build a neuron\&. "
+.ti -1c
+.RI "\fBN3LNeuron\fP * \fBn3l_neuron_build_after\fP (\fBN3LNeuron\fP *prev, \fBN3LActType\fP type)"
+.br
+.RI "Build a neuron linked to a previous one\&. "
+.ti -1c
+.RI "\fBN3LNeuron\fP * \fBn3l_neuron_build_before\fP (\fBN3LNeuron\fP *next, \fBN3LActType\fP type)"
+.br
+.RI "Build a neuron linked to a next one\&. "
+.ti -1c
+.RI "void \fBn3l_neuron_build_weights\fP (\fBN3LNeuron\fP *src, \fBN3LNeuron\fP *t_list, \fBN3LWeightGenerator\fP weight_generator, void *weight_arg)"
+.br
+.RI "Build and initialize weights from a neuron to a list of neurons\&. "
+.ti -1c
+.RI "uint64_t \fBn3l_neuron_count_weights\fP (\fBN3LWeight\fP *head)"
+.br
+.RI "Count the weights from the weight passed as argument\&. "
+.ti -1c
+.RI "void \fBn3l_neuron_free\fP (\fBN3LNeuron\fP *neuron)"
+.br
+.RI "Free the neuron's allocated memory\&. "
+.ti -1c
+.RI "\fBN3LWeight\fP * \fBn3l_neuron_get_weight\fP (\fBN3LWeight\fP *whead, uint64_t t_ref)"
+.br
+.RI "Get the weight with specified target reference\&. "
+.ti -1c
+.RI "void \fBn3l_neuron_set_custom_act\fP (\fBN3LNeuron\fP *neuron, \fBN3LAct\fP act, \fBN3LAct\fP prime)"
+.br
+.RI "Set custom activation functions to the specified neuron\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+This file contains functions to work with N3LNeuron type\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Davide Francesco Merico 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+You may not use these functions directly but use functions like \fBn3l_network_build()\fP, \fBn3l_network_free()\fP, \fBn3l_file_import_network()\fP, etc\&.\&. 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBN3LNeuron\fP* n3l_neuron_build (\fBN3LActType\fP act_type)"
+
+.PP
+Build a neuron\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIact_type\fP Activation function used by the new neuron\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The new built neuron\&.
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+References to weights or others neurons are sets to NULL\&. 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_neuron_build_after\fP, \fBn3l_neuron_build_before\fP, \fBn3l_neuron_free\fP 
+.RE
+.PP
+
+.SS "\fBN3LNeuron\fP* n3l_neuron_build_after (\fBN3LNeuron\fP * prev, \fBN3LActType\fP type)"
+
+.PP
+Build a neuron linked to a previous one\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIprev\fP Previous neuron to link the current one\&. 
+.br
+\fItype\fP Activation function used by the new neuron\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The new built neuron\&.
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+References to weights or next neurons are sets to NULL\&. 
+.PP
+Reference to previous neuron is set to \fCprev\fP 
+.PP
+\fCprev\fP reference to the next neuron is set to the current one\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_neuron_build\fP, \fBn3l_neuron_build_before\fP, \fBn3l_neuron_free\fP 
+.RE
+.PP
+
+.SS "\fBN3LNeuron\fP* n3l_neuron_build_before (\fBN3LNeuron\fP * next, \fBN3LActType\fP type)"
+
+.PP
+Build a neuron linked to a next one\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInext\fP Next neuron to link the current one\&. 
+.br
+\fItype\fP Activation function used by the new neuron\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The new built neuron\&.
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+References to weights are sets to NULL\&. 
+.PP
+Reference to previous neuron is set to \fCnext->prev\fP 
+.PP
+\fCnext\fP reference to the previous neuron is set to the current one\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_neuron_build\fP, \fBn3l_neuron_build_after\fP, \fBn3l_neuron_free\fP 
+.RE
+.PP
+
+.SS "void n3l_neuron_build_weights (\fBN3LNeuron\fP * src, \fBN3LNeuron\fP * t_list, \fBN3LWeightGenerator\fP weight_generator, void * weight_arg)"
+
+.PP
+Build and initialize weights from a neuron to a list of neurons\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsrc\fP The neuron who has the weights with references to \fCt_list\fP 
+.br
+\fIt_list\fP Neuron's list head to be linked by \fCsrc\fP 
+.br
+\fIweight_generator\fP Weight initializing function\&. 
+.br
+\fIweight_arg\fP Argument to pass to \fCweight_generator\fP 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_neuron_count\fP, \fBN3LWeightGenerator\fP, \fBn3l_neuron_count_weights\fP, \fBn3l_neuron_get_weight\fP 
+.RE
+.PP
+
+.SS "uint64_t n3l_neuron_count (\fBN3LNeuron\fP * head)"
+
+.PP
+Count the neurons from the neuron passed as argument\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhead\fP Neuron from which to start counting the next neurons\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Number of neurons from \fChead\fP ( it included )\&. 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+If \fChead\fP is NULL, the return value is 0\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_neuron_build\fP, \fBn3l_neuron_build_after\fP, \fBn3l_neuron_build_before\fP 
+.RE
+.PP
+
+.SS "uint64_t n3l_neuron_count_weights (\fBN3LWeight\fP * head)"
+
+.PP
+Count the weights from the weight passed as argument\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhead\fP Weight from which to start counting the next weights\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Number of weights from \fChead\fP ( it included )\&. 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+If \fChead\fP is NULL, the return value is 0\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_neuron_build_weights\fP, \fB_n3l_weight\fP, \fBn3l_neuron_get_weight\fP 
+.RE
+.PP
+
+.SS "void n3l_neuron_free (\fBN3LNeuron\fP * neuron)"
+
+.PP
+Free the neuron's allocated memory\&. 
+.PP
+\fBWarning:\fP
+.RS 4
+It also free the memory allocated from weights into it\&. 
+.PP
+References to linked neurons are not changed\&.
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIneuron\fP Neuron to free\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_neuron_build\fP, \fBn3l_neuron_build_after\fP, \fBn3l_neuron_build_before\fP 
+.RE
+.PP
+
+.SS "\fBN3LWeight\fP* n3l_neuron_get_weight (\fBN3LWeight\fP * whead, uint64_t t_ref)"
+
+.PP
+Get the weight with specified target reference\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIwhead\fP Weight from which start to search the value \fCt_ref\fP 
+.br
+\fIt_ref\fP Target reference, equal to the linked neuron reference\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The weight with target reference searched if found, otherwise NULL\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_neuron_count_weights\fP, \fBn3l_neuron_build_weights\fP, \fB_n3l_weight\fP 
+.RE
+.PP
+
+.SS "void n3l_neuron_set_custom_act (\fBN3LNeuron\fP * neuron, \fBN3LAct\fP act, \fBN3LAct\fP prime)"
+
+.PP
+Set custom activation functions to the specified neuron\&. 
+.PP
+\fBNote:\fP
+.RS 4
+The act_type of \fCneuron\fP will be set to N3LCustom\&.
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIneuron\fP Neuron to apply the customs activation functions\&. 
+.br
+\fIact\fP Custom activation function\&. 
+.br
+\fIprime\fP Custom activativation function primitive\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBN3LAct\fP, \fBn3l_layer_set_custom_act\fP, \fBn3l_act\fP, \fBn3l_act_prime\fP 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for N3 Library from the source code\&.

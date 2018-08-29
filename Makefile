@@ -1,22 +1,15 @@
-objects = \
-	n3_act.o \
-	n3_backward.o \
-	n3_file.o \
-	n3_forward.o \
-	n3_layer.o \
-	n3_misc.o \
-	n3_network.o \
-	n3_neuron.o
+objects := $(patsubst %.c,%.o,$(wildcard src/*.c))
 
 version = 1.2.9
-all_flags = $(flags) -fPIC
-soname = libn3l.so.$(version)
-aname = libn3l.a.$(version)
+all_flags := $(flags) -fPIC
+soname := libn3l.so.$(version)
+aname := libn3l.a.$(version)
 pkgconfig = n3l.pc
 header_files = $(wildcard src/*.h)
-prefix = $(destdir)/usr
-library_path = $(prefix)/lib
-include_path = $(prefix)/include/n3l
+prefix := $(destdir)/usr
+library_path := $(prefix)/lib
+include_path := $(prefix)/include/n3l
+man_path := $(prefix)/local/share/man/
 private_lib = -lm -lpthread
 
 ifeq ($(debug), true)
@@ -27,7 +20,7 @@ ifeq ($(extra), true)
       all_flags += -Wall -Wextra -ansi -pedantic
 endif
 
-%.o: src/%.c
+src/%.o: src/%.c
 	gcc -c $< -o $@ $(all_flags)
 
 build: $(objects)
@@ -48,6 +41,11 @@ build: $(objects)
 					 "Cflags: -I$(include_path)" > $(pkgconfig)
 	@echo "Done"
 
+doc: n3lib.doxygen.conf
+	doxygen n3lib.doxygen.conf
+	rm -vf docs/man/n3lib/_home_*
+	rm -vf docs/man/n3lib/md*
+
 clean:
 	rm -vf $(objects) $(soname) $(aname) $(pkgconfig)
 
@@ -57,12 +55,19 @@ install: $(soname)
 	 install -D $(aname) $(library_path)/$(aname)
 	 link $(library_path)/$(aname) $(library_path)/libn3l.a
 	 install -D n3lib.h $(include_path)/n3lib.h
+	 @echo -n "Installing header... "
 	 $(foreach header, $(header_files), $(shell install -D -t $(include_path)/src $(header)))
+	 @echo "Done."
 	 install -D $(pkgconfig) $(library_path)/pkgconfig/$(pkgconfig)
+	 @echo -n "Installing manpages... "
+	 mkdir $(man_path) -p
+	 cp docs/man/n3lib $(man_path) -r
+	 @echo "Done."
 
 uninstall:
-	 rm -vr $(library_path)/$(soname) $(include_path) \
-	  $(library_path)/$(aname) \
-	   $(library_path)/pkgconfig/$(pkgconfig)
 	 unlink $(library_path)/libn3l.so
 	 unlink $(library_path)/libn3l.a
+	 rm -vr $(library_path)/$(soname) $(include_path) \
+	  $(library_path)/$(aname) \
+	  $(library_path)/pkgconfig/$(pkgconfig) \
+		$(man_path)/n3lib

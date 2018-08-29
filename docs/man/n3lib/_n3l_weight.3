@@ -1,0 +1,48 @@
+.TH "_n3l_weight" 3 "Thu Aug 30 2018" "N3 Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+_n3l_weight \- Single Linked List which contains weight's values\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <n3_header\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "double \fBvalue\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBtarget_ref\fP"
+.br
+.ti -1c
+.RI "struct \fB_n3l_weight\fP * \fBnext\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Single Linked List which contains weight's values\&. 
+
+The list is built by \fBn3l_network_build()\fP or \fBn3l_file_import_network()\fP\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fB_n3l_neuron\fP, \fBn3l_neuron_get_weight\fP, \fBn3l_neuron_count_weights\fP, \fBn3l_neuron_build_weights\fP 
+.RE
+.PP
+
+.SH "Field Documentation"
+.PP 
+.SS "struct \fB_n3l_weight\fP* _n3l_weight::next"
+Next weight in the list or NULL if it's the last one\&. 
+.SS "uint64_t _n3l_weight::target_ref"
+Reference to the next layer's neuron linked 
+.SS "double _n3l_weight::value"
+Current weight value\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for N3 Library from the source code\&.
