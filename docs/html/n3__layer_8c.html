@@ -93,7 +93,7 @@ $(document).ready(function(){initNavTree('n3__layer_8c.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>This file contains functions to work with N3Layers.  
+<p>This file contains functions to work with N3Layer type.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="n3__header_8h_source.html">n3_header.h</a>&quot;</code><br />
@@ -130,7 +130,7 @@ Functions</h2></td></tr>
 <tr class="separator:a097eadb210e490788ebf2a7c1c614c6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This file contains functions to work with N3Layers. </p>
+<div class="textblock"><p>This file contains functions to work with N3Layer type. </p>
 <dl class="section author"><dt>Author</dt><dd>Davide Francesco Merico </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>You may not use these functions directly but use functions like <a class="el" href="n3__network_8c.html#a5f87e1efebd658dd55d7d2ca1768bdba" title="Build a new network. ">n3l_network_build()</a>, <a class="el" href="n3__network_8c.html#a327ffd586b67f586743d72a146c4ea95" title="Free the network&#39;s allocated memory. ">n3l_network_free()</a>, <a class="el" href="n3__file_8c.html#a4fef76548ed87845dceafaa9527a83d0" title="Import the network state from a previously saved file. ">n3l_file_import_network()</a>, etc.. </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -158,7 +158,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The new built layer of type <code>ltype</code>.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>References to neurons or others layers are set to NULL. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>References to neurons or others layers are sets to NULL. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__layer_8c.html#ae58fb96c07e37c8645e8fd9f2a76c725" title="Build a layer linked to a previous one. ">n3l_layer_build_after</a>, <a class="el" href="n3__layer_8c.html#a34b79476ceb642057989ab8691b2ce1d" title="Build a layer linked to a next one. ">n3l_layer_build_before</a>, <a class="el" href="n3__layer_8c.html#ad58e1630c1b7fc5da03d54cf63c394d9" title="Free the layer&#39;s allocated memory. ">n3l_layer_free</a> </dd></dl>
 
 </div>
@@ -198,7 +198,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The new built layer of type <code>ltype</code>.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>References to neurons or next layers are set to NULL. </dd>
+<dl class="section note"><dt>Note</dt><dd>References to neurons or next layers are sets to NULL. </dd>
 <dd>
 Reference to previous layer is set to <code>prev</code> </dd>
 <dd>
@@ -242,7 +242,7 @@ Reference to previous layer is set to <code>prev</code> </dd>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The new built layer of type <code>ltype</code>.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>References to neurons are set to NULL. </dd>
+<dl class="section note"><dt>Note</dt><dd>References to neurons are sets to NULL. </dd>
 <dd>
 Reference to previous layer is set to <code>next-&gt;prev</code> </dd>
 <dd>
@@ -306,7 +306,7 @@ References to linked layers are not changed.</dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__layer_8c.html#a135215adb7cf8420293fd4ebd7049655" title="Build a layer. ">n3l_layer_build</a>, <a class="el" href="n3__layer_8c.html#ae58fb96c07e37c8645e8fd9f2a76c725" title="Build a layer linked to a previous one. ">n3l_layer_build_after</a>, <a class="el" href="n3__layer_8c.html#a34b79476ceb642057989ab8691b2ce1d" title="Build a layer linked to a next one. ">n3l_layer_build_before</a>, n3l_neuron_free </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__layer_8c.html#a135215adb7cf8420293fd4ebd7049655" title="Build a layer. ">n3l_layer_build</a>, <a class="el" href="n3__layer_8c.html#ae58fb96c07e37c8645e8fd9f2a76c725" title="Build a layer linked to a previous one. ">n3l_layer_build_after</a>, <a class="el" href="n3__layer_8c.html#a34b79476ceb642057989ab8691b2ce1d" title="Build a layer linked to a next one. ">n3l_layer_build_before</a>, <a class="el" href="n3__neuron_8c.html#a3f9b33cd97e88140c8adadb483b1cea5" title="Free the neuron&#39;s allocated memory. ">n3l_neuron_free</a> </dd></dl>
 
 </div>
 </div>
@@ -358,7 +358,7 @@ References to linked layers are not changed.</dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__header_8h.html#afb10e6f7012513b51225a4d3add36cae" title="Pointer to an activation function. ">N3LAct</a>, n3l_neuron_set_custom_act, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__header_8h.html#afb10e6f7012513b51225a4d3add36cae" title="Pointer to an activation function. ">N3LAct</a>, <a class="el" href="n3__neuron_8c.html#a5c77fdd58896efb9fc224b1c4dd15f71" title="Set custom activation functions to the specified neuron. ">n3l_neuron_set_custom_act</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a> </dd></dl>
 
 </div>
 </div>

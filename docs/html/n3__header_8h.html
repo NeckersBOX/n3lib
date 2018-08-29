@@ -116,9 +116,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="rect" id="node4" href="n3__backward_8c.html" title="This file contains functions to backpropagate the error and adjusts the weights. " alt="" coords="208,80,340,107"/>
 <area shape="rect" id="node5" href="n3__file_8c.html" title="This file contains functions to import and save a network state. " alt="" coords="365,80,458,107"/>
 <area shape="rect" id="node6" href="n3__forward_8c.html" title="This file contains functions to forward the inputs provided to the outputs. " alt="" coords="483,80,601,107"/>
-<area shape="rect" id="node7" href="n3__layer_8c.html" title="This file contains functions to work with N3Layers. " alt="" coords="626,80,730,107"/>
+<area shape="rect" id="node7" href="n3__layer_8c.html" title="This file contains functions to work with N3Layer type. " alt="" coords="626,80,730,107"/>
 <area shape="rect" id="node8" href="n3__misc_8c.html" title="This file contains functions to simplify working with the library. " alt="" coords="754,80,858,107"/>
-<area shape="rect" id="node9" href="n3__network_8c.html" title="This file contains functions to build networks. " alt="" coords="882,80,1005,107"/>
+<area shape="rect" id="node9" href="n3__network_8c.html" title="This file contains functions to work with N3LNetwork type. " alt="" coords="882,80,1005,107"/>
+<area shape="rect" id="node10" href="n3__neuron_8c.html" title="This file contains functions to work with N3LNeuron type. " alt="" coords="1029,80,1143,107"/>
 </map>
 </div>
 </div>
@@ -246,7 +247,7 @@ Enumerations</h2></td></tr>
 
 <p>Double Linked List which contains neuron's values. </p>
 <p>The list is built by <a class="el" href="n3__network_8c.html#a5f87e1efebd658dd55d7d2ca1768bdba" title="Build a new network. ">n3l_network_build()</a> or <a class="el" href="n3__file_8c.html#a4fef76548ed87845dceafaa9527a83d0" title="Import the network state from a previously saved file. ">n3l_file_import_network()</a>.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct__n3l__layer.html" title="Double Linked List which contains layer&#39;s values. ">_n3l_layer</a>, <a class="el" href="struct__n3l__weight.html" title="Single Linked List which contains weight&#39;s values. ">_n3l_weight</a>, n3l_neuron_build, n3l_neuron_count, n3l_neuron_free </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct__n3l__layer.html" title="Double Linked List which contains layer&#39;s values. ">_n3l_layer</a>, <a class="el" href="struct__n3l__weight.html" title="Single Linked List which contains weight&#39;s values. ">_n3l_weight</a>, <a class="el" href="n3__neuron_8c.html#ac384b7dc4f11703a017aecc1a46cd666" title="Build a neuron. ">n3l_neuron_build</a>, <a class="el" href="n3__neuron_8c.html#ae5ec0481c488f4052ef52f18639327d2" title="Count the neurons from the neuron passed as argument. ">n3l_neuron_count</a>, <a class="el" href="n3__neuron_8c.html#a3f9b33cd97e88140c8adadb483b1cea5" title="Free the neuron&#39;s allocated memory. ">n3l_neuron_free</a> </dd></dl>
 
 </div>
 </div>
@@ -264,7 +265,7 @@ Enumerations</h2></td></tr>
 
 <p>Single Linked List which contains weight's values. </p>
 <p>The list is built by <a class="el" href="n3__network_8c.html#a5f87e1efebd658dd55d7d2ca1768bdba" title="Build a new network. ">n3l_network_build()</a> or <a class="el" href="n3__file_8c.html#a4fef76548ed87845dceafaa9527a83d0" title="Import the network state from a previously saved file. ">n3l_file_import_network()</a>.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct__n3l__neuron.html" title="Double Linked List which contains neuron&#39;s values. ">_n3l_neuron</a>, n3l_neuron_get_weight, n3l_neuron_count_weights, n3l_neuron_build_weights </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct__n3l__neuron.html" title="Double Linked List which contains neuron&#39;s values. ">_n3l_neuron</a>, <a class="el" href="n3__neuron_8c.html#a3a3cc0184911922f7e0d04956d8587a8" title="Get the weight with specified target reference. ">n3l_neuron_get_weight</a>, <a class="el" href="n3__neuron_8c.html#a8dbe10c6a0fec3f90e08a677c44db4cb" title="Count the weights from the weight passed as argument. ">n3l_neuron_count_weights</a>, <a class="el" href="n3__neuron_8c.html#ada950fd1fa5d1b718c66ddd0d74604d0" title="Build and initialize weights from a neuron to a list of neurons. ">n3l_neuron_build_weights</a> </dd></dl>
 
 </div>
 </div>
@@ -302,7 +303,7 @@ Enumerations</h2></td></tr>
 <p>Activation function type. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, <a class="el" href="struct__n3l__neuron.html" title="Double Linked List which contains neuron&#39;s values. ">_n3l_neuron</a> </dd></dl>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a3118e8995213ca26bd388c3d94cd8056a43a8cba04b86be267aa4a9705ccb74d2"></a>N3LCustom&#160;</td><td class="fielddoc"><p>Custom activation function. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__layer_8c.html#a097eadb210e490788ebf2a7c1c614c6f" title="Set custom activation functions to the layer&#39;s neurons. ">n3l_layer_set_custom_act</a>, n3l_neuron_set_custom_act </dd></dl>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a3118e8995213ca26bd388c3d94cd8056a43a8cba04b86be267aa4a9705ccb74d2"></a>N3LCustom&#160;</td><td class="fielddoc"><p>Custom activation function. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__layer_8c.html#a097eadb210e490788ebf2a7c1c614c6f" title="Set custom activation functions to the layer&#39;s neurons. ">n3l_layer_set_custom_act</a>, <a class="el" href="n3__neuron_8c.html#a5c77fdd58896efb9fc224b1c4dd15f71" title="Set custom activation functions to the specified neuron. ">n3l_neuron_set_custom_act</a> </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a3118e8995213ca26bd388c3d94cd8056af6be5bcaf85e8fc974b3fc20dad32d18"></a>N3LNone&#160;</td><td class="fielddoc"><p>No activation function. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a8dc073371b15e2574897762b54f9326c" title="Doesn&#39;t change the value passed as argument. ">n3l_act_none</a> </dd></dl>
 </td></tr>

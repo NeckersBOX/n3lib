@@ -2,7 +2,7 @@
 .ad l
 .nh
 .SH NAME
-src/n3_layer.c \- This file contains functions to work with N3Layers\&.  
+src/n3_layer.c \- This file contains functions to work with N3Layer type\&.  
 
 .SH SYNOPSIS
 .br
@@ -44,7 +44,7 @@ src/n3_layer.c \- This file contains functions to work with N3Layers\&.
 .in -1c
 .SH "Detailed Description"
 .PP 
-This file contains functions to work with N3Layers\&. 
+This file contains functions to work with N3Layer type\&. 
 
 
 .PP
@@ -78,7 +78,7 @@ The new built layer of type \fCltype\fP\&.
 .PP
 \fBNote:\fP
 .RS 4
-References to neurons or others layers are set to NULL\&. 
+References to neurons or others layers are sets to NULL\&. 
 .RE
 .PP
 \fBSee also:\fP
@@ -106,7 +106,7 @@ The new built layer of type \fCltype\fP\&.
 .PP
 \fBNote:\fP
 .RS 4
-References to neurons or next layers are set to NULL\&. 
+References to neurons or next layers are sets to NULL\&. 
 .PP
 Reference to previous layer is set to \fCprev\fP 
 .PP
@@ -138,7 +138,7 @@ The new built layer of type \fCltype\fP\&.
 .PP
 \fBNote:\fP
 .RS 4
-References to neurons are set to NULL\&. 
+References to neurons are sets to NULL\&. 
 .PP
 Reference to previous layer is set to \fCnext->prev\fP 
 .PP
@@ -196,7 +196,7 @@ References to linked layers are not changed\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_layer_build\fP, \fBn3l_layer_build_after\fP, \fBn3l_layer_build_before\fP, n3l_neuron_free 
+\fBn3l_layer_build\fP, \fBn3l_layer_build_after\fP, \fBn3l_layer_build_before\fP, \fBn3l_neuron_free\fP 
 .RE
 .PP
 
@@ -218,7 +218,7 @@ Set custom activation functions to the layer's neurons\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBN3LAct\fP, n3l_neuron_set_custom_act, \fBn3l_act\fP, \fBn3l_act_prime\fP 
+\fBN3LAct\fP, \fBn3l_neuron_set_custom_act\fP, \fBn3l_act\fP, \fBn3l_act_prime\fP 
 .RE
 .PP
 

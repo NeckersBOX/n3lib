@@ -2,7 +2,7 @@
 \label{n3__layer_8c}\index{src/n3\+\_\+layer.\+c@{src/n3\+\_\+layer.\+c}}
 
 
-This file contains functions to work with N3\+Layers.  
+This file contains functions to work with N3\+Layer type.  
 
 
 {\ttfamily \#include $<$stdlib.\+h$>$}\newline
@@ -33,7 +33,7 @@ void \hyperlink{n3__layer_8c_a097eadb210e490788ebf2a7c1c614c6f}{n3l\+\_\+layer\+
 
 
 \subsection{Detailed Description}
-This file contains functions to work with N3\+Layers. 
+This file contains functions to work with N3\+Layer type. 
 
 \begin{DoxyAuthor}{Author}
 Davide Francesco Merico 
@@ -63,7 +63,7 @@ Build a layer.
 The new built layer of type {\ttfamily ltype}.
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-References to neurons or others layers are set to N\+U\+LL. 
+References to neurons or others layers are sets to N\+U\+LL. 
 \end{DoxyNote}
 \begin{DoxySeeAlso}{See also}
 \hyperlink{n3__layer_8c_ae58fb96c07e37c8645e8fd9f2a76c725}{n3l\+\_\+layer\+\_\+build\+\_\+after}, \hyperlink{n3__layer_8c_a34b79476ceb642057989ab8691b2ce1d}{n3l\+\_\+layer\+\_\+build\+\_\+before}, \hyperlink{n3__layer_8c_ad58e1630c1b7fc5da03d54cf63c394d9}{n3l\+\_\+layer\+\_\+free} 
@@ -89,7 +89,7 @@ Build a layer linked to a previous one.
 The new built layer of type {\ttfamily ltype}.
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-References to neurons or next layers are set to N\+U\+LL. 
+References to neurons or next layers are sets to N\+U\+LL. 
 
 Reference to previous layer is set to {\ttfamily prev} 
 
@@ -119,7 +119,7 @@ Build a layer linked to a next one.
 The new built layer of type {\ttfamily ltype}.
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-References to neurons are set to N\+U\+LL. 
+References to neurons are sets to N\+U\+LL. 
 
 Reference to previous layer is set to {\ttfamily next-\/$>$prev} 
 
@@ -173,7 +173,7 @@ References to linked layers are not changed.
 \hline
 \end{DoxyParams}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{n3__layer_8c_a135215adb7cf8420293fd4ebd7049655}{n3l\+\_\+layer\+\_\+build}, \hyperlink{n3__layer_8c_ae58fb96c07e37c8645e8fd9f2a76c725}{n3l\+\_\+layer\+\_\+build\+\_\+after}, \hyperlink{n3__layer_8c_a34b79476ceb642057989ab8691b2ce1d}{n3l\+\_\+layer\+\_\+build\+\_\+before}, n3l\+\_\+neuron\+\_\+free 
+\hyperlink{n3__layer_8c_a135215adb7cf8420293fd4ebd7049655}{n3l\+\_\+layer\+\_\+build}, \hyperlink{n3__layer_8c_ae58fb96c07e37c8645e8fd9f2a76c725}{n3l\+\_\+layer\+\_\+build\+\_\+after}, \hyperlink{n3__layer_8c_a34b79476ceb642057989ab8691b2ce1d}{n3l\+\_\+layer\+\_\+build\+\_\+before}, \hyperlink{n3__neuron_8c_a3f9b33cd97e88140c8adadb483b1cea5}{n3l\+\_\+neuron\+\_\+free} 
 \end{DoxySeeAlso}
 \mbox{\Hypertarget{n3__layer_8c_a097eadb210e490788ebf2a7c1c614c6f}\label{n3__layer_8c_a097eadb210e490788ebf2a7c1c614c6f}} 
 \index{n3\+\_\+layer.\+c@{n3\+\_\+layer.\+c}!n3l\+\_\+layer\+\_\+set\+\_\+custom\+\_\+act@{n3l\+\_\+layer\+\_\+set\+\_\+custom\+\_\+act}}
@@ -197,5 +197,5 @@ Set custom activation functions to the layer\textquotesingle{}s neurons.
 \hline
 \end{DoxyParams}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{n3__header_8h_afb10e6f7012513b51225a4d3add36cae}{N3\+L\+Act}, n3l\+\_\+neuron\+\_\+set\+\_\+custom\+\_\+act, \hyperlink{n3__act_8c_af9034678bae2b94ebcf0d9b2ac5cfcb7}{n3l\+\_\+act}, \hyperlink{n3__act_8c_a9253520cb5a58edf61f04997c3161f21}{n3l\+\_\+act\+\_\+prime} 
+\hyperlink{n3__header_8h_afb10e6f7012513b51225a4d3add36cae}{N3\+L\+Act}, \hyperlink{n3__neuron_8c_a5c77fdd58896efb9fc224b1c4dd15f71}{n3l\+\_\+neuron\+\_\+set\+\_\+custom\+\_\+act}, \hyperlink{n3__act_8c_af9034678bae2b94ebcf0d9b2ac5cfcb7}{n3l\+\_\+act}, \hyperlink{n3__act_8c_a9253520cb5a58edf61f04997c3161f21}{n3l\+\_\+act\+\_\+prime} 
 \end{DoxySeeAlso}

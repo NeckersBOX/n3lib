@@ -1,7 +1,7 @@
 /**
  * @file n3_network.c
  * @author Davide Francesco Merico
- * @brief This file contains functions to build networks.
+ * @brief This file contains functions to work with N3LNetwork type.
  */
 #include <stdlib.h>
 #include <string.h>
