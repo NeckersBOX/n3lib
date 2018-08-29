@@ -184,6 +184,7 @@ Functions</h2></td></tr>
 <div class="textblock"><p>This file contains activation functions and their primitive. </p>
 <dl class="section author"><dt>Author</dt><dd>Davide Francesco Merico </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a href="https://en.wikipedia.org/wiki/Activation_function">Wikipedia - Activation Function</a> </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>These functions, except for n3l_act or n3l_act_prime, shouldn't be used directly to improve compatibility with future library versions. </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a5347f97ed167ced1e9ffb374f218d479"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5347f97ed167ced1e9ffb374f218d479">&#9670;&nbsp;</a></span>N3L_ABS</h2>
@@ -237,7 +238,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the function chosen.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -268,7 +269,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the results from the formula above.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a7706b52da3c207ee1ded39ced860a138" title="Identity activation primitive function. ">n3l_act_identity_prime</a>, <a class="el" href="n3__act_8c.html#a8dc073371b15e2574897762b54f9326c" title="Doesn&#39;t change the value passed as argument. ">n3l_act_none</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a7706b52da3c207ee1ded39ced860a138" title="Identity activation primitive function. ">n3l_act_identity_prime</a>, <a class="el" href="n3__act_8c.html#a8dc073371b15e2574897762b54f9326c" title="Doesn&#39;t change the value passed as argument. ">n3l_act_none</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -299,7 +300,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the results from the formula above.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a066f6fed961da89043b1b496aa5ac6d0" title="Identity activation function. ">n3l_act_identity</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a066f6fed961da89043b1b496aa5ac6d0" title="Identity activation function. ">n3l_act_identity</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -330,7 +331,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the results from the formula above.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a326894c0edd659426f5deaec6abe5182" title="Leaky ReLU activation primitive function. ">n3l_act_leaky_relu_prime</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a326894c0edd659426f5deaec6abe5182" title="Leaky ReLU activation primitive function. ">n3l_act_leaky_relu_prime</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -361,7 +362,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the results from the formula above.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a2091491a8d0155701b6170c324b52eef" title="Leaky ReLU activation function. ">n3l_act_leaky_relu</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a2091491a8d0155701b6170c324b52eef" title="Leaky ReLU activation function. ">n3l_act_leaky_relu</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -393,7 +394,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the same value passed as argument.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a066f6fed961da89043b1b496aa5ac6d0" title="Identity activation function. ">n3l_act_identity</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a066f6fed961da89043b1b496aa5ac6d0" title="Identity activation function. ">n3l_act_identity</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -421,7 +422,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the function's primitive chosen.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -452,7 +453,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the results from the formula above.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#ae94558725d2c300ef0879b83ee5e733a" title="ReLU activation primitive function. ">n3l_act_relu_prime</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#ae94558725d2c300ef0879b83ee5e733a" title="ReLU activation primitive function. ">n3l_act_relu_prime</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -483,7 +484,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the results from the formula above.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a07a8cded25f1d3b726053b50cba78eb0" title="ReLU activation function. ">n3l_act_relu</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a07a8cded25f1d3b726053b50cba78eb0" title="ReLU activation function. ">n3l_act_relu</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -514,7 +515,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the results from the formula above.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a4c1864b101c16c51e69a34b130fc30b6" title="Sigmoid activation primitive function. ">n3l_act_sigmoid_prime</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a4c1864b101c16c51e69a34b130fc30b6" title="Sigmoid activation primitive function. ">n3l_act_sigmoid_prime</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -545,7 +546,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the results from the formula above.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#ad01dde283500e1fbac8d916967bfd883" title="Sigmoid activation function. ">n3l_act_sigmoid</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#ad01dde283500e1fbac8d916967bfd883" title="Sigmoid activation function. ">n3l_act_sigmoid</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -576,7 +577,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the results from the formula above.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a405fc712bf5abf365c90a343c664c273" title="SoftPlus activation primitive function. ">n3l_act_softplus_prime</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a405fc712bf5abf365c90a343c664c273" title="SoftPlus activation primitive function. ">n3l_act_softplus_prime</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -607,7 +608,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the results from the formula above.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#ab678727eab04c73e227d0511f10da9ab" title="SoftPlus activation function. ">n3l_act_softplus</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#ab678727eab04c73e227d0511f10da9ab" title="SoftPlus activation function. ">n3l_act_softplus</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -638,7 +639,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the results from the formula above.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#aeb7c71c9bb444a3a875b7838064c8bb4" title="SoftSign activation primitive function. ">n3l_act_softsign_prime</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#aeb7c71c9bb444a3a875b7838064c8bb4" title="SoftSign activation primitive function. ">n3l_act_softsign_prime</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -669,7 +670,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the results from the formula above.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a9e9cd6045617a4063602ccd9e94281bf" title="SoftSign activation function. ">n3l_act_softsign</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a9e9cd6045617a4063602ccd9e94281bf" title="SoftSign activation function. ">n3l_act_softsign</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -700,7 +701,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the results from the formula above.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#ac0171e96a4e3c4220a4a0353e77f042b" title="Swish activation primitive function. ">n3l_act_swish_prime</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#ac0171e96a4e3c4220a4a0353e77f042b" title="Swish activation primitive function. ">n3l_act_swish_prime</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -731,7 +732,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the results from the formula above.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a64fdb17c0915027691ad0b1340bdb1af" title="Swish activation function. ">n3l_act_swish</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a64fdb17c0915027691ad0b1340bdb1af" title="Swish activation function. ">n3l_act_swish</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -762,7 +763,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the results from the formula above.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a24f63de53f6417037d5bebec78e08870" title="Tanh activation primitive function. ">n3l_act_tanh_prime</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#a24f63de53f6417037d5bebec78e08870" title="Tanh activation primitive function. ">n3l_act_tanh_prime</a>, <a class="el" href="n3__act_8c.html#af9034678bae2b94ebcf0d9b2ac5cfcb7" title="Get the pointer to an activation function. ">n3l_act</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>
@@ -793,7 +794,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the results from the formula above.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#aa05576ce02d1c18c0af9f042d1068c7a" title="Tanh activation function. ">n3l_act_tanh</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LActType </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__act_8c.html#aa05576ce02d1c18c0af9f042d1068c7a" title="Tanh activation function. ">n3l_act_tanh</a>, <a class="el" href="n3__act_8c.html#a9253520cb5a58edf61f04997c3161f21" title="Get the pointer to an activation primitive function. ">n3l_act_prime</a>, N3LAct, N3LActTye </dd></dl>
 
 </div>
 </div>

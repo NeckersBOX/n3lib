@@ -118,6 +118,11 @@ Davide Francesco Merico
 \fCWikipedia - Activation Function\fP 
 .RE
 .PP
+\fBNote:\fP
+.RS 4
+These functions, except for n3l_act or n3l_act_prime, shouldn't be used directly to improve compatibility with future library versions\&. 
+.RE
+.PP
 
 .SH "Macro Definition Documentation"
 .PP 
@@ -156,7 +161,7 @@ Pointer to the function chosen\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_prime\fP, N3LActType 
+\fBn3l_act_prime\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -177,7 +182,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_identity_prime\fP, \fBn3l_act_none\fP, \fBn3l_act\fP, N3LActType 
+\fBn3l_act_identity_prime\fP, \fBn3l_act_none\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -198,7 +203,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_identity\fP, \fBn3l_act_prime\fP, N3LActType 
+\fBn3l_act_identity\fP, \fBn3l_act_prime\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -219,7 +224,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_leaky_relu_prime\fP, \fBn3l_act\fP, N3LActType 
+\fBn3l_act_leaky_relu_prime\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -240,7 +245,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_leaky_relu\fP, \fBn3l_act_prime\fP, N3LActType 
+\fBn3l_act_leaky_relu\fP, \fBn3l_act_prime\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -262,7 +267,7 @@ the same value passed as argument\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_identity\fP, \fBn3l_act\fP, N3LActType 
+\fBn3l_act_identity\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -283,7 +288,7 @@ Pointer to the function's primitive chosen\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act\fP, N3LActType 
+\fBn3l_act\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -304,7 +309,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_relu_prime\fP, \fBn3l_act\fP, N3LActType 
+\fBn3l_act_relu_prime\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -325,7 +330,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_relu\fP, \fBn3l_act_prime\fP, N3LActType 
+\fBn3l_act_relu\fP, \fBn3l_act_prime\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -346,7 +351,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_sigmoid_prime\fP, \fBn3l_act\fP, N3LActType 
+\fBn3l_act_sigmoid_prime\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -367,7 +372,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_sigmoid\fP, \fBn3l_act_prime\fP, N3LActType 
+\fBn3l_act_sigmoid\fP, \fBn3l_act_prime\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -388,7 +393,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_softplus_prime\fP, \fBn3l_act\fP, N3LActType 
+\fBn3l_act_softplus_prime\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -409,7 +414,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_softplus\fP, \fBn3l_act_prime\fP, N3LActType 
+\fBn3l_act_softplus\fP, \fBn3l_act_prime\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -430,7 +435,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_softsign_prime\fP, \fBn3l_act\fP, N3LActType 
+\fBn3l_act_softsign_prime\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -451,7 +456,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_softsign\fP, \fBn3l_act_prime\fP, N3LActType 
+\fBn3l_act_softsign\fP, \fBn3l_act_prime\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -472,7 +477,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_swish_prime\fP, \fBn3l_act\fP, N3LActType 
+\fBn3l_act_swish_prime\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -493,7 +498,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_swish\fP, \fBn3l_act_prime\fP, N3LActType 
+\fBn3l_act_swish\fP, \fBn3l_act_prime\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -514,7 +519,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_tanh_prime\fP, \fBn3l_act\fP, N3LActType 
+\fBn3l_act_tanh_prime\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
@@ -535,7 +540,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_tanh\fP, \fBn3l_act_prime\fP, N3LActType 
+\fBn3l_act_tanh\fP, \fBn3l_act_prime\fP, N3LAct, N3LActTye 
 .RE
 .PP
 
