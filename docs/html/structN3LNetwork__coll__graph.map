@@ -1,5 +1,0 @@
-<map id="N3LNetwork" name="N3LNetwork">
-<area shape="rect" id="node2" href="$struct__n3l__layer.html" title="_n3l_layer" alt="" coords="12,203,93,229"/>
-<area shape="rect" id="node3" href="$struct__n3l__neuron.html" title="_n3l_neuron" alt="" coords="7,96,99,123"/>
-<area shape="rect" id="node4" href="$struct__n3l__weight.html" title="_n3l_weight" alt="" coords="7,5,98,32"/>
-</map>

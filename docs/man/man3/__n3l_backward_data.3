@@ -2,7 +2,8 @@
 .ad l
 .nh
 .SH NAME
-__n3l_backward_data
+__n3l_backward_data \- Internal struct to share data between threads\&.  
+
 .SH SYNOPSIS
 .br
 .PP
@@ -22,6 +23,21 @@ __n3l_backward_data
 .RI "double \fBlearning_rate\fP"
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+Internal struct to share data between threads\&. 
+
+Initialized from the current layer to the previous one\&. 
+.SH "Field Documentation"
+.PP 
+.SS "double __n3l_backward_data::delta"
+Delta evaluated 
+.SS "\fBN3LLayer\fP* __n3l_backward_data::layer"
+Previous layer 
+.SS "double __n3l_backward_data::learning_rate"
+Learning rate set to the net 
+.SS "uint64_t __n3l_backward_data::ref"
+Out neuron reference id 
 
 .SH "Author"
 .PP 

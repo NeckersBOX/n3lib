@@ -1,3 +1,8 @@
+/**
+ * @file n3_backward.c
+ * @author Davide Francesco Merico
+ * @brief This file contains functions to backpropagate the error and adjusts the weights.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -5,15 +10,32 @@
 #include "n3_header.h"
 #include "n3_neuron.h"
 
+/**
+ * @brief Internal struct to share data between threads.
+ * 
+ * Initialized from the current layer to the previous one.
+ */
 struct __n3l_backward_data {
-  uint64_t ref;
-  N3LLayer *layer;
-  double delta;
-  double learning_rate;
+  uint64_t ref;					 /**< Out neuron reference id */
+  N3LLayer *layer;			 /**< Previous layer */
+  double delta;					 /**< Delta evaluated */
+  double learning_rate;	 /**< Learning rate set to the net */
 };
 
 void *__n3l_backward_execute(void *arg);
 
+/**
+ * @brief Execute backward propagation on the whole network.
+ *
+ * The member \p net->targets must be initialized before calling this function.
+ * Each call to the previous layer from the last layer is execute with concurrents threads.
+ *
+ * @note This function should be called after n3l_forward_execute()
+ * @param net Initialized network
+ * @return TRUE if was correctely executed, otherwise FALSE. 
+ *
+ * @see n3l_forward_execute, N3LNetwork, __n3l_backward_execute
+ */
 bool n3l_backward_propagation(N3LNetwork *net)
 {
   pthread_t *threads;
@@ -53,7 +75,17 @@ bool n3l_backward_propagation(N3LNetwork *net)
   return true;
 }
 
-
+/**
+ * @brief Internal function to execute backward propagation from the current layer to the previous one.
+ *
+ * Recursive function to execute backpropagation from the current layer to the previous one, only if 
+ * the layer passed as thread data is not NULL. After backpropagate it adjusts the current layer's weights.
+ *
+ * @param arg Pointer to an initialized #__n3l_backward_data struct
+ * @return No value returned.
+ *
+ * @see n3l_backward_execute, __n3l_backward_data
+ */
 void *__n3l_backward_execute(void *arg)
 {
   struct __n3l_backward_data *tdata = (struct __n3l_backward_data *) arg;

@@ -1,0 +1,87 @@
+\hypertarget{n3__backward_8c}{}\section{src/n3\+\_\+backward.c File Reference}
+\label{n3__backward_8c}\index{src/n3\+\_\+backward.\+c@{src/n3\+\_\+backward.\+c}}
+
+
+This file contains functions to backpropagate the error and adjusts the weights.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}n3\+\_\+header.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}n3\+\_\+neuron.\+h\char`\"{}}\newline
+Include dependency graph for n3\+\_\+backward.\+c\+:
+% FIG 0
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct____n3l__backward__data}{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Internal struct to share data between threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{n3__backward_8c_accf39951eeeca43985b286831dd397ce}{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+execute}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Internal function to execute backward propagation from the current layer to the previous one. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{n3__backward_8c_a871c936d33bfb280aa548e2dfd5ff32c}{n3l\+\_\+backward\+\_\+propagation}} (\mbox{\hyperlink{structN3LNetwork}{N3\+L\+Network}} $\ast$net)
+\begin{DoxyCompactList}\small\item\em Execute backward propagation on the whole network. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains functions to backpropagate the error and adjusts the weights. 
+
+\begin{DoxyAuthor}{Author}
+Davide Francesco Merico 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{n3__backward_8c_accf39951eeeca43985b286831dd397ce}\label{n3__backward_8c_accf39951eeeca43985b286831dd397ce}} 
+\index{n3\+\_\+backward.\+c@{n3\+\_\+backward.\+c}!\+\_\+\+\_\+n3l\+\_\+backward\+\_\+execute@{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+execute}}
+\index{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+execute@{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+execute}!n3\+\_\+backward.\+c@{n3\+\_\+backward.\+c}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+execute()}{\_\_n3l\_backward\_execute()}}
+{\footnotesize\ttfamily void $\ast$ \+\_\+\+\_\+n3l\+\_\+backward\+\_\+execute (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Internal function to execute backward propagation from the current layer to the previous one. 
+
+Recursive function to execute backpropagation from the current layer to the previous one, only if the layer passed as thread data is not N\+U\+LL. After backpropagate it adjusts the current layer\textquotesingle{}s weights.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & Pointer to an itialized \mbox{\hyperlink{struct____n3l__backward__data}{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+data}} struct \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+No value returned.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+n3l\+\_\+backward\+\_\+execute, \mbox{\hyperlink{struct____n3l__backward__data}{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+data}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{n3__backward_8c_a871c936d33bfb280aa548e2dfd5ff32c}\label{n3__backward_8c_a871c936d33bfb280aa548e2dfd5ff32c}} 
+\index{n3\+\_\+backward.\+c@{n3\+\_\+backward.\+c}!n3l\+\_\+backward\+\_\+propagation@{n3l\+\_\+backward\+\_\+propagation}}
+\index{n3l\+\_\+backward\+\_\+propagation@{n3l\+\_\+backward\+\_\+propagation}!n3\+\_\+backward.\+c@{n3\+\_\+backward.\+c}}
+\subsubsection{\texorpdfstring{n3l\+\_\+backward\+\_\+propagation()}{n3l\_backward\_propagation()}}
+{\footnotesize\ttfamily bool n3l\+\_\+backward\+\_\+propagation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structN3LNetwork}{N3\+L\+Network}} $\ast$}]{net }\end{DoxyParamCaption})}
+
+
+
+Execute backward propagation on the whole network. 
+
+The member {\ttfamily net-\/$>$targets} must be initialized before calling this function. Each call to the previous layer from the last layer is execute with concurrents threads.
+
+\begin{DoxyNote}{Note}
+This function should be called after n3l\+\_\+forward\+\_\+execute() 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em net} & Initialized network \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+R\+UE if was correctely executed, otherwise F\+A\+L\+SE.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+n3l\+\_\+forward\+\_\+execute, \mbox{\hyperlink{structN3LNetwork}{N3\+L\+Network}}, \mbox{\hyperlink{n3__backward_8c_accf39951eeeca43985b286831dd397ce}{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+execute}} 
+\end{DoxySeeAlso}
