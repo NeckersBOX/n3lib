@@ -3,7 +3,6 @@
  * @author Davide Francesco Merico
  * @brief This file contains functions to forward the inputs provided to the outputs.
  */
-#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <pthread.h>
@@ -13,7 +12,7 @@
 
 /**
  * @brief Internal struct to share data between threads.
- * 
+ *
  * Initialized from the current layer to the next one.
  *
  * @see __n3l_forward_get_outputs
@@ -59,7 +58,7 @@ double *n3l_forward_propagation(N3LNetwork *net)
 /**
  * @brief Internal function to execute forward propagation from the current layer to the next one.
  *
- * This function first execute all neurons in the \p layer using concurrents threads. 
+ * This function first execute all neurons in the \p layer using concurrents threads.
  * When all threads are executed, get the outputs for each neuron in the next layers.
  *
  * @param layer Current layer to execute.

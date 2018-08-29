@@ -1,0 +1,278 @@
+\hypertarget{n3__header_8h}{}\section{src/n3\+\_\+header.h File Reference}
+\label{n3__header_8h}\index{src/n3\+\_\+header.\+h@{src/n3\+\_\+header.\+h}}
+
+
+This file contains types, enums and structs definitions.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+Include dependency graph for n3\+\_\+header.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{n3__header_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{n3__header_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct__n3l__weight}{\+\_\+n3l\+\_\+weight}
+\begin{DoxyCompactList}\small\item\em Single Linked List which contains weight\textquotesingle{}s values. \end{DoxyCompactList}\item 
+struct \hyperlink{struct__n3l__neuron}{\+\_\+n3l\+\_\+neuron}
+\begin{DoxyCompactList}\small\item\em Double Linked List which contains neuron\textquotesingle{}s values. \end{DoxyCompactList}\item 
+struct \hyperlink{struct__n3l__layer}{\+\_\+n3l\+\_\+layer}
+\begin{DoxyCompactList}\small\item\em Double Linked List which contains layer\textquotesingle{}s values. \end{DoxyCompactList}\item 
+struct \hyperlink{structN3LArgs}{N3\+L\+Args}
+\begin{DoxyCompactList}\small\item\em Network arguments. \end{DoxyCompactList}\item 
+struct \hyperlink{structN3LNetwork}{N3\+L\+Network}
+\begin{DoxyCompactList}\small\item\em Network state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{n3__header_8h_a95bd80c66274b8f2dc5dd76bd547432e}\label{n3__header_8h_a95bd80c66274b8f2dc5dd76bd547432e}} 
+\#define \hyperlink{n3__header_8h_a95bd80c66274b8f2dc5dd76bd547432e}{N3\+L\+\_\+\+V\+E\+R\+S\+I\+ON}~\char`\"{}2.\+0.\+0\char`\"{}
+\begin{DoxyCompactList}\small\item\em N3 Library version. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef double($\ast$ \hyperlink{n3__header_8h_afb10e6f7012513b51225a4d3add36cae}{N3\+L\+Act}) (double)
+\begin{DoxyCompactList}\small\item\em Pointer to an activation function. \end{DoxyCompactList}\item 
+typedef double($\ast$ \hyperlink{n3__header_8h_ab3b7d8e984e9ad2e4d5e7cbe433ad572}{N3\+L\+Weight\+Generator}) (void $\ast$)
+\begin{DoxyCompactList}\small\item\em Pointer to a function to get the network weights. \end{DoxyCompactList}\item 
+typedef struct \hyperlink{struct__n3l__weight}{\+\_\+n3l\+\_\+weight} \hyperlink{n3__header_8h_ac37c67a24ec253f5cd205cbc981922ca}{N3\+L\+Weight}
+\begin{DoxyCompactList}\small\item\em Single Linked List which contains weight\textquotesingle{}s values. \end{DoxyCompactList}\item 
+typedef struct \hyperlink{struct__n3l__neuron}{\+\_\+n3l\+\_\+neuron} \hyperlink{n3__header_8h_a621b1df037f351bd3542298933e5799a}{N3\+L\+Neuron}
+\begin{DoxyCompactList}\small\item\em Double Linked List which contains neuron\textquotesingle{}s values. \end{DoxyCompactList}\item 
+typedef struct \hyperlink{struct__n3l__layer}{\+\_\+n3l\+\_\+layer} \hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer}
+\begin{DoxyCompactList}\small\item\em Double Linked List which contains layer\textquotesingle{}s values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{n3__header_8h_a1040baea07fec4d26d25641f75e892c5}{N3\+L\+Layer\+Type} \{ \hyperlink{n3__header_8h_a1040baea07fec4d26d25641f75e892c5aab750c92dd8be2c9e55ed46d05daadb4}{N3\+L\+Input\+Layer} = 0, 
+\hyperlink{n3__header_8h_a1040baea07fec4d26d25641f75e892c5abe1288f7415a2918a6bd13c36d84ac11}{N3\+L\+Hidden\+Layer}, 
+\hyperlink{n3__header_8h_a1040baea07fec4d26d25641f75e892c5a8251417b1ede207c8506218740c9f8b1}{N3\+L\+Output\+Layer}
+ \}\begin{DoxyCompactList}\small\item\em Identify the layer type. \end{DoxyCompactList}
+\item 
+enum \hyperlink{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056}{N3\+L\+Act\+Type} \{ \newline
+\hyperlink{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a43a8cba04b86be267aa4a9705ccb74d2}{N3\+L\+Custom} = -\/1, 
+\hyperlink{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056af6be5bcaf85e8fc974b3fc20dad32d18}{N3\+L\+None} = 0, 
+\hyperlink{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a58c090ee14de5def02bd6aaa27af7888}{N3\+L\+Sigmoid}, 
+\hyperlink{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a7fcd20d1c210fa86c867f386b809c109}{N3\+L\+Tanh}, 
+\newline
+\hyperlink{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056ad23c37f3c19c399a7766983c87ca6794}{N3\+L\+Relu}, 
+\hyperlink{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a6ba1b3ad5fc8cc7b017b76ad770daa1e}{N3\+L\+Identity}, 
+\hyperlink{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a6745742e74cf12f866a4093e5a61156d}{N3\+L\+Leaky\+Relu}, 
+\hyperlink{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056ad0d9ce7eb6b4357996fe7a6ff2e972c8}{N3\+L\+Soft\+Plus}, 
+\newline
+\hyperlink{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056aa399b22b7aa19e9544c71fe611f99b29}{N3\+L\+Soft\+Sign}, 
+\hyperlink{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a8cdff3364dcd3d15c824a28d1dd4b89b}{N3\+L\+Swish}
+ \}\begin{DoxyCompactList}\small\item\em Activation function type. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains types, enums and structs definitions. 
+
+\begin{DoxyAuthor}{Author}
+Davide Francesco Merico 
+\end{DoxyAuthor}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{n3__header_8h_afb10e6f7012513b51225a4d3add36cae}\label{n3__header_8h_afb10e6f7012513b51225a4d3add36cae}} 
+\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Act@{N3\+L\+Act}}
+\index{N3\+L\+Act@{N3\+L\+Act}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}
+\subsubsection{\texorpdfstring{N3\+L\+Act}{N3LAct}}
+{\footnotesize\ttfamily typedef double($\ast$ N3\+L\+Act) (double)}
+
+
+
+Pointer to an activation function. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{n3__act_8c_af9034678bae2b94ebcf0d9b2ac5cfcb7}{n3l\+\_\+act}, \hyperlink{n3__act_8c_a9253520cb5a58edf61f04997c3161f21}{n3l\+\_\+act\+\_\+prime}, \hyperlink{struct__n3l__neuron}{\+\_\+n3l\+\_\+neuron} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}\label{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}} 
+\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Layer@{N3\+L\+Layer}}
+\index{N3\+L\+Layer@{N3\+L\+Layer}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}
+\subsubsection{\texorpdfstring{N3\+L\+Layer}{N3LLayer}}
+{\footnotesize\ttfamily typedef struct \hyperlink{struct__n3l__layer}{\+\_\+n3l\+\_\+layer}  \hyperlink{n3__header_8h_a9ee3a7104816bdb6222148cfe9ca8ad9}{N3\+L\+Layer}}
+
+
+
+Double Linked List which contains layer\textquotesingle{}s values. 
+
+The list is built by n3l\+\_\+network\+\_\+build() or \hyperlink{n3__file_8c_a4fef76548ed87845dceafaa9527a83d0}{n3l\+\_\+file\+\_\+import\+\_\+network()}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{struct__n3l__neuron}{\+\_\+n3l\+\_\+neuron}, \hyperlink{structN3LNetwork}{N3\+L\+Network}, n3l\+\_\+layer\+\_\+build, n3l\+\_\+layer\+\_\+count, n3l\+\_\+layer\+\_\+free 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{n3__header_8h_a621b1df037f351bd3542298933e5799a}\label{n3__header_8h_a621b1df037f351bd3542298933e5799a}} 
+\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Neuron@{N3\+L\+Neuron}}
+\index{N3\+L\+Neuron@{N3\+L\+Neuron}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}
+\subsubsection{\texorpdfstring{N3\+L\+Neuron}{N3LNeuron}}
+{\footnotesize\ttfamily typedef struct \hyperlink{struct__n3l__neuron}{\+\_\+n3l\+\_\+neuron}  \hyperlink{n3__header_8h_a621b1df037f351bd3542298933e5799a}{N3\+L\+Neuron}}
+
+
+
+Double Linked List which contains neuron\textquotesingle{}s values. 
+
+The list is built by n3l\+\_\+network\+\_\+build() or \hyperlink{n3__file_8c_a4fef76548ed87845dceafaa9527a83d0}{n3l\+\_\+file\+\_\+import\+\_\+network()}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{struct__n3l__layer}{\+\_\+n3l\+\_\+layer}, \hyperlink{struct__n3l__weight}{\+\_\+n3l\+\_\+weight}, n3l\+\_\+neuron\+\_\+build, n3l\+\_\+neuron\+\_\+count, n3l\+\_\+neuron\+\_\+free 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{n3__header_8h_ac37c67a24ec253f5cd205cbc981922ca}\label{n3__header_8h_ac37c67a24ec253f5cd205cbc981922ca}} 
+\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Weight@{N3\+L\+Weight}}
+\index{N3\+L\+Weight@{N3\+L\+Weight}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}
+\subsubsection{\texorpdfstring{N3\+L\+Weight}{N3LWeight}}
+{\footnotesize\ttfamily typedef struct \hyperlink{struct__n3l__weight}{\+\_\+n3l\+\_\+weight}  \hyperlink{n3__header_8h_ac37c67a24ec253f5cd205cbc981922ca}{N3\+L\+Weight}}
+
+
+
+Single Linked List which contains weight\textquotesingle{}s values. 
+
+The list is built by n3l\+\_\+network\+\_\+build() or \hyperlink{n3__file_8c_a4fef76548ed87845dceafaa9527a83d0}{n3l\+\_\+file\+\_\+import\+\_\+network()}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{struct__n3l__neuron}{\+\_\+n3l\+\_\+neuron}, n3l\+\_\+neuron\+\_\+get\+\_\+weight, n3l\+\_\+neuron\+\_\+count\+\_\+weights, n3l\+\_\+neuron\+\_\+build\+\_\+weights 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{n3__header_8h_ab3b7d8e984e9ad2e4d5e7cbe433ad572}\label{n3__header_8h_ab3b7d8e984e9ad2e4d5e7cbe433ad572}} 
+\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Weight\+Generator@{N3\+L\+Weight\+Generator}}
+\index{N3\+L\+Weight\+Generator@{N3\+L\+Weight\+Generator}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}
+\subsubsection{\texorpdfstring{N3\+L\+Weight\+Generator}{N3LWeightGenerator}}
+{\footnotesize\ttfamily typedef double($\ast$ N3\+L\+Weight\+Generator) (void $\ast$)}
+
+
+
+Pointer to a function to get the network weights. 
+
+Used to get weights when a network is imported or built.
+
+\begin{DoxySeeAlso}{See also}
+n3l\+\_\+misc\+\_\+rnd\+\_\+wp1, n3l\+\_\+misc\+\_\+rnd\+\_\+wn1, n3l\+\_\+misc\+\_\+rnd\+\_\+wpn1, \hyperlink{n3__file_8c_a78616ce6ffbb8218a169905de93abaaa}{\+\_\+\+\_\+n3l\+\_\+get\+\_\+weight\+\_\+from\+\_\+file} 
+\end{DoxySeeAlso}
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056}\label{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056}} 
+\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Act\+Type@{N3\+L\+Act\+Type}}
+\index{N3\+L\+Act\+Type@{N3\+L\+Act\+Type}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}
+\subsubsection{\texorpdfstring{N3\+L\+Act\+Type}{N3LActType}}
+{\footnotesize\ttfamily enum \hyperlink{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056}{N3\+L\+Act\+Type}}
+
+
+
+Activation function type. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{n3__act_8c_af9034678bae2b94ebcf0d9b2ac5cfcb7}{n3l\+\_\+act}, \hyperlink{n3__act_8c_a9253520cb5a58edf61f04997c3161f21}{n3l\+\_\+act\+\_\+prime}, \hyperlink{struct__n3l__neuron}{\+\_\+n3l\+\_\+neuron} 
+\end{DoxySeeAlso}
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N3\+L\+Custom@{N3\+L\+Custom}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Custom@{N3\+L\+Custom}}}\mbox{\Hypertarget{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a43a8cba04b86be267aa4a9705ccb74d2}\label{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a43a8cba04b86be267aa4a9705ccb74d2}} 
+N3\+L\+Custom&Custom activation function. \begin{DoxySeeAlso}{See also}
+n3l\+\_\+layer\+\_\+set\+\_\+custom\+\_\+act, n3l\+\_\+neuron\+\_\+set\+\_\+custom\+\_\+act 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N3\+L\+None@{N3\+L\+None}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+None@{N3\+L\+None}}}\mbox{\Hypertarget{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056af6be5bcaf85e8fc974b3fc20dad32d18}\label{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056af6be5bcaf85e8fc974b3fc20dad32d18}} 
+N3\+L\+None&No activation function. \begin{DoxySeeAlso}{See also}
+\hyperlink{n3__act_8c_a8dc073371b15e2574897762b54f9326c}{n3l\+\_\+act\+\_\+none} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N3\+L\+Sigmoid@{N3\+L\+Sigmoid}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Sigmoid@{N3\+L\+Sigmoid}}}\mbox{\Hypertarget{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a58c090ee14de5def02bd6aaa27af7888}\label{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a58c090ee14de5def02bd6aaa27af7888}} 
+N3\+L\+Sigmoid&Sigmoid activation function. \begin{DoxySeeAlso}{See also}
+\hyperlink{n3__act_8c_ad01dde283500e1fbac8d916967bfd883}{n3l\+\_\+act\+\_\+sigmoid} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N3\+L\+Tanh@{N3\+L\+Tanh}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Tanh@{N3\+L\+Tanh}}}\mbox{\Hypertarget{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a7fcd20d1c210fa86c867f386b809c109}\label{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a7fcd20d1c210fa86c867f386b809c109}} 
+N3\+L\+Tanh&Tanh activation function. \begin{DoxySeeAlso}{See also}
+\hyperlink{n3__act_8c_aa05576ce02d1c18c0af9f042d1068c7a}{n3l\+\_\+act\+\_\+tanh} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N3\+L\+Relu@{N3\+L\+Relu}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Relu@{N3\+L\+Relu}}}\mbox{\Hypertarget{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056ad23c37f3c19c399a7766983c87ca6794}\label{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056ad23c37f3c19c399a7766983c87ca6794}} 
+N3\+L\+Relu&Re\+LU activation function. \begin{DoxySeeAlso}{See also}
+\hyperlink{n3__act_8c_a07a8cded25f1d3b726053b50cba78eb0}{n3l\+\_\+act\+\_\+relu} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N3\+L\+Identity@{N3\+L\+Identity}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Identity@{N3\+L\+Identity}}}\mbox{\Hypertarget{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a6ba1b3ad5fc8cc7b017b76ad770daa1e}\label{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a6ba1b3ad5fc8cc7b017b76ad770daa1e}} 
+N3\+L\+Identity&Identity activation function. \begin{DoxySeeAlso}{See also}
+\hyperlink{n3__act_8c_a066f6fed961da89043b1b496aa5ac6d0}{n3l\+\_\+act\+\_\+identity} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N3\+L\+Leaky\+Relu@{N3\+L\+Leaky\+Relu}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Leaky\+Relu@{N3\+L\+Leaky\+Relu}}}\mbox{\Hypertarget{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a6745742e74cf12f866a4093e5a61156d}\label{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a6745742e74cf12f866a4093e5a61156d}} 
+N3\+L\+Leaky\+Relu&Leaky Re\+LU activation function. \begin{DoxySeeAlso}{See also}
+\hyperlink{n3__act_8c_a2091491a8d0155701b6170c324b52eef}{n3l\+\_\+act\+\_\+leaky\+\_\+relu} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N3\+L\+Soft\+Plus@{N3\+L\+Soft\+Plus}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Soft\+Plus@{N3\+L\+Soft\+Plus}}}\mbox{\Hypertarget{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056ad0d9ce7eb6b4357996fe7a6ff2e972c8}\label{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056ad0d9ce7eb6b4357996fe7a6ff2e972c8}} 
+N3\+L\+Soft\+Plus&Soft\+Plus activation function. \begin{DoxySeeAlso}{See also}
+\hyperlink{n3__act_8c_ab678727eab04c73e227d0511f10da9ab}{n3l\+\_\+act\+\_\+softplus} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N3\+L\+Soft\+Sign@{N3\+L\+Soft\+Sign}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Soft\+Sign@{N3\+L\+Soft\+Sign}}}\mbox{\Hypertarget{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056aa399b22b7aa19e9544c71fe611f99b29}\label{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056aa399b22b7aa19e9544c71fe611f99b29}} 
+N3\+L\+Soft\+Sign&Soft\+Sign activation function. \begin{DoxySeeAlso}{See also}
+\hyperlink{n3__act_8c_a9e9cd6045617a4063602ccd9e94281bf}{n3l\+\_\+act\+\_\+softsign} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N3\+L\+Swish@{N3\+L\+Swish}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Swish@{N3\+L\+Swish}}}\mbox{\Hypertarget{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a8cdff3364dcd3d15c824a28d1dd4b89b}\label{n3__header_8h_a3118e8995213ca26bd388c3d94cd8056a8cdff3364dcd3d15c824a28d1dd4b89b}} 
+N3\+L\+Swish&Swish activation function. \begin{DoxySeeAlso}{See also}
+\hyperlink{n3__act_8c_a64fdb17c0915027691ad0b1340bdb1af}{n3l\+\_\+act\+\_\+swish} 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{n3__header_8h_a1040baea07fec4d26d25641f75e892c5}\label{n3__header_8h_a1040baea07fec4d26d25641f75e892c5}} 
+\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Layer\+Type@{N3\+L\+Layer\+Type}}
+\index{N3\+L\+Layer\+Type@{N3\+L\+Layer\+Type}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}
+\subsubsection{\texorpdfstring{N3\+L\+Layer\+Type}{N3LLayerType}}
+{\footnotesize\ttfamily enum \hyperlink{n3__header_8h_a1040baea07fec4d26d25641f75e892c5}{N3\+L\+Layer\+Type}}
+
+
+
+Identify the layer type. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{struct__n3l__layer}{\+\_\+n3l\+\_\+layer} 
+\end{DoxySeeAlso}
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N3\+L\+Input\+Layer@{N3\+L\+Input\+Layer}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Input\+Layer@{N3\+L\+Input\+Layer}}}\mbox{\Hypertarget{n3__header_8h_a1040baea07fec4d26d25641f75e892c5aab750c92dd8be2c9e55ed46d05daadb4}\label{n3__header_8h_a1040baea07fec4d26d25641f75e892c5aab750c92dd8be2c9e55ed46d05daadb4}} 
+N3\+L\+Input\+Layer&Input layer, usually this type of layer doesn\textquotesingle{}t have a previous layer linked. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N3\+L\+Hidden\+Layer@{N3\+L\+Hidden\+Layer}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Hidden\+Layer@{N3\+L\+Hidden\+Layer}}}\mbox{\Hypertarget{n3__header_8h_a1040baea07fec4d26d25641f75e892c5abe1288f7415a2918a6bd13c36d84ac11}\label{n3__header_8h_a1040baea07fec4d26d25641f75e892c5abe1288f7415a2918a6bd13c36d84ac11}} 
+N3\+L\+Hidden\+Layer&Hidden Layer, usually have both previous and next layer linked. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N3\+L\+Output\+Layer@{N3\+L\+Output\+Layer}!n3\+\_\+header.\+h@{n3\+\_\+header.\+h}}\index{n3\+\_\+header.\+h@{n3\+\_\+header.\+h}!N3\+L\+Output\+Layer@{N3\+L\+Output\+Layer}}}\mbox{\Hypertarget{n3__header_8h_a1040baea07fec4d26d25641f75e892c5a8251417b1ede207c8506218740c9f8b1}\label{n3__header_8h_a1040baea07fec4d26d25641f75e892c5a8251417b1ede207c8506218740c9f8b1}} 
+N3\+L\+Output\+Layer&Output Layer, usually this type of layer doesn\textquotesingle{}t have a next layer linked. \\
+\hline
+
+\end{DoxyEnumFields}

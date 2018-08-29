@@ -7,8 +7,6 @@ src/n3_file.c \- This file contains functions to import and save a network state
 .SH SYNOPSIS
 .br
 .PP
-\fC#include <stdio\&.h>\fP
-.br
 \fC#include <stdlib\&.h>\fP
 .br
 \fC#include 'n3_header\&.h'\fP
@@ -88,7 +86,7 @@ TRUE if correctly executed, otherwise FALSE\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_file_import_network\fP, \fBN3LNetwork\fP, n3l_network_free 
+\fBn3l_file_import_network\fP, _n3l_network, n3l_network_free 
 .RE
 .PP
 
@@ -109,7 +107,7 @@ The \fBN3LNetwork\fP saved if successfully read, otherwise NULL\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_file_export_network\fP, \fBN3LNetwork\fP, n3l_network_build 
+\fBn3l_file_export_network\fP, _n3l_network, n3l_network_build 
 .RE
 .PP
 

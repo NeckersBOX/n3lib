@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include "n3_header.h"
 #include "n3_act.h"

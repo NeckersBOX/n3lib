@@ -1,0 +1,295 @@
+.TH "src/n3_header.h" 3 "Wed Aug 29 2018" "N3 Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/n3_header.h \- This file contains types, enums and structs definitions\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdint\&.h>\fP
+.br
+\fC#include <stdbool\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fB_n3l_weight\fP"
+.br
+.RI "Single Linked List which contains weight's values\&. "
+.ti -1c
+.RI "struct \fB_n3l_neuron\fP"
+.br
+.RI "Double Linked List which contains neuron's values\&. "
+.ti -1c
+.RI "struct \fB_n3l_layer\fP"
+.br
+.RI "Double Linked List which contains layer's values\&. "
+.ti -1c
+.RI "struct \fBN3LArgs\fP"
+.br
+.RI "Network arguments\&. "
+.ti -1c
+.RI "struct \fBN3LNetwork\fP"
+.br
+.RI "Network state\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBN3L_VERSION\fP   '2\&.0\&.0'"
+.br
+.RI "N3 Library version\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef double(* \fBN3LAct\fP) (double)"
+.br
+.RI "Pointer to an activation function\&. "
+.ti -1c
+.RI "typedef double(* \fBN3LWeightGenerator\fP) (void *)"
+.br
+.RI "Pointer to a function to get the network weights\&. "
+.ti -1c
+.RI "typedef struct \fB_n3l_weight\fP \fBN3LWeight\fP"
+.br
+.RI "Single Linked List which contains weight's values\&. "
+.ti -1c
+.RI "typedef struct \fB_n3l_neuron\fP \fBN3LNeuron\fP"
+.br
+.RI "Double Linked List which contains neuron's values\&. "
+.ti -1c
+.RI "typedef struct \fB_n3l_layer\fP \fBN3LLayer\fP"
+.br
+.RI "Double Linked List which contains layer's values\&. "
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBN3LLayerType\fP { \fBN3LInputLayer\fP = 0, \fBN3LHiddenLayer\fP, \fBN3LOutputLayer\fP }
+.RI "Identify the layer type\&. ""
+.br
+.ti -1c
+.RI "enum \fBN3LActType\fP { \fBN3LCustom\fP = -1, \fBN3LNone\fP = 0, \fBN3LSigmoid\fP, \fBN3LTanh\fP, \fBN3LRelu\fP, \fBN3LIdentity\fP, \fBN3LLeakyRelu\fP, \fBN3LSoftPlus\fP, \fBN3LSoftSign\fP, \fBN3LSwish\fP }
+.RI "Activation function type\&. ""
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This file contains types, enums and structs definitions\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Davide Francesco Merico 
+.RE
+.PP
+
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef double(* N3LAct) (double)"
+
+.PP
+Pointer to an activation function\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_act\fP, \fBn3l_act_prime\fP, \fB_n3l_neuron\fP 
+.RE
+.PP
+
+.SS "typedef struct \fB_n3l_layer\fP  \fBN3LLayer\fP"
+
+.PP
+Double Linked List which contains layer's values\&. The list is built by n3l_network_build() or \fBn3l_file_import_network()\fP\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fB_n3l_neuron\fP, \fBN3LNetwork\fP, n3l_layer_build, n3l_layer_count, n3l_layer_free 
+.RE
+.PP
+
+.SS "typedef struct \fB_n3l_neuron\fP  \fBN3LNeuron\fP"
+
+.PP
+Double Linked List which contains neuron's values\&. The list is built by n3l_network_build() or \fBn3l_file_import_network()\fP\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fB_n3l_layer\fP, \fB_n3l_weight\fP, n3l_neuron_build, n3l_neuron_count, n3l_neuron_free 
+.RE
+.PP
+
+.SS "typedef struct \fB_n3l_weight\fP  \fBN3LWeight\fP"
+
+.PP
+Single Linked List which contains weight's values\&. The list is built by n3l_network_build() or \fBn3l_file_import_network()\fP\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fB_n3l_neuron\fP, n3l_neuron_get_weight, n3l_neuron_count_weights, n3l_neuron_build_weights 
+.RE
+.PP
+
+.SS "typedef double(* N3LWeightGenerator) (void *)"
+
+.PP
+Pointer to a function to get the network weights\&. Used to get weights when a network is imported or built\&.
+.PP
+\fBSee also:\fP
+.RS 4
+n3l_misc_rnd_wp1, n3l_misc_rnd_wn1, n3l_misc_rnd_wpn1, \fB__n3l_get_weight_from_file\fP 
+.RE
+.PP
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBN3LActType\fP"
+
+.PP
+Activation function type\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_act\fP, \fBn3l_act_prime\fP, \fB_n3l_neuron\fP 
+.RE
+.PP
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIN3LCustom \fP\fP
+Custom activation function\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+n3l_layer_set_custom_act, n3l_neuron_set_custom_act 
+.RE
+.PP
+
+.TP
+\fB\fIN3LNone \fP\fP
+No activation function\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_act_none\fP 
+.RE
+.PP
+
+.TP
+\fB\fIN3LSigmoid \fP\fP
+Sigmoid activation function\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_act_sigmoid\fP 
+.RE
+.PP
+
+.TP
+\fB\fIN3LTanh \fP\fP
+Tanh activation function\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_act_tanh\fP 
+.RE
+.PP
+
+.TP
+\fB\fIN3LRelu \fP\fP
+ReLU activation function\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_act_relu\fP 
+.RE
+.PP
+
+.TP
+\fB\fIN3LIdentity \fP\fP
+Identity activation function\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_act_identity\fP 
+.RE
+.PP
+
+.TP
+\fB\fIN3LLeakyRelu \fP\fP
+Leaky ReLU activation function\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_act_leaky_relu\fP 
+.RE
+.PP
+
+.TP
+\fB\fIN3LSoftPlus \fP\fP
+SoftPlus activation function\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_act_softplus\fP 
+.RE
+.PP
+
+.TP
+\fB\fIN3LSoftSign \fP\fP
+SoftSign activation function\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_act_softsign\fP 
+.RE
+.PP
+
+.TP
+\fB\fIN3LSwish \fP\fP
+Swish activation function\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_act_swish\fP 
+.RE
+.PP
+
+.SS "enum \fBN3LLayerType\fP"
+
+.PP
+Identify the layer type\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fB_n3l_layer\fP 
+.RE
+.PP
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIN3LInputLayer \fP\fP
+Input layer, usually this type of layer doesn't have a previous layer linked\&. 
+.TP
+\fB\fIN3LHiddenLayer \fP\fP
+Hidden Layer, usually have both previous and next layer linked\&. 
+.TP
+\fB\fIN3LOutputLayer \fP\fP
+Output Layer, usually this type of layer doesn't have a next layer linked\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for N3 Library from the source code\&.

@@ -1,0 +1,5 @@
+<map id="__n3l_forward_data" name="__n3l_forward_data">
+<area shape="rect" id="node2" href="$struct__n3l__layer.html" title="Double Linked List which contains layer&#39;s values. " alt="" coords="32,203,113,229"/>
+<area shape="rect" id="node3" href="$struct__n3l__neuron.html" title="Double Linked List which contains neuron&#39;s values. " alt="" coords="27,96,119,123"/>
+<area shape="rect" id="node4" href="$struct__n3l__weight.html" title="Single Linked List which contains weight&#39;s values. " alt="" coords="27,5,118,32"/>
+</map>

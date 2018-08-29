@@ -1,11 +1,14 @@
 var indexSectionsWithContent =
 {
-  0: "_dlnr",
+  0: "_abdhilnoprtvw",
   1: "_n",
   2: "n",
   3: "_n",
-  4: "dlr",
-  5: "n"
+  4: "abdhilnoprtvw",
+  5: "n",
+  6: "n",
+  7: "n",
+  8: "n"
 };
 
 var indexSectionNames =
@@ -15,7 +18,10 @@ var indexSectionNames =
   2: "files",
   3: "functions",
   4: "variables",
-  5: "defines"
+  5: "typedefs",
+  6: "enums",
+  7: "enumvalues",
+  8: "defines"
 };
 
 var indexSectionLabels =
@@ -25,6 +31,9 @@ var indexSectionLabels =
   2: "Files",
   3: "Functions",
   4: "Variables",
-  5: "Macros"
+  5: "Typedefs",
+  6: "Enumerations",
+  7: "Enumerator",
+  8: "Macros"
 };
 

@@ -94,11 +94,11 @@ src/n3_act.c \- This file contains activation functions and their primitive\&.
 .br
 .RI "Swish activation primitive function\&. "
 .ti -1c
-.RI "N3LAct \fBn3l_act\fP (N3LActType type)"
+.RI "\fBN3LAct\fP \fBn3l_act\fP (\fBN3LActType\fP type)"
 .br
 .RI "Get the pointer to an activation function\&. "
 .ti -1c
-.RI "N3LAct \fBn3l_act_prime\fP (N3LActType type)"
+.RI "\fBN3LAct\fP \fBn3l_act_prime\fP (\fBN3LActType\fP type)"
 .br
 .RI "Get the pointer to an activation primitive function\&. "
 .in -1c
@@ -144,7 +144,7 @@ x if x is positive, otherwise -x\&.
 
 .SH "Function Documentation"
 .PP 
-.SS "N3LAct n3l_act (N3LActType type)"
+.SS "\fBN3LAct\fP n3l_act (\fBN3LActType\fP type)"
 
 .PP
 Get the pointer to an activation function\&. 
@@ -161,7 +161,7 @@ Pointer to the function chosen\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_prime\fP, N3LAct, N3LActTye 
+\fBn3l_act_prime\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
@@ -182,7 +182,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_identity_prime\fP, \fBn3l_act_none\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
+\fBn3l_act_identity_prime\fP, \fBn3l_act_none\fP, \fBn3l_act\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
@@ -203,7 +203,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_identity\fP, \fBn3l_act_prime\fP, N3LAct, N3LActTye 
+\fBn3l_act_identity\fP, \fBn3l_act_prime\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
@@ -224,7 +224,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_leaky_relu_prime\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
+\fBn3l_act_leaky_relu_prime\fP, \fBn3l_act\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
@@ -245,7 +245,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_leaky_relu\fP, \fBn3l_act_prime\fP, N3LAct, N3LActTye 
+\fBn3l_act_leaky_relu\fP, \fBn3l_act_prime\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
@@ -267,11 +267,11 @@ the same value passed as argument\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_identity\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
+\fBn3l_act_identity\fP, \fBn3l_act\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
-.SS "N3LAct n3l_act_prime (N3LActType type)"
+.SS "\fBN3LAct\fP n3l_act_prime (\fBN3LActType\fP type)"
 
 .PP
 Get the pointer to an activation primitive function\&. 
@@ -288,7 +288,7 @@ Pointer to the function's primitive chosen\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act\fP, N3LAct, N3LActTye 
+\fBn3l_act\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
@@ -309,7 +309,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_relu_prime\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
+\fBn3l_act_relu_prime\fP, \fBn3l_act\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
@@ -330,7 +330,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_relu\fP, \fBn3l_act_prime\fP, N3LAct, N3LActTye 
+\fBn3l_act_relu\fP, \fBn3l_act_prime\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
@@ -351,7 +351,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_sigmoid_prime\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
+\fBn3l_act_sigmoid_prime\fP, \fBn3l_act\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
@@ -372,7 +372,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_sigmoid\fP, \fBn3l_act_prime\fP, N3LAct, N3LActTye 
+\fBn3l_act_sigmoid\fP, \fBn3l_act_prime\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
@@ -393,7 +393,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_softplus_prime\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
+\fBn3l_act_softplus_prime\fP, \fBn3l_act\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
@@ -414,7 +414,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_softplus\fP, \fBn3l_act_prime\fP, N3LAct, N3LActTye 
+\fBn3l_act_softplus\fP, \fBn3l_act_prime\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
@@ -435,7 +435,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_softsign_prime\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
+\fBn3l_act_softsign_prime\fP, \fBn3l_act\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
@@ -456,7 +456,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_softsign\fP, \fBn3l_act_prime\fP, N3LAct, N3LActTye 
+\fBn3l_act_softsign\fP, \fBn3l_act_prime\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
@@ -477,7 +477,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_swish_prime\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
+\fBn3l_act_swish_prime\fP, \fBn3l_act\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
@@ -498,7 +498,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_swish\fP, \fBn3l_act_prime\fP, N3LAct, N3LActTye 
+\fBn3l_act_swish\fP, \fBn3l_act_prime\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
@@ -519,7 +519,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_tanh_prime\fP, \fBn3l_act\fP, N3LAct, N3LActTye 
+\fBn3l_act_tanh_prime\fP, \fBn3l_act\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 
@@ -540,7 +540,7 @@ the results from the formula above\&.
 .PP
 \fBSee also:\fP
 .RS 4
-\fBn3l_act_tanh\fP, \fBn3l_act_prime\fP, N3LAct, N3LActTye 
+\fBn3l_act_tanh\fP, \fBn3l_act_prime\fP, \fBN3LAct\fP, N3LActTye 
 .RE
 .PP
 

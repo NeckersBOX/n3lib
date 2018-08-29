@@ -3,7 +3,6 @@
  * @author Davide Francesco Merico
  * @brief This file contains functions to backpropagate the error and adjusts the weights.
  */
-#include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
 #include <assert.h>
@@ -12,7 +11,7 @@
 
 /**
  * @brief Internal struct to share data between threads.
- * 
+ *
  * Initialized from the current layer to the previous one.
  */
 struct __n3l_backward_data {
@@ -32,7 +31,7 @@ void *__n3l_backward_execute(void *arg);
  * @note The member \p net->targets must be initialized before calling this function.
  * @note This function should be called after n3l_forward_execute()
  * @param net Initialized network
- * @return TRUE if was correctely executed, otherwise FALSE. 
+ * @return TRUE if was correctely executed, otherwise FALSE.
  *
  * @see n3l_forward_execute, _n3l_network, __n3l_backward_execute
  */
@@ -78,7 +77,7 @@ bool n3l_backward_propagation(N3LNetwork *net)
 /**
  * @brief Internal function to execute backward propagation from the current layer to the previous one.
  *
- * Recursive function to execute backpropagation from the current layer to the previous one, only if 
+ * Recursive function to execute backpropagation from the current layer to the previous one, only if
  * the layer passed as thread data is not NULL. After backpropagate it adjusts the current layer's weights.
  *
  * @param arg Pointer to an initialized #__n3l_backward_data struct

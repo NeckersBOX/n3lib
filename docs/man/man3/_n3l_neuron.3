@@ -2,10 +2,13 @@
 .ad l
 .nh
 .SH NAME
-_n3l_neuron
+_n3l_neuron \- Double Linked List which contains neuron's values\&.  
+
 .SH SYNOPSIS
 .br
 .PP
+.PP
+\fC#include <n3_header\&.h>\fP
 .SS "Data Fields"
 
 .in +1c
@@ -25,13 +28,13 @@ _n3l_neuron
 .RI "double \fBresult\fP"
 .br
 .ti -1c
-.RI "N3LActType \fBact_type\fP"
+.RI "\fBN3LActType\fP \fBact_type\fP"
 .br
 .ti -1c
-.RI "N3LAct \fBact\fP"
+.RI "\fBN3LAct\fP \fBact\fP"
 .br
 .ti -1c
-.RI "N3LAct \fBact_prime\fP"
+.RI "\fBN3LAct\fP \fBact_prime\fP"
 .br
 .ti -1c
 .RI "struct \fB_n3l_neuron\fP * \fBnext\fP"
@@ -40,6 +43,111 @@ _n3l_neuron
 .RI "struct \fB_n3l_neuron\fP * \fBprev\fP"
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+Double Linked List which contains neuron's values\&. 
+
+The list is built by n3l_network_build() or \fBn3l_file_import_network()\fP\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fB_n3l_layer\fP, \fB_n3l_weight\fP, n3l_neuron_build, n3l_neuron_count, n3l_neuron_free 
+.RE
+.PP
+
+.SH "Field Documentation"
+.PP 
+.SS "\fBN3LAct\fP _n3l_neuron::act"
+Activation function\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBN3LAct\fP 
+.RE
+.PP
+
+.SS "\fBN3LAct\fP _n3l_neuron::act_prime"
+Activation function primitive\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBN3LAct\fP 
+.RE
+.PP
+
+.SS "\fBN3LActType\fP _n3l_neuron::act_type"
+Activation function type\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBN3LActType\fP 
+.RE
+.PP
+
+.SS "bool _n3l_neuron::bias"
+Identifies if the neuron is a bias neuron\&. The bias neurons doesn't get inputs and have N3LNone as activation function\&. 
+.PP
+\fBNote:\fP
+.RS 4
+Usually there is only one bias neuron for each layer, except for the output one, and it's built as last neuron\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_act_none\fP, \fBN3LArgs\fP, n3l_network_build 
+.RE
+.PP
+
+.SS "double _n3l_neuron::input"
+Neuron input value\&. This value is also used to apply activation fuction\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fB__n3l_forward_layer\fP 
+.RE
+.PP
+
+.SS "struct \fB_n3l_neuron\fP* _n3l_neuron::next"
+Next neuron in the list or NULL if it's the last one\&. 
+.SS "struct \fB_n3l_neuron\fP* _n3l_neuron::prev"
+Previous neuron in the list or NULL if it's the first one\&. 
+.SS "uint64_t _n3l_neuron::ref"
+Current neuron reference\&. 
+.PP
+\fBWarning:\fP
+.RS 4
+This value must be unique into the network\&. It is used to collecting outputs in forward propagation and to evaluate delta in backward propagation\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fB__n3l_forward_get_outputs\fP, \fB__n3l_backward_execute\fP 
+.RE
+.PP
+
+.SS "double _n3l_neuron::result"
+Neuron's result\&. This value is initialiazed after forward propagation\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_forward_propagation\fP, \fB__n3l_forward_activate\fP 
+.RE
+.PP
+
+.SS "\fBN3LWeight\fP* _n3l_neuron::whead"
+Weight's list head\&. 
+.PP
+\fBNote:\fP
+.RS 4
+It is set to NULL if the neuron's layer is of type N3LOutputLayer
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fB_n3l_weight\fP, \fB_n3l_layer\fP 
+.RE
+.PP
+
 
 .SH "Author"
 .PP 

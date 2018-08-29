@@ -2,10 +2,13 @@
 .ad l
 .nh
 .SH NAME
-N3LArgs
+N3LArgs \- Network arguments\&.  
+
 .SH SYNOPSIS
 .br
 .PP
+.PP
+\fC#include <n3_header\&.h>\fP
 .SS "Data Fields"
 
 .in +1c
@@ -25,21 +28,55 @@ N3LArgs
 .RI "uint64_t \fBout_size\fP"
 .br
 .ti -1c
-.RI "N3LActType \fBact_in\fP"
+.RI "\fBN3LActType\fP \fBact_in\fP"
 .br
 .ti -1c
-.RI "N3LActType * \fBact_h\fP"
+.RI "\fBN3LActType\fP * \fBact_h\fP"
 .br
 .ti -1c
-.RI "N3LActType \fBact_out\fP"
+.RI "\fBN3LActType\fP \fBact_out\fP"
 .br
 .ti -1c
 .RI "void * \fBrand_arg\fP"
 .br
 .ti -1c
-.RI "N3LWeightGenerator \fBrand_weight\fP"
+.RI "\fBN3LWeightGenerator\fP \fBrand_weight\fP"
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+Network arguments\&. 
+
+These arguments are used to build network through the n3l_network_build() function\&.
+.PP
+\fBSee also:\fP
+.RS 4
+n3l_misc_init_arg, n3l_network_build 
+.RE
+.PP
+
+.SH "Field Documentation"
+.PP 
+.SS "\fBN3LActType\fP* N3LArgs::act_h"
+Array of activation functions to use for hidden layer's neurons\&. 
+.SS "\fBN3LActType\fP N3LArgs::act_in"
+Activation function to use for input layer's neurons\&. 
+.SS "\fBN3LActType\fP N3LArgs::act_out"
+Activation function to use for output layer's neurons\&. 
+.SS "double N3LArgs::bias"
+Bias value\&. If 0 no bias neuron are built in the network\&. 
+.SS "uint64_t N3LArgs::h_layers"
+Number of hidden layers in the network\&. 
+.SS "uint64_t* N3LArgs::h_size"
+Array of number of neurons in the hidden layers\&. 
+.SS "uint64_t N3LArgs::in_size"
+Number of neurons in the input layer\&. This must be greater than 0\&. 
+.SS "uint64_t N3LArgs::out_size"
+Number of neurons in the output layer\&. This must be greater than 0\&. 
+.SS "void* N3LArgs::rand_arg"
+Arguments to pass when \fCrand_weight\fP is called\&. 
+.SS "\fBN3LWeightGenerator\fP N3LArgs::rand_weight"
+Weights initialization function\&. 
 
 .SH "Author"
 .PP 

@@ -3,7 +3,6 @@
  * @author Davide Francesco Merico
  * @brief This file contains functions to import and save a network state.
  */
-#include <stdio.h>
 #include <stdlib.h>
 #include "n3_header.h"
 #include "n3_neuron.h"
@@ -13,7 +12,7 @@
  * @brief Internal function to read weight from file during network initialization.
  *
  * @param data Pointer to an already opened file. (FILE type)
- * @return The weight read from the FILE last read position. 
+ * @return The weight read from the FILE last read position.
  *
  * @see n3l_file_import_network
  */

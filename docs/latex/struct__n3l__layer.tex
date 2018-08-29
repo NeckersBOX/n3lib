@@ -2,28 +2,89 @@
 \label{struct__n3l__layer}\index{\+\_\+n3l\+\_\+layer@{\+\_\+n3l\+\_\+layer}}
 
 
-Collaboration diagram for \+\_\+n3l\+\_\+layer\+:
-% FIG 0
+Double Linked List which contains layer\textquotesingle{}s values.  
+
+
+
+
+{\ttfamily \#include $<$n3\+\_\+header.\+h$>$}
+
+
+
+Collaboration diagram for \+\_\+n3l\+\_\+layer\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=189pt]{struct__n3l__layer__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct__n3l__layer_aec180f7f12ea86bb622c364076dbf1f6}\label{struct__n3l__layer_aec180f7f12ea86bb622c364076dbf1f6}} 
-N3\+L\+Layer\+Type {\bfseries type}
+\hyperlink{n3__header_8h_a1040baea07fec4d26d25641f75e892c5}{N3\+L\+Layer\+Type} \hyperlink{struct__n3l__layer_aec180f7f12ea86bb622c364076dbf1f6}{type}
 \item 
-\mbox{\Hypertarget{struct__n3l__layer_a263e7831428a3b535964412a1d802c4e}\label{struct__n3l__layer_a263e7831428a3b535964412a1d802c4e}} 
-\mbox{\hyperlink{struct__n3l__neuron}{N3\+L\+Neuron}} $\ast$ {\bfseries nhead}
+\hyperlink{n3__header_8h_a621b1df037f351bd3542298933e5799a}{N3\+L\+Neuron} $\ast$ \hyperlink{struct__n3l__layer_a263e7831428a3b535964412a1d802c4e}{nhead}
 \item 
-\mbox{\Hypertarget{struct__n3l__layer_aa120fe4ab0898e733b8d6940b467ebc3}\label{struct__n3l__layer_aa120fe4ab0898e733b8d6940b467ebc3}} 
-\mbox{\hyperlink{struct__n3l__neuron}{N3\+L\+Neuron}} $\ast$ {\bfseries ntail}
+\hyperlink{n3__header_8h_a621b1df037f351bd3542298933e5799a}{N3\+L\+Neuron} $\ast$ \hyperlink{struct__n3l__layer_aa120fe4ab0898e733b8d6940b467ebc3}{ntail}
 \item 
-\mbox{\Hypertarget{struct__n3l__layer_afada0fe8b2a403d5aeeb71b0ae7f8aae}\label{struct__n3l__layer_afada0fe8b2a403d5aeeb71b0ae7f8aae}} 
-struct \mbox{\hyperlink{struct__n3l__layer}{\+\_\+n3l\+\_\+layer}} $\ast$ {\bfseries next}
+struct \hyperlink{struct__n3l__layer}{\+\_\+n3l\+\_\+layer} $\ast$ \hyperlink{struct__n3l__layer_afada0fe8b2a403d5aeeb71b0ae7f8aae}{next}
 \item 
-\mbox{\Hypertarget{struct__n3l__layer_aedfd507c2c60e3b64234b8cd8570e6c9}\label{struct__n3l__layer_aedfd507c2c60e3b64234b8cd8570e6c9}} 
-struct \mbox{\hyperlink{struct__n3l__layer}{\+\_\+n3l\+\_\+layer}} $\ast$ {\bfseries prev}
+struct \hyperlink{struct__n3l__layer}{\+\_\+n3l\+\_\+layer} $\ast$ \hyperlink{struct__n3l__layer_aedfd507c2c60e3b64234b8cd8570e6c9}{prev}
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Double Linked List which contains layer\textquotesingle{}s values. 
+
+The list is built by n3l\+\_\+network\+\_\+build() or \hyperlink{n3__file_8c_a4fef76548ed87845dceafaa9527a83d0}{n3l\+\_\+file\+\_\+import\+\_\+network()}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{struct__n3l__neuron}{\+\_\+n3l\+\_\+neuron}, \hyperlink{structN3LNetwork}{N3\+L\+Network}, n3l\+\_\+layer\+\_\+build, n3l\+\_\+layer\+\_\+count, n3l\+\_\+layer\+\_\+free 
+\end{DoxySeeAlso}
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{struct__n3l__layer_afada0fe8b2a403d5aeeb71b0ae7f8aae}\label{struct__n3l__layer_afada0fe8b2a403d5aeeb71b0ae7f8aae}} 
+\index{\+\_\+n3l\+\_\+layer@{\+\_\+n3l\+\_\+layer}!next@{next}}
+\index{next@{next}!\+\_\+n3l\+\_\+layer@{\+\_\+n3l\+\_\+layer}}
+\subsubsection{\texorpdfstring{next}{next}}
+{\footnotesize\ttfamily struct \hyperlink{struct__n3l__layer}{\+\_\+n3l\+\_\+layer}$\ast$ \+\_\+n3l\+\_\+layer\+::next}
+
+Next layer in the list or N\+U\+LL if it\textquotesingle{}s the last one. \mbox{\Hypertarget{struct__n3l__layer_a263e7831428a3b535964412a1d802c4e}\label{struct__n3l__layer_a263e7831428a3b535964412a1d802c4e}} 
+\index{\+\_\+n3l\+\_\+layer@{\+\_\+n3l\+\_\+layer}!nhead@{nhead}}
+\index{nhead@{nhead}!\+\_\+n3l\+\_\+layer@{\+\_\+n3l\+\_\+layer}}
+\subsubsection{\texorpdfstring{nhead}{nhead}}
+{\footnotesize\ttfamily \hyperlink{n3__header_8h_a621b1df037f351bd3542298933e5799a}{N3\+L\+Neuron}$\ast$ \+\_\+n3l\+\_\+layer\+::nhead}
+
+Layer\textquotesingle{}s neuron list head. \begin{DoxySeeAlso}{See also}
+\hyperlink{struct__n3l__neuron}{\+\_\+n3l\+\_\+neuron} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{struct__n3l__layer_aa120fe4ab0898e733b8d6940b467ebc3}\label{struct__n3l__layer_aa120fe4ab0898e733b8d6940b467ebc3}} 
+\index{\+\_\+n3l\+\_\+layer@{\+\_\+n3l\+\_\+layer}!ntail@{ntail}}
+\index{ntail@{ntail}!\+\_\+n3l\+\_\+layer@{\+\_\+n3l\+\_\+layer}}
+\subsubsection{\texorpdfstring{ntail}{ntail}}
+{\footnotesize\ttfamily \hyperlink{n3__header_8h_a621b1df037f351bd3542298933e5799a}{N3\+L\+Neuron}$\ast$ \+\_\+n3l\+\_\+layer\+::ntail}
+
+Layer\textquotesingle{}s neuron list tail. \begin{DoxySeeAlso}{See also}
+\hyperlink{struct__n3l__neuron}{\+\_\+n3l\+\_\+neuron} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{struct__n3l__layer_aedfd507c2c60e3b64234b8cd8570e6c9}\label{struct__n3l__layer_aedfd507c2c60e3b64234b8cd8570e6c9}} 
+\index{\+\_\+n3l\+\_\+layer@{\+\_\+n3l\+\_\+layer}!prev@{prev}}
+\index{prev@{prev}!\+\_\+n3l\+\_\+layer@{\+\_\+n3l\+\_\+layer}}
+\subsubsection{\texorpdfstring{prev}{prev}}
+{\footnotesize\ttfamily struct \hyperlink{struct__n3l__layer}{\+\_\+n3l\+\_\+layer}$\ast$ \+\_\+n3l\+\_\+layer\+::prev}
+
+Previous layer in the list or N\+U\+LL if it\textquotesingle{}s the first one. \mbox{\Hypertarget{struct__n3l__layer_aec180f7f12ea86bb622c364076dbf1f6}\label{struct__n3l__layer_aec180f7f12ea86bb622c364076dbf1f6}} 
+\index{\+\_\+n3l\+\_\+layer@{\+\_\+n3l\+\_\+layer}!type@{type}}
+\index{type@{type}!\+\_\+n3l\+\_\+layer@{\+\_\+n3l\+\_\+layer}}
+\subsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \hyperlink{n3__header_8h_a1040baea07fec4d26d25641f75e892c5}{N3\+L\+Layer\+Type} \+\_\+n3l\+\_\+layer\+::type}
+
+Layer type. \begin{DoxySeeAlso}{See also}
+\hyperlink{n3__header_8h_a1040baea07fec4d26d25641f75e892c5}{N3\+L\+Layer\+Type} 
+\end{DoxySeeAlso}
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/n3\+\_\+header.\+h\end{DoxyCompactItemize}
+src/\hyperlink{n3__header_8h}{n3\+\_\+header.\+h}\end{DoxyCompactItemize}

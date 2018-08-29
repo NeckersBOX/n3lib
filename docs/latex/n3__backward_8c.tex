@@ -5,25 +5,29 @@
 This file contains functions to backpropagate the error and adjusts the weights.  
 
 
-{\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$stdlib.\+h$>$}\newline
 {\ttfamily \#include $<$pthread.\+h$>$}\newline
 {\ttfamily \#include $<$assert.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}n3\+\_\+header.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}n3\+\_\+neuron.\+h\char`\"{}}\newline
-Include dependency graph for n3\+\_\+backward.\+c\+:
-% FIG 0
+Include dependency graph for n3\+\_\+backward.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{n3__backward_8c__incl}
+\end{center}
+\end{figure}
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
-struct \mbox{\hyperlink{struct____n3l__backward__data}{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+data}}
+struct \hyperlink{struct____n3l__backward__data}{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+data}
 \begin{DoxyCompactList}\small\item\em Internal struct to share data between threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void $\ast$ \mbox{\hyperlink{n3__backward_8c_accf39951eeeca43985b286831dd397ce}{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+execute}} (void $\ast$arg)
+void $\ast$ \hyperlink{n3__backward_8c_accf39951eeeca43985b286831dd397ce}{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+execute} (void $\ast$arg)
 \begin{DoxyCompactList}\small\item\em Internal function to execute backward propagation from the current layer to the previous one. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{n3__backward_8c_a871c936d33bfb280aa548e2dfd5ff32c}{n3l\+\_\+backward\+\_\+propagation}} (\mbox{\hyperlink{structN3LNetwork}{N3\+L\+Network}} $\ast$net)
+bool \hyperlink{n3__backward_8c_a871c936d33bfb280aa548e2dfd5ff32c}{n3l\+\_\+backward\+\_\+propagation} (\hyperlink{structN3LNetwork}{N3\+L\+Network} $\ast$net)
 \begin{DoxyCompactList}\small\item\em Execute backward propagation on the whole network. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -50,20 +54,20 @@ Recursive function to execute backpropagation from the current layer to the prev
 
 
 \begin{DoxyParams}{Parameters}
-{\em arg} & Pointer to an initialized \mbox{\hyperlink{struct____n3l__backward__data}{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+data}} struct \\
+{\em arg} & Pointer to an initialized \hyperlink{struct____n3l__backward__data}{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+data} struct \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 No value returned.
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-n3l\+\_\+backward\+\_\+execute, \mbox{\hyperlink{struct____n3l__backward__data}{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+data}} 
+n3l\+\_\+backward\+\_\+execute, \hyperlink{struct____n3l__backward__data}{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+data} 
 \end{DoxySeeAlso}
 \mbox{\Hypertarget{n3__backward_8c_a871c936d33bfb280aa548e2dfd5ff32c}\label{n3__backward_8c_a871c936d33bfb280aa548e2dfd5ff32c}} 
 \index{n3\+\_\+backward.\+c@{n3\+\_\+backward.\+c}!n3l\+\_\+backward\+\_\+propagation@{n3l\+\_\+backward\+\_\+propagation}}
 \index{n3l\+\_\+backward\+\_\+propagation@{n3l\+\_\+backward\+\_\+propagation}!n3\+\_\+backward.\+c@{n3\+\_\+backward.\+c}}
 \subsubsection{\texorpdfstring{n3l\+\_\+backward\+\_\+propagation()}{n3l\_backward\_propagation()}}
-{\footnotesize\ttfamily bool n3l\+\_\+backward\+\_\+propagation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structN3LNetwork}{N3\+L\+Network}} $\ast$}]{net }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool n3l\+\_\+backward\+\_\+propagation (\begin{DoxyParamCaption}\item[{\hyperlink{structN3LNetwork}{N3\+L\+Network} $\ast$}]{net }\end{DoxyParamCaption})}
 
 
 
@@ -85,5 +89,5 @@ This function should be called after n3l\+\_\+forward\+\_\+execute()
 T\+R\+UE if was correctely executed, otherwise F\+A\+L\+SE.
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-n3l\+\_\+forward\+\_\+execute, \mbox{\hyperlink{structN3LNetwork}{N3\+L\+Network}}, \mbox{\hyperlink{n3__backward_8c_accf39951eeeca43985b286831dd397ce}{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+execute}} 
+n3l\+\_\+forward\+\_\+execute, \+\_\+n3l\+\_\+network, \hyperlink{n3__backward_8c_accf39951eeeca43985b286831dd397ce}{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+execute} 
 \end{DoxySeeAlso}
