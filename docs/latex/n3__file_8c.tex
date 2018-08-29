@@ -1,0 +1,99 @@
+\hypertarget{n3__file_8c}{}\section{src/n3\+\_\+file.c File Reference}
+\label{n3__file_8c}\index{src/n3\+\_\+file.\+c@{src/n3\+\_\+file.\+c}}
+
+
+This file contains functions to import and save a network state.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}n3\+\_\+header.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}n3\+\_\+neuron.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}n3\+\_\+layer.\+h\char`\"{}}\newline
+Include dependency graph for n3\+\_\+file.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{n3__file_8c_a78616ce6ffbb8218a169905de93abaaa}{\+\_\+\+\_\+n3l\+\_\+get\+\_\+weight\+\_\+from\+\_\+file}} (void $\ast$data)
+\begin{DoxyCompactList}\small\item\em Internal function to read weight from file during network initialization. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structN3LNetwork}{N3\+L\+Network}} $\ast$ \mbox{\hyperlink{n3__file_8c_a4fef76548ed87845dceafaa9527a83d0}{n3l\+\_\+file\+\_\+import\+\_\+network}} (char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Import the network state from a previously saved file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{n3__file_8c_aea5e504fe0f565507b01729737f16341}{n3l\+\_\+file\+\_\+export\+\_\+network}} (\mbox{\hyperlink{structN3LNetwork}{N3\+L\+Network}} $\ast$net, char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Export the current network state to the chosen file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains functions to import and save a network state. 
+
+\begin{DoxyAuthor}{Author}
+Davide Francesco Merico 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{n3__file_8c_a78616ce6ffbb8218a169905de93abaaa}\label{n3__file_8c_a78616ce6ffbb8218a169905de93abaaa}} 
+\index{n3\+\_\+file.\+c@{n3\+\_\+file.\+c}!\+\_\+\+\_\+n3l\+\_\+get\+\_\+weight\+\_\+from\+\_\+file@{\+\_\+\+\_\+n3l\+\_\+get\+\_\+weight\+\_\+from\+\_\+file}}
+\index{\+\_\+\+\_\+n3l\+\_\+get\+\_\+weight\+\_\+from\+\_\+file@{\+\_\+\+\_\+n3l\+\_\+get\+\_\+weight\+\_\+from\+\_\+file}!n3\+\_\+file.\+c@{n3\+\_\+file.\+c}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+n3l\+\_\+get\+\_\+weight\+\_\+from\+\_\+file()}{\_\_n3l\_get\_weight\_from\_file()}}
+{\footnotesize\ttfamily double \+\_\+\+\_\+n3l\+\_\+get\+\_\+weight\+\_\+from\+\_\+file (\begin{DoxyParamCaption}\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Internal function to read weight from file during network initialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Pointer to an already opened file. (F\+I\+LE type) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The weight read from the F\+I\+LE last read position.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{n3__file_8c_a4fef76548ed87845dceafaa9527a83d0}{n3l\+\_\+file\+\_\+import\+\_\+network}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{n3__file_8c_aea5e504fe0f565507b01729737f16341}\label{n3__file_8c_aea5e504fe0f565507b01729737f16341}} 
+\index{n3\+\_\+file.\+c@{n3\+\_\+file.\+c}!n3l\+\_\+file\+\_\+export\+\_\+network@{n3l\+\_\+file\+\_\+export\+\_\+network}}
+\index{n3l\+\_\+file\+\_\+export\+\_\+network@{n3l\+\_\+file\+\_\+export\+\_\+network}!n3\+\_\+file.\+c@{n3\+\_\+file.\+c}}
+\subsubsection{\texorpdfstring{n3l\+\_\+file\+\_\+export\+\_\+network()}{n3l\_file\_export\_network()}}
+{\footnotesize\ttfamily bool n3l\+\_\+file\+\_\+export\+\_\+network (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structN3LNetwork}{N3\+L\+Network}} $\ast$}]{net,  }\item[{char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Export the current network state to the chosen file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em net} & Initialized network state. \\
+\hline
+{\em filename} & File name into write the current network state. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+R\+UE if correctly executed, otherwise F\+A\+L\+SE.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{n3__file_8c_a4fef76548ed87845dceafaa9527a83d0}{n3l\+\_\+file\+\_\+import\+\_\+network}}, \mbox{\hyperlink{structN3LNetwork}{N3\+L\+Network}}, n3l\+\_\+network\+\_\+free 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{n3__file_8c_a4fef76548ed87845dceafaa9527a83d0}\label{n3__file_8c_a4fef76548ed87845dceafaa9527a83d0}} 
+\index{n3\+\_\+file.\+c@{n3\+\_\+file.\+c}!n3l\+\_\+file\+\_\+import\+\_\+network@{n3l\+\_\+file\+\_\+import\+\_\+network}}
+\index{n3l\+\_\+file\+\_\+import\+\_\+network@{n3l\+\_\+file\+\_\+import\+\_\+network}!n3\+\_\+file.\+c@{n3\+\_\+file.\+c}}
+\subsubsection{\texorpdfstring{n3l\+\_\+file\+\_\+import\+\_\+network()}{n3l\_file\_import\_network()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structN3LNetwork}{N3\+L\+Network}}$\ast$ n3l\+\_\+file\+\_\+import\+\_\+network (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Import the network state from a previously saved file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Previously saved file name with \mbox{\hyperlink{n3__file_8c_aea5e504fe0f565507b01729737f16341}{n3l\+\_\+file\+\_\+export\+\_\+network()}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \mbox{\hyperlink{structN3LNetwork}{N3\+L\+Network}} saved if successfully read, otherwise N\+U\+LL.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{n3__file_8c_aea5e504fe0f565507b01729737f16341}{n3l\+\_\+file\+\_\+export\+\_\+network}}, \mbox{\hyperlink{structN3LNetwork}{N3\+L\+Network}}, n3l\+\_\+network\+\_\+build 
+\end{DoxySeeAlso}

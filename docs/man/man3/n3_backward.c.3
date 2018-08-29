@@ -61,7 +61,7 @@ Internal function to execute backward propagation from the current layer to the 
 .PP
 \fBParameters:\fP
 .RS 4
-\fIarg\fP Pointer to an itialized \fB__n3l_backward_data\fP struct 
+\fIarg\fP Pointer to an initialized \fB__n3l_backward_data\fP struct 
 .RE
 .PP
 \fBReturns:\fP
@@ -78,10 +78,12 @@ n3l_backward_execute, \fB__n3l_backward_data\fP
 .SS "bool n3l_backward_propagation (\fBN3LNetwork\fP * net)"
 
 .PP
-Execute backward propagation on the whole network\&. The member \fCnet->targets\fP must be initialized before calling this function\&. Each call to the previous layer from the last layer is execute with concurrents threads\&.
+Execute backward propagation on the whole network\&. Each call to the previous layer from the last layer is executed with concurrents threads\&.
 .PP
 \fBNote:\fP
 .RS 4
+The member \fCnet->targets\fP must be initialized before calling this function\&. 
+.PP
 This function should be called after n3l_forward_execute() 
 .RE
 .PP

@@ -27,9 +27,9 @@ void *__n3l_backward_execute(void *arg);
 /**
  * @brief Execute backward propagation on the whole network.
  *
- * The member \p net->targets must be initialized before calling this function.
- * Each call to the previous layer from the last layer is execute with concurrents threads.
+ * Each call to the previous layer from the last layer is executed with concurrents threads.
  *
+ * @note The member \p net->targets must be initialized before calling this function.
  * @note This function should be called after n3l_forward_execute()
  * @param net Initialized network
  * @return TRUE if was correctely executed, otherwise FALSE. 

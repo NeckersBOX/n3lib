@@ -50,7 +50,7 @@ Recursive function to execute backpropagation from the current layer to the prev
 
 
 \begin{DoxyParams}{Parameters}
-{\em arg} & Pointer to an itialized \mbox{\hyperlink{struct____n3l__backward__data}{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+data}} struct \\
+{\em arg} & Pointer to an initialized \mbox{\hyperlink{struct____n3l__backward__data}{\+\_\+\+\_\+n3l\+\_\+backward\+\_\+data}} struct \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -69,9 +69,11 @@ n3l\+\_\+backward\+\_\+execute, \mbox{\hyperlink{struct____n3l__backward__data}{
 
 Execute backward propagation on the whole network. 
 
-The member {\ttfamily net-\/$>$targets} must be initialized before calling this function. Each call to the previous layer from the last layer is execute with concurrents threads.
+Each call to the previous layer from the last layer is executed with concurrents threads.
 
 \begin{DoxyNote}{Note}
+The member {\ttfamily net-\/$>$targets} must be initialized before calling this function. 
+
 This function should be called after n3l\+\_\+forward\+\_\+execute() 
 \end{DoxyNote}
 

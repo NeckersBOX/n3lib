@@ -1,3 +1,8 @@
+/**
+ * @file n3_forward.c
+ * @author Davide Francesco Merico
+ * @brief This file contains functions to forward the inputs provided to the outputs.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -6,16 +11,33 @@
 #include "n3_header.h"
 #include "n3_neuron.h"
 
+/**
+ * @brief Internal struct to share data between threads.
+ * 
+ * Initialized from the current layer to the next one.
+ *
+ * @see __n3l_forward_get_outputs
+ */
 struct __n3l_forward_data {
-  uint64_t ref;
-  N3LLayer *layer;
-  double *result;
+  uint64_t ref;			/**< Next layer's neuron reference */
+  N3LLayer *layer;	/**< Current layer */
+  double *result;		/**< Sum result while collecting outputs function */
 };
 
 void *    __n3l_forward_activate    (void *arg);
 void *    __n3l_forward_get_outputs (void *arg);
 double *  __n3l_forward_layer       (N3LLayer *layer, double *inputs);
 
+/**
+ * @brief Execute forward propagation on the whole network.
+ *
+ * @note The member \p net->inputs must be initialized before calling this function.
+ * @param net Initialized network
+ * @return An array with the outputs evaluated. The array length is equal to the network output layer size.
+ * @warning The returned array must be free manually calling free().
+ *
+ * @see n3l_backward_execute, N3LNetwork, __n3l_forward_layer
+ */
 double *n3l_forward_propagation(N3LNetwork *net)
 {
   N3LLayer *layer;
@@ -34,6 +56,18 @@ double *n3l_forward_propagation(N3LNetwork *net)
   return layer_out_data;
 }
 
+/**
+ * @brief Internal function to execute forward propagation from the current layer to the next one.
+ *
+ * This function first execute all neurons in the \p layer using concurrents threads. 
+ * When all threads are executed, get the outputs for each neuron in the next layers.
+ *
+ * @param layer Current layer to execute.
+ * @param inputs Current layer inputs.
+ * @return Current layer outputs.
+ *
+ * @see n3l_forward_propagation, __n3l_forward_activate, __n3l_forward_get_outputs, N3LLayer
+ */
 double *__n3l_forward_layer(N3LLayer *layer, double *inputs)
 {
   pthread_t *threads = NULL;
@@ -92,6 +126,14 @@ double *__n3l_forward_layer(N3LLayer *layer, double *inputs)
   return outputs;
 }
 
+/**
+ * @brief Internal function to execute the single neuron.
+ *
+ * @param arg Current neuron to execute.
+ * @return NULL.
+ *
+ * @see __n3l_forward_layer, __n3l_forward_get_outputs, N3LNeuron
+ */
 void *__n3l_forward_activate(void *arg)
 {
   N3LNeuron *ref = (N3LNeuron *) arg;
@@ -101,6 +143,15 @@ void *__n3l_forward_activate(void *arg)
   return NULL;
 }
 
+
+/**
+ * @brief Internal function to get outputs for the next layer's neurons.
+ *
+ * @param arg thread data of type #_n3l_forward_data.
+ * @return NULL.
+ *
+ * @see __n3l_forward_layer, __n3l_forward_activate, _n3l_forward_data
+ */
 void *__n3l_forward_get_outputs(void *arg)
 {
   struct __n3l_forward_data *tdata = (struct __n3l_forward_data *) arg;

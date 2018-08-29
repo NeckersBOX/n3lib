@@ -154,7 +154,7 @@ Functions</h2></td></tr>
 <p>Recursive function to execute backpropagation from the current layer to the previous one, only if the layer passed as thread data is not NULL. After backpropagate it adjusts the current layer's weights.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">arg</td><td>Pointer to an itialized <a class="el" href="struct____n3l__backward__data.html" title="Internal struct to share data between threads. ">__n3l_backward_data</a> struct </td></tr>
+    <tr><td class="paramname">arg</td><td>Pointer to an initialized <a class="el" href="struct____n3l__backward__data.html" title="Internal struct to share data between threads. ">__n3l_backward_data</a> struct </td></tr>
   </table>
   </dd>
 </dl>
@@ -180,8 +180,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Execute backward propagation on the whole network. </p>
-<p>The member <code>net-&gt;targets</code> must be initialized before calling this function. Each call to the previous layer from the last layer is execute with concurrents threads.</p>
-<dl class="section note"><dt>Note</dt><dd>This function should be called after n3l_forward_execute() </dd></dl>
+<p>Each call to the previous layer from the last layer is executed with concurrents threads.</p>
+<dl class="section note"><dt>Note</dt><dd>The member <code>net-&gt;targets</code> must be initialized before calling this function. </dd>
+<dd>
+This function should be called after n3l_forward_execute() </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">net</td><td>Initialized network </td></tr>

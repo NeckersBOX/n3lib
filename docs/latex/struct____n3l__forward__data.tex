@@ -2,22 +2,55 @@
 \label{struct____n3l__forward__data}\index{\+\_\+\+\_\+n3l\+\_\+forward\+\_\+data@{\+\_\+\+\_\+n3l\+\_\+forward\+\_\+data}}
 
 
+Internal struct to share data between threads.  
+
+
+
+
 Collaboration diagram for \+\_\+\+\_\+n3l\+\_\+forward\+\_\+data\+:
 % FIG 0
 \subsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct____n3l__forward__data_ada78b9bd1418f8dccab76319afb7d64b}\label{struct____n3l__forward__data_ada78b9bd1418f8dccab76319afb7d64b}} 
-uint64\+\_\+t {\bfseries ref}
+uint64\+\_\+t \mbox{\hyperlink{struct____n3l__forward__data_ada78b9bd1418f8dccab76319afb7d64b}{ref}}
 \item 
-\mbox{\Hypertarget{struct____n3l__forward__data_aaeb45910cc54c7f3a770dbd124477fc2}\label{struct____n3l__forward__data_aaeb45910cc54c7f3a770dbd124477fc2}} 
-\mbox{\hyperlink{struct__n3l__layer}{N3\+L\+Layer}} $\ast$ {\bfseries layer}
+\mbox{\hyperlink{struct__n3l__layer}{N3\+L\+Layer}} $\ast$ \mbox{\hyperlink{struct____n3l__forward__data_aaeb45910cc54c7f3a770dbd124477fc2}{layer}}
 \item 
-\mbox{\Hypertarget{struct____n3l__forward__data_ac870eae5ce14b297b5d78cc7112c8cec}\label{struct____n3l__forward__data_ac870eae5ce14b297b5d78cc7112c8cec}} 
-double $\ast$ {\bfseries result}
+double $\ast$ \mbox{\hyperlink{struct____n3l__forward__data_ac870eae5ce14b297b5d78cc7112c8cec}{result}}
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+Internal struct to share data between threads. 
+
+Initialized from the current layer to the next one.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{n3__forward_8c_ac55d957c2a3b754387f5037e87317870}{\+\_\+\+\_\+n3l\+\_\+forward\+\_\+get\+\_\+outputs}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{struct____n3l__forward__data_aaeb45910cc54c7f3a770dbd124477fc2}\label{struct____n3l__forward__data_aaeb45910cc54c7f3a770dbd124477fc2}} 
+\index{\+\_\+\+\_\+n3l\+\_\+forward\+\_\+data@{\+\_\+\+\_\+n3l\+\_\+forward\+\_\+data}!layer@{layer}}
+\index{layer@{layer}!\+\_\+\+\_\+n3l\+\_\+forward\+\_\+data@{\+\_\+\+\_\+n3l\+\_\+forward\+\_\+data}}
+\subsubsection{\texorpdfstring{layer}{layer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__n3l__layer}{N3\+L\+Layer}}$\ast$ \+\_\+\+\_\+n3l\+\_\+forward\+\_\+data\+::layer}
+
+Current layer \mbox{\Hypertarget{struct____n3l__forward__data_ada78b9bd1418f8dccab76319afb7d64b}\label{struct____n3l__forward__data_ada78b9bd1418f8dccab76319afb7d64b}} 
+\index{\+\_\+\+\_\+n3l\+\_\+forward\+\_\+data@{\+\_\+\+\_\+n3l\+\_\+forward\+\_\+data}!ref@{ref}}
+\index{ref@{ref}!\+\_\+\+\_\+n3l\+\_\+forward\+\_\+data@{\+\_\+\+\_\+n3l\+\_\+forward\+\_\+data}}
+\subsubsection{\texorpdfstring{ref}{ref}}
+{\footnotesize\ttfamily uint64\+\_\+t \+\_\+\+\_\+n3l\+\_\+forward\+\_\+data\+::ref}
+
+Next layer\textquotesingle{}s neuron reference \mbox{\Hypertarget{struct____n3l__forward__data_ac870eae5ce14b297b5d78cc7112c8cec}\label{struct____n3l__forward__data_ac870eae5ce14b297b5d78cc7112c8cec}} 
+\index{\+\_\+\+\_\+n3l\+\_\+forward\+\_\+data@{\+\_\+\+\_\+n3l\+\_\+forward\+\_\+data}!result@{result}}
+\index{result@{result}!\+\_\+\+\_\+n3l\+\_\+forward\+\_\+data@{\+\_\+\+\_\+n3l\+\_\+forward\+\_\+data}}
+\subsubsection{\texorpdfstring{result}{result}}
+{\footnotesize\ttfamily double$\ast$ \+\_\+\+\_\+n3l\+\_\+forward\+\_\+data\+::result}
+
+Sum result while collecting outputs function 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/n3\+\_\+forward.\+c\end{DoxyCompactItemize}
+src/\mbox{\hyperlink{n3__forward_8c}{n3\+\_\+forward.\+c}}\end{DoxyCompactItemize}

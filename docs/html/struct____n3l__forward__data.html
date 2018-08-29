@@ -98,6 +98,9 @@ $(document).ready(function(){initNavTree('struct____n3l__forward__data.html','')
 <div class="title">__n3l_forward_data Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Internal struct to share data between threads.  
+ <a href="struct____n3l__forward__data.html#details">More...</a></p>
 <div class="dynheader">
 Collaboration diagram for __n3l_forward_data:</div>
 <div class="dyncontent">
@@ -107,18 +110,65 @@ Collaboration diagram for __n3l_forward_data:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:ada78b9bd1418f8dccab76319afb7d64b"><td class="memItemLeft" align="right" valign="top"><a id="ada78b9bd1418f8dccab76319afb7d64b"></a>
-uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>ref</b></td></tr>
+<tr class="memitem:ada78b9bd1418f8dccab76319afb7d64b"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct____n3l__forward__data.html#ada78b9bd1418f8dccab76319afb7d64b">ref</a></td></tr>
 <tr class="separator:ada78b9bd1418f8dccab76319afb7d64b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaeb45910cc54c7f3a770dbd124477fc2"><td class="memItemLeft" align="right" valign="top"><a id="aaeb45910cc54c7f3a770dbd124477fc2"></a>
-<a class="el" href="struct__n3l__layer.html">N3LLayer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>layer</b></td></tr>
+<tr class="memitem:aaeb45910cc54c7f3a770dbd124477fc2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__n3l__layer.html">N3LLayer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct____n3l__forward__data.html#aaeb45910cc54c7f3a770dbd124477fc2">layer</a></td></tr>
 <tr class="separator:aaeb45910cc54c7f3a770dbd124477fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac870eae5ce14b297b5d78cc7112c8cec"><td class="memItemLeft" align="right" valign="top"><a id="ac870eae5ce14b297b5d78cc7112c8cec"></a>
-double *&#160;</td><td class="memItemRight" valign="bottom"><b>result</b></td></tr>
+<tr class="memitem:ac870eae5ce14b297b5d78cc7112c8cec"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct____n3l__forward__data.html#ac870eae5ce14b297b5d78cc7112c8cec">result</a></td></tr>
 <tr class="separator:ac870eae5ce14b297b5d78cc7112c8cec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Internal struct to share data between threads. </p>
+<p>Initialized from the current layer to the next one.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="n3__forward_8c.html#ac55d957c2a3b754387f5037e87317870" title="Internal function to get outputs for the next layer&#39;s neurons. ">__n3l_forward_get_outputs</a> </dd></dl>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a id="aaeb45910cc54c7f3a770dbd124477fc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaeb45910cc54c7f3a770dbd124477fc2">&#9670;&nbsp;</a></span>layer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct__n3l__layer.html">N3LLayer</a>* __n3l_forward_data::layer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Current layer </p>
+
+</div>
+</div>
+<a id="ada78b9bd1418f8dccab76319afb7d64b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada78b9bd1418f8dccab76319afb7d64b">&#9670;&nbsp;</a></span>ref</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t __n3l_forward_data::ref</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Next layer's neuron reference </p>
+
+</div>
+</div>
+<a id="ac870eae5ce14b297b5d78cc7112c8cec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac870eae5ce14b297b5d78cc7112c8cec">&#9670;&nbsp;</a></span>result</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double* __n3l_forward_data::result</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sum result while collecting outputs function </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/n3_forward.c</li>
+<li>src/<a class="el" href="n3__forward_8c.html">n3_forward.c</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

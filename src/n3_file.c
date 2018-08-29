@@ -1,9 +1,22 @@
+/**
+ * @file n3_file.c
+ * @author Davide Francesco Merico
+ * @brief This file contains functions to import and save a network state.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include "n3_header.h"
 #include "n3_neuron.h"
 #include "n3_layer.h"
 
+/**
+ * @brief Internal function to read weight from file during network initialization.
+ *
+ * @param data Pointer to an already opened file. (FILE type)
+ * @return The weight read from the FILE last read position. 
+ *
+ * @see n3l_file_import_network
+ */
 double __n3l_get_weight_from_file(void *data)
 {
   double weight;
@@ -14,6 +27,14 @@ double __n3l_get_weight_from_file(void *data)
   return weight;
 }
 
+/**
+ * @brief Import the network state from a previously saved file.
+ *
+ * @param filename Previously saved file name with n3l_file_export_network().
+ * @return The N3LNetwork saved if successfully read, otherwise NULL.
+ *
+ * @see n3l_file_export_network, N3LNetwork, n3l_network_build
+ */
 N3LNetwork *n3l_file_import_network(char *filename)
 {
   N3LNetwork *net;
@@ -73,6 +94,15 @@ N3LNetwork *n3l_file_import_network(char *filename)
   return net;
 }
 
+/**
+ * @brief Export the current network state to the chosen file.
+ *
+ * @param net Initialized network state.
+ * @param filename File name into write the current network state.
+ * @return TRUE if correctly executed, otherwise FALSE.
+ *
+ * @see n3l_file_import_network, N3LNetwork, n3l_network_free
+ */
 bool n3l_file_export_network(N3LNetwork *net, char *filename)
 {
   FILE *n3_file;
