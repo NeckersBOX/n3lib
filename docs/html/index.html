@@ -36,7 +36,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">N3 Library
    </div>
-   <div id="projectbrief">C Neckers Neural Network Library</div>
+   <div id="projectbrief">A C library for building neural network with the capability to define custom activation functions, learning rate, bias and others parameters.</div>
   </td>
  </tr>
  </tbody>
@@ -90,7 +90,44 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="title">N3 Library Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-</div><!-- contents -->
+<div class="textblock"><div class="image">
+<object type="image/svg+xml" data="https://img.shields.io/badge/build-passing-green.svg" alt="Build"></object>
+</div>
+ <div class="image">
+<object type="image/svg+xml" data="https://img.shields.io/badge/status-alpha-yellow.svg" alt="Status"></object>
+</div>
+ <div class="image">
+<object type="image/svg+xml" data="https://img.shields.io/badge/version-2.0.0-lightgray.svg" alt="Version"></object>
+</div>
+ <div class="image">
+<object type="image/svg+xml" data="https://img.shields.io/badge/license-BSD--2--Clause-red.svg" alt="License"></object>
+</div>
+<h1>N3 Library</h1>
+<p>A C library for building neural network with the capability to define custom activation functions, learning rate, bias and others parameters.</p>
+<p>Both forward and backpropagation are built to parallelize through threads the operations.</p>
+<p>In forward propagation each layer execute the <em>activation functions</em> in concurrent threads, when one layer end its own job, the results to the each next layer's neuron are collected with others concurrent threads. The whole process is executed from each layer from the input one to the output one.</p>
+<p>In backward propagation first there is the delta evaluation from the output layer to the input layer, after that there is the weight updating process from the input to the output. Each return to the previous layer and delta evaluation on neurons in the same layer, is built, even in this case, with concurrent threads.</p>
+<p>Due to the list type structure of layers and neurons, N3 Library allow you to remove and add neurons or layers even while it's in running mode ( at the end of each iteration ).</p>
+<h2>Build</h2>
+<p>The library is designed to run under GNU\Linux operating systems.</p>
+<p>You can compile it with the following commands: </p><div class="fragment"><div class="line">$ make</div><div class="line"># make install</div></div><!-- fragment --><p>To clean the main folder you can run <code>make clean</code>. To uninstall <code>make uninstall</code> as root user.</p>
+<p><b>Flags:</b></p><ul>
+<li><em>debug=true</em> add the arguments <code>-g -Ddebug_enable -pg</code></li>
+<li><em>extra=true</em> add the arguments <code>-Wall -Wextra -ansi -pedantic</code></li>
+<li><em>flags=arguments</em> add the arguments specified</li>
+<li><em>destdir=mydir</em> install the library in the specified path <code>mydir</code></li>
+</ul>
+<h2>Documentation</h2>
+<p>The library is written to use Doxygen to generate up-to-date documentation and man pages. You can update the docs executing the following command:</p>
+<div class="fragment"><div class="line">doxygen n3lib.doxygen.conf</div></div><!-- fragment --><p>And install man pages by:</p>
+<div class="fragment"><div class="line"># make install doc</div></div><!-- fragment --><p>Pre generated documentation is provided along with the library in the folder <code>docs</code>. More content, not strictly linked with the code, are included in the path <code>docs\extra</code>.</p>
+<h2>Running Examples</h2>
+<p>There are small projects built with N3 Library into the path <code>examples</code>, along with sources you can found report with details about memory, execution times and performance graphs.</p>
+<p><b>NOTE:</b> File with extension <code>.n3l</code> contains the network state after learning with number of iterations equals to the same written in relative reports.</p>
+<h2>License</h2>
+<p>The library is released under BSD-2-Clause License.</p>
+<p>You can found a copy of the license into the <code>LICENSE</code> file. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

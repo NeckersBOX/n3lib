@@ -1,7 +1,10 @@
-![Build](https://img.shields.io/badge/build-passing-green.svg) ![Status](https://img.shields.io/badge/status-dev-orange.svg) ![Version](https://img.shields.io/badge/version-1.4.0-lightgray.svg)
+![Build](https://img.shields.io/badge/build-passing-green.svg)
+![Status](https://img.shields.io/badge/status-alpha-yellow.svg)
+![Version](https://img.shields.io/badge/version-2.0.0-lightgray.svg)
+![License](https://img.shields.io/badge/license-BSD--2--Clause-red.svg)
 
 # N3 Library
-A tiny C library for building neural network with the capability to define custom activation functions, learning rate, bias and others parameters.
+A C library for building neural network with the capability to define custom activation functions, learning rate, bias and others parameters.
 
 Both forward and backpropagation are built to parallelize through threads the operations.
 
@@ -12,7 +15,7 @@ In backward propagation first there is the delta evaluation from the output laye
 Due to the list type structure of layers and neurons, N3 Library allow you to remove and add neurons or layers even while it's in running mode ( at the end of each iteration ).
 
 ## Build
-The library is designed to run under GNU\Linux operating systems.
+The library is designed to run under GNU\\Linux operating systems.
 
 You can compile it with the following commands:
 ```
@@ -29,7 +32,31 @@ To uninstall `make uninstall` as root user.
 * _flags=arguments_ add the arguments specified
 * _destdir=mydir_ install the library in the specified path `mydir`
 
-You can disable the internal N3 Library log with the flag `-DN3L_DISABLE_LOG`. Example:
+## Documentation
+
+The library is written to use Doxygen to generate up-to-date documentation and man pages.
+You can update the docs executing the following command:
+
 ```
-make flags="-DN3L_DISABLE_LOG"
+doxygen n3lib.doxygen.conf
 ```
+
+And install man pages by:
+
+```
+# make install doc
+```
+
+Pre generated documentation is provided along with the library in the folder `docs`.
+More content, not strictly linked with the code, are included in the path `docs\extra`.
+
+## Running Examples
+
+There are small projects built with N3 Library into the path `examples`, along with sources you can found report with details about memory, execution times and performance graphs.
+
+**NOTE:** File with extension `.n3l` contains the network state after learning with number of iterations equals to the same written in relative reports.
+
+## License
+The library is released under BSD-2-Clause License.
+
+You can found a copy of the license into the `LICENSE` file.
