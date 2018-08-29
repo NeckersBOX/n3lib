@@ -1,9 +1,26 @@
+/**
+ * @file n3_network.c
+ * @author Davide Francesco Merico
+ * @brief This file contains functions to build networks.
+ */
 #include <stdlib.h>
 #include <string.h>
 #include "n3_header.h"
 #include "n3_layer.h"
 #include "n3_neuron.h"
 
+/**
+ * @brief Build a new network.
+ *
+ * @note Layers are built in order: Input, Hidden, Output.
+ * @note Bias neurons, if specified, are added as last neuron in neurons list.
+ *
+ * @param args Parameters to initialize the network.
+ * @param learn_rate Initial learning rate when used backpropagation.
+ * @return The new network if built successfully, otherwise NULL.
+ *
+ * @see N3LArgs, n3l_misc_init_arg, N3LNetwork, n3l_network_free, n3l_file_import_network
+ */
 N3LNetwork *n3l_network_build(N3LArgs args, double learn_rate)
 {
   N3LNetwork *net;
@@ -66,6 +83,13 @@ N3LNetwork *n3l_network_build(N3LArgs args, double learn_rate)
   return net;
 }
 
+/**
+ * @brief Free the network's allocated memory.
+ *
+ * @note It also free all network's layers and neurons.
+ *
+ * @see n3l_layer_free, n3l_neuron_free, n3l_network_build
+ */
 void n3l_network_free(N3LNetwork *net)
 {
   N3LLayer *p;

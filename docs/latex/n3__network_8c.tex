@@ -1,0 +1,82 @@
+\hypertarget{n3__network_8c}{}\section{src/n3\+\_\+network.c File Reference}
+\label{n3__network_8c}\index{src/n3\+\_\+network.\+c@{src/n3\+\_\+network.\+c}}
+
+
+This file contains functions to build networks.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}n3\+\_\+header.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}n3\+\_\+layer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}n3\+\_\+neuron.\+h\char`\"{}}\newline
+Include dependency graph for n3\+\_\+network.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{n3__network_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structN3LNetwork}{N3\+L\+Network} $\ast$ \hyperlink{n3__network_8c_a5f87e1efebd658dd55d7d2ca1768bdba}{n3l\+\_\+network\+\_\+build} (\hyperlink{structN3LArgs}{N3\+L\+Args} args, double learn\+\_\+rate)
+\begin{DoxyCompactList}\small\item\em Build a new network. \end{DoxyCompactList}\item 
+void \hyperlink{n3__network_8c_a327ffd586b67f586743d72a146c4ea95}{n3l\+\_\+network\+\_\+free} (\hyperlink{structN3LNetwork}{N3\+L\+Network} $\ast$net)
+\begin{DoxyCompactList}\small\item\em Free the network\textquotesingle{}s allocated memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains functions to build networks. 
+
+\begin{DoxyAuthor}{Author}
+Davide Francesco Merico 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{n3__network_8c_a5f87e1efebd658dd55d7d2ca1768bdba}\label{n3__network_8c_a5f87e1efebd658dd55d7d2ca1768bdba}} 
+\index{n3\+\_\+network.\+c@{n3\+\_\+network.\+c}!n3l\+\_\+network\+\_\+build@{n3l\+\_\+network\+\_\+build}}
+\index{n3l\+\_\+network\+\_\+build@{n3l\+\_\+network\+\_\+build}!n3\+\_\+network.\+c@{n3\+\_\+network.\+c}}
+\subsubsection{\texorpdfstring{n3l\+\_\+network\+\_\+build()}{n3l\_network\_build()}}
+{\footnotesize\ttfamily \hyperlink{structN3LNetwork}{N3\+L\+Network}$\ast$ n3l\+\_\+network\+\_\+build (\begin{DoxyParamCaption}\item[{\hyperlink{structN3LArgs}{N3\+L\+Args}}]{args,  }\item[{double}]{learn\+\_\+rate }\end{DoxyParamCaption})}
+
+
+
+Build a new network. 
+
+\begin{DoxyNote}{Note}
+Layers are built in order\+: Input, Hidden, Output. 
+
+Bias neurons, if specified, are added as last neuron in neurons list.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Parameters to initialize the network. \\
+\hline
+{\em learn\+\_\+rate} & Initial learning rate when used backpropagation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new network if built successfully, otherwise N\+U\+LL.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{structN3LArgs}{N3\+L\+Args}, \hyperlink{n3__misc_8c_a22f4dc2ca9ee867a30c91565e37788d9}{n3l\+\_\+misc\+\_\+init\+\_\+arg}, \hyperlink{structN3LNetwork}{N3\+L\+Network}, \hyperlink{n3__network_8c_a327ffd586b67f586743d72a146c4ea95}{n3l\+\_\+network\+\_\+free}, \hyperlink{n3__file_8c_a4fef76548ed87845dceafaa9527a83d0}{n3l\+\_\+file\+\_\+import\+\_\+network} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{n3__network_8c_a327ffd586b67f586743d72a146c4ea95}\label{n3__network_8c_a327ffd586b67f586743d72a146c4ea95}} 
+\index{n3\+\_\+network.\+c@{n3\+\_\+network.\+c}!n3l\+\_\+network\+\_\+free@{n3l\+\_\+network\+\_\+free}}
+\index{n3l\+\_\+network\+\_\+free@{n3l\+\_\+network\+\_\+free}!n3\+\_\+network.\+c@{n3\+\_\+network.\+c}}
+\subsubsection{\texorpdfstring{n3l\+\_\+network\+\_\+free()}{n3l\_network\_free()}}
+{\footnotesize\ttfamily void n3l\+\_\+network\+\_\+free (\begin{DoxyParamCaption}\item[{\hyperlink{structN3LNetwork}{N3\+L\+Network} $\ast$}]{net }\end{DoxyParamCaption})}
+
+
+
+Free the network\textquotesingle{}s allocated memory. 
+
+\begin{DoxyNote}{Note}
+It also free all network\textquotesingle{}s layers and neurons.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{n3__layer_8c_ad58e1630c1b7fc5da03d54cf63c394d9}{n3l\+\_\+layer\+\_\+free}, n3l\+\_\+neuron\+\_\+free, \hyperlink{n3__network_8c_a5f87e1efebd658dd55d7d2ca1768bdba}{n3l\+\_\+network\+\_\+build} 
+\end{DoxySeeAlso}
