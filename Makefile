@@ -43,6 +43,8 @@ build: $(objects)
 
 
 doc:
+	echo "**GitHub Project:** [https://github.com/NeckersBOX/n3lib](https://github.com/NeckersBOX/n3lib)" > docs/README.md
+	tail -n +2 README.md >> docs/README.md
 	doxygen n3lib.doxygen.conf
 	rm -vf docs/man/man3/_home_*
 	rm -vf docs/man/man3/md*

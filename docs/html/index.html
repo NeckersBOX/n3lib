@@ -90,19 +90,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="title">N3 Library Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><div class="image">
-<object type="image/svg+xml" data="https://img.shields.io/badge/build-passing-green.svg" alt="Build"></object>
-</div>
- <div class="image">
-<object type="image/svg+xml" data="https://img.shields.io/badge/status-alpha-yellow.svg" alt="Status"></object>
-</div>
- <div class="image">
-<object type="image/svg+xml" data="https://img.shields.io/badge/version-2.0.0-lightgray.svg" alt="Version"></object>
-</div>
- <div class="image">
-<object type="image/svg+xml" data="https://img.shields.io/badge/license-BSD--2--Clause-red.svg" alt="License"></object>
-</div>
-<h1>N3 Library</h1>
+<div class="textblock"><p><b>GitHub Project:</b> <a href="https://github.com/NeckersBOX/n3lib">https://github.com/NeckersBOX/n3lib</a></p>
 <p>A C library for building neural network with the capability to define custom activation functions, learning rate, bias and others parameters.</p>
 <p>Both forward and backpropagation are built to parallelize through threads the operations.</p>
 <p>In forward propagation each layer execute the <em>activation functions</em> in concurrent threads, when one layer end its own job, the results to the each next layer's neuron are collected with others concurrent threads. The whole process is executed from each layer from the input one to the output one.</p>
