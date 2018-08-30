@@ -30,6 +30,8 @@ To uninstall `make uninstall` as root user.
 
 ## Documentation
 
+#### Online Docs: [https://neckersbox.github.io/n3lib/](https://neckersbox.github.io/n3lib/)
+
 The library is written to use Doxygen to generate up-to-date documentation and man pages.
 You can update the docs executing the following command:
 
