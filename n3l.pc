@@ -1,0 +1,12 @@
+-e prefix=/usr
+ exec_prefix=/usr
+ libdir=/usr/lib
+ includedir=/usr/include/n3l
+ 
+ Name: N3 Library
+ Description: A tiny C library for building neural network.
+ Version: 1.2.9
+ Requires: 
+ Libs: -L/usr/lib -ln3l -lm -lpthread
+ Libs.private: -lm -lpthread
+ Cflags: -I/usr/include/n3l

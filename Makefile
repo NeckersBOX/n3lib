@@ -41,10 +41,11 @@ build: $(objects)
 					 "Cflags: -I$(include_path)" > $(pkgconfig)
 	@echo "Done"
 
-doc: n3lib.doxygen.conf
+
+doc:
 	doxygen n3lib.doxygen.conf
-	rm -vf docs/man/n3lib/_home_*
-	rm -vf docs/man/n3lib/md*
+	rm -vf docs/man/man3/_home_*
+	rm -vf docs/man/man3/md*
 
 clean:
 	rm -vf $(objects) $(soname) $(aname) $(pkgconfig)
@@ -61,8 +62,9 @@ install: $(soname)
 	 install -D $(pkgconfig) $(library_path)/pkgconfig/$(pkgconfig)
 	 @echo -n "Installing manpages... "
 	 mkdir $(man_path) -p
-	 cp docs/man/n3lib $(man_path) -r
+	 cp docs/man/man3 $(man_path) -r
 	 @echo "Done."
+	 mandb
 
 uninstall:
 	 unlink $(library_path)/libn3l.so
@@ -70,4 +72,5 @@ uninstall:
 	 rm -vr $(library_path)/$(soname) $(include_path) \
 	  $(library_path)/$(aname) \
 	  $(library_path)/pkgconfig/$(pkgconfig) \
-		$(man_path)/n3lib
+		$(man_path)/man3/n3l* $(man_path)/man3/__n3* \
+		$(man_path)/man3/_n3*
