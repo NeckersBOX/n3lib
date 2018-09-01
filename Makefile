@@ -49,6 +49,10 @@ doc:
 	rm -vf docs/man/man3/_home_*
 	rm -vf docs/man/man3/md*
 
+doc-clean:
+	rm docs/html -r
+	rm docs/latex -r
+
 clean:
 	rm -vf $(objects) $(soname) $(aname) $(pkgconfig)
 

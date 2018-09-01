@@ -1,5 +1,0 @@
-<map id="__n3l_backward_data" name="__n3l_backward_data">
-<area shape="rect" id="node2" href="$struct__n3l__layer.html" title="Double Linked List which contains layer&#39;s values. " alt="" coords="39,203,120,229"/>
-<area shape="rect" id="node3" href="$struct__n3l__neuron.html" title="Double Linked List which contains neuron&#39;s values. " alt="" coords="33,96,125,123"/>
-<area shape="rect" id="node4" href="$struct__n3l__weight.html" title="Single Linked List which contains weight&#39;s values. " alt="" coords="34,5,125,32"/>
-</map>
