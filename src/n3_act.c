@@ -2,9 +2,9 @@
  * @file n3_act.c
  * @author Davide Francesco Merico
  * @brief This file contains activation functions and their primitive.
- * 
- * @see <a href="https://en.wikipedia.org/wiki/Activation_function">Wikipedia - Activation Function</a> 
- * @note These functions, except for n3l_act or n3l_act_prime, shouldn't be used directly to improve 
+ *
+ * @see <a href="https://en.wikipedia.org/wiki/Activation_function">Wikipedia - Activation Function</a>
+ * @note These functions, except for n3l_act or n3l_act_prime, shouldn't be used directly to improve
  * 			 compatibility with future library versions.
  */
 #include <assert.h>
@@ -29,7 +29,7 @@
  * @param val input value
  * @return the same value passed as argument.
  *
- * @see n3l_act_identity, n3l_act, N3LAct, N3LActTye
+ * @see n3l_act_identity, n3l_act, N3LAct, N3LActType
  */
 double n3l_act_none(double val)
 {
@@ -44,7 +44,7 @@ double n3l_act_none(double val)
  * @param val input value
  * @return the results from the formula above.
  *
- * @see n3l_act_sigmoid_prime, n3l_act, N3LAct, N3LActTye
+ * @see n3l_act_sigmoid_prime, n3l_act, N3LAct, N3LActType
  */
 double n3l_act_sigmoid(double val)
 {
@@ -59,7 +59,7 @@ double n3l_act_sigmoid(double val)
  * @param val input value
  * @return the results from the formula above.
  *
- * @see n3l_act_sigmoid, n3l_act_prime, N3LAct, N3LActTye
+ * @see n3l_act_sigmoid, n3l_act_prime, N3LAct, N3LActType
  */
 double n3l_act_sigmoid_prime(double val)
 {
@@ -74,7 +74,7 @@ double n3l_act_sigmoid_prime(double val)
  * @param val input value
  * @return the results from the formula above.
  *
- * @see n3l_act_tanh_prime, n3l_act, N3LAct, N3LActTye
+ * @see n3l_act_tanh_prime, n3l_act, N3LAct, N3LActType
  */
 double n3l_act_tanh(double val)
 {
@@ -89,7 +89,7 @@ double n3l_act_tanh(double val)
  * @param val input value
  * @return the results from the formula above.
  *
- * @see n3l_act_tanh, n3l_act_prime, N3LAct, N3LActTye
+ * @see n3l_act_tanh, n3l_act_prime, N3LAct, N3LActType
  */
 double n3l_act_tanh_prime(double val)
 {
@@ -104,7 +104,7 @@ double n3l_act_tanh_prime(double val)
  * @param val input value
  * @return the results from the formula above.
  *
- * @see n3l_act_relu_prime, n3l_act, N3LAct, N3LActTye
+ * @see n3l_act_relu_prime, n3l_act, N3LAct, N3LActType
  */
 double n3l_act_relu(double val)
 {
@@ -119,7 +119,7 @@ double n3l_act_relu(double val)
  * @param val input value
  * @return the results from the formula above.
  *
- * @see n3l_act_relu, n3l_act_prime, N3LAct, N3LActTye
+ * @see n3l_act_relu, n3l_act_prime, N3LAct, N3LActType
  */
 double n3l_act_relu_prime(double val)
 {
@@ -134,7 +134,7 @@ double n3l_act_relu_prime(double val)
  * @param val input value
  * @return the results from the formula above.
  *
- * @see n3l_act_identity_prime, n3l_act_none, n3l_act, N3LAct, N3LActTye
+ * @see n3l_act_identity_prime, n3l_act_none, n3l_act, N3LAct, N3LActType
  */
 double n3l_act_identity(double val)
 {
@@ -149,7 +149,7 @@ double n3l_act_identity(double val)
  * @param val input value
  * @return the results from the formula above.
  *
- * @see n3l_act_identity, n3l_act_prime, N3LAct, N3LActTye
+ * @see n3l_act_identity, n3l_act_prime, N3LAct, N3LActType
  */
 double n3l_act_identity_prime(double val)
 {
@@ -164,7 +164,7 @@ double n3l_act_identity_prime(double val)
  * @param val input value
  * @return the results from the formula above.
  *
- * @see n3l_act_softsign_prime, n3l_act, N3LAct, N3LActTye
+ * @see n3l_act_softsign_prime, n3l_act, N3LAct, N3LActType
  */
 double n3l_act_softsign(double val)
 {
@@ -179,7 +179,7 @@ double n3l_act_softsign(double val)
  * @param val input value
  * @return the results from the formula above.
  *
- * @see n3l_act_softsign, n3l_act_prime, N3LAct, N3LActTye
+ * @see n3l_act_softsign, n3l_act_prime, N3LAct, N3LActType
  */
 double n3l_act_softsign_prime(double val)
 {
@@ -194,7 +194,7 @@ double n3l_act_softsign_prime(double val)
  * @param val input value
  * @return the results from the formula above.
  *
- * @see n3l_act_leaky_relu_prime, n3l_act, N3LAct, N3LActTye
+ * @see n3l_act_leaky_relu_prime, n3l_act, N3LAct, N3LActType
  */
 double n3l_act_leaky_relu(double val)
 {
@@ -209,7 +209,7 @@ double n3l_act_leaky_relu(double val)
  * @param val input value
  * @return the results from the formula above.
  *
- * @see n3l_act_leaky_relu, n3l_act_prime, N3LAct, N3LActTye
+ * @see n3l_act_leaky_relu, n3l_act_prime, N3LAct, N3LActType
  */
 double n3l_act_leaky_relu_prime(double val)
 {
@@ -224,7 +224,7 @@ double n3l_act_leaky_relu_prime(double val)
  * @param val input value
  * @return the results from the formula above.
  *
- * @see n3l_act_softplus_prime, n3l_act, N3LAct, N3LActTye
+ * @see n3l_act_softplus_prime, n3l_act, N3LAct, N3LActType
  */
 double n3l_act_softplus(double val)
 {
@@ -239,7 +239,7 @@ double n3l_act_softplus(double val)
  * @param val input value
  * @return the results from the formula above.
  *
- * @see n3l_act_softplus, n3l_act_prime, N3LAct, N3LActTye
+ * @see n3l_act_softplus, n3l_act_prime, N3LAct, N3LActType
  */
 double n3l_act_softplus_prime(double val)
 {
@@ -254,7 +254,7 @@ double n3l_act_softplus_prime(double val)
  * @param val input value
  * @return the results from the formula above.
  *
- * @see n3l_act_swish_prime, n3l_act, N3LAct, N3LActTye
+ * @see n3l_act_swish_prime, n3l_act, N3LAct, N3LActType
  */
 double n3l_act_swish(double val)
 {
@@ -269,7 +269,7 @@ double n3l_act_swish(double val)
  * @param val input value
  * @return the results from the formula above.
  *
- * @see n3l_act_swish, n3l_act_prime, N3LAct, N3LActTye
+ * @see n3l_act_swish, n3l_act_prime, N3LAct, N3LActType
  */
 double n3l_act_swish_prime(double val)
 {
@@ -282,7 +282,7 @@ double n3l_act_swish_prime(double val)
  * @param type Activation function type.
  * @return Pointer to the function chosen.
  *
- * @see n3l_act_prime, N3LAct, N3LActTye
+ * @see n3l_act_prime, N3LAct, N3LActType
  */
 N3LAct n3l_act(N3LActType type)
 {
@@ -308,7 +308,7 @@ N3LAct n3l_act(N3LActType type)
  * @param type Activation function type.
  * @return Pointer to the function's primitive chosen.
  *
- * @see n3l_act, N3LAct, N3LActTye
+ * @see n3l_act, N3LAct, N3LActType
  */
 N3LAct n3l_act_prime(N3LActType type)
 {

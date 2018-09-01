@@ -35,7 +35,7 @@ double *  __n3l_forward_layer       (N3LLayer *layer, double *inputs);
  * @return An array with the outputs evaluated. The array length is equal to the network output layer size.
  * @warning The returned array must be free manually calling free().
  *
- * @see n3l_backward_execute, N3LNetwork, __n3l_forward_layer
+ * @see n3l_backward_propagation, N3LNetwork, __n3l_forward_layer
  */
 double *n3l_forward_propagation(N3LNetwork *net)
 {
