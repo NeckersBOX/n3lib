@@ -1,0 +1,133 @@
+#projectname {
+	font: 300% Roboto, Tahoma, Arial,sans-serif;
+}
+
+#projectbrief {
+	font: 120% Roboto, Tahoma, Arial,sans-serif;
+}
+
+#projectnumber {
+	font: 50% Roboto, Tahoma, Arial,sans-serif;
+}
+
+.sm-dox {
+  background-color: #fee4d2;
+	background-image: none;
+}
+
+.sm-dox a, .sm-dox a:active, .sm-dox a:focus, .sm-dox a:hover,
+.sm-dox ul a, .sm-dox ul a:active, .sm-dox ul a:focus, .sm-dox ul a:hover  {
+	background-image: none;
+	color: #e41a0c !important;
+	font-family: Roboto, "Lucida Grande","Geneva","Helvetica",Arial,sans-serif;
+	text-shadow: none;
+	text-transform: uppercase;
+	font-size: 11px;
+}
+
+.sm-dox a:active, .sm-dox a:focus, .sm-dox a:hover,
+.sm-dox ul a:active, .sm-dox ul a:focus, .sm-dox ul a:hover {
+	color: #192300 !important;
+}
+
+#titlearea {
+	border-color: #e41a0c;
+}
+
+.navpath ul {
+  background-color: #fee4d2;
+	background-image: none;
+	border-color: #e41a0c;
+}
+
+.ui-resizable-e {
+	background-image: none;
+	background-color: #fee4d2;
+}
+
+.title, h1, h2, h3, h4, h5, h6 {
+	color: #000;
+}
+
+a, .contents a, .contents a:visited, a:visited {
+	color: #e41a0c;
+}
+
+.fragment {
+	padding: 12px !important;
+	border-radius: 2px;
+}
+
+#nav-tree .selected {
+  background-image: none;
+  text-shadow: none;
+  background-color: #d35500;
+}
+
+.arrow {
+  color: #d35500;
+}
+
+.memproto, .memdoc, .memtitle {
+	border-color: #d35500;
+}
+
+.memproto, .memtitle, dl.reflist dt {
+	background-image: none;
+	background-color: #fee4d2;
+}
+
+.icon {
+	background-image: none;
+	background-color: #e92c0a;
+	padding: 2px;
+	padding-top: 4px;
+	margin-right: 35px;
+	position: relative;
+	left: -4px;
+}
+
+.fieldtable th {
+		background-image: none;
+		background-color: #fee4d2;
+		color: #3e0100;
+}
+
+table.fieldtable, .fieldtable td.fieldname, .fieldtable td.fielddoc, .fieldtable th {
+	border-color: #e92c0a;
+}
+
+div.directory {
+	border-color: #e92c0a;
+}
+
+.memproto {
+	color: #0f0f0f;
+}
+
+h2.groupheader, h1.groupheader, h3.groupheader, h4.groupheader {
+  border-color: #d35500;
+  color: #d35500;
+}
+
+.memname, .memtitle, dl.see > dd, .paramname, .memItemLeft, .memItemRight {
+	font-family: "Ubuntu Mono", monospace, "Courier new";
+}
+
+dl.warning, dl.attention, dl.note {
+  margin-left: 0;
+  border-left: 0px solid;
+  padding: 9px;
+  border-radius: 5px;
+	font-family: "Ubuntu Mono", monospace, "Courier new";
+}
+
+dl.warning, dl.attention {
+	background-color: #d35500;
+  color: #fff;
+}
+
+dl.note {
+	background-color: #FFEB3B;
+  color: #000;
+}
