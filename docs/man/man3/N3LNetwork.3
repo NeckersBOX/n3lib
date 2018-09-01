@@ -1,0 +1,86 @@
+.TH "N3LNetwork" 3 "Sat Sep 1 2018" "N3 Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+N3LNetwork \- Network state\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <n3_header\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "double * \fBinputs\fP"
+.br
+.ti -1c
+.RI "double * \fBtargets\fP"
+.br
+.ti -1c
+.RI "double \fBlearning_rate\fP"
+.br
+.ti -1c
+.RI "\fBN3LLayer\fP * \fBlhead\fP"
+.br
+.ti -1c
+.RI "\fBN3LLayer\fP * \fBltail\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Network state\&. 
+
+The main type used in the library to execute forward and backward propagation\&. From this type you can have access to the whole network state\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_network_build\fP, \fBn3l_network_free\fP, \fBn3l_file_import_network\fP, \fBn3l_file_export_network\fP 
+.RE
+.PP
+
+.SH "Field Documentation"
+.PP 
+.SS "double* N3LNetwork::inputs"
+Input values to start executing forward propagation\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_forward_propagation\fP\&. 
+.RE
+.PP
+
+.SS "double N3LNetwork::learning_rate"
+Learning rate value\&. This value can be changed at any time\&. 
+.SS "\fBN3LLayer\fP* N3LNetwork::lhead"
+Network's layer list head\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fB_n3l_layer\fP 
+.RE
+.PP
+
+.SS "\fBN3LLayer\fP* N3LNetwork::ltail"
+Network's layer list tail\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fB_n3l_layer\fP 
+.RE
+.PP
+
+.SS "double* N3LNetwork::targets"
+Targets values to start executing backward propagation\&. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_backward_propagation\fP\&. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for N3 Library from the source code\&.

@@ -16,15 +16,15 @@ struct _stats {
   double *mne, tne;
   double *mns, tns;
   uint64_t sample_size, iterations;
-  N3LData *status;
+  N3LNetwork *net;
   struct _stat_per_cycle *data;
 };
 
-struct _stats n3_stats_start(N3LData *network, uint64_t train_size, uint64_t iterations)
+struct _stats n3_stats_start(N3LNetwork *net, uint64_t train_size, uint64_t iterations)
 {
   struct _stats stat;
 
-  stat.status = network;
+  stat.net = net;
   stat.sample_size = train_size;
   stat.iterations = iterations;
   stat.data = (struct _stat_per_cycle *) malloc(iterations * sizeof(struct _stat_per_cycle));
@@ -38,15 +38,16 @@ struct _stats n3_stats_start(N3LData *network, uint64_t train_size, uint64_t ite
   return stat;
 }
 
-void n3_stats_cycle(struct _stats *stat, uint64_t iteration, bool success)
+void n3_stats_cycle(struct _stats *stat, double *targets, double *outputs, uint64_t iteration, bool success)
 {
   double curr_err = 0.0;
-  uint64_t j;
+  uint64_t j, out_size;
 
   gettimeofday(&(stat->tvend), NULL);
 
-  for ( j = 0; j < stat->status->args->out_size; ++j ) {
-    curr_err += pow(stat->status->targets[j] - stat->status->outputs[j], 2);
+  out_size = n3l_neuron_count(stat->net->ltail->nhead);
+  for ( j = 0; j < out_size; ++j ) {
+    curr_err += pow(targets[j] - outputs[j], 2);
   }
   curr_err /= 2.0;
 
@@ -91,6 +92,10 @@ bool n3_stats_to_csv(struct _stats *stat, char *filename)
   FILE *of;
   uint64_t row;
 
+  if ( !filename ) {
+    return false;
+    
+  }
   if ( !(of = fopen(filename, "w")) ) {
     return false;
   }

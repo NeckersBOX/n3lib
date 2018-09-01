@@ -38,7 +38,7 @@ done
 
 echo "First run to build CSV.."
 gcc $EX_NAME/$EX_NAME.c -o $EX_NAME/gen_report -ln3l -lm -DN3L_ENABLE_STATS $FLAGS
-./$EX_NAME/gen_report -i $ITERS -l -p -s -t $EX_NAME/$EX_NAME.report.$REPORT_ID.csv -o $EX_NAME/$EX_NAME.report.$REPORT_ID.n3l $RUN_EXTRA
+./$EX_NAME/gen_report -i $ITERS -l -p -t $EX_NAME/$EX_NAME.report.$REPORT_ID.csv -o $EX_NAME/$EX_NAME.report.$REPORT_ID.n3l $RUN_EXTRA
 
 echo "Second run to build massif heap stats"
 gcc $EX_NAME/$EX_NAME.c -o $EX_NAME/gen_report -ln3l -lm $FLAGS
@@ -93,8 +93,8 @@ cat <<-_EOF_ >> $EX_NAME/README.md
 | Iterations        | \`$ITERS\`     |
 | Learning Rate     | \`0\`          |
 | Input Neurons     | \`0\`          |
-| Hidden Neurons    | \`0\`          |
 | Hidden Layers     | \`0\`          |
+| Hidden Neurons    | \`0\`          |
 | Output Neurons    | \`0\`          |
 | Input Act         | \`None\`       |
 | Hidden Act        | \`Sigmoid\`    |

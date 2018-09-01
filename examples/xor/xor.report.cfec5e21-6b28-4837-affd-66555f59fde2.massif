@@ -1,0 +1,1191 @@
+desc: --massif-out-file=xor/xor.report.cfec5e21-6b28-4837-affd-66555f59fde2.massif
+cmd: ./xor/gen_report -i 10000 -p -l -b 0.5
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=341301
+mem_heap_B=3400
+mem_heap_extra_B=408
+mem_stacks_B=0
+heap_tree=peak
+n9: 3400 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1088 0x40134A5: _dl_allocate_tls (dl-tls.c:286)
+  n2: 1088 0x57D0226: pthread_create@@GLIBC_2.2.5 (allocatestack.c:627)
+   n1: 816 0x4E35A99: __n3l_forward_layer (n3_forward.c:53)
+    n1: 816 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 816 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 816 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 272 0x4E35CF8: __n3l_forward_layer (n3_forward.c:81)
+    n1: 272 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 272 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 272 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 1024 0x545518A: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x5465377: _IO_doallocbuf (genops.c:365)
+   n1: 1024 0x5464496: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+    n1: 1024 0x54629EB: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1266)
+     n1: 1024 0x5432532: vfprintf (vfprintf.c:1328)
+      n1: 1024 0x543BE52: fprintf (fprintf.c:32)
+       n1: 1024 0x109B2E: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+        n0: 1024 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 640 0x4E36523: n3l_neuron_build (n3_neuron.c:13)
+  n4: 640 0x4E365CF: n3l_neuron_build_after (n3_neuron.c:30)
+   n1: 240 0x4E362FF: n3l_network_build (n3_network.c:37)
+    n1: 240 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 240 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3627A: n3l_network_build (n3_network.c:27)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3641F: n3l_network_build (n3_network.c:55)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 80 0x4E36395: n3l_network_build (n3_network.c:47)
+    n1: 80 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 80 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 168 0x4E36719: n3l_neuron_build_weights (n3_neuron.c:73)
+  n1: 168 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 168 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 168 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 144 0x4E366F6: n3l_neuron_build_weights (n3_neuron.c:69)
+  n1: 144 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 144 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 144 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n2: 120 0x4E35E81: n3l_layer_build (n3_layer.c:10)
+  n2: 80 0x4E35EE3: n3l_layer_build_after (n3_layer.c:24)
+   n1: 40 0x4E362D2: n3l_network_build (n3_network.c:33)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 40 0x4E3636A: n3l_network_build (n3_network.c:43)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+  n1: 40 0x4E36257: n3l_network_build (n3_network.c:24)
+   n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 96 0x4E35C16: __n3l_forward_layer (n3_forward.c:75)
+  n1: 96 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+   n1: 96 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 96 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n0: 80 in 8 places, all below massif's threshold (1.00%)
+ n1: 40 0x4E36224: n3l_network_build (n3_network.c:19)
+  n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+#-----------
+snapshot=2
+#-----------
+time=5014957
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=10463116
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=13266307
+mem_heap_B=3288
+mem_heap_extra_B=440
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=18473055
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=21495706
+mem_heap_B=3248
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=26654316
+mem_heap_B=3248
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=30514699
+mem_heap_B=3272
+mem_heap_extra_B=392
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=35581752
+mem_heap_B=3288
+mem_heap_extra_B=440
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=39613746
+mem_heap_B=3296
+mem_heap_extra_B=456
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=44058066
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=47690549
+mem_heap_B=3248
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=52944435
+mem_heap_B=3272
+mem_heap_extra_B=392
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=57554307
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=64133389
+mem_heap_B=3256
+mem_heap_extra_B=432
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=68325035
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=74903588
+mem_heap_B=3248
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=79097049
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=82088503
+mem_heap_B=3304
+mem_heap_extra_B=424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=86560487
+mem_heap_B=3240
+mem_heap_extra_B=424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=89671952
+mem_heap_B=3240
+mem_heap_extra_B=424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=93819827
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=detailed
+n9: 3368 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1088 0x40134A5: _dl_allocate_tls (dl-tls.c:286)
+  n2: 1088 0x57D0226: pthread_create@@GLIBC_2.2.5 (allocatestack.c:627)
+   n1: 816 0x4E35A99: __n3l_forward_layer (n3_forward.c:53)
+    n1: 816 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 816 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 816 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 272 0x4E35CF8: __n3l_forward_layer (n3_forward.c:81)
+    n1: 272 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 272 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 272 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 1024 0x545518A: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x5465377: _IO_doallocbuf (genops.c:365)
+   n1: 1024 0x5464496: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+    n1: 1024 0x54629EB: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1266)
+     n1: 1024 0x5432532: vfprintf (vfprintf.c:1328)
+      n1: 1024 0x543BE52: fprintf (fprintf.c:32)
+       n1: 1024 0x109B2E: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+        n0: 1024 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 640 0x4E36523: n3l_neuron_build (n3_neuron.c:13)
+  n4: 640 0x4E365CF: n3l_neuron_build_after (n3_neuron.c:30)
+   n1: 240 0x4E362FF: n3l_network_build (n3_network.c:37)
+    n1: 240 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 240 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3627A: n3l_network_build (n3_network.c:27)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3641F: n3l_network_build (n3_network.c:55)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 80 0x4E36395: n3l_network_build (n3_network.c:47)
+    n1: 80 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 80 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 168 0x4E36719: n3l_neuron_build_weights (n3_neuron.c:73)
+  n1: 168 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 168 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 168 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 144 0x4E366F6: n3l_neuron_build_weights (n3_neuron.c:69)
+  n1: 144 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 144 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 144 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n2: 120 0x4E35E81: n3l_layer_build (n3_layer.c:10)
+  n2: 80 0x4E35EE3: n3l_layer_build_after (n3_layer.c:24)
+   n1: 40 0x4E362D2: n3l_network_build (n3_network.c:33)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 40 0x4E3636A: n3l_network_build (n3_network.c:43)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+  n1: 40 0x4E36257: n3l_network_build (n3_network.c:24)
+   n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 96 0x4E35C16: __n3l_forward_layer (n3_forward.c:75)
+  n1: 96 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+   n1: 96 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 96 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n0: 48 in 8 places, all below massif's threshold (1.00%)
+ n1: 40 0x4E36224: n3l_network_build (n3_network.c:19)
+  n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+#-----------
+snapshot=23
+#-----------
+time=97986496
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=104217330
+mem_heap_B=3248
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=detailed
+n8: 3248 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1088 0x40134A5: _dl_allocate_tls (dl-tls.c:286)
+  n2: 1088 0x57D0226: pthread_create@@GLIBC_2.2.5 (allocatestack.c:627)
+   n1: 816 0x4E35A99: __n3l_forward_layer (n3_forward.c:53)
+    n1: 816 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 816 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 816 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 272 0x4E35CF8: __n3l_forward_layer (n3_forward.c:81)
+    n1: 272 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 272 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 272 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 1024 0x545518A: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x5465377: _IO_doallocbuf (genops.c:365)
+   n1: 1024 0x5464496: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+    n1: 1024 0x54629EB: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1266)
+     n1: 1024 0x5432532: vfprintf (vfprintf.c:1328)
+      n1: 1024 0x543BE52: fprintf (fprintf.c:32)
+       n1: 1024 0x109B2E: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+        n0: 1024 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 640 0x4E36523: n3l_neuron_build (n3_neuron.c:13)
+  n4: 640 0x4E365CF: n3l_neuron_build_after (n3_neuron.c:30)
+   n1: 240 0x4E362FF: n3l_network_build (n3_network.c:37)
+    n1: 240 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 240 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3627A: n3l_network_build (n3_network.c:27)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3641F: n3l_network_build (n3_network.c:55)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 80 0x4E36395: n3l_network_build (n3_network.c:47)
+    n1: 80 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 80 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 168 0x4E36719: n3l_neuron_build_weights (n3_neuron.c:73)
+  n1: 168 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 168 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 168 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 144 0x4E366F6: n3l_neuron_build_weights (n3_neuron.c:69)
+  n1: 144 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 144 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 144 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n2: 120 0x4E35E81: n3l_layer_build (n3_layer.c:10)
+  n2: 80 0x4E35EE3: n3l_layer_build_after (n3_layer.c:24)
+   n1: 40 0x4E362D2: n3l_network_build (n3_network.c:33)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 40 0x4E3636A: n3l_network_build (n3_network.c:43)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+  n1: 40 0x4E36257: n3l_network_build (n3_network.c:24)
+   n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 40 0x4E36224: n3l_network_build (n3_network.c:19)
+  n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n0: 24 in 9 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=25
+#-----------
+time=109406034
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=114593727
+mem_heap_B=3240
+mem_heap_extra_B=424
+mem_stacks_B=0
+heap_tree=detailed
+n8: 3240 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1088 0x40134A5: _dl_allocate_tls (dl-tls.c:286)
+  n2: 1088 0x57D0226: pthread_create@@GLIBC_2.2.5 (allocatestack.c:627)
+   n1: 816 0x4E35A99: __n3l_forward_layer (n3_forward.c:53)
+    n1: 816 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 816 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 816 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 272 0x4E35CF8: __n3l_forward_layer (n3_forward.c:81)
+    n1: 272 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 272 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 272 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 1024 0x545518A: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x5465377: _IO_doallocbuf (genops.c:365)
+   n1: 1024 0x5464496: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+    n1: 1024 0x54629EB: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1266)
+     n1: 1024 0x5432532: vfprintf (vfprintf.c:1328)
+      n1: 1024 0x543BE52: fprintf (fprintf.c:32)
+       n1: 1024 0x109B2E: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+        n0: 1024 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 640 0x4E36523: n3l_neuron_build (n3_neuron.c:13)
+  n4: 640 0x4E365CF: n3l_neuron_build_after (n3_neuron.c:30)
+   n1: 240 0x4E362FF: n3l_network_build (n3_network.c:37)
+    n1: 240 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 240 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3627A: n3l_network_build (n3_network.c:27)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3641F: n3l_network_build (n3_network.c:55)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 80 0x4E36395: n3l_network_build (n3_network.c:47)
+    n1: 80 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 80 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 168 0x4E36719: n3l_neuron_build_weights (n3_neuron.c:73)
+  n1: 168 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 168 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 168 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 144 0x4E366F6: n3l_neuron_build_weights (n3_neuron.c:69)
+  n1: 144 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 144 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 144 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n2: 120 0x4E35E81: n3l_layer_build (n3_layer.c:10)
+  n2: 80 0x4E35EE3: n3l_layer_build_after (n3_layer.c:24)
+   n1: 40 0x4E362D2: n3l_network_build (n3_network.c:33)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 40 0x4E3636A: n3l_network_build (n3_network.c:43)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+  n1: 40 0x4E36257: n3l_network_build (n3_network.c:24)
+   n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 40 0x4E36224: n3l_network_build (n3_network.c:19)
+  n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n0: 16 in 9 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=27
+#-----------
+time=118745793
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=122894840
+mem_heap_B=3248
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=127045757
+mem_heap_B=3240
+mem_heap_extra_B=424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=133268453
+mem_heap_B=3240
+mem_heap_extra_B=424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=139910912
+mem_heap_B=3240
+mem_heap_extra_B=424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=143430875
+mem_heap_B=3256
+mem_heap_extra_B=432
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=148720583
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=152251036
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=detailed
+n9: 3368 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1088 0x40134A5: _dl_allocate_tls (dl-tls.c:286)
+  n2: 1088 0x57D0226: pthread_create@@GLIBC_2.2.5 (allocatestack.c:627)
+   n1: 816 0x4E35A99: __n3l_forward_layer (n3_forward.c:53)
+    n1: 816 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 816 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 816 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 272 0x4E35CF8: __n3l_forward_layer (n3_forward.c:81)
+    n1: 272 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 272 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 272 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 1024 0x545518A: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x5465377: _IO_doallocbuf (genops.c:365)
+   n1: 1024 0x5464496: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+    n1: 1024 0x54629EB: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1266)
+     n1: 1024 0x5432532: vfprintf (vfprintf.c:1328)
+      n1: 1024 0x543BE52: fprintf (fprintf.c:32)
+       n1: 1024 0x109B2E: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+        n0: 1024 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 640 0x4E36523: n3l_neuron_build (n3_neuron.c:13)
+  n4: 640 0x4E365CF: n3l_neuron_build_after (n3_neuron.c:30)
+   n1: 240 0x4E362FF: n3l_network_build (n3_network.c:37)
+    n1: 240 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 240 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3627A: n3l_network_build (n3_network.c:27)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3641F: n3l_network_build (n3_network.c:55)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 80 0x4E36395: n3l_network_build (n3_network.c:47)
+    n1: 80 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 80 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 168 0x4E36719: n3l_neuron_build_weights (n3_neuron.c:73)
+  n1: 168 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 168 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 168 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 144 0x4E366F6: n3l_neuron_build_weights (n3_neuron.c:69)
+  n1: 144 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 144 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 144 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n2: 120 0x4E35E81: n3l_layer_build (n3_layer.c:10)
+  n2: 80 0x4E35EE3: n3l_layer_build_after (n3_layer.c:24)
+   n1: 40 0x4E362D2: n3l_network_build (n3_network.c:33)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 40 0x4E3636A: n3l_network_build (n3_network.c:43)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+  n1: 40 0x4E36257: n3l_network_build (n3_network.c:24)
+   n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 96 0x4E35C16: __n3l_forward_layer (n3_forward.c:75)
+  n1: 96 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+   n1: 96 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 96 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n0: 48 in 8 places, all below massif's threshold (1.00%)
+ n1: 40 0x4E36224: n3l_network_build (n3_network.c:19)
+  n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+#-----------
+snapshot=35
+#-----------
+time=155780927
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=159311386
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=164599302
+mem_heap_B=3240
+mem_heap_extra_B=424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=169886294
+mem_heap_B=3272
+mem_heap_extra_B=392
+mem_stacks_B=0
+heap_tree=detailed
+n8: 3272 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1088 0x40134A5: _dl_allocate_tls (dl-tls.c:286)
+  n2: 1088 0x57D0226: pthread_create@@GLIBC_2.2.5 (allocatestack.c:627)
+   n1: 816 0x4E35A99: __n3l_forward_layer (n3_forward.c:53)
+    n1: 816 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 816 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 816 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 272 0x4E35CF8: __n3l_forward_layer (n3_forward.c:81)
+    n1: 272 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 272 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 272 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 1024 0x545518A: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x5465377: _IO_doallocbuf (genops.c:365)
+   n1: 1024 0x5464496: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+    n1: 1024 0x54629EB: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1266)
+     n1: 1024 0x5432532: vfprintf (vfprintf.c:1328)
+      n1: 1024 0x543BE52: fprintf (fprintf.c:32)
+       n1: 1024 0x109B2E: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+        n0: 1024 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 640 0x4E36523: n3l_neuron_build (n3_neuron.c:13)
+  n4: 640 0x4E365CF: n3l_neuron_build_after (n3_neuron.c:30)
+   n1: 240 0x4E362FF: n3l_network_build (n3_network.c:37)
+    n1: 240 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 240 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3627A: n3l_network_build (n3_network.c:27)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3641F: n3l_network_build (n3_network.c:55)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 80 0x4E36395: n3l_network_build (n3_network.c:47)
+    n1: 80 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 80 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 168 0x4E36719: n3l_neuron_build_weights (n3_neuron.c:73)
+  n1: 168 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 168 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 168 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 144 0x4E366F6: n3l_neuron_build_weights (n3_neuron.c:69)
+  n1: 144 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 144 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 144 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n2: 120 0x4E35E81: n3l_layer_build (n3_layer.c:10)
+  n2: 80 0x4E35EE3: n3l_layer_build_after (n3_layer.c:24)
+   n1: 40 0x4E362D2: n3l_network_build (n3_network.c:33)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 40 0x4E3636A: n3l_network_build (n3_network.c:43)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+  n1: 40 0x4E36257: n3l_network_build (n3_network.c:24)
+   n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n0: 48 in 9 places, all below massif's threshold (1.00%)
+ n1: 40 0x4E36224: n3l_network_build (n3_network.c:19)
+  n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+#-----------
+snapshot=39
+#-----------
+time=173413230
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=180469266
+mem_heap_B=3240
+mem_heap_extra_B=424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=185753969
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=189278819
+mem_heap_B=3240
+mem_heap_extra_B=424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=194560986
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=198088251
+mem_heap_B=3240
+mem_heap_extra_B=424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=203375428
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=208659344
+mem_heap_B=3272
+mem_heap_extra_B=392
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=215704366
+mem_heap_B=3304
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=219232528
+mem_heap_B=3240
+mem_heap_extra_B=424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=224517130
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=227321551
+mem_heap_B=3272
+mem_heap_extra_B=392
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=230129292
+mem_heap_B=3288
+mem_heap_extra_B=440
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=232932576
+mem_heap_B=3240
+mem_heap_extra_B=424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=235742313
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=238546097
+mem_heap_B=3272
+mem_heap_extra_B=392
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=241354119
+mem_heap_B=3288
+mem_heap_extra_B=440
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=244158651
+mem_heap_B=3240
+mem_heap_extra_B=424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=246968067
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=249772370
+mem_heap_B=3272
+mem_heap_extra_B=392
+mem_stacks_B=0
+heap_tree=detailed
+n8: 3272 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1088 0x40134A5: _dl_allocate_tls (dl-tls.c:286)
+  n2: 1088 0x57D0226: pthread_create@@GLIBC_2.2.5 (allocatestack.c:627)
+   n1: 816 0x4E35A99: __n3l_forward_layer (n3_forward.c:53)
+    n1: 816 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 816 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 816 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 272 0x4E35CF8: __n3l_forward_layer (n3_forward.c:81)
+    n1: 272 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 272 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 272 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 1024 0x545518A: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x5465377: _IO_doallocbuf (genops.c:365)
+   n1: 1024 0x5464496: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+    n1: 1024 0x54629EB: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1266)
+     n1: 1024 0x5432532: vfprintf (vfprintf.c:1328)
+      n1: 1024 0x543BE52: fprintf (fprintf.c:32)
+       n1: 1024 0x109B2E: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+        n0: 1024 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 640 0x4E36523: n3l_neuron_build (n3_neuron.c:13)
+  n4: 640 0x4E365CF: n3l_neuron_build_after (n3_neuron.c:30)
+   n1: 240 0x4E362FF: n3l_network_build (n3_network.c:37)
+    n1: 240 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 240 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3627A: n3l_network_build (n3_network.c:27)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3641F: n3l_network_build (n3_network.c:55)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 80 0x4E36395: n3l_network_build (n3_network.c:47)
+    n1: 80 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 80 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 168 0x4E36719: n3l_neuron_build_weights (n3_neuron.c:73)
+  n1: 168 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 168 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 168 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 144 0x4E366F6: n3l_neuron_build_weights (n3_neuron.c:69)
+  n1: 144 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 144 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 144 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n2: 120 0x4E35E81: n3l_layer_build (n3_layer.c:10)
+  n2: 80 0x4E35EE3: n3l_layer_build_after (n3_layer.c:24)
+   n1: 40 0x4E362D2: n3l_network_build (n3_network.c:33)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 40 0x4E3636A: n3l_network_build (n3_network.c:43)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+  n1: 40 0x4E36257: n3l_network_build (n3_network.c:24)
+   n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n0: 48 in 9 places, all below massif's threshold (1.00%)
+ n1: 40 0x4E36224: n3l_network_build (n3_network.c:19)
+  n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+#-----------
+snapshot=59
+#-----------
+time=252580014
+mem_heap_B=3288
+mem_heap_extra_B=440
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=255383630
+mem_heap_B=3240
+mem_heap_extra_B=424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=258191494
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=260994739
+mem_heap_B=3280
+mem_heap_extra_B=408
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=263802202
+mem_heap_B=3288
+mem_heap_extra_B=440
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=64
+#-----------
+time=266605450
+mem_heap_B=3264
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=269413025
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=66
+#-----------
+time=272216645
+mem_heap_B=3272
+mem_heap_extra_B=392
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=67
+#-----------
+time=275019864
+mem_heap_B=3248
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=68
+#-----------
+time=277826159
+mem_heap_B=3288
+mem_heap_extra_B=440
+mem_stacks_B=0
+heap_tree=detailed
+n8: 3288 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1088 0x40134A5: _dl_allocate_tls (dl-tls.c:286)
+  n2: 1088 0x57D0226: pthread_create@@GLIBC_2.2.5 (allocatestack.c:627)
+   n1: 816 0x4E35A99: __n3l_forward_layer (n3_forward.c:53)
+    n1: 816 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 816 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 816 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 272 0x4E35CF8: __n3l_forward_layer (n3_forward.c:81)
+    n1: 272 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 272 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 272 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 1024 0x545518A: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x5465377: _IO_doallocbuf (genops.c:365)
+   n1: 1024 0x5464496: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+    n1: 1024 0x54629EB: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1266)
+     n1: 1024 0x5432532: vfprintf (vfprintf.c:1328)
+      n1: 1024 0x543BE52: fprintf (fprintf.c:32)
+       n1: 1024 0x109B2E: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+        n0: 1024 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 640 0x4E36523: n3l_neuron_build (n3_neuron.c:13)
+  n4: 640 0x4E365CF: n3l_neuron_build_after (n3_neuron.c:30)
+   n1: 240 0x4E362FF: n3l_network_build (n3_network.c:37)
+    n1: 240 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 240 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3627A: n3l_network_build (n3_network.c:27)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3641F: n3l_network_build (n3_network.c:55)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 80 0x4E36395: n3l_network_build (n3_network.c:47)
+    n1: 80 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 80 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 168 0x4E36719: n3l_neuron_build_weights (n3_neuron.c:73)
+  n1: 168 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 168 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 168 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 144 0x4E366F6: n3l_neuron_build_weights (n3_neuron.c:69)
+  n1: 144 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 144 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 144 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n2: 120 0x4E35E81: n3l_layer_build (n3_layer.c:10)
+  n2: 80 0x4E35EE3: n3l_layer_build_after (n3_layer.c:24)
+   n1: 40 0x4E362D2: n3l_network_build (n3_network.c:33)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 40 0x4E3636A: n3l_network_build (n3_network.c:43)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+  n1: 40 0x4E36257: n3l_network_build (n3_network.c:24)
+   n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n0: 64 in 9 places, all below massif's threshold (1.00%)
+ n1: 40 0x4E36224: n3l_network_build (n3_network.c:19)
+  n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+#-----------
+snapshot=69
+#-----------
+time=280629879
+mem_heap_B=3240
+mem_heap_extra_B=424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=70
+#-----------
+time=283434111
+mem_heap_B=3240
+mem_heap_extra_B=384
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=71
+#-----------
+time=286239434
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=72
+#-----------
+time=289045034
+mem_heap_B=3272
+mem_heap_extra_B=392
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=73
+#-----------
+time=291852752
+mem_heap_B=3288
+mem_heap_extra_B=440
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=74
+#-----------
+time=294656158
+mem_heap_B=3264
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=75
+#-----------
+time=297465483
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=76
+#-----------
+time=300269997
+mem_heap_B=3272
+mem_heap_extra_B=392
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=77
+#-----------
+time=303077225
+mem_heap_B=3288
+mem_heap_extra_B=440
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=78
+#-----------
+time=305883876
+mem_heap_B=3240
+mem_heap_extra_B=384
+mem_stacks_B=0
+heap_tree=detailed
+n8: 3240 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1088 0x40134A5: _dl_allocate_tls (dl-tls.c:286)
+  n2: 1088 0x57D0226: pthread_create@@GLIBC_2.2.5 (allocatestack.c:627)
+   n1: 816 0x4E35A99: __n3l_forward_layer (n3_forward.c:53)
+    n1: 816 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 816 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 816 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 272 0x4E35CF8: __n3l_forward_layer (n3_forward.c:81)
+    n1: 272 0x4E35967: n3l_forward_propagation (n3_forward.c:25)
+     n1: 272 0x1098F8: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+      n0: 272 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 1024 0x545518A: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x5465377: _IO_doallocbuf (genops.c:365)
+   n1: 1024 0x5464496: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+    n1: 1024 0x54629EB: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1266)
+     n1: 1024 0x5432532: vfprintf (vfprintf.c:1328)
+      n1: 1024 0x543BE52: fprintf (fprintf.c:32)
+       n1: 1024 0x109B2E: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+        n0: 1024 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 640 0x4E36523: n3l_neuron_build (n3_neuron.c:13)
+  n4: 640 0x4E365CF: n3l_neuron_build_after (n3_neuron.c:30)
+   n1: 240 0x4E362FF: n3l_network_build (n3_network.c:37)
+    n1: 240 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 240 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3627A: n3l_network_build (n3_network.c:27)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 160 0x4E3641F: n3l_network_build (n3_network.c:55)
+    n1: 160 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 160 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 80 0x4E36395: n3l_network_build (n3_network.c:47)
+    n1: 80 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 80 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 168 0x4E36719: n3l_neuron_build_weights (n3_neuron.c:73)
+  n1: 168 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 168 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 168 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 144 0x4E366F6: n3l_neuron_build_weights (n3_neuron.c:69)
+  n1: 144 0x4E36475: n3l_network_build (n3_network.c:62)
+   n1: 144 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 144 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n2: 120 0x4E35E81: n3l_layer_build (n3_layer.c:10)
+  n2: 80 0x4E35EE3: n3l_layer_build_after (n3_layer.c:24)
+   n1: 40 0x4E362D2: n3l_network_build (n3_network.c:33)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n1: 40 0x4E3636A: n3l_network_build (n3_network.c:43)
+    n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+     n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+  n1: 40 0x4E36257: n3l_network_build (n3_network.c:24)
+   n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+    n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n1: 40 0x4E36224: n3l_network_build (n3_network.c:19)
+  n1: 40 0x1097CD: xor_operation (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+   n0: 40 0x1096BD: main (in /home/neckers/NeuralNetworkProject/N3Lib/examples/xor/gen_report)
+ n0: 16 in 9 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=79
+#-----------
+time=308689727
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=80
+#-----------
+time=311494383
+mem_heap_B=3240
+mem_heap_extra_B=384
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=81
+#-----------
+time=314299279
+mem_heap_B=3368
+mem_heap_extra_B=400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=82
+#-----------
+time=317104049
+mem_heap_B=3272
+mem_heap_extra_B=392
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=83
+#-----------
+time=319911726
+mem_heap_B=3288
+mem_heap_extra_B=440
+mem_stacks_B=0
+heap_tree=empty

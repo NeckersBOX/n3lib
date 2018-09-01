@@ -1,28 +1,21 @@
 #include <stdio.h>
 
-#define BOOL_STR(b) ((b) ? "True" : "False")
-
-struct user_args {
+struct n3_example_args {
   bool learning;
-  bool read_result;
-  bool save_result;
   bool mute;
   bool progress;
-  char *save_filename;
-  char *read_filename;
   double learning_rate;
   double bias;
   uint64_t iterations;
+  char *save_filename;
+  char *read_filename;
   char *csv_filename;
-  N3LLogType verbose;
 };
 
-bool n3_example_arguments_parser(int argc, char *argv[], struct user_args *args)
+void n3_example_arguments_parser(int argc, char *argv[], struct n3_example_args *args)
 {
-  int opt, v;
-  bool free_save_filename = false;
-
-  while ((opt = getopt(argc, argv, "b:hi:lmo:pr:st:v:")) != -1) {
+  int opt;
+  while ((opt = getopt(argc, argv, "b:hi:lmo:pr:t:")) != -1) {
     switch(opt) {
       case 'b':
         sscanf(optarg, "%lf", &(args->bias));
@@ -44,22 +37,13 @@ bool n3_example_arguments_parser(int argc, char *argv[], struct user_args *args)
         }
         break;
      case 'o':
-        free_save_filename = true;
         args->save_filename = strdup(optarg);
-        break;
-     case 's':
-        args->save_result = true;
         break;
      case 't':
         args->csv_filename = strdup(optarg);
         break;
      case 'r':
-        args->read_result = true;
         args->read_filename = strdup(optarg);
-        break;
-     case 'v':
-        v = atoi(optarg);
-        args->verbose = v < 0 ? -1 : (v > N3LLogPedantic) ? N3LLogPedantic : v;
         break;
      case 'h':
         fprintf(stdout, "Usage: %s [options]\n\n", *argv);
@@ -74,24 +58,48 @@ bool n3_example_arguments_parser(int argc, char *argv[], struct user_args *args)
         fprintf(stdout, "\t-p             Enable the progress viewer. Active -m, Disable -v.\n");
         fprintf(stdout, "\t-r [filename]  Initialize the neural network reading the number of");
         fprintf(stdout, " neurons, layers and weights from a previous state saved.\n");
-        fprintf(stdout, "\t-s             After the number of iterations provided, save the");
-        fprintf(stdout, " neural network state. Default filename: %s\n", args->save_filename);
         fprintf(stdout, "\t-t [filename]  Specified the CSV filename where the data are saved.\n");
-        fprintf(stdout, "\t-v [n]         Enable N3 Library to log with specified verbosity.\n");
-        fprintf(stdout, "\t               Value: 0 - Critical, 1 - High, 2 - Medium, 3 - Low, 4 - Pedantic.\n\n");
         exit(0);
         break;
     }
   }
 
-  if ( args->mute ) {
-    args->verbose = -1;
-  }
-
   if ( args->progress ) {
     args->mute = true;
-    args->verbose = -1;
   }
+}
 
-  return free_save_filename;
+void n3_print_net(N3LNetwork *net)
+{
+  N3LLayer *layer;
+  N3LNeuron *neuron;
+  N3LWeight *weight;
+  uint64_t size, j, k, z;
+
+  printf("Network\n");
+  printf("+ learning_rate: %lf\n", net->learning_rate);
+  size = n3l_layer_count(net->lhead);
+  printf("- layer_count: %ld\n", size);
+  for ( layer = net->lhead, j = 0; layer; layer = layer->next, ++j ) {
+    printf("- Layer %ld\n", j);
+    printf("  + type: %s\n", layer->type == N3LInputLayer ? "N3LInputLayer" : (layer->type == N3LHiddenLayer ? "N3LHiddenLayer" : (layer->type == N3LOutputLayer ? "N3LOutputLayer" : "Unknown")) );
+    size = n3l_neuron_count(layer->nhead);
+    printf("  - neuron_count: %ld\n", size);
+
+    for ( neuron = layer->nhead, k = 0; neuron; neuron = neuron->next, ++k ) {
+      printf("  - Neuron %ld\n", k);
+      printf("    + act_type: %d\n", (int) neuron->act_type);
+      printf("    + bias: %s\n", neuron->bias ? "true" : "false");
+      printf("    + ref: %ld\n", neuron->ref);
+      printf("    + input: %lf\n", neuron->input);
+
+      size = n3l_neuron_count_weights(neuron->whead);
+      printf("    - weights_count: %ld\n", size);
+      for ( weight = neuron->whead, z = 0; weight; weight = weight->next, ++z ) {
+        printf("    - Weight %ld\n", z);
+        printf("      + value: %lf\n", weight->value);
+        printf("      + target_ref: %ld\n", weight->target_ref);
+      }
+    }
+  }
 }

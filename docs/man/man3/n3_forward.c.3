@@ -1,0 +1,163 @@
+.TH "src/n3_forward.c" 3 "Sat Sep 1 2018" "N3 Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/n3_forward.c \- This file contains functions to forward the inputs provided to the outputs\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <assert\&.h>\fP
+.br
+\fC#include 'n3_header\&.h'\fP
+.br
+\fC#include 'n3_neuron\&.h'\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fB__n3l_forward_data\fP"
+.br
+.RI "Internal struct to share data between threads\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void * \fB__n3l_forward_activate\fP (void *arg)"
+.br
+.RI "Internal function to execute the single neuron\&. "
+.ti -1c
+.RI "void * \fB__n3l_forward_get_outputs\fP (void *arg)"
+.br
+.RI "Internal function to get outputs for the next layer's neurons\&. "
+.ti -1c
+.RI "double * \fB__n3l_forward_layer\fP (\fBN3LLayer\fP *layer, double *inputs)"
+.br
+.RI "Internal function to execute forward propagation from the current layer to the next one\&. "
+.ti -1c
+.RI "double * \fBn3l_forward_propagation\fP (\fBN3LNetwork\fP *net)"
+.br
+.RI "Execute forward propagation on the whole network\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+This file contains functions to forward the inputs provided to the outputs\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Davide Francesco Merico 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "void * __n3l_forward_activate (void * arg)"
+
+.PP
+Internal function to execute the single neuron\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIarg\fP Current neuron to execute\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+NULL\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fB__n3l_forward_layer\fP, \fB__n3l_forward_get_outputs\fP, \fB_n3l_neuron\fP 
+.RE
+.PP
+
+.SS "void * __n3l_forward_get_outputs (void * arg)"
+
+.PP
+Internal function to get outputs for the next layer's neurons\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIarg\fP thread data of type \fB__n3l_forward_data\fP\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+NULL\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fB__n3l_forward_layer\fP, \fB__n3l_forward_activate\fP, \fB__n3l_forward_data\fP 
+.RE
+.PP
+
+.SS "double * __n3l_forward_layer (\fBN3LLayer\fP * layer, double * inputs)"
+
+.PP
+Internal function to execute forward propagation from the current layer to the next one\&. This function first execute all neurons in the \fClayer\fP using concurrents threads\&. When all threads are executed, get the outputs for each neuron in the next layers\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlayer\fP Current layer to execute\&. 
+.br
+\fIinputs\fP Current layer inputs\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Current layer outputs\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_forward_propagation\fP, \fB__n3l_forward_activate\fP, \fB__n3l_forward_get_outputs\fP, \fB_n3l_layer\fP 
+.RE
+.PP
+
+.SS "double* n3l_forward_propagation (\fBN3LNetwork\fP * net)"
+
+.PP
+Execute forward propagation on the whole network\&. 
+.PP
+\fBNote:\fP
+.RS 4
+The member \fCnet->inputs\fP must be initialized before calling this function\&. 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fInet\fP Initialized network 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+An array with the outputs evaluated\&. The array length is equal to the network output layer size\&. 
+.RE
+.PP
+\fBWarning:\fP
+.RS 4
+The returned array must be free manually calling free()\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_backward_propagation\fP, \fBN3LNetwork\fP, \fB__n3l_forward_layer\fP 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for N3 Library from the source code\&.
