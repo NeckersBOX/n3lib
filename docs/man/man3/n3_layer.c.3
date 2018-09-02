@@ -30,6 +30,10 @@ src/n3_layer.c \- This file contains functions to work with N3Layer type\&.
 .br
 .RI "Build a layer linked to a next one\&. "
 .ti -1c
+.RI "\fBN3LLayer\fP * \fBn3l_layer_clone\fP (\fBN3LLayer\fP *layer)"
+.br
+.RI "Clone a layer\&. "
+.ti -1c
 .RI "uint64_t \fBn3l_layer_count\fP (\fBN3LLayer\fP *head)"
 .br
 .RI "Count the layers from the layer passed as argument\&. "
@@ -148,6 +152,27 @@ Reference to previous layer is set to \fCnext->prev\fP
 \fBSee also:\fP
 .RS 4
 \fBn3l_layer_build\fP, \fBn3l_layer_build_after\fP, \fBn3l_layer_free\fP 
+.RE
+.PP
+
+.SS "\fBN3LLayer\fP* n3l_layer_clone (\fBN3LLayer\fP * layer)"
+
+.PP
+Clone a layer\&. Clone the \fClayer\fP with all neurons, weights and evaluated neuron's results\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlayer\fP Layer to clone\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The new cloned layer\&. 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_layer_build\fP, \fBn3l_layer_free\fP, \fBn3l_neuron_clone\fP 
 .RE
 .PP
 

@@ -10,6 +10,7 @@
 #include "n3_act.h"
 
 uint64_t n3l_neuron_count(N3LNeuron *head);
+N3LWeight *n3l_neuron_clone_weights(N3LWeight *whead);
 
 /**
  * @brief Build a neuron.
@@ -112,10 +113,8 @@ void n3l_neuron_build_weights(N3LNeuron *src, N3LNeuron *t_list, N3LWeightGenera
 {
   N3LNeuron *target;
   N3LWeight *weight = NULL;
-  uint64_t j, size;
 
-  size = n3l_neuron_count(t_list);
-  for ( target = t_list, j = 0; j < size; target = target->next, ++j ) {
+  for ( target = t_list; target; target = target->next ) {
     if ( weight ) {
       weight->next = (N3LWeight *) malloc(sizeof(N3LWeight));
       weight = weight->next;
@@ -147,6 +146,66 @@ uint64_t n3l_neuron_count(N3LNeuron *head)
 
   for ( p = head; p; p = p->next, ++cnt );
   return cnt;
+}
+
+/**
+ * @brief Clone a neuron
+ *
+ * Clone the \p neuron with all weights and evaluated results.
+ *
+ * @param neuron Neuron to clone.
+ * @return The new cloned neuron.
+ * @see n3l_neuron_build, n3l_neuron_free, n3l_neuron_clone_weights
+ */
+N3LNeuron *n3l_neuron_clone(N3LNeuron *neuron)
+{
+  N3LNeuron *clone_neuron;
+
+  clone_neuron = (N3LNeuron *) malloc(sizeof(N3LNeuron));
+  clone_neuron->bias = neuron->bias;
+  clone_neuron->ref = neuron->ref;
+  clone_neuron->input = neuron->input;
+  clone_neuron->whead = n3l_neuron_clone_weights(neuron->whead);
+  clone_neuron->result = neuron->result;
+  clone_neuron->act_type = neuron->act_type;
+  clone_neuron->act = neuron->act;
+  clone_neuron->act_prime = neuron->act_prime;
+  clone_neuron->next = NULL;
+  clone_neuron->prev = NULL;
+
+  return clone_neuron;
+}
+
+/**
+ * @brief Clone a weights list
+ *
+ * Clone the \p whead weights list with all the evaluated results.
+ *
+ * @param whead Weights list head to clone.
+ * @return The new cloned weights list.
+ * @see  n3l_neuron_free, n3l_neuron_clone
+ */
+N3LWeight *n3l_neuron_clone_weights(N3LWeight *whead)
+{
+  N3LWeight *clone_whead = NULL, *weight, *clone_weight = NULL;
+
+  for ( weight = whead; weight; weight = weight->next ) {
+    if ( clone_weight ) {
+      clone_weight->next = (N3LWeight *) malloc(sizeof(N3LWeight));
+      clone_weight = clone_weight->next;
+    }
+    else {
+      clone_weight = (N3LWeight *) malloc(sizeof(N3LWeight));
+    }
+
+    clone_weight->value = weight->value;
+    clone_weight->target_ref = weight->target_ref;
+    clone_weight->next = NULL;
+
+    clone_whead = clone_whead ? : clone_weight;
+  }
+
+  return clone_whead;
 }
 
 /**

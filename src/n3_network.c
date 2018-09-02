@@ -103,3 +103,41 @@ void n3l_network_free(N3LNetwork *net)
     free(net);
   }
 }
+
+/**
+ * @brief Clone a network
+ *
+ * Clone the \p net network with all layers, neurons, weights, targets,
+ * inputs and evaluated neuron's results.
+ *
+ * @param net Network to clone.
+ * @return The new cloned network.
+ * @see n3l_network_build, n3l_file_import_network, n3l_file_export_network,
+ *  n3l_network_free, n3l_layer_clone
+ */
+N3LNetwork *n3l_network_clone(N3LNetwork *net)
+{
+  N3LNetwork *clone_net;
+  N3LLayer *layer = NULL, *clone_layer;
+
+  clone_net = (N3LNetwork *) malloc(sizeof(N3LNetwork));
+  clone_net->inputs = net->inputs;
+  clone_net->targets = net->targets;
+  clone_net->lhead = NULL;
+  clone_net->ltail = NULL;
+  clone_net->learning_rate = net->learning_rate;
+
+  for ( layer = net->lhead; layer; layer = layer->next ) {
+    clone_layer = n3l_layer_clone(layer);
+    clone_net->lhead = clone_net->lhead ? : clone_layer;
+
+    if ( clone_net->ltail ) {
+      clone_net->ltail->next = clone_layer;
+      clone_layer->prev = clone_net->ltail;
+    }
+
+    clone_net->ltail = clone_layer;
+  }
+
+  return clone_net;
+}

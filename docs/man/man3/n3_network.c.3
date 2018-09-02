@@ -29,6 +29,10 @@ src/n3_network.c \- This file contains functions to work with \fBN3LNetwork\fP t
 .RI "void \fBn3l_network_free\fP (\fBN3LNetwork\fP *net)"
 .br
 .RI "Free the network's allocated memory\&. "
+.ti -1c
+.RI "\fBN3LNetwork\fP * \fBn3l_network_clone\fP (\fBN3LNetwork\fP *net)"
+.br
+.RI "Clone a network\&. "
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -71,6 +75,27 @@ The new network if built successfully, otherwise NULL\&.
 \fBSee also:\fP
 .RS 4
 \fBN3LArgs\fP, \fBn3l_misc_init_arg\fP, \fBN3LNetwork\fP, \fBn3l_network_free\fP, \fBn3l_file_import_network\fP 
+.RE
+.PP
+
+.SS "\fBN3LNetwork\fP* n3l_network_clone (\fBN3LNetwork\fP * net)"
+
+.PP
+Clone a network\&. Clone the \fCnet\fP network with all layers, neurons, weights, targets, inputs and evaluated neuron's results\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fInet\fP Network to clone\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The new cloned network\&. 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_network_build\fP, \fBn3l_file_import_network\fP, \fBn3l_file_export_network\fP, \fBn3l_network_free\fP, \fBn3l_layer_clone\fP 
 .RE
 .PP
 

@@ -22,6 +22,10 @@ src/n3_neuron.c \- This file contains functions to work with N3LNeuron type\&.
 .br
 .RI "Count the neurons from the neuron passed as argument\&. "
 .ti -1c
+.RI "\fBN3LWeight\fP * \fBn3l_neuron_clone_weights\fP (\fBN3LWeight\fP *whead)"
+.br
+.RI "Clone a weights list\&. "
+.ti -1c
 .RI "\fBN3LNeuron\fP * \fBn3l_neuron_build\fP (\fBN3LActType\fP act_type)"
 .br
 .RI "Build a neuron\&. "
@@ -37,6 +41,10 @@ src/n3_neuron.c \- This file contains functions to work with N3LNeuron type\&.
 .RI "void \fBn3l_neuron_build_weights\fP (\fBN3LNeuron\fP *src, \fBN3LNeuron\fP *t_list, \fBN3LWeightGenerator\fP weight_generator, void *weight_arg)"
 .br
 .RI "Build and initialize weights from a neuron to a list of neurons\&. "
+.ti -1c
+.RI "\fBN3LNeuron\fP * \fBn3l_neuron_clone\fP (\fBN3LNeuron\fP *neuron)"
+.br
+.RI "Clone a neuron\&. "
 .ti -1c
 .RI "uint64_t \fBn3l_neuron_count_weights\fP (\fBN3LWeight\fP *head)"
 .br
@@ -182,6 +190,48 @@ Build and initialize weights from a neuron to a list of neurons\&.
 \fBSee also:\fP
 .RS 4
 \fBn3l_neuron_count\fP, \fBN3LWeightGenerator\fP, \fBn3l_neuron_count_weights\fP, \fBn3l_neuron_get_weight\fP 
+.RE
+.PP
+
+.SS "\fBN3LNeuron\fP* n3l_neuron_clone (\fBN3LNeuron\fP * neuron)"
+
+.PP
+Clone a neuron\&. Clone the \fCneuron\fP with all weights and evaluated results\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIneuron\fP Neuron to clone\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The new cloned neuron\&. 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_neuron_build\fP, \fBn3l_neuron_free\fP, \fBn3l_neuron_clone_weights\fP 
+.RE
+.PP
+
+.SS "\fBN3LWeight\fP * n3l_neuron_clone_weights (\fBN3LWeight\fP * whead)"
+
+.PP
+Clone a weights list\&. Clone the \fCwhead\fP weights list with all the evaluated results\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIwhead\fP Weights list head to clone\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The new cloned weights list\&. 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_neuron_free\fP, \fBn3l_neuron_clone\fP 
 .RE
 .PP
 

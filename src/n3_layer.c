@@ -87,6 +87,42 @@ N3LLayer *n3l_layer_build_before(N3LLayer *next, N3LLayerType ltype)
 }
 
 /**
+ * @brief Clone a layer
+ *
+ * Clone the \p layer with all neurons, weights and evaluated neuron's results.
+ *
+ * @param layer Layer to clone.
+ * @return The new cloned layer.
+ * @see n3l_layer_build, n3l_layer_free, n3l_neuron_clone
+ */
+N3LLayer *n3l_layer_clone(N3LLayer *layer)
+{
+  N3LLayer *clone_layer;
+  N3LNeuron *neuron = NULL, *clone_neuron;
+
+  clone_layer = (N3LLayer *) malloc(sizeof(N3LLayer));
+  clone_layer->type = layer->type;
+  clone_layer->nhead = NULL;
+  clone_layer->ntail = NULL;
+  clone_layer->next = NULL;
+  clone_layer->prev = NULL;
+
+  for ( neuron = layer->nhead; neuron; neuron = neuron->next ) {
+    clone_neuron = n3l_neuron_clone(neuron);
+    clone_layer->nhead = clone_layer->nhead ? : clone_neuron;
+
+    if ( clone_layer->ntail ) {
+      clone_layer->ntail->next = clone_neuron;
+      clone_neuron->prev = clone_layer->ntail;
+    }
+
+    clone_layer->ntail = clone_neuron;
+  }
+
+  return clone_layer;
+}
+
+/**
  * @brief Count the layers from the layer passed as argument.
  *
  * @param head Layer from which to start counting the next layers.
