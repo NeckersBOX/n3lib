@@ -1,4 +1,4 @@
-.TH "src/n3_header.h" 3 "Sun Sep 2 2018" "N3 Library" \" -*- nroff -*-
+.TH "src/n3_header.h" 3 "Thu Sep 6 2018" "N3 Library" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -42,7 +42,7 @@ src/n3_header.h \- This file contains types, enums and structs definitions\&.
 
 .in +1c
 .ti -1c
-.RI "#define \fBN3L_VERSION\fP   '2\&.0\&.1'"
+.RI "#define \fBN3L_VERSION\fP   '2\&.0\&.2'"
 .br
 .RI "N3 Library version\&. "
 .in -1c
@@ -57,6 +57,10 @@ src/n3_header.h \- This file contains types, enums and structs definitions\&.
 .RI "typedef double(* \fBN3LWeightGenerator\fP) (void *)"
 .br
 .RI "Pointer to a function to get the network weights\&. "
+.ti -1c
+.RI "typedef double(* \fBN3LCSVData\fP) (char *)"
+.br
+.RI "Pointer to a custom data parser function\&. "
 .ti -1c
 .RI "typedef struct \fB_n3l_weight\fP \fBN3LWeight\fP"
 .br
@@ -104,6 +108,17 @@ Pointer to an activation function\&.
 \fBSee also:\fP
 .RS 4
 \fBn3l_act\fP, \fBn3l_act_prime\fP, \fB_n3l_neuron\fP 
+.RE
+.PP
+
+.SS "typedef double(* N3LCSVData) (char *)"
+
+.PP
+Pointer to a custom data parser function\&. Used to parse data and convert them to double when import inputs or targets from a CSV file\&.
+.PP
+\fBSee also:\fP
+.RS 4
+n3l_file_get_data_from_csv 
 .RE
 .PP
 

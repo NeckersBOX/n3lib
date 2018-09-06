@@ -140,3 +140,123 @@ bool n3l_file_export_network(N3LNetwork *net, char *filename)
 
   return true;
 }
+
+/**
+ * @brief Get inputs from an already opened csv file.
+ *
+ * Get a single line, from the \p csv current position.
+ *
+ * @param csv Already opened in read mode csv file.
+ * @param row_offset If 0 read from the current position, otherwise set the position
+ * to the \p row_offset line.
+ * @param col_offset Start column from 0 to get the first data column
+ * @param size Number of data to read from the \p col_offset index
+ * @param data_parser A custom data parser, each data will be passed as string to
+ * this function. If you don't need custom parser this could be set to NULL.
+ * @return A dynamic allocated array of inputs or NULL on error.
+ *
+ * @note The returned pointer should be free() manually.
+ * @see N3LCSVData
+ */
+double *n3l_file_get_csv_data(FILE *csv, uint64_t row_offset, uint64_t col_offset, uint64_t size, N3LCSVData data_parser)
+{
+ 	double *data;
+ 	uint64_t row_skipped = 0, col_skipped = 0, data_index;
+ 	uint64_t r_size = 1, line_start, line_end, tok_s, tok_e;
+ 	bool flag = false;
+ 	char c, *raw_data;
+
+ 	if ( !csv || !size ) {
+ 		return NULL;
+ 	}
+
+ 	/** Move row offset to the chosen one **/
+ 	while ( row_skipped < row_offset && (c = fgetc(csv)) != EOF ) {
+ 		if ( c == '\n' ) {
+ 			++row_skipped;
+ 		}
+ 	}
+
+ 	if ( row_skipped < row_offset ) {
+ 		return NULL;
+ 	}
+
+ 	/** Validate fields number **/
+ 	line_start = ftell(csv);
+ 	while ( (c = fgetc(csv)) != EOF ) {
+ 		if ( c == '\n' ) {
+ 			break;
+ 		}
+ 		else if ( c == '"' ) {
+ 			flag = !flag;
+ 		}
+ 		else if ( (c == ',' || c == '\t' || c == ';') && !flag ) {
+ 			++r_size;
+ 		}
+ 	}
+
+ 	line_end = ftell(csv);
+ 	if ( line_end == line_start || r_size < (size + col_offset) ) {
+ 		return NULL;
+ 	}
+
+ 	fseek(csv, line_start, SEEK_SET);
+
+ 	/** Move col offset to the chosen one **/
+ 	for ( flag = false, col_skipped = 0; col_skipped < col_offset && (c = fgetc(csv)) != EOF; ) {
+ 		if ( c == '\n' ) {
+ 			break;
+ 		}
+ 		else if ( c == '"' ) {
+ 			flag = !flag;
+ 		}
+ 		else if ( (c == ',' || c == '\t' || c == ';') && !flag ) {
+ 			col_skipped++;
+ 		}
+ 	}
+
+ 	if ( col_skipped < col_offset ) {
+ 		return NULL;
+ 	}
+
+ 	/** Recover field's data **/
+ 	data = (double *) malloc(size * sizeof(double));
+ 	for ( data_index = 0; data_index < size; ++data_index ) {
+ 		for ( flag = false, tok_s = tok_e = ftell(csv); (c = fgetc(csv)) != EOF; tok_e++ ) {
+ 			if ( c == '\n' || ((c == ',' || c == ';' || c == '\t') && !flag) ) {
+ 				break;
+ 			}
+ 			else if ( c == '"' ) {
+ 				flag = !flag;
+ 			}
+ 		}
+
+ 		if ( !(tok_e - tok_s) ) {
+ 			raw_data = (char *) malloc(sizeof(char));
+ 			*raw_data = 0x00;
+ 		}
+ 		else {
+ 			++tok_e;
+ 			raw_data = (char *) malloc(((tok_e - tok_s) + 1) * sizeof(char));
+ 			fseek(csv, tok_s, SEEK_SET);
+ 			fread(raw_data, sizeof(char), (tok_e - tok_s), csv);
+ 			raw_data[(tok_e - tok_s) - 1] = 0x00;
+ 		}
+
+ 		if ( data_parser ) {
+ 			data[data_index] = data_parser(raw_data);
+ 		}
+ 		else {
+ 			if ( !(*raw_data) ) {
+ 				data[data_index] = 0.0;
+ 			}
+ 			else {
+ 				sscanf(raw_data, "%lf", &(data[data_index]));
+ 			}
+ 		}
+ 	}
+
+ 	fseek(csv, line_end, SEEK_SET);
+
+ 	return data;
+}

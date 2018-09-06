@@ -1,4 +1,4 @@
-.TH "src/n3_file.c" 3 "Sun Sep 2 2018" "N3 Library" \" -*- nroff -*-
+.TH "src/n3_file.c" 3 "Thu Sep 6 2018" "N3 Library" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -31,6 +31,10 @@ src/n3_file.c \- This file contains functions to import and save a network state
 .RI "bool \fBn3l_file_export_network\fP (\fBN3LNetwork\fP *net, char *filename)"
 .br
 .RI "Export the current network state to the chosen file\&. "
+.ti -1c
+.RI "double * \fBn3l_file_get_csv_data\fP (FILE *csv, uint64_t row_offset, uint64_t col_offset, uint64_t size, \fBN3LCSVData\fP data_parser)"
+.br
+.RI "Get inputs from an already opened csv file\&. "
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -90,6 +94,46 @@ TRUE if correctly executed, otherwise FALSE\&.
 .RE
 .PP
 
+.SS "double* n3l_file_get_csv_data (FILE * csv, uint64_t row_offset, uint64_t col_offset, uint64_t size, \fBN3LCSVData\fP data_parser)"
+
+.PP
+Get inputs from an already opened csv file\&. Get a single line, from the \fCcsv\fP current position\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcsv\fP Already opened in read mode csv file\&. 
+.br
+\fIrow_offset\fP If 0 read from the current position, otherwise set the position to the \fCrow_offset\fP line\&. 
+.br
+\fIcol_offset\fP Start column from 0 to get the first data column 
+.br
+\fIsize\fP Number of data to read from the \fCcol_offset\fP index 
+.br
+\fIdata_parser\fP A custom data parser, each data will be passed as string to this function\&. If you don't need custom parser this could be set to NULL\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A dynamic allocated array of inputs or NULL on error\&.
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+The returned pointer should be free() manually\&. 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBN3LCSVData\fP 
+.RE
+.PP
+Move row offset to the chosen one
+.PP
+Validate fields number
+.PP
+Move col offset to the chosen one
+.PP
+Recover field's data 
 .SS "\fBN3LNetwork\fP* n3l_file_import_network (char * filename)"
 
 .PP

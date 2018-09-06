@@ -13,7 +13,7 @@
 /**
  * @brief N3 Library version
  */
-#define N3L_VERSION "2.0.1"
+#define N3L_VERSION "2.0.2"
 
 /**
  * @brief Pointer to an activation function.
@@ -30,6 +30,17 @@ typedef double (*N3LAct)(double);
  * @see n3l_misc_rnd_wp1, n3l_misc_rnd_wn1, n3l_misc_rnd_wpn1, __n3l_get_weight_from_file
  */
 typedef double (*N3LWeightGenerator)(void *);
+
+
+/**
+ * @brief Pointer to a custom data parser function
+ *
+ * Used to parse data and convert them to double when import inputs or targets
+ * from a CSV file.
+ *
+ * @see n3l_file_get_data_from_csv
+ */
+typedef double (*N3LCSVData)(char *);
 
 /**
  * @brief Identify the layer type.

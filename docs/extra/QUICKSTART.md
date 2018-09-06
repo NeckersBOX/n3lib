@@ -153,3 +153,100 @@ And the results will be like these ones:
 Case { 1, 0 } - Output: 0.931341
 Case { 1, 1 } - Output: 0.079728
 ```
+
+## Get inputs and targets from CSV
+
+You can get inputs and targets data from a CSV file through the function `n3l_file_get_csv_data`.
+Example using a file named `test.csv` with the following content:
+
+```
+Input 0, Input 1, Target 0
+0.0,0.0,0.0
+0.0,1.0,1.0
+1.0,1.0,0.0
+1.0,0.0,1.0
+```
+
+In this example the data are already in a _printf-like double style_. If you have inputs with space or others format the function accepts a custom parser function which receive the raw string and return
+a double ( See `N3LCSVData` type )
+
+```C
+#include <stdlib.h>
+/** Include the library header **/
+#include <n3l/n3lib.h>
+
+int main(int argc, char *argv[])
+{
+  N3LArgs args;
+  N3LNetwork *net;
+  double *outputs, *data;
+  uint64_t j;
+  FILE *csv;
+
+  /** Open the CSV File **/
+  if ( !(csv = fopen("test.csv", "r")) ) {
+    fprintf(stderr, "Cannot open test.csv.\n");
+    exit(1);
+  }
+
+  /** Init with defaults parameters **/
+  args = n3l_misc_init_arg();
+
+  /** Define the number of neurons in the input layer **/
+  args.in_size = 2;
+
+  /** Build 1 hidden layer with 2 neurons using Sigmoid **/
+  args.h_layers = 1;
+  args.h_size = (uint64_t *) malloc(args.h_layers * sizeof(uint64_t));
+  args.h_size[0] = 2;
+  args.act_h = (N3LActType *) malloc(args.h_layers * sizeof(N3LActType));
+  args.act_h[0] = N3LSigmoid;
+
+  /** Define the number of neurons in the output layer **/
+  args.out_size = 1;
+
+  /** Setting bias **/
+  args.bias = 0.5;
+
+  /** Build the network with learning rate of 0.5 **/
+  net = n3l_network_build(args, 0.5);
+
+  /** Start learning with 10k iterations **/
+  net->inputs = (double *) malloc(2 * sizeof(double));
+  net->targets = (double *) malloc(sizeof(double));
+  for ( j = 0; j < 10000; ++j ) {
+    /** Read the first 3 data and skip the first row */
+    data = n3l_file_get_csv_data(csv, (j % 4) ? 0 : 1, 0, 3, NULL);
+
+    /** Forward Propagation **/
+    net->inputs[0] = data[0];
+    net->inputs[1] = data[1];
+    outputs = n3l_forward_propagation(net);
+
+    /** Backward Propagation **/
+    net->targets[0] = data[2];
+
+    free(data);
+    printf("Iter %ld/%d - Target: %.0lf - Output: %lf - Error: %lf\n",
+      j + 1, 10000, net->targets[0], outputs[0], net->targets[0] - outputs[0]);
+    free(outputs);
+
+    n3l_backward_propagation(net);
+
+    /** If this row is the last of the file, set the file cursor
+        again to the start position **/
+    if ( !((j + 1) % 4) ) {
+      printf("End example. Restart.\n");
+      rewind(csv);
+    }
+  }
+  free(net->inputs);
+  free(net->targets);
+  fclose(csv);
+
+  /** Free the network state **/
+  n3l_network_free(net);
+
+  return 0;
+}
+```
