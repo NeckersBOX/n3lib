@@ -170,7 +170,7 @@ double *n3l_file_get_csv_data(FILE *csv, uint64_t row_offset, uint64_t col_offse
  		return NULL;
  	}
 
- 	/** Move row offset to the chosen one **/
+ 	/* Move row offset to the chosen one */
  	while ( row_skipped < row_offset && (c = fgetc(csv)) != EOF ) {
  		if ( c == '\n' ) {
  			++row_skipped;
@@ -181,7 +181,7 @@ double *n3l_file_get_csv_data(FILE *csv, uint64_t row_offset, uint64_t col_offse
  		return NULL;
  	}
 
- 	/** Validate fields number **/
+ 	/* Validate fields number */
  	line_start = ftell(csv);
  	while ( (c = fgetc(csv)) != EOF ) {
  		if ( c == '\n' ) {
@@ -202,7 +202,7 @@ double *n3l_file_get_csv_data(FILE *csv, uint64_t row_offset, uint64_t col_offse
 
  	fseek(csv, line_start, SEEK_SET);
 
- 	/** Move col offset to the chosen one **/
+ 	/* Move col offset to the chosen one */
  	for ( flag = false, col_skipped = 0; col_skipped < col_offset && (c = fgetc(csv)) != EOF; ) {
  		if ( c == '\n' ) {
  			break;
@@ -219,7 +219,7 @@ double *n3l_file_get_csv_data(FILE *csv, uint64_t row_offset, uint64_t col_offse
  		return NULL;
  	}
 
- 	/** Recover field's data **/
+ 	/* Recover field's data */
  	data = (double *) malloc(size * sizeof(double));
  	for ( data_index = 0; data_index < size; ++data_index ) {
  		for ( flag = false, tok_s = tok_e = ftell(csv); (c = fgetc(csv)) != EOF; tok_e++ ) {
