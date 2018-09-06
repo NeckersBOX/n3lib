@@ -50,15 +50,15 @@ src/n3_header.h \- This file contains types, enums and structs definitions\&.
 
 .in +1c
 .ti -1c
-.RI "typedef double(* \fBN3LAct\fP) (double)"
+.RI "typedef double(* \fBN3LAct\fP) (double value)"
 .br
 .RI "Pointer to an activation function\&. "
 .ti -1c
-.RI "typedef double(* \fBN3LWeightGenerator\fP) (void *)"
+.RI "typedef double(* \fBN3LWeightGenerator\fP) (void *arg)"
 .br
 .RI "Pointer to a function to get the network weights\&. "
 .ti -1c
-.RI "typedef double(* \fBN3LCSVData\fP) (char *)"
+.RI "typedef double(* \fBN3LCSVData\fP) (char *field, uint64_t col_idx)"
 .br
 .RI "Pointer to a custom data parser function\&. "
 .ti -1c
@@ -100,10 +100,20 @@ Davide Francesco Merico
 
 .SH "Typedef Documentation"
 .PP 
-.SS "typedef double(* N3LAct) (double)"
+.SS "typedef double(* N3LAct) (double value)"
 
 .PP
 Pointer to an activation function\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIvalue\fP Input value 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Evaluated activation result
+.RE
 .PP
 \fBSee also:\fP
 .RS 4
@@ -111,10 +121,22 @@ Pointer to an activation function\&.
 .RE
 .PP
 
-.SS "typedef double(* N3LCSVData) (char *)"
+.SS "typedef double(* N3LCSVData) (char *field, uint64_t col_idx)"
 
 .PP
 Pointer to a custom data parser function\&. Used to parse data and convert them to double when import inputs or targets from a CSV file\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIfield\fP The raw data read from CSV\&. 
+.br
+\fIcol_idx\fP Field index from 0 ( included skipped columns ) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The \fCfield\fP relative value
+.RE
 .PP
 \fBSee also:\fP
 .RS 4
@@ -155,10 +177,20 @@ Single Linked List which contains weight's values\&. The list is built by \fBn3l
 .RE
 .PP
 
-.SS "typedef double(* N3LWeightGenerator) (void *)"
+.SS "typedef double(* N3LWeightGenerator) (void *arg)"
 
 .PP
 Pointer to a function to get the network weights\&. Used to get weights when a network is imported or built\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIarg\fP A custom argument to help in evaluating weight's value 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The weight value
+.RE
 .PP
 \fBSee also:\fP
 .RS 4

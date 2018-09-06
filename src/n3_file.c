@@ -244,7 +244,7 @@ double *n3l_file_get_csv_data(FILE *csv, uint64_t row_offset, uint64_t col_offse
  		}
 
  		if ( data_parser ) {
- 			data[data_index] = data_parser(raw_data);
+ 			data[data_index] = data_parser(raw_data, data_index + col_offset);
  		}
  		else {
  			if ( !(*raw_data) ) {

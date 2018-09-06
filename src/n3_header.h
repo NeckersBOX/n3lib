@@ -18,18 +18,24 @@
 /**
  * @brief Pointer to an activation function.
  *
+ * @param value Input value
+ * @return Evaluated activation result
+ *
  * @see n3l_act, n3l_act_prime, _n3l_neuron
  */
-typedef double (*N3LAct)(double);
+typedef double (*N3LAct)(double value);
 
 /**
  * @brief Pointer to a function to get the network weights.
  *
  * Used to get weights when a network is imported or built.
  *
+ * @param arg A custom argument to help in evaluating weight's value
+ * @return The weight value
+ *
  * @see n3l_misc_rnd_wp1, n3l_misc_rnd_wn1, n3l_misc_rnd_wpn1, __n3l_get_weight_from_file
  */
-typedef double (*N3LWeightGenerator)(void *);
+typedef double (*N3LWeightGenerator)(void *arg);
 
 
 /**
@@ -38,9 +44,13 @@ typedef double (*N3LWeightGenerator)(void *);
  * Used to parse data and convert them to double when import inputs or targets
  * from a CSV file.
  *
+ * @param field The raw data read from CSV.
+ * @param col_idx Field index from 0 ( included skipped columns )
+ * @return The \p field relative value
+ *
  * @see n3l_file_get_data_from_csv
  */
-typedef double (*N3LCSVData)(char *);
+typedef double (*N3LCSVData)(char *field, uint64_t col_idx);
 
 /**
  * @brief Identify the layer type.
