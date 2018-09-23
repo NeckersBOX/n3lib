@@ -1,0 +1,51 @@
+.TH "__n3l_thread_controller" 3 "Sun Sep 23 2018" "N3 Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+__n3l_thread_controller \- Internal struct to manage a dynamic queue of threads\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "bool \fBflush_call\fP"
+.br
+.ti -1c
+.RI "pthread_t * \fBthreads\fP"
+.br
+.ti -1c
+.RI "pthread_mutex_t \fBmutex\fP"
+.br
+.ti -1c
+.RI "pthread_cond_t \fBcond\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Internal struct to manage a dynamic queue of threads\&. 
+
+
+.PP
+\fBSee also:\fP
+.RS 4
+\fB__n3l_thread_queue\fP, \fBn3l_threads_flush\fP, \fBn3l_threads_init\fP, \fBn3l_threads_add\fP 
+.RE
+.PP
+
+.SH "Field Documentation"
+.PP 
+.SS "pthread_cond_t __n3l_thread_controller::cond"
+Used to signal a new element in the queue 
+.SS "bool __n3l_thread_controller::flush_call"
+True if \fBn3l_threads_flush()\fP is called 
+.SS "pthread_mutex_t __n3l_thread_controller::mutex"
+Used to lock the queue 
+.SS "pthread_t* __n3l_thread_controller::threads"
+Reference to running threads 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for N3 Library from the source code\&.

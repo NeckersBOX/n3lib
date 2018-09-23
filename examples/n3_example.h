@@ -15,11 +15,20 @@ struct n3_example_args {
 void n3_example_arguments_parser(int argc, char *argv[], struct n3_example_args *args)
 {
   int opt;
-  while ((opt = getopt(argc, argv, "b:hi:lmo:pr:t:")) != -1) {
+  int cores;
+
+  while ((opt = getopt(argc, argv, "b:j:hi:lmo:pr:t:")) != -1) {
     switch(opt) {
       case 'b':
         sscanf(optarg, "%lf", &(args->bias));
         break;
+      case 'j':
+        if ( (cores = atoi(optarg)) < 1 ) {
+          fprintf(stderr, "Wrong threads number: %d\n", cores);
+        }
+        else {
+          N3L_THREADS_CORES = cores;
+        }
       case 'l':
         args->learning = true;
         break;

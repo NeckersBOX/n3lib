@@ -1,0 +1,184 @@
+.TH "src/n3_threads.c" 3 "Sun Sep 23 2018" "N3 Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/n3_threads.c \- This file contains functions to work with threads\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <stdbool\&.h>\fP
+.br
+\fC#include <stdint\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fB__n3l_thread_controller\fP"
+.br
+.RI "Internal struct to manage a dynamic queue of threads\&. "
+.ti -1c
+.RI "struct \fB__n3l_thread_queue\fP"
+.br
+.RI "Internal struct to manage the routines queue\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void * \fB__n3l_threads_routine\fP (void *arg)"
+.br
+.RI "Internal thread routine to execute the queue routines\&. "
+.ti -1c
+.RI "int \fBn3l_threads_init\fP (void)"
+.br
+.RI "Initialize the threads queue\&. "
+.ti -1c
+.RI "int \fBn3l_threads_add\fP (void *(*start_routine)(void *), void *arg)"
+.br
+.RI "Add a new routine into the threads queue\&. "
+.ti -1c
+.RI "int \fBn3l_threads_flush\fP (void)"
+.br
+.RI "Execute all elements in the threads queue\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "struct \fB__n3l_thread_controller\fP \fBN3L_THREADS_CTRL\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBN3L_THREADS_CORES\fP = 1"
+.br
+.RI "Maximum numbers of cores in use by the library Default value: \fC1\fP\&. "
+.ti -1c
+.RI "struct \fB__n3l_thread_queue\fP * \fBN3L_THREADS_QUEUE\fP = NULL"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This file contains functions to work with threads\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Davide Francesco Merico 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+These functions are used to manage threads internally\&. 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "void* __n3l_threads_routine (void * arg)"
+
+.PP
+Internal thread routine to execute the queue routines\&. This function run in a separate thread and still alive until \fBn3l_threads_flush()\fP is called\&. If no element are present in the queue, it waits for a cond signal then start executing one-by-one all elements in the queue\&.
+.PP
+\fBNote:\fP
+.RS 4
+Each time an element in the queue is picked, the element routine run inside this thread\&.
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIarg\fP NULL 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+NULL 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_threads_add\fP, \fBn3l_threads_flush\fP, \fBn3l_threads_init\fP, __n3l_threads_queue 
+.RE
+.PP
+
+.SS "int n3l_threads_add (void *(*)(void *) start_routine, void * arg)"
+
+.PP
+Add a new routine into the threads queue\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstart_routine\fP Thread routine to call\&. 
+.br
+\fIarg\fP Routine argument\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_threads_init\fP, \fBn3l_threads_flush\fP, \fB__n3l_threads_routine\fP 
+.RE
+.PP
+
+.SS "int n3l_threads_flush (void)"
+
+.PP
+Execute all elements in the threads queue\&. Wait for all elements in the queue to be executed then return\&.
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_threads_init\fP, \fBn3l_threads_add\fP, \fB__n3l_threads_routine\fP 
+.RE
+.PP
+
+.SS "int n3l_threads_init (void)"
+
+.PP
+Initialize the threads queue\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success\&. 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_threads_add\fP, \fBn3l_threads_flush\fP, \fB__n3l_threads_routine\fP 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "uint64_t N3L_THREADS_CORES = 1"
+
+.PP
+Maximum numbers of cores in use by the library Default value: \fC1\fP\&. You can change this value before calling \fCn3l_threads_init\fP\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBn3l_threads_init\fP, \fBn3l_threads_add\fP, \fBn3l_threads_flush\fP 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for N3 Library from the source code\&.

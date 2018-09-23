@@ -5,10 +5,10 @@
  */
 #include <stdlib.h>
 #include <math.h>
-#include <pthread.h>
 #include <assert.h>
 #include "n3_header.h"
 #include "n3_neuron.h"
+#include "n3_threads.h"
 
 /**
  * @brief Internal struct to share data between threads.
@@ -69,7 +69,6 @@ double *n3l_forward_propagation(N3LNetwork *net)
  */
 double *__n3l_forward_layer(N3LLayer *layer, double *inputs)
 {
-  pthread_t *threads = NULL;
   struct __n3l_forward_data *tdata = NULL;
   uint64_t nsize = n3l_neuron_count(layer->nhead), j;
   N3LNeuron *neuron = NULL;
@@ -77,19 +76,16 @@ double *__n3l_forward_layer(N3LLayer *layer, double *inputs)
 
   assert(inputs != NULL && nsize > 0);
 
-  threads = (pthread_t *) malloc(nsize * sizeof(pthread_t));
+  n3l_threads_init();
   for ( neuron = layer->nhead, j = 0; neuron; neuron = neuron->next, ++j ) {
     if ( neuron->bias == false ) {
       neuron->input = inputs[j];
     }
 
-    pthread_create(&threads[j], NULL, __n3l_forward_activate, (void *) neuron);
+    n3l_threads_add(__n3l_forward_activate, (void *) neuron);
   }
 
-  for ( j = 0; j < nsize; ++j ) {
-    pthread_join(threads[j], NULL);
-  }
-  free(threads);
+  n3l_threads_flush();
 
   if ( layer->type == N3LOutputLayer ) {
     outputs = (double *) malloc(nsize * sizeof(double));
@@ -103,22 +99,19 @@ double *__n3l_forward_layer(N3LLayer *layer, double *inputs)
     nsize = n3l_neuron_count(layer->next->nhead);
     assert(nsize > 0);
 
+    n3l_threads_init();
     outputs = (double *) malloc(nsize * sizeof(double));
-    threads = (pthread_t *) malloc(nsize * sizeof(pthread_t));
     tdata = (struct __n3l_forward_data *) malloc(nsize * sizeof(struct __n3l_forward_data));
     for ( neuron = layer->next->nhead, j = 0; neuron; neuron = neuron->next, ++j ) {
       tdata[j].ref = neuron->ref;
       tdata[j].layer = layer;
       tdata[j].result = &outputs[j];
 
-      pthread_create(&threads[j], NULL, __n3l_forward_get_outputs, (void *) &tdata[j]);
+      n3l_threads_add(__n3l_forward_get_outputs, (void *) &tdata[j]);
     }
 
-    for ( j = 0; j < nsize; ++j ) {
-      pthread_join(threads[j], NULL);
-    }
+    n3l_threads_flush();
 
-    free(threads);
     free(tdata);
   }
 

@@ -20,6 +20,8 @@ To use N3 Library in your project you need to follow the steps below:
 5. Free the memory used by the network with `n3l_network_free()`
 6. Compile your project with the flag `-ln3l`
 
+**NOTE:** By defaults the numbers of cores in use are limited to one, this is ok if you work with small neural networks, but if you want to add more cores you only have to set the global variable `N3L_THREADS_CORES` with the value of cores to use.
+
 A small example implementing the XOR operation:
 ```C
 #include <stdlib.h>

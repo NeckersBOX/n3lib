@@ -4,8 +4,9 @@
 This is the most common example provided by various resources online when they explain how a neural network works.
 
 # Reports
+
 ## XOR - Report
-### Report ID: cfec5e21-6b28-4837-affd-66555f59fde2
+### Report ID: bbc4695d-d278-455d-858b-25ac89f1e1fd
 
 ### Configuration
 
@@ -26,18 +27,18 @@ This is the most common example provided by various resources online when they e
 - **MNS:** It's the Mobile Network Success rate. Range from 0 to 1. Higher is better.
 - **MNE:** It's the Mobile Network Error rate. Lower is better.
 
-![MNE Plot](xor.report.cfec5e21-6b28-4837-affd-66555f59fde2.plot-mne.png)
+![MNE Plot](xor.report.bbc4695d-d278-455d-858b-25ac89f1e1fd.plot-mne.png)
 
-![MNS Plot](xor.report.cfec5e21-6b28-4837-affd-66555f59fde2.plot-mns.png)
+![MNS Plot](xor.report.bbc4695d-d278-455d-858b-25ac89f1e1fd.plot-mns.png)
 
 ### Memory Usage Graph
 Memory usage was evaluated by _massif_ tool.
 
-![Massif](xor.report.cfec5e21-6b28-4837-affd-66555f59fde2.memory.png)
+![Massif](xor.report.bbc4695d-d278-455d-858b-25ac89f1e1fd.memory.png)
 
 ### Execution Time
 
 | Mode                 | Time ( seconds )   |
 |----------------------|--------------------|
-| Forward Propagation  | `2.207691120`  |
-| Backward Propagation | `2.389012975` |
+| Forward Propagation  | `1.290904018`  |
+| Backward Propagation | `1.239838196` |

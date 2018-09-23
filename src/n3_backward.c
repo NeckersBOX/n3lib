@@ -4,10 +4,10 @@
  * @brief This file contains functions to backpropagate the error and adjusts the weights.
  */
 #include <stdlib.h>
-#include <pthread.h>
 #include <assert.h>
 #include "n3_header.h"
 #include "n3_neuron.h"
+#include "n3_threads.h"
 
 /**
  * @brief Internal struct to share data between threads.
@@ -37,7 +37,6 @@ void *__n3l_backward_execute(void *arg);
  */
 bool n3l_backward_propagation(N3LNetwork *net)
 {
-  pthread_t *threads;
   uint64_t nsize, j;
   N3LNeuron *out;
   struct __n3l_backward_data *tdata;
@@ -53,7 +52,8 @@ bool n3l_backward_propagation(N3LNetwork *net)
 
   nsize = n3l_neuron_count(net->ltail->nhead);
   assert(nsize > 0);
-  threads = (pthread_t *) malloc(nsize * sizeof(pthread_t));
+
+  n3l_threads_init();
   tdata = (struct __n3l_backward_data *) malloc(nsize * sizeof(struct __n3l_backward_data));
   for ( out = net->ltail->nhead, j = 0; out; out = out->next, ++j ) {
     tdata[j].ref = out->ref;
@@ -61,14 +61,10 @@ bool n3l_backward_propagation(N3LNetwork *net)
     tdata[j].delta = (net->targets[j] - out->result) * out->act_prime(out->input);
     tdata[j].learning_rate = net->learning_rate;
 
-    pthread_create(&threads[j], NULL, __n3l_backward_execute, (void *) &(tdata[j]));
+    n3l_threads_add(__n3l_backward_execute, (void *) &(tdata[j]));
   }
 
-  for ( j = 0; j < nsize; ++j ) {
-    pthread_join(threads[j], NULL);
-  }
-
-  free(threads);
+  n3l_threads_flush();
   free(tdata);
 
   return true;

@@ -1,0 +1,46 @@
+.TH "__n3l_thread_queue" 3 "Sun Sep 23 2018" "N3 Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+__n3l_thread_queue \- Internal struct to manage the routines queue\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "void *(* \fBstart_routine\fP )(void *)"
+.br
+.ti -1c
+.RI "void * \fBarg\fP"
+.br
+.ti -1c
+.RI "struct \fB__n3l_thread_queue\fP * \fBnext\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Internal struct to manage the routines queue\&. 
+
+It's a LIFO single linked list\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fB__n3l_thread_controller\fP, \fB__n3l_threads_routine\fP 
+.RE
+.PP
+
+.SH "Field Documentation"
+.PP 
+.SS "void* __n3l_thread_queue::arg"
+Routine argument 
+.SS "struct \fB__n3l_thread_queue\fP* __n3l_thread_queue::next"
+Next element in the queue 
+.SS "void*(* __n3l_thread_queue::start_routine) (void *)"
+Thread routine 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for N3 Library from the source code\&.

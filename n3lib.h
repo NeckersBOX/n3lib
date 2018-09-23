@@ -36,5 +36,6 @@
 #include "src/n3_misc.h"
 #include "src/n3_network.h"
 #include "src/n3_neuron.h"
+#include "src/n3_threads.h"
 
 #endif

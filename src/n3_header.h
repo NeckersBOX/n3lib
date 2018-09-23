@@ -13,7 +13,7 @@
 /**
  * @brief N3 Library version
  */
-#define N3L_VERSION "2.0.3"
+#define N3L_VERSION "2.1.0"
 
 /**
  * @brief Pointer to an activation function.
