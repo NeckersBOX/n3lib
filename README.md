@@ -1,4 +1,4 @@
-# N3 Library ![Version](https://img.shields.io/badge/version-2.1.0-lightgray.svg) ![Status](https://img.shields.io/badge/status-alpha-yellow.svg)  ![License](https://img.shields.io/badge/license-BSD--2--Clause-red.svg)
+# N3 Library ![Version](https://img.shields.io/badge/version-2.1.1-lightgray.svg) ![Status](https://img.shields.io/badge/status-alpha-yellow.svg)  ![License](https://img.shields.io/badge/license-BSD--2--Clause-red.svg)
 
 A C library for building neural network with the capability to define custom activation functions, learning rate, bias and others parameters.
 
