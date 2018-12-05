@@ -5,6 +5,8 @@
  */
 #include <stdlib.h>
 #include <assert.h>
+#include <math.h>
+#include <float.h>
 #include "n3_header.h"
 #include "n3_neuron.h"
 #include "n3_threads.h"
@@ -59,6 +61,14 @@ bool n3l_backward_propagation(N3LNetwork *net)
     tdata[j].ref = out->ref;
     tdata[j].layer = net->ltail->prev;
     tdata[j].delta = (net->targets[j] - out->result) * out->act_prime(out->input);
+    if ( isnan(tdata[j].delta) || isinf(tdata[j].delta) ) {
+      if ( (out->act_prime(out->input) > 0) == ((net->targets[j] - out->result) > 0) ) {
+        tdata[j].delta = DBL_MAX;
+      }
+      else {
+        tdata[j].delta = DBL_MIN;
+      }
+    }
     tdata[j].learning_rate = net->learning_rate;
 
     n3l_threads_add(__n3l_backward_execute, (void *) &(tdata[j]));
@@ -103,6 +113,10 @@ void *__n3l_backward_execute(void *arg)
       next_tdata.learning_rate = tdata->learning_rate;
       next_tdata.delta = tdata->delta * weight->value * neuron->act_prime(neuron->input);
 
+      if ( isnan(next_tdata.delta) || isinf(next_tdata.delta) ) {
+        next_tdata.delta = ( weight->value < 0 ) ? DBL_MIN : DBL_MAX;
+      }
+
       __n3l_backward_execute((void *) &next_tdata);
     }
 
@@ -112,6 +126,15 @@ void *__n3l_backward_execute(void *arg)
       }
 
       weight->value += tdata->learning_rate * tdata->delta * neuron->result;
+
+      if ( isnan(weight->value) || isinf(weight->value) ) {
+        if ( (tdata->delta > 0) == (neuron->result > 0) ) {
+          weight->value = DBL_MAX;
+        }
+        else {
+          weight->value = DBL_MIN;
+        }
+      }
     }
   }
 }
